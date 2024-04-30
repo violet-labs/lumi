@@ -9,6 +9,19 @@
           url="#"
           :aria-controls="''"
           v-bind:collapse="false"
+          collapseRef="agenda"
+          navText="Agenda"
+        >
+          <template v-slot:icon>
+            <i class="material-icons-round opacity-10 fs-5">table_view</i>
+          </template>
+        </sidenav-collapse>
+      </li>
+      <li class="nav-item">
+        <sidenav-collapse
+          url="#"
+          :aria-controls="''"
+          v-bind:collapse="false"
           collapseRef="dashboard"
           navText="Dashboard"
         >

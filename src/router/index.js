@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Tables from "../views/Tables.vue";
+import Agenda from "../views/Agenda.vue";
 import Billing from "../views/Billing.vue";
 import RTL from "../views/Rtl.vue";
 import Notifications from "../views/Notifications.vue";
@@ -23,6 +24,11 @@ const routes = [
     path: "/tables",
     name: "Tables",
     component: Tables,
+  },
+  {
+    path: "/agenda",
+    name: "Agenda",
+    component: Agenda,
   },
   {
     path: "/billing",
