@@ -36,7 +36,7 @@ export interface Props {
 }
 
 import Icon from "./assets/search-icon.vue";
-import { typing } from "@/assets/directives";
+import { typing } from "../../assets/directives";
 import { inject, computed } from "vue";
 
 const vTyping = { ...typing };

@@ -1,8 +1,19 @@
 //@ts-nocheck
 import { createI18n } from "vue-i18n";
-import { messages } from "vite-i18n-resources";
+// import { messages } from "vite-i18n-resources";
 
-export const locales = Object.keys(messages);
+// export const locales = Object.keys(messages);
+
+const messages = {
+  "br": {
+    "calendar.day": "Dia",
+    "calendar.week": "Semana",
+    "calendar.month": "Mês",
+    "calendar.close": "Fechar",
+    "calendar.no_events": "Sem consultas",
+    "calendar.search": "Buscar",
+  }
+}
 
 const numberFormats = {
   fr: {
@@ -24,12 +35,19 @@ const numberFormats = {
     UAH: { style: "currency", currency: "UAH" },
     number: { style: "decimal" },
   },
+
+  br: {
+    BRL: { style: "currency", currency: "BRL" },
+    number: { style: "decimal" },
+  },
 };
+
+export const locales = Object.keys(numberFormats);
 
 export const i18n = createI18n({
   locales: locales,
   locale: window.navigator.language.split("-")[0],
-  fallbackLocale: "fr",
+  fallbackLocale: "br",
 
   numberFormats,
   messages,

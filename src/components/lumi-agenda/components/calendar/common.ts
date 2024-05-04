@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { i18n } from "@/assets/i18n";
+import { i18n } from "../../assets/i18n";
 
 const locale = ref(i18n.global.locale);
 

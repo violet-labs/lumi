@@ -36,7 +36,7 @@ import {
   watch,
 } from "vue";
 import type { Ref } from "vue";
-import { E_View, type T_View } from "@/stores/events";
+import { E_View, type T_View } from "../../stores/events";
 
 const props = withDefaults(defineProps<Props>(), {
   view: "week",

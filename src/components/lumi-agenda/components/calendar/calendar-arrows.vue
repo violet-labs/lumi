@@ -57,7 +57,7 @@ export interface Props {
   slots: Slots;
 }
 
-import type { Configs } from "@/stores/events";
+import type { Configs } from "../../stores/events";
 import { computed, type Slots } from "vue";
 import { useEventsStore } from "../../stores/events";
 

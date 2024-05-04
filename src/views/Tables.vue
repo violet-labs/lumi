@@ -1,5 +1,14 @@
 <template>
   <div class="container-fluid py-4">
+    <pro-calendar
+  :events="evts"
+  :loading="false"
+  :config="cfg"
+  view="month"
+  date="2022-11-10T00:00:00.000Z"
+  @calendarClosed="void 0"
+  @fetchEvents="void 0"
+/>
     <div class="row">
       <div class="col-12">
         <div class="card my-4">
