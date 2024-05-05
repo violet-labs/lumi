@@ -4,7 +4,7 @@
     class="bg-white border w-full border-E0E0E0 rounded flex justify-between flex-shrink flex-nowrap items-center relative selectDate select-none"
   >
     <!-- selected date -->
-    <span class="block p-2 text-09101D capitalize text-xs leading-4">
+    <span class="block p-2 text-09101D text-center text-xs leading-4">
       {{ selectedDate ? displayDate : "YYYY-MM-AA" }}
     </span>
     <!--icon -->
@@ -41,6 +41,7 @@ import {
 } from "vue";
 import type { Ref } from "vue";
 import { dateLabel } from "./common";
+import moment from 'moment';
 
 type CalendarDateInput = HTMLInputElement & {
   showPicker(): void;
@@ -71,9 +72,7 @@ const emitDate = (event: Event): void => {
 const displayDate = computed<string>((): string => {
   const _nd = new Date(selectedDate.value);
 
-  return /calendar/i.test(dateLabel(_nd))
-    ? $t(`${dateLabel(_nd)}`)
-    : dateLabel(_nd);
+  return moment(selectedDate.value).lang("pt").format('dddd, D [de] MMMM [de] YYYY')
 });
 
 watch(props, () => {

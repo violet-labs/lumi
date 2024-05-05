@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
   <main
     class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
   >
-    <tab-navigation class="bg-gradient-info" />
+    <tab-navigation class="bg-gradient-primary" />
     <!-- nav -->
     <router-view />
     <app-footer v-show="showFooter" />

@@ -33,7 +33,9 @@ library.add(
 
 const pinia = createPinia();
 
-const ProCalendar: Plugin<any[]> = {
+import LumiDatePicker from "./components/calendar/calendar-native-datepicker.vue";
+
+const LumiCalendar: Plugin<any[]> = {
   install: (app: App, options: any[]) => {
     app.use(pinia);
     app.use(i18n);
@@ -43,12 +45,13 @@ const ProCalendar: Plugin<any[]> = {
     app.provide("$locale", app.config.globalProperties.$i18n.locale);
 
     app.component("font-awesome-icon", FontAwesomeIcon);
+    app.component('LumiDatePicker', LumiDatePicker)
 
     // Plugin code goes here
-    app.component("ProCalendar", widget);
+    app.component("LumiCalendar", widget);
   },
 };
 
-export { ProCalendar };
+export { LumiCalendar };
 export type { Appointment, T_View, T_Action, Configs } from "./stores/events";
 export { E_View, E_CustomEvents, DEFAULT_CONFIGS } from "./stores/events";

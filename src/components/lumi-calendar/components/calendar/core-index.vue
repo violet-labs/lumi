@@ -1,129 +1,93 @@
 <template>
-  <div
-    class="widget-calendar-wrapper relative w-full h-screen flex flex-row flex-nowrap bg-white min-h-screen"
-  >
+  <div class="widget-calendar-wrapper relative w-full flex bg-white">
     <!-- left menu-->
-    <LeftMenu
-      :date="externalRequestDate"
-      @calendar:datepicker="dateSelected = $event"
-      ref="leftMenu"
-    >
-      <template #closeButton>
-        <template v-if="slots.closeButton">
-          <span class="inline-flex">
-            <component
-              :is="slots.closeButton"
-              @click.prevent.stop="closeCalendar()"
-            />
-          </span>
-        </template>
-        <CloseButton v-else @tap="closeCalendar()" />
-      </template>
-      <!-- / -->
-      <template #loader>
-        <template v-if="slots.loader">
-          <span class="inline-flex">
-            <component :is="slots.loader" :calendarGotLoading="isLoading" />
-          </span>
-        </template>
-        <Loader v-else-if="isLoading" />
-      </template>
-      <!---->
-      <template #sideEvent>
-        <div
-          class="side-event-box overflow-y-auto custom-scrll p-1"
-          :class="{
-            'h-50p': !configs?.nativeDatepicker,
-            'below-native-datepicker': configs?.nativeDatepicker,
-          }"
-        >
-          <template v-if="slots.sideEvent">
-            <component
-              :is="slots.sideEvent"
-              :dateSelected="dateSelected"
-              :calendarEvents="calendarEvents"
-            />
-          </template>
-          <template v-else>
-            <SideEvent :eventDate="dateSelected" />
-            <!-- / -->
-            <SideEvent
-              v-if="
-                nextDate(dateSelected).toLocaleDateString('en-CA') !=
-                dateSelected.toLocaleDateString('en-CA')
-              "
-              :eventDate="nextDate(dateSelected)"
-            />
-          </template>
-        </div>
-      </template>
-    </LeftMenu>
-
-    <!-- calendar base-->
-    <div
-      class="calendar-base w-full grow border border-white bg-white p-4 pb-0"
-    >
-      <!-- calendar base header -->
-      <HeaderComp>
-        <!--Arrows-->
-        <Arrows
-          @calendar-arrow:today="leftMenu.datepicked = new Date()"
-          @calendar-arrow:left="leftMenu.datepicked = prevDate(dateSelected)"
-          @calendar-arrow:right="leftMenu.datepicked = nextDate(dateSelected)"
-          :label="
-            /calendar/i.test(dateLabel(dateSelected))
+    <div class="row w-full">
+      <div class="flex flex-wrap">
+        <!-- <LeftMenu :date="externalRequestDate" @calendar:datepicker="dateSelected = $event" ref="leftMenu" style="margin: 0 auto;"> -->
+          <!-- <template #closeButton>
+            <template v-if="slots.closeButton">
+              <span class="inline-flex">
+                <component
+                  :is="slots.closeButton"
+                  @click.prevent.stop="closeCalendar()"
+                />
+              </span>
+            </template>
+<CloseButton v-else @tap="closeCalendar()" />
+</template> -->
+          <!-- / -->
+          <!-- <template #loader>
+            <template v-if="slots.loader">
+              <span class="inline-flex">
+                <component :is="slots.loader" :calendarGotLoading="isLoading" />
+              </span>
+            </template>
+            <Loader v-else-if="isLoading" />
+          </template> -->
+          <!---->
+          <!-- <template #sideEvent>
+            <div
+              class="side-event-box overflow-y-auto custom-scrll p-1"
+              :class="{
+                'h-50p': !configs?.nativeDatepicker,
+                'below-native-datepicker': configs?.nativeDatepicker,
+              }"
+            >
+              <template v-if="slots.sideEvent">
+                <component
+                  :is="slots.sideEvent"
+                  :dateSelected="dateSelected"
+                  :calendarEvents="calendarEvents"
+                />
+              </template>
+              <template v-else>
+                <SideEvent :eventDate="dateSelected" />
+                <SideEvent
+                  v-if="
+                    nextDate(dateSelected).toLocaleDateString('en-CA') !=
+                    dateSelected.toLocaleDateString('en-CA')
+                  "
+                  :eventDate="nextDate(dateSelected)"
+                />
+              </template>
+            </div>
+          </template> -->
+        <!-- </LeftMenu> -->
+      <!-- calendar base-->
+        <div class="calendar-base w-full grow border border-white bg-white mt-2 pb-0" style="flex: 1">
+          <!-- calendar base header -->
+          <HeaderComp style="max-width:95vw;">
+            <!--Arrows-->
+            <!-- <Arrows @calendar-arrow:today="leftMenu.datepicked = new Date()"
+              @calendar-arrow:left="leftMenu.datepicked = prevDate(dateSelected)"
+              @calendar-arrow:right="leftMenu.datepicked = nextDate(dateSelected)" :label="/calendar/i.test(dateLabel(dateSelected))
               ? $t(`${dateLabel(dateSelected)}`)
               : dateLabel(dateSelected)
-          "
-          :slots="slots"
-        />
-        <!-- DayToggle-->
-        <Toggle
-          ref="viewToggle"
-          @calendar:view-changed="defineView = $event"
-          :view="view"
-        />
-        <!--Search-->
-        <Search
-          @calendar:search="void 0"
-          @typing:finished="runSearch"
-          :placeholder="configs.searchPlaceholder"
-          :slots="slots"
-        />
-      </HeaderComp>
-      <!--calendar-->
-      <div
-        data-widget-item="widget-calendar-comp"
-        class="calendar-wrapper w-full mt-4 overflow-y-auto custom-scrll"
-      >
-        <!--calendar week-view-->
-        <template v-if="defineView === 'week'">
-          <WeekView
-            :weekDays="weekDays"
-            :dateSelected="dateSelected"
-            :dayTimes="dayTimes"
-            :slots="slots"
-          />
-        </template>
-
-        <!--calendar day-view-->
-        <template v-if="defineView === 'day'">
-          <DayView
-            :dateSelected="dateSelected"
-            :dayTimes="dayTimes"
-            :slots="slots"
-          />
-        </template>
-
-        <!--calendar month-view-->
-        <template v-if="defineView === 'month'">
-          <MonthView
-            :weekDays="weekDays"
-            :monthDays="monthDays"
-            :dateSelected="dateSelected"
-            :slots="slots"
-          />
-        </template>
+            " :slots="slots" /> -->
+            <div class="flex flex-wrap self-to-center">
+              <!--Search-->
+              <!-- <Search @calendar:search="void 0" @typing:finished="runSearch" :placeholder="configs.searchPlaceholder"
+                :slots="slots" class="self-to-center" /> -->
+              <!-- DayToggle-->
+              <Toggle ref="viewToggle" @calendar:view-changed="defineView = $event" :view="view" class="self-to-center" />
+            </div>
+          </HeaderComp>
+          <!--calendar-->
+          <div data-widget-item="widget-calendar-comp" class="calendar-wrapper w-full mt-4 overflow-y-auto custom-scrll">
+            <!--calendar week-view-->
+            <template v-if="defineView === 'week'">
+              <WeekView :weekDays="weekDays" :dateSelected="dateSelected" :dayTimes="dayTimes" :slots="slots" />
+            </template>
+            <!--calendar day-view-->
+            <template v-if="defineView === 'day'">
+              <DayView :dateSelected="dateSelected" :dayTimes="dayTimes" :slots="slots" />
+            </template>
+            <!--calendar month-view-->
+            <template v-if="defineView === 'month'">
+              <MonthView :weekDays="weekDays" :monthDays="monthDays" :dateSelected="dateSelected" :slots="slots" />
+            </template>
+          </div>
+        </div>
       </div>
     </div>
     <!---->
@@ -152,7 +116,7 @@ import {
   watch,
   toRef,
   useSlots,
-  type ComponentPublicInstance,
+  type ComponentPublicInstance
 } from "vue";
 import type { Ref } from "vue";
 import LeftMenu from "./left-menu.vue";
@@ -198,7 +162,7 @@ const props = withDefaults(defineProps<Props>(), {
   config: () => ({ ...DEFAULT_CONFIGS }),
 });
 
-const emit = defineEmits(["calendarClosed", "fetchEvents"]);
+const emit = defineEmits(["calendarClosed", "fetchEvents", "dateSelected"]);
 
 const store = useEventsStore();
 
@@ -294,15 +258,16 @@ const verifyFirstBind = (): void => {
 const generateDayTimes = (): void => {
   // dayTimes generation from 08h00 to 23h00
   const _p1 = Array.from(
-    { length: 23 - 8 + 1 },
+    { length: 18 - 8 + 1 },
     (_, i) => `${twoDigit(i + 8)}:${twoDigit(0)}`
   );
   //dayTimes generation from 07h00 to 23h59
-  const _p2 = Array.from(
-    { length: 7 - 0 + 1 },
-    (_, i) => `${twoDigit(i + 0)}:${twoDigit(0)}`
-  );
-  dayTimes.value = _p1.concat(_p2);
+  // const _p2 = Array.from(
+  //   { length: 7 - 0 + 1 },
+  //   (_, i) => `${twoDigit(i + 0)}:${twoDigit(0)}`
+  // );
+  // dayTimes.value = _p1.concat(_p2);
+  dayTimes.value = _p1
 };
 
 /**
@@ -323,6 +288,8 @@ watch(dateSelected, () => {
   };
   // fetch appointments
   fetchAppointments();
+
+  emit("dateSelected", dateSelected.value)
 });
 
 /**
@@ -347,7 +314,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .calendar-wrapper {
-  height: calc(100vh - 66px);
+  height: calc(83vh - 66px);
 }
 
 .side-event-box {

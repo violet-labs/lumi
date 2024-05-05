@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full max-w-20rm flex-shrink-0 p-4 pb-0">
+  <div class="w-full max-w-20rm flex-shrink-0 p-4 pb-0 pt-0">
     <!--closer and loader-->
     <div class="flex flex-row flex-wrap items-center justify-between">
       <slot name="closeButton" />
@@ -15,7 +15,7 @@
       />
     </div>
     <!-- date picker -->
-    <div v-else class="mt-4">
+    <div v-else>
       <DatePicker
         ref="vcalendar_date_picker"
         title-position="left"
@@ -60,6 +60,7 @@
               {{ page.yearLabel }}
             </span>
           </div>
+          <!-- {{ getFormattedDate() }} -->
         </template>
       </DatePicker>
     </div>

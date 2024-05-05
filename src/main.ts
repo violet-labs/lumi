@@ -7,6 +7,7 @@ import router from "./router"
 import "./assets/css/nucleo-icons.css"
 import "./assets/css/nucleo-svg.css"
 
+
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -19,13 +20,13 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import './assets/css/main.css'
 
-import { ProCalendar } from "./components/lumi-calendar";
+import { LumiCalendar } from "./components/lumi-calendar";
 
 const appInstance = createApp(App)
 appInstance.use(store)
 appInstance.use(router)
 appInstance.use(MaterialDashboard)
-appInstance.use(ProCalendar)
+appInstance.use(LumiCalendar)
 
 const vuetify = createVuetify({
     components,
