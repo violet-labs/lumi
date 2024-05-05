@@ -19,7 +19,7 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import './assets/css/main.css'
 
-import { ProCalendar } from "./components/lumi-agenda";
+import { ProCalendar } from "./components/lumi-calendar";
 
 const appInstance = createApp(App)
 appInstance.use(store)

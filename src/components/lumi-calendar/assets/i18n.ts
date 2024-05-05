@@ -12,6 +12,7 @@ const messages = {
     "calendar.close": "Fechar",
     "calendar.no_events": "Sem consultas",
     "calendar.search": "Buscar",
+    "calendar.today": "Hoje"
   }
 }
 

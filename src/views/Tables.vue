@@ -5,7 +5,7 @@
   :loading="false"
   :config="cfg"
   view="month"
-  date="2022-11-10T00:00:00.000Z"
+  date="2024-05-04T00:00:00.000Z"
   @calendarClosed="void 0"
   @fetchEvents="void 0"
 />
@@ -679,7 +679,38 @@
 </template>
 
 <script>
+const evts = [
+  {
+    date: "2024-05-04T14:00:00.000Z",
+    comment: "",
+    id: "cl32rbkjk1700101o53e3e3uhn",
+    keywords: "Projet BAMBA",
+    name: "MONTCHO Kévin",
+  },
+  //...
+]
+
+const cfg = {
+  viewEvent: undefined,
+  reportEvent: {
+    icon: true,
+    text: "",
+  },
+  searchPlaceholder: "",
+  eventName: "",
+  closeText: "",
+  nativeDatepicker: false,
+  todayButton: true,
+  firstDayOfWeek: 1,
+}
+
 export default {
   name: "tables",
+  data() {
+    return {
+      cfg,
+      evts
+    }
+  }
 };
 </script>

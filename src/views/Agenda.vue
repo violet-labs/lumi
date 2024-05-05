@@ -687,10 +687,6 @@
 </template>
 
 <script>
-import { DatePicker } from 'v-calendar';
-import 'v-calendar/style.css';
-import "vue-pro-calendar/style";
-
 const cfg = {
   viewEvent: undefined,
   reportEvent: {
@@ -700,7 +696,7 @@ const cfg = {
   searchPlaceholder: "",
   eventName: "",
   closeText: "",
-  nativeDatepicker: true,
+  nativeDatepicker: false,
   todayButton: true,
   firstDayOfWeek: 1,
 };
@@ -721,7 +717,7 @@ const data = "2023-11-10T00:00:00.000Z"
 export default {  
   name: "agenda",
   components: {
-    DatePicker,
+    // DatePicker,
   },
   data() {
     return {
