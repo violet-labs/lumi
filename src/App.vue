@@ -12,12 +12,16 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+<style>
+body {
+  background-color: #00F !important;
+}
+</style>
 <template>
+  <tab-navigation class="bg-gradient-primary" />
   <main
     class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
   >
-    <tab-navigation class="bg-gradient-primary" />
-    <!-- nav -->
     <router-view />
     <app-footer v-show="showFooter" />
     <fab-search
@@ -27,23 +31,21 @@ Coded by www.creative-tim.com
   </main>
 </template>
 <script>
-import Sidenav from "./examples/Sidenav";
 import FabSearch from "@/views/components/FabSearch.vue";
-// import Fabsearcha from "@/views/components/Fabsearcha.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
 import { mapMutations, mapState } from "vuex";
 import TabNavigation from "./views/components/TabNavigation.vue"
+import LumiSidenav from "@/components/LumiSidenav";
 
 export default {
   name: "App",
   components: {
-    Sidenav,
     FabSearch,
-    // Fabsearcha,
     Navbar,
     AppFooter,
-    TabNavigation
+    TabNavigation,
+    LumiSidenav
   },
   methods: {
     ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
@@ -65,12 +67,15 @@ export default {
   },
   beforeMount() {
     this.$store.state.isTransparent = "bg-transparent";
+    const body = document.getElementsByTagName("body")[0];
 
     const sidenav = document.getElementsByClassName("g-sidenav-show")[0];
 
     if (window.innerWidth > 1200) {
       sidenav.classList.add("g-sidenav-pinned");
     }
+    
+    body.classList.remove("bg-gray-200");
   },
 };
 </script>

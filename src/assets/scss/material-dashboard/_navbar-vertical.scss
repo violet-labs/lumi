@@ -6,7 +6,7 @@
   .navbar-brand > img,
   .navbar-brand-img {
     max-width: 100%;
-    max-height: 2rem;
+    max-height: 3rem;
   }
   // Navbar navigaton
   .navbar-nav {
@@ -64,8 +64,8 @@
         @include media-breakpoint-up(#{$breakpoint}) {
           display: block;
           position: fixed;
-          top: 0;
-          bottom: 0;
+          top: 48px;
+          bottom: 60px;
           width: 100%;
           max-width: $navbar-vertical-open-width !important;
           overflow-y: auto;
@@ -196,7 +196,7 @@
 }
 // Sidenav + Main content transition
 
-.main-content,
+.main-page-content,
 .sidenav {
   transition: $transition-base;
 }
@@ -220,12 +220,12 @@
       padding: 1.5rem;
     }
 
-    &.fixed-start + .main-content {
+    &.fixed-start + .main-page-content {
       margin-left: $navbar-vertical-open-width + 1.5;
     }
 
-    &.fixed-end + .main-content {
-      margin-right: $navbar-vertical-open-width + 1.5;
+    &.fixed-end + .main-page-content {
+      margin-right: $navbar-vertical-open-width + 0;
     }
   }
 
@@ -275,7 +275,8 @@ body:not(.dark-version) {
 }
 
 .sidenav-header {
-  height: $sidenav-header-width;
+  // height: $sidenav-header-width;
+  width: 100%;
 }
 
 .sidenav-footer {
@@ -314,20 +315,20 @@ body:not(.dark-version) {
 // Media fixes for iPhone 5 like resolutions
 @include media-breakpoint-down(xl) {
   .g-sidenav-show {
-    &.rtl {
+    // &.rtl {
       .sidenav {
-        transform: translateX($navbar-vertical-open-width + 1.5);
+        transform: translateX($navbar-vertical-open-width + 1.5) !important;
       }
-    }
+    // }
 
-    &:not(.rtl) {
-      .sidenav {
-        transform: translateX(-($navbar-vertical-open-width + 1.5));
-      }
-    }
+    // &:not(.rtl) {
+      // .sidenav {
+      //   transform: translateX(-($navbar-vertical-open-width + 1.5)) !important;
+      // }
+    // }
 
     .sidenav {
-      &.fixed-start + .main-content {
+      &.fixed-start + .main-page-content {
         margin-left: 0 !important;
       }
     }
@@ -584,7 +585,7 @@ body:not(.dark-version) {
 @include media-breakpoint-up(xl) {
   .g-sidenav-hidden {
     &.rtl {
-      .main-content {
+      .main-page-content {
         margin-right: $navbar-vertical-hidden-width !important;
       }
 
@@ -604,7 +605,7 @@ body:not(.dark-version) {
 
     &.rtl {
       .sidenav:hover {
-        & + .main-content {
+        & + .main-page-content {
           margin-right: $navbar-vertical-open-width + 1.5 !important;
         }
       }
@@ -613,7 +614,7 @@ body:not(.dark-version) {
     .navbar-vertical {
       max-width: $navbar-vertical-hidden-width !important;
 
-      &.fixed-start + .main-content {
+      &.fixed-start + .main-page-content {
         margin-left: $navbar-vertical-hidden-width + 1.5;
       }
 
@@ -687,7 +688,7 @@ body:not(.dark-version) {
       &:hover {
         max-width: $navbar-vertical-open-width !important;
 
-        &.fixed-start + .main-content {
+        &.fixed-start + .main-page-content {
           margin-left: $navbar-vertical-open-width + 1.5;
         }
 

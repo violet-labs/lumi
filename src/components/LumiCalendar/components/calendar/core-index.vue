@@ -1,5 +1,5 @@
 <template>
-  <div class="widget-calendar-wrapper relative w-full flex bg-white px-2 self-to-center" style="max-width: 1200px;">
+  <div class="widget-calendar-wrapper relative w-full flex bg-lumi px-2">
     <!-- left menu-->
     <!-- <LeftMenu :date="externalRequestDate" @calendar:datepicker="dateSelected = $event" ref="leftMenu" style="margin: 0 auto;"> -->
         <!-- <template #closeButton>
@@ -52,9 +52,9 @@ template> -->
         </template> -->
       <!-- </LeftMenu> -->
     <!-- calendar base-->
-      <div class="calendar-base w-full grow border border-white bg-white mt-2 pb-0" style="flex: 1">
+      <div class="calendar-base w-full grow border border-white bg-lumi mt-2 pb-0" style="flex: 1">
         <!-- calendar base header -->
-        <HeaderComp style="max-width:95vw;">
+        <HeaderComp>
           <!--Arrows-->
           <!-- <Arrows @calendar-arrow:today="leftMenu.datepicked = new Date()"
             @calendar-arrow:left="leftMenu.datepicked = prevDate(dateSelected)"
@@ -62,12 +62,12 @@ template> -->
             ? $t(`${dateLabel(dateSelected)}`)
             : dateLabel(dateSelected)
           " :slots="slots" /> -->
-          <div class="flex flex-wrap self-to-center">
+          <div class="flex flex-wrap center-self">
             <!--Search-->
             <!-- <Search @calendar:search="void 0" @typing:finished="runSearch" :placeholder="configs.searchPlaceholder"
-              :slots="slots" class="self-to-center" /> -->
+              :slots="slots" class="center-self" /> -->
             <!-- DayToggle-->
-            <Toggle ref="viewToggle" @calendar:view-changed="defineView = $event" :view="view" class="self-to-center" />
+            <Toggle ref="viewToggle" @calendar:view-changed="defineView = $event" :view="view" class="center-self" />
           </div>
         </HeaderComp>
         <!--calendar-->

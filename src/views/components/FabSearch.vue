@@ -1,6 +1,6 @@
 <template>
   <div class="fixed-plugin">
-    <a v-if="isMobile()" class="px-3 py-2 fixed-plugin-button text-dark position-fixed bg-primary" @click="toggle">
+    <a v-if="$isMobile()" class="px-3 py-2 fixed-plugin-button text-dark position-fixed bg-primary" @click="toggle">
       <i class="material-icons py-2" style="font-size: 20pt;">search</i>
     </a>
     <div class="shadow-lg card">
@@ -135,14 +135,6 @@ export default {
         white.classList.remove("disabled");
       }
     },
-
-    isMobile() {
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return true
-      } else {
-        return false
-      }
-    }
   },
   computed: {
     ...mapState(["isRTL", "sidebarType"]),

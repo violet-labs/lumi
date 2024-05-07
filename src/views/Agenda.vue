@@ -1,15 +1,20 @@
 <template>
+  <lumi-sidenav
+    :custom_class="color"
+    class="fixed-end"
+    v-if="showSidenav"
+  />
   <!-- <div
     class="bg-gradient-secondary shadow-success pt-1 pb-1"
   >
     <h6 class="text-white text-center ps-3">{{data}}</h6>
   </div> -->
-  <div class="calendar-container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center text-center">
-      <div class="w-full max-w-20rm flex-shrink-0 p-4 py-2 text-center">
+  <div class="main-page-content calendar-container center-self border-radius-2xl">
+    <div class="row border-radius-2xl">
+      <div class="col-12 d-flex justify-content-center text-center border-radius-2xl">
+        <div class="w-full max-w-20rm flex-shrink-0 p-4 py-2 text-center border-radius-2xl">
           <lumi-date-picker />
-      </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -22,7 +27,9 @@
 </template>
 
 <script>
+import LumiSidenav from "../components/LumiSidenav";
 import moment from 'moment';
+import { mapMutations, mapState } from "vuex";
 
 const cfg = {
   viewEvent: undefined,
@@ -54,14 +61,20 @@ const data = new Date()
 export default {
   name: "agenda",
   components: {
+    LumiSidenav
     // DatePicker,
+  },
+  computed: {
+    ...mapState([
+      "showSidenav",
+    ]),
   },
   data() {
     return {
       date: new Date(),
       cfg,
       events,
-      data
+      data,
     };
   },
   methods: {

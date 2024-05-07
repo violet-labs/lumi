@@ -8,7 +8,7 @@
             :class="$store.state.isRTL ? 'text-lg-end' : 'text-lg-start'"
           >
             ©
-            {{ new Date().getFullYear() }}, Lumi OrthoSystem by <a href="https://www.violetlabs.com.br/">Violet Labs</a>.
+            {{ new Date().getFullYear() }} Lumi Ortho System, by <a href="https://www.violetlabs.com.br/">Violet Labs</a>.
           </div>
         </div>
       </div>

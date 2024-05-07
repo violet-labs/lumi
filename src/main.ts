@@ -18,15 +18,18 @@ import MaterialDashboard from "./material-dashboard"
 
 import '@mdi/font/css/materialdesignicons.css'
 
-import './assets/css/main.css'
+import './assets/css/lumi.css'
 
-import { LumiCalendar } from "./components/lumi-calendar";
+import { LumiCalendar } from "./components/LumiCalendar";
+
+import VioletJs from './plugins/VioletJs'
 
 const appInstance = createApp(App)
 appInstance.use(store)
 appInstance.use(router)
 appInstance.use(MaterialDashboard)
 appInstance.use(LumiCalendar)
+appInstance.use(VioletJs)
 
 const vuetify = createVuetify({
     components,

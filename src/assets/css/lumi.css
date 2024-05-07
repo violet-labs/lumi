@@ -1,0 +1,42 @@
+:root {
+    --primary-background: #fbfdfe;
+}
+
+html {
+    overflow: hidden;
+}
+
+.center-self {
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+body {
+    background-color: var(--primary-background) !important;
+}
+
+.main-content {
+    max-width: 98vw;
+    margin: 0 auto;
+}
+
+.bg-lumi {
+    background-color: var(--primary-background) !important;
+}
+
+.sidenav {
+    border: none !important;
+    border-left-width: 1px !important;
+    border-left-style: solid !important;
+    /* border-left-color: linear-gradient(0deg, #FFF, #FFF, #fbfdfe) !important; */
+    border-image: linear-gradient(180deg, #4a809b, #8aa7b9, #fbfdfe) 30 !important;
+    /* border-radius: 0px !important; */
+
+}
+
+.sidenav-header {
+    background: #FAFAFA;
+}

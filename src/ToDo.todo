@@ -1,0 +1,8 @@
+☐ Verificar quais páginas adicionar nas navTabs
+☐ Criar página e fazer roteamento para cada uma das navTabs
+
+Drawer:
+    ✔ Restaurar o drawer original de navegação @done(24-05-05 16:42)
+    ✔ Colocar ele dentro do componente da agenda @done(24-05-05 16:42)
+    ☐ Colocar drawer dentro do corpo da página
+    ☐ Deixar com tema branco
