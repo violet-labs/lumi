@@ -36,7 +36,6 @@ import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
 import { mapMutations, mapState } from "vuex";
 import TabNavigation from "./views/components/TabNavigation.vue"
-import LumiSidenav from "@/components/LumiSidenav";
 
 export default {
   name: "App",
@@ -44,8 +43,7 @@ export default {
     FabSearch,
     Navbar,
     AppFooter,
-    TabNavigation,
-    LumiSidenav
+    TabNavigation
   },
   methods: {
     ...mapMutations(["toggleConfigurator", "navbarMinimize"]),

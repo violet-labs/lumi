@@ -1,0 +1,5 @@
+@include media-breakpoint-down(sm) {
+    .footer {
+        display: none !important;
+    }
+}

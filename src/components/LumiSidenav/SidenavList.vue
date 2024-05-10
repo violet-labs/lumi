@@ -4,13 +4,20 @@
     id="sidenav-collapse-main"
   >
     <ul class="navbar-nav">
-      <div class="flex center-items justify-content-center w-full mb-3 bg-gradient-secondary py-2 text-light" style="color: #F2F3F4 !important; font-weight: bold;">
+      <!-- <div class="flex center-items justify-content-center w-full mb-3 bg-gradient-secondary py-2 text-light" style="color: #F2F3F4 !important; font-weight: bold;">
         AGENDA
-      </div>
+      </div> -->
 
       <!-- <div class="flex center-items justify-content-center w-full mb-3 pb-2 text-light border-radius-sm" style="border-bottom-width: 1px; border-bottom-style: solid; border-color: linear-gradient(180deg, #000, #fff, #000) !important; font-weight: bold;">
         AGENDA
       </div> -->
+      <li class="mt-3 nav-item mb-1">
+        <h6
+          class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white"
+        >
+          AGENDA
+        </h6>
+      </li>
       <li class="nav-item">
         <sidenav-collapse
           url="#"
@@ -43,33 +50,21 @@
           :aria-controls="''"
           v-bind:collapse="false"
           collapseRef="tables"
-          navText="Imprimir agenda"
+          navText="Imprimir"
         >
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5">print</i>
           </template>
         </sidenav-collapse>
       </li>
-      <li class="mt-3 nav-item">
+      <div class="mt-2" style="width: 100%; height: 1px; background: linear-gradient(90deg, #fbfdfe, #c7d7e0, #fbfdfe) !important;">
+      </div>
+      <li class="mt-3 nav-item mb-1">
         <h6
-          class="text-xs ps-4 text-uppercase font-weight-bolder text-white"
-          :class="$store.state.isRTL ? 'me-4' : 'ms-2'"
+          class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white"
         >
-          CONSULTAS
+          EM CONSULTA
         </h6>
-      </li>
-      <li class="nav-item">
-        <sidenav-collapse
-          url="#"
-          :aria-controls="''"
-          v-bind:collapse="false"
-          collapseRef="profile"
-          navText="Confirmar"
-        >
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">check</i>
-          </template>
-        </sidenav-collapse>
       </li>
       <li class="nav-item">
         <sidenav-collapse
@@ -111,24 +106,15 @@
         </sidenav-collapse>
       </li>
     </ul>
-    <div class="sidenav-footer position-absolute w-100 bottom-0">
-      <div class="mx-3">
-        <i
-        class="top-0 p-3 cursor-pointer fas fa-times text-secondary opacity-5 position-absolute end-0 d-none d-xl-none"
-        aria-hidden="true"
-        id="iconSidenav"
-      ></i>
-      <a class="m-0 navbar-brand text-center" href="/">
+    <div class="sidenav-footer position-absolute w-100 bottom-0 pl-6 text-center">
         <img
           :src="lumiLogo"
-          class="navbar-brand-img h-100 center-self"
+          class="navbar-brand-img h-100 center-self mt-6"
           alt="main_logo"
         />
         <!-- <span class="ms-2 font-weight-bold text-white"
           >Material Dashboard 2</span
         > -->
-      </a>
-      </div>
     </div>
   </div>
 </template>

@@ -1,9 +1,5 @@
 <template>
-  <lumi-sidenav
-    :custom_class="color"
-    class="fixed-end"
-    v-if="showSidenav"
-  />
+  <lumi-sidenav :custom_class="color" class="fixed-end lumi-sidenav" v-if="showSidenav" />
   <!-- <div
     class="bg-gradient-secondary shadow-success pt-1 pb-1"
   >
@@ -27,7 +23,7 @@
 </template>
 
 <script>
-import LumiSidenav from "../components/LumiSidenav";
+import LumiSidenav from "@/components/LumiSidenav/index.vue";
 import moment from 'moment';
 import { mapMutations, mapState } from "vuex";
 

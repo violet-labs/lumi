@@ -228,6 +228,10 @@ round-slider.scaling:hover {
   }
 }
 @include media-breakpoint-down(sm) {
+  .footer {
+    display: none !important;
+  }
+
   .page-headers-sections {
     .container {
       .row {

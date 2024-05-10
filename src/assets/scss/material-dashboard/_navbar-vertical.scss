@@ -211,7 +211,7 @@
   .navbar-heading {
     display: block;
   }
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(lg) {
     &:hover {
       max-width: $navbar-vertical-open-width;
     }
@@ -312,8 +312,32 @@ body:not(.dark-version) {
     }
   }
 }
+
+.lumi-fab {
+  transition: all 0.3s ease-in-out;
+  transform: translateX(110vw) !important;
+}
+
+@media (max-height: 690px) {
+    .sidenav-footer {
+      display: none;
+    }
+
+    #sidenav-main {
+      bottom: 0px;
+    }
+}
+
 // Media fixes for iPhone 5 like resolutions
-@include media-breakpoint-down(xl) {
+@include media-breakpoint-down(lg) {
+  .sidenav-footer {
+    padding-right: 4rem;
+  }
+
+  .lumi-fab {
+    transform: translateX(0) !important;
+  }
+
   .g-sidenav-show {
     // &.rtl {
       .sidenav {
@@ -335,7 +359,7 @@ body:not(.dark-version) {
 
     &.g-sidenav-pinned {
       .sidenav {
-        transform: translateX(0);
+        transform: translateX(0) !important;
       }
     }
   }

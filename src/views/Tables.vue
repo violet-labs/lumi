@@ -505,13 +505,11 @@ const cfg = {
   firstDayOfWeek: 1,
 }
 
-import LumiSidenav from "@/components/LumiSidenav";
 import { mapMutations, mapState } from "vuex";
 
 export default {
   name: "tables",
   components: {
-    LumiSidenav
   },
   computed: {
     ...mapState([
