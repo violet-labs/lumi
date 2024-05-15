@@ -53,3 +53,8 @@ body {
     color: rgb(28, 137, 226) !important;
     border-color: rgb(28, 137, 226);
 }
+
+.v-tab-item--selected {
+    /* background: rgba(0,0,0,0.15) !important; */
+    background: rgba(255, 255, 255, 0.05) !important;
+}

@@ -1,15 +1,11 @@
-☐ Criar tela tratamentos
-☐ Criar tela dentistas
-☐ Criar tela financeiro
-☐ Verificar quais páginas adicionar nas navTabs
-☐ Fazer roteamento para cada uma das navTabs
-☐ Excluir telas que não forem ser usadas
+Copiar do vue-argon-dashboard:
+    ☐ Tabela de pacientes (ou tratamentos?!) que já havia criado
+    ☐ Formulário de bem-vindo
 
 Backend:
-    ☐ Instalar PHP
-    ☐ Criar banco de dados MySQL
-    ☐ Criar API PHP simples com JWT
-    ☐ Criar 
+    ☐ Fazer sistema de logs
+    ☐ Criar API PHP simples
+    ☐ Implantar JWT
 
 Later:
     ☐ Excluir arquivos que não forem ser usados

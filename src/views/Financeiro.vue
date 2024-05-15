@@ -5,8 +5,8 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <mini-statistics-card
-              :title="{ text: 'أموال اليوم', value: '$53k' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>+55%</span> من الأسبوع الماضي"
+              :title="{ text: 'Today\'s Money', value: '$53k' }"
+              detail="<span class='text-success text-sm font-weight-bolder'>+55%</span> than last week"
               :icon="{
                 name: 'weekend',
                 color: 'text-white',
@@ -16,8 +16,8 @@
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
             <mini-statistics-card
-              :title="{ text: 'مستخدمو اليوم', value: '2,300' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>+3%</span> من الأسبوع الماضي"
+              :title="{ text: 'Today\'s Users', value: '2,300' }"
+              detail="<span class='text-success text-sm font-weight-bolder'>+3%</span> than last month"
               :icon="{
                 name: 'leaderboard',
                 color: 'text-white',
@@ -27,10 +27,10 @@
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
             <mini-statistics-card
-              :title="{ text: 'عملاء جدد', value: '34K' }"
-              detail="<span class='text-danger text-sm font-weight-bolder'>+1%</span> من الشهر الماضي"
+              :title="{ text: 'New Clients', value: '3,462' }"
+              detail="<span class='text-danger text-sm font-weight-bolder'>-2%</span> than yesterday"
               :icon="{
-                name: 'store',
+                name: 'person',
                 color: 'text-white',
                 background: 'success',
               }"
@@ -38,8 +38,8 @@
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
             <mini-statistics-card
-              :title="{ text: 'مبيعات', value: '+91' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>+5%</span> مقارنة بيوم أمس"
+              :title="{ text: 'Sales', value: '$103,430' }"
+              detail="<span class='text-success text-sm font-weight-bolder'>+5%</span> Just updated"
               :icon="{
                 name: 'weekend',
                 color: 'text-white',
@@ -51,9 +51,9 @@
         <div class="row mt-4">
           <div class="col-lg-4 col-md-6 mt-4">
             <chart-holder-card
-              title="مشاهدات الموقع"
-              subtitle="آخر أداء للحملة"
-              update="الحملة أرسلت قبل يومين"
+              title="Website Views"
+              subtitle="Last Campaign Performance"
+              update="campaign sent 2 days ago"
             >
               <reports-bar-chart
                 :chart="{
@@ -69,8 +69,8 @@
           <div class="col-lg-4 col-md-6 mt-4">
             <chart-holder-card
               title="Daily Sales"
-              subtitle="(<span class='font-weight-bolder'>+15%</span>) المبيعات اليومية."
-              update="تم التحديث منذ 4 دقائق"
+              subtitle="(<span class='font-weight-bolder'>+15%</span>) increase in today sales."
+              update="updated 4 min ago"
               color="success"
             >
               <reports-line-chart
@@ -96,9 +96,9 @@
           </div>
           <div class="col-lg-4 mt-4">
             <chart-holder-card
-              title="المهام المكتملة"
-              subtitle="آخر أداء للحملة"
-              update="تم تحديثه للتو"
+              title="Completed Tasks"
+              subtitle="Last Campaign Performance"
+              update="just updated"
               color="dark"
             >
               <reports-line-chart
@@ -130,48 +130,48 @@
     <div class="row">
       <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
         <project-card
-          title="المشاريع"
-          description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>انتهى30</span> هذا الشهر"
-          :headers="['المشروع', 'أعضاء', 'ميزانية', 'إكمال']"
+          title="Projects"
+          description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>30 done</span> this month"
+          :headers="['Companies', 'Members', 'Budget', 'Progress']"
           :projects="[
             {
               logo: logoXD,
-              title: 'Material XD الإصدار',
+              title: 'Material XD Material XD Version',
               members: [team1, team2, team3, team4],
               budget: '$14,000',
               progress: { percentage: 60, color: 'info' },
             },
             {
               logo: logoAtlassian,
-              title: 'أضف مسار التقدم إلى التطبيق الداخلي',
+              title: 'Add Progress Track',
               members: [team2, team4],
               budget: '$3,000',
               progress: { percentage: 10, color: 'info' },
             },
             {
               logo: logoSlack,
-              title: 'إصلاح أخطاء النظام الأساسي',
+              title: 'Fix Platform Errors',
               members: [team3, team1],
               budget: 'Not set',
               progress: { percentage: 100, color: 'success' },
             },
             {
               logo: logoSpotify,
-              title: 'إطلاق تطبيق الهاتف المحمول الخاص بنا',
+              title: 'Launch our Mobile App',
               members: [team4, team3, team4, team1],
               budget: '$20,500',
               progress: { percentage: 100, color: 'success' },
             },
             {
               logo: logoJira,
-              title: 'أضف صفحة التسعير الجديدة',
+              title: 'Add the New Pricing Page',
               members: [team4],
               budget: '$500',
               progress: { percentage: 25, color: 'info' },
             },
             {
               logo: logoJira,
-              title: 'إعادة تصميم متجر جديد على الإنترنت',
+              title: 'Redesign New Online Shop',
               members: [team1, team4],
               budget: '$2,000',
               progress: { percentage: 40, color: 'info' },
@@ -182,64 +182,56 @@
       <div class="col-lg-4 col-md-6">
         <timeline-list
           class="h-100"
-          title="نظرة عامة على الطلبات"
-          description="<i class='material-icons text-sm text-success' aria-hidden='true'>north</i>
-        <span class='font-weight-bold'>24%</span>هذا الشهر"
+          title="Orders overview"
+          description="<i class='fa fa-arrow-up text-success' aria-hidden='true'></i>
+        <span class='font-weight-bold'>24%</span> this month"
         >
           <timeline-item
             :icon="{
               component: 'notifications',
               class: 'text-success',
             }"
-            title="$2400, تغييرات في التصميم"
-            date-time="22 ديسمبر 7:20 مساءً"
+            title="$2400 Design changes"
+            date-time="22 DEC 7:20 PM"
           />
           <TimelineItem
             :icon="{
               component: 'code',
               class: 'text-danger',
             }"
-            title="طلب جديد # 1832412"
-            date-time="21 ديسمبر 11 م"
+            title="New order #1832412"
+            date-time="21 DEC 11 PM"
           />
           <TimelineItem
             :icon="{
               component: 'shopping_cart',
               class: 'text-info',
             }"
-            title="مدفوعات الخادم لشهر أبريل"
-            date-time="21 ديسمبر 9:34 مساءً"
+            title="Server payments for April"
+            date-time="21 DEC 9:34 PM"
           />
           <TimelineItem
             :icon="{
               component: 'credit_card',
               class: 'text-warning',
             }"
-            title="تمت إضافة بطاقة جديدة للأمر رقم 4395133"
-            date-time="20 ديسمبر 2:20 صباحًا"
+            title="New card added for order #4395133"
+            date-time="20 DEC 2:20 AM"
           />
           <TimelineItem
             :icon="{
               component: 'vpn_key',
               class: 'text-primary',
             }"
-            title="فتح الحزم من أجل التطوير"
-            date-time="18 ديسمبر ، 4:54 صباحًا"
-          />
-          <TimelineItem
-            :icon="{
-              component: 'bug_report',
-              class: 'text-dark',
-            }"
-            title="طلب جديد # 9583120"
-            date-time="17 ديسمبر"
+            title="Unlock packages for development"
+            date-time="18 DEC 4:54 AM"
+            class="pb-1"
           />
         </timeline-list>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import ChartHolderCard from "./components/ChartHolderCard.vue";
 import ReportsBarChart from "@/examples/Charts/ReportsBarChart.vue";
@@ -258,18 +250,8 @@ import team1 from "@/assets/img/team-1.jpg";
 import team2 from "@/assets/img/team-2.jpg";
 import team3 from "@/assets/img/team-3.jpg";
 import team4 from "@/assets/img/team-4.jpg";
-
 export default {
-  name: "RTL",
-  components: {
-    ChartHolderCard,
-    ReportsBarChart,
-    ReportsLineChart,
-    MiniStatisticsCard,
-    ProjectCard,
-    TimelineList,
-    TimelineItem,
-  },
+  name: "dashboard-default",
   data() {
     return {
       logoXD,
@@ -284,17 +266,14 @@ export default {
       logoInvision,
     };
   },
-  beforeMount() {
-    this.$store.state.isRTL = true;
-    document.querySelector("html").setAttribute("lang", "ar");
-    document.querySelector("html").setAttribute("dir", "rtl");
-    document.querySelector("#app").classList.add("rtl");
-  },
-  beforeUnmount() {
-    this.$store.state.isRTL = false;
-    document.querySelector("html").removeAttribute("lang");
-    document.querySelector("html").removeAttribute("dir");
-    document.querySelector("#app").classList.remove("rtl");
+  components: {
+    ChartHolderCard,
+    ReportsBarChart,
+    ReportsLineChart,
+    MiniStatisticsCard,
+    ProjectCard,
+    TimelineList,
+    TimelineItem,
   },
 };
 </script>

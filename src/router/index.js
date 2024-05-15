@@ -1,29 +1,29 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../views/Dashboard.vue";
-import Tables from "../views/Tables.vue";
+
+import Entrar from "../views/Entrar.vue";
+import Inicio from "../views/Inicio.vue";
 import Agenda from "../views/Agenda.vue";
-import Billing from "../views/Billing.vue";
-import RTL from "../views/Rtl.vue";
-import Notifications from "../views/Notifications.vue";
+import Tratamentos from "../views/Tratamentos.vue";
+import Dentistas from "../views/Dentistas.vue";
+import Financeiro from "../views/Financeiro.vue";
+
 import Profile from "../views/Profile.vue";
-import SignIn from "../views/SignIn.vue";
-import SignUp from "../views/SignUp.vue";
 
 const routes = [
   {
     path: "/",
     name: "/",
-    redirect: "/dashboard",
+    redirect: "/inicio",
   },
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: Dashboard,
+    path: "/entrar",
+    name: "Entrar",
+    component: Entrar,
   },
   {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
+    path: "/inicio",
+    name: "Inicio",
+    component: Inicio,
   },
   {
     path: "/agenda",
@@ -31,34 +31,24 @@ const routes = [
     component: Agenda,
   },
   {
-    path: "/billing",
-    name: "Billing",
-    component: Billing,
+    path: "/tratamentos",
+    name: "Tratamentos",
+    component: Tratamentos,
   },
   {
-    path: "/rtl-page",
-    name: "RTL",
-    component: RTL,
+    path: "/dentistas",
+    name: "Dentistas",
+    component: Dentistas,
   },
   {
-    path: "/notifications",
-    name: "Notifications",
-    component: Notifications,
+    path: "/financeiro",
+    name: "Financeiro",
+    component: Financeiro,
   },
   {
     path: "/profile",
     name: "Profile",
     component: Profile,
-  },
-  {
-    path: "/sign-in",
-    name: "SignIn",
-    component: SignIn,
-  },
-  {
-    path: "/sign-up",
-    name: "SignUp",
-    component: SignUp,
   },
 ];
 
