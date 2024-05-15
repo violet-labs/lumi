@@ -7,9 +7,9 @@
             <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
             Agenda
         </v-tab>
-        <v-tab @click="openPage('tratamentos')" value="tratamentos">
+        <v-tab @click="openPage('pacientes')" value="pacientes">
             <v-icon class="mr-3 d-none d-md-block">mdi-tooth</v-icon>
-            Tratamentos
+            Pacientes
         </v-tab>
         <v-tab @click="openPage('dentistas')">
             <v-icon class="mr-3 d-none d-md-block">mdi-doctor</v-icon>
@@ -51,7 +51,7 @@ export default {
                 '': 0,
                 'inicio': 0,
                 'agenda': 1,
-                'tratamentos': 2,
+                'pacientes': 2,
                 'dentistas': 3,
                 'financeiro': 4,
             }

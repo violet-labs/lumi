@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Entrar from "../views/Entrar.vue";
 import Inicio from "../views/Inicio.vue";
 import Agenda from "../views/Agenda.vue";
-import Tratamentos from "../views/Tratamentos.vue";
+import Pacientes from "../views/Pacientes.vue";
 import Dentistas from "../views/Dentistas.vue";
 import Financeiro from "../views/Financeiro.vue";
 
@@ -31,9 +31,9 @@ const routes = [
     component: Agenda,
   },
   {
-    path: "/tratamentos",
-    name: "Tratamentos",
-    component: Tratamentos,
+    path: "/pacientes",
+    name: "Pacientes",
+    component: Pacientes,
   },
   {
     path: "/dentistas",
