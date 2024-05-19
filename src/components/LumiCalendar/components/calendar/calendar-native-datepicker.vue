@@ -47,7 +47,7 @@ type CalendarDateInput = HTMLInputElement & {
   showPicker(): void;
 };
 
-const $t: any = inject("$t");
+// const $t: any = inject("$t");
 const props = withDefaults(defineProps<Props>(), {
   value: () => new Date(),
 });

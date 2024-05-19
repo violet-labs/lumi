@@ -1,6 +1,18 @@
+.mais-clara {
+    background: #56788e;
+}
+.mais-escura {
+    background: #19324a;
+}
+.cinza-subtitulo {
+    background: #ababa8;
+}
+
+/* -------------------- */
+
 .fundo-branco-1 {
     background: #FFF;
-    color: #56809F;
+    color: #56809f;
 }
 
 .fundo-branco-2 {

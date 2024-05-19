@@ -5,10 +5,10 @@
         </v-tab>
         <v-tab @click="openPage('agenda')">
             <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
-            Agenda
+            {{$t('agenda')}}
         </v-tab>
         <v-tab @click="openPage('pacientes')" value="pacientes">
-            <v-icon class="mr-3 d-none d-md-block">mdi-tooth</v-icon>
+            <v-icon class="mr-3 d-none d-md-block">mdi-account-details</v-icon>
             Pacientes
         </v-tab>
         <v-tab @click="openPage('dentistas')">
