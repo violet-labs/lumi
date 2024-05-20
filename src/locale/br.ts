@@ -103,4 +103,9 @@ export default {
         loadMore: 'Carregar mais',
         empty: 'Não há mais dados',
     },
+
+    // Custom:
+    login: {
+        submitAction: 'Entrar'
+    }
 }

@@ -38,11 +38,11 @@ import LumiDatePicker from "./components/calendar/calendar-native-datepicker.vue
 const LumiCalendar: Plugin<any[]> = {
   install: (app: App, options: any[]) => {
     app.use(pinia);
-    app.use(i18n);
+    // app.use(i18n);
 
-    app.provide("$t", app.config.globalProperties.$t);
-    app.provide("$i18n", app.config.globalProperties.$i18n);
-    app.provide("$locale", app.config.globalProperties.$i18n.locale);
+    // app.provide("$t", app.config.globalProperties.$t);
+    // app.provide("$i18n", app.config.globalProperties.$i18n);
+    // app.provide("$locale", app.config.globalProperties.$i18n.locale);
 
     app.component("font-awesome-icon", FontAwesomeIcon);
     app.component('LumiDatePicker', LumiDatePicker)

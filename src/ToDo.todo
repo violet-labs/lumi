@@ -1,11 +1,56 @@
-Copiar do vue-argon-dashboard:
-    ☐ Tabela de pacientes (ou pacientes?!) que já havia criado
-    ☐ Formulário de bem-vindo
+HOJE:
+    Front-end:
+        Desenvolver:
+            ☐ Formulário de adicionar dentista
+            ☐ Formulário de adicionar paciente
+            ☐ Tela para ver as informações do paciente
+            ☐ Tela para ver as informações do dentista
+            ☐ Fazer funcionar o formulário de bem-vindo
+            ☐ Exibir informações extraídas (calculadas) do formulário de bem-vindo na tela do paciente
+            Colocar a sidenav nas outras telas também:
+                ☐ Pacientes
+                ☐ Dentistas
+                ☐ Finanças
 
-Backend:
-    ☐ Fazer sistema de logs
-    ☐ Criar API PHP simples
-    ☐ Implantar JWT
+            ☐ Colocar histórico de consultas na dashboard Inicio
+            ☐ Colocar histórico de ações na dashboard Inicio
+
+    Backend:
+        Verificar os models e migrations:
+            ☐ Pacientes
+            ☐ Formulários
+            ☐ Dentistas
+            ☐ Consultas
+            ☐ Agenda
+        Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
+            ☐ Pacientes
+            ☐ Formulários
+            ☐ Dentistas
+            ☐ Consultas
+            ☐ Agenda
+        ☐ Implantar JWT
+        ☐ Implantar segurança nas rotas
+
+-- -------------------------------------------------- --
 
 Later:
     ☐ Excluir arquivos que não forem ser usados
+
+
+
+
+-- TodDos antigo (vue-argon-dashboard)
+    Tela de formulários:
+        ☐ Criar rota
+        ☐ Criar objeto com as perguntas
+        ☐ Criar formulário
+    
+    Tabela tratamentos:
+        ☐ id
+        ☐ name
+        ☐ cpf
+        ☐ rg
+        ☐ picture_url
+        ☐ registered_date
+        ☐ completed_date
+        ☐ status (OPEN, COMPLETED)

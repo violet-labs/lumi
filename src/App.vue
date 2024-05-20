@@ -18,17 +18,15 @@ body {
 }
 </style>
 <template>
-  <tab-navigation class="bg-gradient-primary" />
-  <main
-    class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
-  >
-    <router-view />
-    <app-footer v-show="showFooter" />
-    <fab-search
-      :toggle="toggleConfigurator"
-      :class="[showConfig ? 'show' : '', hideConfigButton ? 'd-none' : '']"
-    />
-  </main>
+  <entrar v-if="!isAuthenticated() || $route.name === 'Entrar'"></entrar>
+  <div class="user-access" v-if="isAuthenticated() && $route.name !== 'Entrar'">
+    <tab-navigation class="bg-gradient-primary" />
+    <main class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden">
+      <router-view />
+      <app-footer v-show="showFooter" />
+      <fab-search :toggle="toggleConfigurator" :class="[showConfig ? 'show' : '', hideConfigButton ? 'd-none' : '']" />
+    </main>
+  </div>
 </template>
 <script>
 import FabSearch from "@/views/components/FabSearch.vue";
@@ -36,6 +34,9 @@ import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
 import { mapMutations, mapState } from "vuex";
 import TabNavigation from "./views/components/TabNavigation.vue"
+import Entrar from "./views/Entrar.vue"
+
+import { isAuthenticated } from "./api.js";
 
 export default {
   name: "App",
@@ -43,10 +44,12 @@ export default {
     FabSearch,
     Navbar,
     AppFooter,
-    TabNavigation
+    TabNavigation,
+    Entrar
   },
   methods: {
     ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
+    isAuthenticated
   },
   computed: {
     ...mapState([
@@ -72,7 +75,7 @@ export default {
     if (window.innerWidth > 1200) {
       sidenav.classList.add("g-sidenav-pinned");
     }
-    
+
     body.classList.remove("bg-gray-200");
   },
 };

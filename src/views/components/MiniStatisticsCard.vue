@@ -13,7 +13,7 @@
         >
       </div>
       <div class="pt-1" :class="isRTL ? 'text-start' : 'text-end'">
-        <p class="text-sm mb-0 text-capitalize">{{ title.text }}</p>
+        <p class="text-sm mb-0">{{ title.text }}</p>
         <h4 class="mb-0">{{ title.value }}</h4>
       </div>
     </div>
