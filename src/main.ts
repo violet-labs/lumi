@@ -25,6 +25,15 @@ import VioletJs from './plugins/VioletJs'
 
 import i18n from './i18n'
 
+
+import Vue3EasyDataTable from 'vue3-easy-data-table';
+import 'vue3-easy-data-table/dist/style.css';
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas);
+
 const appInstance = createApp(App)
 appInstance.use(store)
 appInstance.use(router)
@@ -41,3 +50,5 @@ const vuetify = createVuetify({
 appInstance.use(vuetify)
 
 appInstance.mount("#app")
+appInstance.component('EasyDataTable', Vue3EasyDataTable)
+appInstance.component('font-awesome-icon', FontAwesomeIcon);

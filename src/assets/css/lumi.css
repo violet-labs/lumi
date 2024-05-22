@@ -45,7 +45,12 @@ body {
     margin-bottom: 7px !important;
     border: 1px solid #CCC;
     height: 45px;
+    min-width: 90px;
     font-weight: 400 !important;
+}
+
+.nav-link.nav-tab {
+    height: 3.8rem;
 }
 
 .nav-link:hover {
@@ -66,4 +71,38 @@ body {
 .login-page-logo {
     margin: 0 auto;
     width: 210px;
+}
+
+.tab-selector-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-selector-item {
+    font-size: 13pt;
+    width: 50%;
+    text-align: center;
+}
+
+.tab-selector-item:hover {
+    cursor: pointer;
+    background: linear-gradient(to right, #FFF, #F8F8F8, #FFF)
+}
+
+.tab-selector-item:first-child {
+    border-right: 1px solid #EEE;
+}
+
+.tab-selector-divider {
+    height: 100%;
+    width: 1px;
+}
+
+.tab-selector-item::after {
+    content: '';
+    background-image: linear-gradient(to right, #FFF, #EEE, rgb(187, 187, 232), #EEE, #FFF);
+    height: 1px; /*for horizontal border; width for vertical*/
+    display: block;
+    margin-top: 4px;
 }

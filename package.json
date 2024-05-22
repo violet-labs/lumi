@@ -15,6 +15,7 @@
     "@capacitor/android": "^6.0.0",
     "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "5.3.2",
@@ -24,8 +25,10 @@
     "v-calendar": "^3.1.2",
     "vue": "3.3.4",
     "vue-i18n": "^9.13.1",
+    "vue-material": "^1.0.0-beta-16",
     "vue-pro-calendar": "^1.1.10",
     "vue-router": "4.2.5",
+    "vue3-easy-data-table": "^1.5.47",
     "vuetify": "^3.5.17",
     "vuex": "4.1.0"
   },
