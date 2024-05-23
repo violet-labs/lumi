@@ -19,7 +19,7 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import './assets/css/lumi.css'
 
-import { LumiCalendar } from "./components/LumiCalendar";
+import { LumiCalendar } from "./views/components/LumiCalendar";
 
 import VioletJs from './plugins/VioletJs'
 

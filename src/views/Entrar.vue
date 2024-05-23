@@ -104,7 +104,8 @@ export default {
   computed: {
     backgroundImage() {
       return {
-        backgroundImage: `url(${whiteConsultory})`
+        backgroundImage: `url(${whiteConsultory})`,
+        transform: 'scale(1.05)',
       }
     }
   },

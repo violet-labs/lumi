@@ -15,7 +15,7 @@
         <h6
           class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white"
         >
-          AGENDA
+          PACIENTES
         </h6>
       </li>
       <li class="nav-item">
@@ -24,7 +24,7 @@
           :aria-controls="''"
           v-bind:collapse="false"
           collapseRef="dashboard"
-          navText="Nova consulta"
+          navText="Novo paciente"
         >
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5">add</i>
@@ -63,7 +63,7 @@
         <h6
           class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white"
         >
-          EM CONSULTA
+          RELATÓRIOS
         </h6>
       </li>
       <li class="nav-item">
@@ -123,7 +123,7 @@ import SidenavCollapse from "./SidenavCollapse.vue";
 import lumiLogo from "@/assets/img/logos/lumi.png";
 
 export default {
-  name: "SidenavList",
+  name: "SidenavListAgenda",
   props: {
     cardBg: String,
   },

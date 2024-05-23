@@ -1,5 +1,7 @@
 <template>
-  <lumi-sidenav :custom_class="color" class="fixed-end lumi-sidenav" v-if="showSidenav" />
+  <lumi-sidenav :custom_class="color" class="fixed-end lumi-sidenav" icon="mdi-calendar-month" v-if="showSidenav" >
+    <sidenav-list-agenda></sidenav-list-agenda>
+  </lumi-sidenav>
   <!-- <div
     class="bg-gradient-secondary shadow-success pt-1 pb-1"
   >
@@ -23,7 +25,8 @@
 </template>
 
 <script>
-import LumiSidenav from "@/components/LumiSidenav/index.vue";
+import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
+import SidenavListAgenda from "@/views/components/LumiSidenav/SidenavListAgenda.vue"
 import moment from 'moment';
 import { mapMutations, mapState } from "vuex";
 
@@ -57,7 +60,8 @@ const data = new Date()
 export default {
   name: "agenda",
   components: {
-    LumiSidenav
+    LumiSidenav,
+    SidenavListAgenda,
     // DatePicker,
   },
   computed: {

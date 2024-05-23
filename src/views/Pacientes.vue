@@ -1,4 +1,9 @@
 <template>
+  <lumi-sidenav :custom_class="color" icon="mdi-account-details" class="fixed-end lumi-sidenav" v-if="showSidenav">
+    <sidenav-list-pacientes />
+  </lumi-sidenav>
+
+  <div class="main-page-content">
   <TreatmentsTable :treatments="patients" />
 
   <EasyDataTable :headers="headers" :items="patients">
@@ -41,6 +46,7 @@
   <span class="text-secondary text-xs font-weight-bold">{{ place }}</span>
 </template>
   </EasyDataTable>
+</div>
 </template>
 
 <script>
@@ -70,7 +76,9 @@ const cfg = {
 }
 
 import { mapMutations, mapState } from "vuex";
-import TreatmentsTable from "./components/TreatmentsTable.vue";
+import TreatmentsTable from "@/views/components/TreatmentsTable.vue";
+import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
+import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -82,7 +90,9 @@ const headers = [
 export default {
   name: "tables",
   components: {
-    TreatmentsTable
+    TreatmentsTable,
+    LumiSidenav,
+    SidenavListPacientes,
   },
   methods: {    
     statusClass(status) {
