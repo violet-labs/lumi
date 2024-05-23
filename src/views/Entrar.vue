@@ -6,7 +6,7 @@
         <div class="col-lg-4 col-md-8 col-12 mx-auto">
           <div class="card z-index-0 fadeIn3 fadeInBottom">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="shadow-secondary border-radius-lg py-3 pe-1 bg-gradient-lumi">
+              <div class="shadow-secondary border-radius-lg py-3 bg-gradient-lumi" style="border: 1px solid #D2D2D2; padding-left: 35px;">
                 <img :src="LumiBlueLogo" class="login-page-logo">
               </div>
             </div>
@@ -23,10 +23,14 @@
                   <material-button class="my-4 mb-2" variant="gradient" color="secondary" fullWidth
                     @click="submitLogin()">{{ $t('login.submitAction') }}</material-button>
                 </div>
-                <p class="mt-4 text-sm text-center">
-                  Ainda não é cliente?
-                  <br />
-                  <b><a href="https://www.lumiorthosystem.com.br">Conheça-nos</a></b>
+                <p class="mt-1 text-center">
+                  <a href="#reset-password">Esqueceu sua senha?</a>
+                </p>
+                <p class="mt-3 text-sm text-center">
+                  <a href="https://www.lumiorthosystem.com.br#one" class="d-flex flex-column">
+                  <span>Ainda não é cliente?</span>
+                  <b>Conheça-nos</b>
+                </a>
                   <!-- <router-link
                     :to="{ name: 'SignUp' }"
                     class="text-success text-gradient font-weight-bold"
@@ -43,10 +47,10 @@
       <div class="container">
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-12 my-auto">
-            <div class="copyright text-center text-sm text-white text-lg-start">
-              © {{ new Date().getFullYear() }} Lumi Ortho System
-              by
-              <a href="https://www.violetlabs.com.br" class="font-weight-bold text-white" target="_blank">Violet Labs</a>
+            <div class="copyright text-center text-sm text-white text-lg-start d-flex flex-column" style="font-weight: 400;">
+              <span style="font-size: 11pt;">© {{ new Date().getFullYear() }} Lumi Ortho System</span>
+              <span style="font-size: 9pt;">by
+              <a href="https://www.violetlabs.com.br" class="font-weight-bold text-white" target="_blank">Violet Labs</a></span>
             </div>
           </div>
         </div>
