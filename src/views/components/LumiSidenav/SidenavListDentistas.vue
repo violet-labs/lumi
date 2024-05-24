@@ -10,12 +10,12 @@
       </div> -->
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          PACIENTES
+          DENTISTAS
         </h6>
       </li>
       <li class="nav-item">
         <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="dashboard"
-          navText="Novo paciente">
+          navText="Nova consulta">
           <template v-slot:icon>
             <i class="material-icons-round opacity-10 fs-5">add</i>
           </template>
@@ -41,7 +41,7 @@
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          RELATÓRIOS
+          EM CONSULTA
         </h6>
       </li>
       <li class="nav-item">
@@ -80,7 +80,7 @@ import SidenavCollapse from "./SidenavCollapse.vue";
 import lumiLogo from "@/assets/img/logos/lumi.png";
 
 export default {
-  name: "SidenavListPacientes",
+  name: "SidenavListDentistas",
   props: {
     cardBg: String,
   },

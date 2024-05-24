@@ -63,7 +63,7 @@
           <div class="card">
             <div class="card-header p-0" style="border-top: 1px solid #EEE;">
               <div class="tab-selector-container">
-                <div class="tab-selector-item">
+                <div class="tab-selector-item" :class="activeTab == 'perfilPessoal' ? 'active' : ''" @click="setTab('perfilPessoal')">
                   <font-awesome-icon :icon="['fas', 'id-card-clip']" />
                   <br>
                   Perfil pessoal
@@ -71,7 +71,7 @@
                 <div class="tab-selector-divider">
                   &nbsp;
                 </div>
-                <div class="tab-selector-item">
+                <div class="tab-selector-item" :class="activeTab == 'perfilClinico' ? 'active' : ''" @click="setTab('perfilClinico')">
                   <font-awesome-icon :icon="['fas', 'id-card']" />
                   <br>
                   Perfil clínico
@@ -79,7 +79,7 @@
               </div>
             </div>
             <div class="card-body">
-              <div class="main-container">
+              <div class="main-container" v-if="activeTab == 'perfilPessoal'">
                 <p class="text-uppercase text-sm">Informações</p>
                 <div class="row">
                   <div class="col-md-6">
@@ -128,6 +128,9 @@
                   </div>
                 </div>
               </div>
+              <div v-if="activeTab == 'perfilClinico'">
+                aaaa
+              </div>
             </div>
           </div>
         </div>
@@ -168,16 +171,22 @@ var paciente = {
 
 var showTratamento = false;
 
+var activeTab = 'perfilPessoal';
+
 export default {
   name: "profile",
   data() {
     return {
       showMenu: false,
       paciente,
-      showTratamento
+      showTratamento,
+      activeTab,
     };
   },
   methods: {
+    setTab(tab) {
+      this.activeTab = tab
+    },
     openTratamento() {
       this.showTratamento = true;
     },

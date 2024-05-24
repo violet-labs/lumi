@@ -1,9 +1,4 @@
 T<template>
-    <div class="card">
-        <div class="card-header pb-0">
-            <h6>Pacientes</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
             <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                     <thead>
@@ -69,8 +64,6 @@ T<template>
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
 </template>
 
 <style>

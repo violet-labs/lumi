@@ -1,5 +1,9 @@
 <template>
-  <div class="py-4 container-fluid">
+  <lumi-sidenav icon="mdi-doctor" class="fixed-end lumi-sidenav" v-if="showSidenav">
+    <sidenav-list-dentistas />
+  </lumi-sidenav>
+
+  <div class="main-page-content">
     <div class="row">
       <div class="col-12">
         <DentistsTable :dentists="dentists" />
@@ -9,12 +13,18 @@
 </template>
 
 <script>
+
+import { mapMutations, mapState } from "vuex";
 import DentistsTable from "./components/DentistsTable.vue";
+import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
+import SidenavListDentistas from "@/views/components/LumiSidenav/SidenavListDentistas.vue"
 
 export default {
   name: "Dentistas",
   components: {
-    DentistsTable
+    DentistsTable,
+    LumiSidenav,
+    SidenavListDentistas,
   },
   data() {
     return {
@@ -63,6 +73,21 @@ export default {
         },
       ]
     };
+  },
+  computed: {
+    ...mapState([
+      "isRTL",
+      "color",
+      "isAbsolute",
+      "isNavFixed",
+      "navbarFixed",
+      "absolute",
+      "showSidenav",
+      "showNavbar",
+      "showFooter",
+      "showConfig",
+      "hideConfigButton",
+    ]),
   },
 };
 </script>

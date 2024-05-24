@@ -83,6 +83,11 @@ body {
     font-size: 13pt;
     width: 50%;
     text-align: center;
+    padding-top: 5px;
+}
+
+.tab-selector-item.active {
+    color: rgb(28, 137, 226);
 }
 
 .tab-selector-item:hover {
