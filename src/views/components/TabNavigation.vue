@@ -1,22 +1,32 @@
 <template>
     <v-tabs bg-color="deep-purple-darken-4" center-active fixed-tabs v-model="getCurrentTab">
         <v-tab @click="openPage('inicio')">
-            <v-icon>mdi-home</v-icon>
+            <div class="pb-1">
+                <v-icon>mdi-home</v-icon>
+            </div>
         </v-tab>
         <v-tab @click="openPage('agenda')">
-            <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
+            <div class="pb-1">
+                <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
+            </div>
+            <!-- <i class="fas fa-calendar-alt mr-3 pt-1 d-none d-md-block"></i> -->
             {{$t('agenda')}}
         </v-tab>
         <v-tab @click="openPage('pacientes')" value="pacientes">
-            <v-icon class="mr-3 d-none d-md-block">mdi-account-details</v-icon>
+            <div class="pb-1">
+                <v-icon class="mr-3 d-none d-md-block">mdi-account-details</v-icon>
+            </div>
             Pacientes
         </v-tab>
         <v-tab @click="openPage('dentistas')">
-            <v-icon class="mr-3 d-none d-md-block">mdi-doctor</v-icon>
+            <div class="pb-1">
+                <v-icon class="mr-3 d-none d-md-block">mdi-doctor</v-icon>
+            </div>
             Dentistas
         </v-tab>
         <v-tab @click="openPage('financeiro')">
-            <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon>
+            <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
+            <i class="fas fa-dollar-sign mr-3 pt-1 d-none d-md-block"></i>
             Financeiro
         </v-tab>
     </v-tabs>
@@ -50,9 +60,14 @@ export default {
             var tabsMap = {
                 '': 0,
                 'inicio': 0,
+
                 'agenda': 1,
+
+                'paciente': 2,
                 'pacientes': 2,
+
                 'dentistas': 3,
+                
                 'financeiro': 4,
             }
 

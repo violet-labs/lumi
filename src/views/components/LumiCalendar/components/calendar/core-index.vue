@@ -1,5 +1,5 @@
 <template>
-  <div class="widget-calendar-wrapper relative w-full flex bg-lumi px-2">
+  <div class="widget-calendar-wrapper relative w-full flex bg-lumi" :class="defineView !== 'month' ? 'px-2' : ''">
     <!-- left menu-->
     <!-- <LeftMenu :date="externalRequestDate" @calendar:datepicker="dateSelected = $event" ref="leftMenu" style="margin: 0 auto;"> -->
         <!-- <template #closeButton>
