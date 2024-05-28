@@ -1,28 +1,55 @@
-HOJE:
+Front-end:
+    ☐ (15m) Criar botões de verdade em vez dos nav-link da Sidenav
+
+    Formulário de adicionar paciente:
+        ☐ (5m) Verificar se a tabela está correta no banco
+        ☐ (5m) Verificar se precisa adicionar mais colunas
+        ☐ (5m) Fazer o migration, se necessário
+            ☐ (5m) Criar modal simples para adicionar o paciente
+                ☐ (5m) Criar HTML do Modal na página Pacientes
+                    Campos:
+                        ☐ Nome
+                        ☐ Dentista (opcional)
+                        ☐ Celular (opcional)
+                ☐ (2m) Fazer o botão "Novo paciente" abrir o modal
+                Fazer função de salvar:
+                    ☐ (10m) Fazer função no JavaScript
+                    ☐ (15m) Fazer função no Back-end
+    
+    Fazer funcionar o formulário de bem-vindo:
+        ☐ (5m) Criar model "detalhe_pessoal"
+        ☐ (8m) Criar tabela "detalhes_pessoais":
+            Colunas:
+                ☐ id
+                ☐ id_paciente
+                ☐ tipo
+                ☐ categoria
+                ☐ descricao
+        ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
+        ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
+        ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
+
+    ☐ Colocar histórico de consultas na dashboard Inicio
+    ☐ Colocar histórico de ações na dashboard Inicio
+
+    ☐ Backend: verificar os models e migrations dos pacientes (comparar com o da CECLOP e verificar se tá faltando algum campo)
+
+-- ----------------------------------------------------------------- --
+
+Outro dia:
     Front-end:
         Desenvolver:
-            ☐ Formulário de adicionar paciente
-            ☐ Tela para ver as informações do paciente
-            ☐ Fazer funcionar o formulário de bem-vindo
-            ☐ Exibir informações extraídas (calculadas) do formulário de bem-vindo na tela do paciente
-
             ☐ Formulário de adicionar dentista
             ☐ Tela para ver as informações do dentista
             Colocar a sidenav nas outras telas também:
                 ☐ Finanças
-
-            ☐ Colocar histórico de consultas na dashboard Inicio
-            ☐ Colocar histórico de ações na dashboard Inicio
-
     Backend:
         Verificar os models e migrations:
-            ☐ Pacientes
             ☐ Formulários
             ☐ Dentistas
             ☐ Consultas
             ☐ Agenda
         Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
-            ☐ Pacientes
             ☐ Formulários
             ☐ Dentistas
             ☐ Consultas
