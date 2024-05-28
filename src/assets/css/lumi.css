@@ -80,6 +80,7 @@ body {
 }
 
 .tab-selector-item {
+    background: #F8F8F8;
     font-size: 13pt;
     width: 50%;
     text-align: center;
@@ -87,6 +88,7 @@ body {
 }
 
 .tab-selector-item.active {
+    background: #FFF !important;
     color: rgb(28, 137, 226);
 }
 
@@ -110,4 +112,86 @@ body {
     height: 1px; /*for horizontal border; width for vertical*/
     display: block;
     margin-top: 4px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.table-header-item {
+    color: rgb(var(--v-theme-secondary)) !important;
+}
+
+.table-body-item {
+    padding: 3px !important;
+}
+
+.info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-width: 2px;
+}
+
+.info-container.good {
+    border-color: rgb(102, 204, 102);
+    color: rgb(46, 179, 46);
+}
+
+.info-container.bad {
+    border-color: rgb(202, 114, 114);
+    color: rgb(179, 46, 46);
+}
+
+.info-container.neutral {
+    border-color: rgb(160, 160, 160);
+    color: rgb(160, 160, 160);
+}
+
+.info-container.attention {
+    border-color: rgb(226, 178, 88);
+    color: rgb(216, 149, 25);
+}
+
+.info-container div:last-child {
+    width: 100%;
+    text-align: center;
+}
+
+.form-select {
+    padding: 7px 10px
+}
+
+.page-width-container {
+    background: linear-gradient(to right, #FFF, #EEE, #FFF);
+}
+
+.page-width {
+    -webkit-box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
+    -moz-box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
+    box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
+    background: #FFF;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-left: 1px solid #EEE;
+    border-right: 1px solid #EEE;
+}
+
+input.form-control, textarea.form-control {
+    border: 1px solid #DDD;
+    padding: 8px 12px;
+    font-size: 12pt;
+}
+
+input.form-control:focus, textarea.form-control:focus {
+    border-color: #6ca5db !important;
+}
+
+input.form-control:active, textarea.form-control:active {
+    border-color: #6ca5db !important;
 }

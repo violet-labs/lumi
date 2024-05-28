@@ -41,13 +41,11 @@ T<template>
                                 }}</span>
                                 
                                 <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="treatment.status === 'ONGOING'">
-                                    <div>
                                         <div class="progress">
                                             <div class="progress-bar bg-gradient-success" role="progressbar"
                                                 aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
                                                 style="width: 100%"></div>
                                         </div>
-                                    </div>
                                     <span class="me-2 text-xs font-weight-bold">100%</span>
                                 </div>
                             </td>

@@ -4,13 +4,29 @@
   </lumi-sidenav>
 
   <div class="main-page-content">
-    <TreatmentsTable :treatments="patients" />
+    <EasyDataTable
+      :headers="headers"
+      :items="patients"
+      @click-row="openPaciente"
+      body-row-class-name="clickable"
+      header-item-class-name="table-header-item"
+      body-item-class-name="table-body-item"
+      >
 
-    <EasyDataTable :headers="headers" :items="patients">
+      <template #header-status="header">
+        <div class="text-center w-100">
+          STATUS DO TRATAMENTO
+        </div>
+      </template>
+      <template #header-city="header">
+        <div class="text-center w-100 p-0">
+          LOCALIDADE
+        </div>
+      </template>
 
       <template #item-name="{ name, email }">
         <div class="d-flex px-2 py-1">
-          <div>
+          <div style="min-width: 40px;" class="d-none d-md-block">
             <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1" />
           </div>
           <div class="d-flex flex-column justify-content-center">
@@ -26,23 +42,26 @@
       </template>
 
       <template #item-status="{ status, progress }">
-        <span class="badge badge-sm" :class="statusClass(status)">{{
-          statusText(status)
-          }}</span>
+        <div class="align-middle text-center text-sm">
+          <span class="badge badge-sm" :class="statusClass(status)" v-if="status !== 'ONGOING'">{{
+            statusText(status)
+            }}</span>
 
-        <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status === 'ONGOING'">
-          <div>
-            <div class="progress">
+          <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status === 'ONGOING'">
+            <div class="progress" style="width: 50%;">
               <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                aria-valuemax="100" style="width: 100%"></div>
+                aria-valuemax="100" :style="{width: progress + '%'}"></div>
             </div>
+            <span class="me-2 text-xs font-weight-bold"
+              style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{progress}}%</span>
           </div>
-          <span class="me-2 text-xs font-weight-bold">100%</span>
         </div>
       </template>
 
       <template #item-city="{ place }">
-        <span class="text-secondary text-xs font-weight-bold">{{ place }}</span>
+        <div class="w-100 text-center">
+          <span class="text-secondary text-xs font-weight-bold">{{ place }}</span>
+        </div>
       </template>
     </EasyDataTable>
   </div>
@@ -75,21 +94,19 @@ const cfg = {
 }
 
 import { mapMutations, mapState } from "vuex";
-import TreatmentsTable from "@/views/components/TreatmentsTable.vue";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
   { text: "DIAGNÓSTICO/TRATAMENTO", value: "diagnosis", sortable: true },
-  { text: "STATUS DO TRATAMENTO", value: "status", sortable: true },
+  { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
   { text: "LOCALIDADE", value: "city", sortable: true },
 ];
 
 export default {
   name: "tables",
   components: {
-    TreatmentsTable,
     LumiSidenav,
     SidenavListPacientes,
   },
@@ -111,7 +128,15 @@ export default {
       };
 
       return textMap[status] || '';
-    }
+    },
+    openPaciente(paciente) {
+            console.log('paciente:', paciente)
+            console.log('paciente.name:', paciente.name)
+            this.$router.push({
+                name: "Profile",
+                params: { paciente: JSON.stringify(paciente) }
+            });
+          }
   },
   computed: {
     ...mapState([
@@ -147,7 +172,7 @@ export default {
           registered_date: '2023-11-01 14:02:03',
           completed_date: '2023-11-01 17:38:12',
           status: 'COMPLETED',
-          progress: 100
+          progress: 12
         },
         {
           id: 2,
@@ -162,7 +187,7 @@ export default {
           registered_date: '2023-12-01 14:02:03',
           completed_date: '2023-12-01 17:38:12',
           status: 'NOT STARTED',
-          progress: 100
+          progress: 86
         },
         {
           id: 3,
@@ -177,7 +202,7 @@ export default {
           registered_date: '2023-12-01 14:02:03',
           completed_date: '2023-12-01 17:38:12',
           status: 'ONGOING',
-          progress: 100
+          progress: 95
         },
         {
           id: 3,
@@ -192,7 +217,7 @@ export default {
           registered_date: '2023-12-01 14:02:03',
           completed_date: '2023-12-01 17:38:12',
           status: 'ONGOING',
-          progress: 100
+          progress: 18
         },
         {
           id: 3,
@@ -207,7 +232,7 @@ export default {
           registered_date: '2023-12-01 14:02:03',
           completed_date: '2023-12-01 17:38:12',
           status: 'ONGOING',
-          progress: 100
+          progress: 26
         },
       ]
     }

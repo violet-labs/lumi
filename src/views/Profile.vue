@@ -1,7 +1,8 @@
 <template>
-  <main>
-    <div class="container-fluid">
-      <div class="card shadow-lg">
+  <div class="page-width-container">
+  <main class="page-width">
+    <div class="container-fluid p-0">
+      <div class="card">
         <div class="card-body p-3">
           <div class="row gx-4">
             <div class="col-auto">
@@ -11,8 +12,8 @@
             </div>
             <div class="col-auto my-auto">
               <div class="h-100">
-                <h5 class="mb-1">{{ paciente.name }}</h5>
-                <p class="mb-0 font-weight-bold text-sm"></p>
+                <h5 class="mb-1 fs-4">{{ paciente.name }}</h5>
+                <p class="mb-0 font-weight-bold">16 anos e 8 meses</p>
               </div>
             </div>
             <div class="mx-auto mt-3 col-md-6 my-sm-auto ms-sm-auto me-sm-0">
@@ -57,13 +58,12 @@
         </div>
       </div>
     </div>
-    <div class="py-4 pt-4 container-fluid" v-if="!showTratamento">
+    <div class="p-0 container-fluid" v-if="!showTratamento">
       <div class="row">
         <div class="col-md-12">
-          <div class="card">
-            <div class="card-header p-0" style="border-top: 1px solid #EEE;">
               <div class="tab-selector-container">
-                <div class="tab-selector-item" :class="activeTab == 'perfilPessoal' ? 'active' : ''" @click="setTab('perfilPessoal')">
+                <div class="tab-selector-item" :class="activeTab == 'perfilPessoal' ? 'active' : ''"
+                  @click="setTab('perfilPessoal')">
                   <font-awesome-icon :icon="['fas', 'id-card-clip']" />
                   <br>
                   Perfil pessoal
@@ -71,68 +71,134 @@
                 <div class="tab-selector-divider">
                   &nbsp;
                 </div>
-                <div class="tab-selector-item" :class="activeTab == 'perfilClinico' ? 'active' : ''" @click="setTab('perfilClinico')">
+                <div class="tab-selector-item" :class="activeTab == 'perfilClinico' ? 'active' : ''"
+                  @click="setTab('perfilClinico')">
                   <font-awesome-icon :icon="['fas', 'id-card']" />
                   <br>
                   Perfil clínico
                 </div>
               </div>
-            </div>
-            <div class="card-body">
               <div class="main-container" v-if="activeTab == 'perfilPessoal'">
-                <p class="text-uppercase text-sm">Informações</p>
-                <div class="row">
+                <div class="row p-3 pt-0 w-100 mx-auto">
                   <div class="col-md-6">
-                    <label for="example-text-input" class="form-control-label">Username</label>
-                    <material-input type="text" value="" />
+
+                    <p class="text-uppercase text-sm mt-3">Informações pessoais</p>
+                    <div class="row">
+                      <div class="col-md-7">
+                        <label for="example-text-input" class="form-control-label">Dentista padrão</label>
+                        <select class="form-select" aria-label="Default select example">
+                        <option hidden>Selecionar...</option>
+                        <option value="1" selected>Daniel Salles</option>
+                        <option value="2">Thales Casa Grande</option>
+                        <option value="3">Murillo Motta</option>
+                      </select>
+                      </div>
+                      <div class="col-md-5 mb-2">
+                        <label for="example-text-input" class="form-control-label">Nascimento</label>
+                        <material-input type="date" value="1996-12-02" />
+                      </div>
+                      <div class="col-md-7 mb-2">
+                        <label for="example-text-input" class="form-control-label">Objetivo do tratamento</label>
+                        <material-input type="text" value="" />
+                      </div>
+                      <div class="col-md-5">
+                        <label for="example-text-input" class="form-control-label">CPF</label>
+                        <material-input type="text" value="019.647.076-50" />
+                      </div>
+                    </div>
+                    <p class="text-uppercase text-sm mt-3">Consultas</p>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label for="example-text-input" class="form-control-label">Primeira consulta</label>
+                        <material-input disabled type="date" value="2019-11-16" />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="example-text-input" class="form-control-label">Última consulta</label>
+                        <material-input disabled type="date" value="2024-04-20" />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="example-text-input" class="form-control-label">Próxima consulta</label>
+                        <material-input disabled type="date" value="2024-05-29" />
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-6">
-                    <label for="example-text-input" class="form-control-label">Email address</label>
-                    <material-input type="email" v-bind:value="paciente.email" />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="example-text-input" class="form-control-label">Primeiro nome</label>
-                    <input class="form-control" type="text" v-bind:value="paciente.name.split(' ')[0]" />
-                  </div>
-                  <div class="col-md-6">
-                    <label for="example-text-input" class="form-control-label">Sobrenome</label>
-                    <material-input type="text" v-bind:value="paciente.name.split(' ')[1]" />
+
+                    <hr class="horizontal dark" />
+                    <p class="text-uppercase text-sm mt-3">Endereço</p>
+                    <div class="row">                      
+                      <div class="col-md-4 mb-2">
+                        <label for="example-text-input4" class="form-control-label">CEP</label>
+                        <material-input type="text" value="37.713-188" />
+                      </div>
+                      <div class="col-md-6 mb-2">
+                        <label for="example-text-input1" class="form-control-label">Logradouro</label>
+                        <material-input type="text" value="Av Miguel Vacarelli" />
+                      </div>
+                      <div class="col-md-2 mb-2">
+                        <label for="example-text-input1" class="form-control-label">Nº</label>
+                        <material-input type="text" value="75" />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="example-text-input2" class="form-control-label">Complemento</label>
+                        <material-input type="text" value="" />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="example-text-input2" class="form-control-label">Cidade</label>
+                        <material-input type="text" value="Poços de Caldas" />
+                      </div>
+                      <div class="col-md-4">
+                        <label for="example-text-input3" class="form-control-label">Estado</label>
+                        <material-input type="text" value="Minas Gerais" />
+                      </div>
+                    </div>
+                    <hr class="horizontal dark" />
+                    <!-- <p class="text-uppercase text-sm">About me</p> -->
+                    <p class="text-uppercase text-sm mt-3">Observações</p>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <hr class="horizontal dark" />
-                <p class="text-uppercase text-sm">Dados de contato</p>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label for="example-text-input" class="form-control-label">Endereço</label>
-                    <material-input type="text" value="Av Miguel Vacarelli, 75" />
+                <div class="row p-0 w-100 mx-auto" style="border-top: 1px solid #EEE; background: linear-gradient(to bottom, #d7e6ef, #e6eff4,  #e6eff4, #FFF, #FFF);">
+                  <div class="col-12 text-center mb-1 d-flex flex-column p-2 m-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1))">
+                    <span class="fs-5" style="">Detalhes do paciente</span>
+                    <span>(visível apenas para dentistas)</span>
                   </div>
-                  <div class="col-md-4">
-                    <label for="example-text-input" class="form-control-label">Cidade</label>
-                    <material-input type="text" value="Poços de Caldas" />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="example-text-input" class="form-control-label">Estado</label>
-                    <material-input type="text" value="Minas Gerais" />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="example-text-input" class="form-control-label">CEP</label>
-                    <material-input type="text" value="37.713-188" />
+
+                  <div class="col-12">
+                  <div class="row p-0">
+
+                      <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions" class="col-sm-6 col-md-4 mt-2">
+                        <div class="card">
+                          <div class="card-header pb-2">
+                            <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
+                          </div>
+                          <div class="card-body m-0 pt-2">
+                            <div class="info-container" v-for="perception in perceptions" v-bind:key="perception.text"
+                          :class="perception.type">
+                          <div style="width: 30px; text-align: center;">
+                            <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
+                          </div>
+                          <div class="">
+                            <span>{{ perception.text }}</span>
+                          </div>
+                        </div>
+                          </div>
+                        </div>
+                        
+                        
+                      </div>
+
                   </div>
                 </div>
-                <hr class="horizontal dark" />
-                <!-- <p class="text-uppercase text-sm">About me</p> -->
-                <div class="row">
-                  <div class="col-md-12">
-                    <label for="example-text-input" class="form-control-label">Observações</label>
-                    <material-input type="text" value="" />
-                  </div>
+
                 </div>
               </div>
               <div v-if="activeTab == 'perfilClinico'">
-                aaaa
               </div>
-            </div>
-          </div>
         </div>
         <!-- <div class="col-md-4">
           <profile-card />
@@ -150,6 +216,7 @@
       </div>
     </div>
   </main>
+</div>
 </template>
 
 <script>
@@ -173,6 +240,45 @@ var showTratamento = false;
 
 var activeTab = 'perfilPessoal';
 
+var personalPerceptions = {
+  'Sobre aparelho': [
+    {
+      type: 'good',
+      text: 'Acha legal usar aparelho'
+    },
+  ],
+  'Hábitos': [
+    {
+      type: 'bad',
+      text: 'Roe unhas'
+    },
+    {
+      type: 'bad',
+      text: 'Chupou chupeta'
+    }
+  ],
+  'Histórico': [
+    {
+      type: 'attention',
+      text: 'Já bateu os dentes'
+    },
+    {
+      type: 'neutral',
+      text: 'Já fez outros tratamentos'
+    }
+  ],
+  'Históricos': [
+    {
+      type: 'attention',
+      text: 'Já bateu os dentes'
+    },
+    {
+      type: 'neutral',
+      text: 'Já fez outros tratamentos'
+    }
+  ],
+}
+
 export default {
   name: "profile",
   data() {
@@ -181,9 +287,29 @@ export default {
       paciente,
       showTratamento,
       activeTab,
+      personalPerceptions
     };
   },
   methods: {
+    getInfoIcon(type) {
+      var icon = null
+      switch (type) {
+        case 'good':
+          icon = 'thumbs-up'
+          break
+        case 'bad':
+          icon = 'thumbs-down'
+          break
+        case 'attention':
+          icon = 'circle-exclamation'
+          break
+        case 'neutral':
+          icon = 'info-circle'
+          break
+      }
+
+      return icon
+    },
     setTab(tab) {
       this.activeTab = tab
     },
@@ -196,7 +322,8 @@ export default {
   },
   components: {
     // ProfileCard,
-    MaterialInput, MaterialButton,
+    MaterialInput,
+    MaterialButton,
     Tratamento
   },
 

@@ -1,15 +1,14 @@
 HOJE:
     Front-end:
         Desenvolver:
-            ☐ Formulário de adicionar dentista
             ☐ Formulário de adicionar paciente
             ☐ Tela para ver as informações do paciente
-            ☐ Tela para ver as informações do dentista
             ☐ Fazer funcionar o formulário de bem-vindo
             ☐ Exibir informações extraídas (calculadas) do formulário de bem-vindo na tela do paciente
+
+            ☐ Formulário de adicionar dentista
+            ☐ Tela para ver as informações do dentista
             Colocar a sidenav nas outras telas também:
-                ☐ Pacientes
-                ☐ Dentistas
                 ☐ Finanças
 
             ☐ Colocar histórico de consultas na dashboard Inicio
@@ -28,10 +27,32 @@ HOJE:
             ☐ Dentistas
             ☐ Consultas
             ☐ Agenda
-        ☐ Implantar JWT
-        ☐ Implantar segurança nas rotas
 
 -- -------------------------------------------------- --
+
+IDEAS:
+    ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
+
+TEMP HELPERS: 
+
+    ☐ O que mais te incomoda em seu sorriso? O que você gostaria de mudar?
+    ☐ (Dentes encavalados, dentes pra frente etc)
+    ☐ Categoria: percepções do paciente
+    -------------------------------------------------
+    ☐ O que isso interfere no seu dia-a-dia?
+    ☐ (Vergonha, dificuldade na fala etc)
+    ☐ Categoria: X
+    ---------------------------------------------------
+
+    ☐ Você tem, ou já teve, algum destes hábitos?
+    ☐ (Chupeta, roer unhas etc)
+    ☐ Categoria: hábitos do paciente (Possui hábito de roer unhas)
+
+    -----------------------------------------------------------
+    ☐ Quão bem você respira pelo nariz?
+    ☐ ()
+
+
 
 Later:
     ☐ Excluir arquivos que não forem ser usados
@@ -54,3 +75,10 @@ Later:
         ☐ registered_date
         ☐ completed_date
         ☐ status (OPEN, COMPLETED)
+
+
+
+
+
+
+

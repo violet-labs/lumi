@@ -1,8 +1,4 @@
 <template>
-  <div
-    class="input-group"
-    :class="`input-group-${variant} ${getStatus(error, success)}`"
-  >
     <label :class="variant === 'static' ? '' : 'form-label'">{{ label }}</label>
     <input
       :id="id"
@@ -16,7 +12,6 @@
       :disabled="disabled"
       @input="$emit('update:value', $event.target.value)"
     />
-  </div>
 </template>
 
 <script>
