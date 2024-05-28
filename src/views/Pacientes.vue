@@ -65,6 +65,35 @@
       </template>
     </EasyDataTable>
   </div>
+
+  <div class="modal" tabindex="-1" id="modalNovoPaciente">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Novo paciente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>Nome:</label>
+        <input type="text" class="form-control">
+
+        <label class="mt-2">Dentista:</label>
+        <select class="form-select" aria-label="Default select example">
+          <option hidden selected>Selecionar...</option>
+          <option value="1">Daniel Salles</option>
+          <option value="2">Thales Casa Grande</option>
+          <option value="3">Murillo Motta</option>
+        </select>
+        
+        <label class="mt-2">Celular:</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>

@@ -14,7 +14,7 @@
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
+        <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add</i></div>
           <span>Novo paciente</span>
         </a>
