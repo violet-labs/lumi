@@ -13,58 +13,49 @@
           PACIENTES
         </h6>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="dashboard"
-          navText="Novo paciente">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">add</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add</i></div>
+          <span>Novo paciente</span>
+        </a>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="dashboard"
-          navText="Reagendar">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">settings_backup_restore</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">settings_backup_restore</i></div>
+          <span>Reagendar</span>
+        </a>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="tables" navText="Imprimir">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">print</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">print</i></div>
+          <span>Imprimir</span>
+        </a>
       </li>
       <div class="mt-2"
         style="width: 100%; height: 1px; background: linear-gradient(90deg, #fbfdfe, #c7d7e0, #fbfdfe) !important;">
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          RELATÓRIOS
+          EM CONSULTA
         </h6>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="profile"
-          navText="Novo prontuário">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">person_add</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person_add</i></div>
+          <span>Novo prontuário</span>
+        </a>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="profile" navText="Pagamento">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">add_card</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add_card</i></div>
+          <span>Pagamento</span>
+        </a>
       </li>
-      <li class="nav-item">
-        <sidenav-collapse url="#" :aria-controls="''" v-bind:collapse="false" collapseRef="sign-in" navText="Atestado">
-          <template v-slot:icon>
-            <i class="material-icons-round opacity-10 fs-5">text_snippet</i>
-          </template>
-        </sidenav-collapse>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">text_snippet</i></div>
+          <span>Atestado</span>
+        </a>
       </li>
     </ul>
     <div class="sidenav-footer position-absolute w-100 bottom-0 pl-6 text-center">
