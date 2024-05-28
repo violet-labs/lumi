@@ -75,7 +75,7 @@
       </div>
       <div class="modal-body">
         <label>Nome:</label>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" v-bind="nomeNovoPaciente">
 
         <label class="mt-2">Dentista:</label>
         <select class="form-select" aria-label="Default select example">
@@ -84,12 +84,12 @@
           <option value="2">Thales Casa Grande</option>
           <option value="3">Murillo Motta</option>
         </select>
-        
+
         <label class="mt-2">Celular:</label>
         <input type="text" class="form-control">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Adicionar</button>
+        <button type="button" class="btn btn-primary" @click="addNovoPaciente">Adicionar</button>
       </div>
     </div>
   </div>
@@ -125,6 +125,7 @@ const cfg = {
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
+import {novoPaciente} from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -132,6 +133,8 @@ const headers = [
   { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
   { text: "LOCALIDADE", value: "city", sortable: true },
 ];
+
+var nomeNovoPaciente = '';
 
 export default {
   name: "tables",
@@ -148,6 +151,10 @@ export default {
       };
 
       return classMap[status] || '';
+    },
+    async addNovoPaciente() {
+      console.log('aaaaaa');
+      await novoPaciente()
     },
     statusText(status) {
       const textMap = {
@@ -184,6 +191,7 @@ export default {
   },
   data() {
     return {
+      nomeNovoPaciente,
       headers,
       cfg,
       evts,

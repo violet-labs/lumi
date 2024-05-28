@@ -1,25 +1,6 @@
-+11m:
++17m:
 
-Front-end:
-    ✔ (15m) Criar botões de verdade em vez dos nav-link da Sidenav @done(24-05-27 23:00)
-
-    Formulário de adicionar paciente:
-        ✔ (5m) Verificar se a tabela está correta no banco @done(24-05-27 23:00)
-        ✔ (5m) Verificar se precisa adicionar mais colunas @done(24-05-27 23:01)
-        ✔ (5m) Fazer o migration, se necessário @done(24-05-27 23:08)
-            ✔ (15m) Criar controller, model e rotas do paciente @done(24-05-27 23:27)
-            Criar modal simples para adicionar o paciente:
-                ✔ (5m) Criar HTML do Modal na página Pacientes @done(24-05-27 23:31)
-                    Campos:
-                        ✔ Nome @done(24-05-27 23:32)
-                        ✔ Dentista (opcional) @done(24-05-27 23:32)
-                        ✔ Celular (opcional) @done(24-05-27 23:32)
-                ✔ (2m) Fazer o botão "Novo paciente" abrir o modal @done(24-05-27 23:34)
-                ✔ (3m) Corrigir conflito do z-index entre modal e sidenav @done(24-05-27 23:37)
-                Fazer função de salvar:
-                    ☐ (10m) Fazer função no JavaScript
-                    ☐ (15m) Fazer função no Back-end
-    
+Front-end:    
     Fazer funcionar o formulário de bem-vindo:
         ☐ (5m) Criar model "detalhe_pessoal"
         ☐ (8m) Criar tabela "detalhes_pessoais":
