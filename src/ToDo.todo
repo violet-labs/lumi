@@ -52,14 +52,14 @@ Front-end:
                 ☐ whatsapp
                 ☐ dados
             ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
-                ✔ tipo (radio, multiple-choices, open-text), @done(24-05-28 21:52)
-                ✔ condition @done(24-05-28 21:52)
-                ☐ options (para radio e multiple-choices) - array de opções possíveis - opção {
+            ☐ (30m) Executar a migração para a nova estrutura:
+                ☐ Pergunta
+                ☐ tipo (radio, multiple-choices, open-text),
+                ☐ condition
+                ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
                     ☐ personalDetail
                     ☐ detailType (good, neutral, attention, bad)
                     ☐ openText (texto aberto por uma opção do tipo open-text)
-                }
-            ☐ (30m) Executar a migração para a nova estrutura
             ☐ (5m) Criar rota em Users para receber o formulário de boas-vindas
             ☐ (7m) Fazer função JavaScript para enviar o formulário
             ☐ (7m) Fazer função na API para receber o formulário

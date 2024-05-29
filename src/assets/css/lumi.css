@@ -191,7 +191,11 @@ div > .selector-tab-item:last-child {
 }
 
 .form-select {
-    padding: 7px 10px
+    padding: 7px 10px;
+}
+
+.form-select:active, .form-select:focus {
+    border: 1px solid #6ca5db;
 }
 
 .page-width-container {

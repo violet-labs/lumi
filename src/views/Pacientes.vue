@@ -4,14 +4,8 @@
   </lumi-sidenav>
 
   <div class="main-page-content">
-    <EasyDataTable
-      :headers="headers"
-      :items="patients"
-      @click-row="openPaciente"
-      body-row-class-name="clickable"
-      header-item-class-name="table-header-item"
-      body-item-class-name="table-body-item"
-      >
+    <EasyDataTable :headers="headers" :items="patients" @click-row="openPaciente" body-row-class-name="clickable"
+      header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
       <template #header-status="header">
         <div class="text-center w-100">
@@ -45,15 +39,15 @@
         <div class="align-middle text-center text-sm">
           <span class="badge badge-sm" :class="statusClass(status)" v-if="status !== 'ONGOING'">{{
             statusText(status)
-            }}</span>
+          }}</span>
 
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status === 'ONGOING'">
             <div class="progress" style="width: 50%;">
               <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                aria-valuemax="100" :style="{width: progress + '%'}"></div>
+                aria-valuemax="100" :style="{ width: progress + '%' }"></div>
             </div>
             <span class="me-2 text-xs font-weight-bold"
-              style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{progress}}%</span>
+              style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{ progress }}%</span>
           </div>
         </div>
       </template>
@@ -67,33 +61,56 @@
   </div>
 
   <div class="modal" tabindex="-1" id="modalNovoPaciente">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Novo paciente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <label>Nome:</label>
-        <input type="text" class="form-control" v-bind="nomeNovoPaciente">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Novo paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
+                Nome:
+              </label>
+              <input type="text" class="form-control" v-bind="nomeNovoPaciente">
+            </div>
 
-        <label class="mt-2">Dentista:</label>
-        <select class="form-select" aria-label="Default select example">
-          <option hidden selected>Selecionar...</option>
-          <option value="1">Daniel Salles</option>
-          <option value="2">Thales Casa Grande</option>
-          <option value="3">Murillo Motta</option>
-        </select>
-
-        <label class="mt-2">Celular:</label>
-        <input type="text" class="form-control">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" @click="addNovoPaciente">Adicionar</button>
+            <div class="col-md-6 mt-3">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
+                Celular:
+              </label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6 mt-3">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
+                Dentista:
+              </label>
+              <select class="form-select" aria-label="Default select example">
+                <option hidden selected>Selecionar...</option>
+                <option value="1">Daniel Salles</option>
+                <option value="2">Thales Casa Grande</option>
+                <option value="3">Murillo Motta</option>
+              </select>
+            </div>
+            <div class="col-12 mt-3">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'bars']" /></span>
+                Observações:
+              </label>
+              <textarea name="" id="novoPaciente_observacoes" class="form-control" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" @click="addNovoPaciente">Adicionar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -125,7 +142,7 @@ const cfg = {
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import {novoPaciente} from "@/services/pacientesService"
+import { novoPaciente } from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -166,13 +183,13 @@ export default {
       return textMap[status] || '';
     },
     openPaciente(paciente) {
-            console.log('paciente:', paciente)
-            console.log('paciente.name:', paciente.name)
-            this.$router.push({
-                name: "Profile",
-                params: { paciente: JSON.stringify(paciente) }
-            });
-          }
+      console.log('paciente:', paciente)
+      console.log('paciente.name:', paciente.name)
+      this.$router.push({
+        name: "Profile",
+        params: { paciente: JSON.stringify(paciente) }
+      });
+    }
   },
   computed: {
     ...mapState([
