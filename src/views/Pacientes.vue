@@ -6,7 +6,7 @@
   <div class="main-page-content">
     <div class="container-fluid mb-4">
       <div class="row">
-        <div class="col-md-12 col-lg-4">
+        <div class="col-md-6">
           <div class="card mt-3" style="border: 1px solid #DDD;">
             <div class="card-body p-2 px-3">
               <label for="" class="fs-6 fw-5">Últimos formulários</label>
@@ -33,7 +33,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6">
           <div class="card mt-3" style="border: 1px solid #DDD;">
             <div class="card-body">
               <label for="" class="fs-6 fw-5">Últimos pacientes adicionados</label>
@@ -52,31 +52,6 @@
                   <tr>
                     <td>25/05, às 16:12h</td>
                     <td>Júlia Simões Manzoli</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div class="card mt-3" style="border: 1px solid #DDD;">
-            <div class="card-body">
-              <label for="" class="fs-6 fw-5">Próximos a consultar</label>
-              <table class="table-sm w-100 vsm-table">
-                <thead>
-                  <tr>
-                    <th>Consulta</th>
-                    <th>Paciente</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>hoje, às 17:00h</td>
-                    <td>Thales Casa Grande</td>
-                  </tr>
-                  <tr>
-                    <td>hoje, às 17:30h</td>
-                    <td>Graziela Ramos dos Santos</td>
                   </tr>
                 </tbody>
               </table>
