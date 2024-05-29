@@ -28,15 +28,6 @@
                           style="font-size: 10pt"></i></button>
                     </td>
                   </tr>
-                  <tr>
-                    <td>29/05, às 13:48h</td>
-                    <td>Thales Casa Grande</td>
-                    <td>
-                      <button class="btn btn-success btn-sm" title="Adicionar paciente" style="padding: 4px 8px;" data-bs-toggle="modal" data-bs-target="#modalAdicionarPacienteDoFormulario"><i
-                          class="fas fa-plus me-1" style="font-size: 7pt"></i><i class="fas fa-user d-none d-md-inline"
-                          style="font-size: 10pt"></i></button>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -95,7 +86,11 @@
       </div>
     </div>
 
-    <EasyDataTable :headers="headers" :items="patients" @click-row="openPaciente" body-row-class-name="clickable"
+    <div class="w-100 text-center">
+      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)" v-model="search">
+    </div>
+
+    <EasyDataTable :headers="headers" :items="pacientes" @click-row="openPaciente" body-row-class-name="clickable"
       header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
       <template #header-status="header">
@@ -109,30 +104,30 @@
         </div>
       </template>
 
-      <template #item-name="{ name, email }">
+      <template #item-name="{ nome, email }">
         <div class="d-flex px-2 py-1">
           <div style="min-width: 40px;" class="d-none d-md-block">
             <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1" />
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 text-sm">{{ name }}</h6>
+            <h6 class="mb-0 text-sm">{{ nome }}</h6>
             <p class="text-xs text-secondary mb-0">{{ email }}</p>
           </div>
         </div>
       </template>
 
-      <template #item-diagnosis="{ diagnosis, recommended_treatment }">
-        <p class="text-xs font-weight-bold mb-0">{{ diagnosis }}</p>
-        <p class="text-xs text-secondary mb-0">{{ recommended_treatment }}</p>
+      <template #item-diagnostico="{ diagnostico, tratamento }">
+        <p class="text-xs font-weight-bold mb-0">{{ diagnostico }}</p>
+        <p class="text-xs text-secondary mb-0">{{ tratamento }}</p>
       </template>
 
-      <template #item-status="{ status, progress }">
+      <template #item-status="{ status_tratamento, progress }">
         <div class="align-middle text-center text-sm">
-          <span class="badge badge-sm" :class="statusClass(status)" v-if="status !== 'ONGOING'">{{
-            statusText(status)
+          <span class="badge badge-sm" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
+            statusText(status_tratamento)
             }}</span>
 
-          <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status === 'ONGOING'">
+          <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
             <div class="progress" style="width: 50%;">
               <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
                 aria-valuemax="100" :style="{ width: progress + '%' }"></div>
@@ -165,7 +160,7 @@
               <i class="fas fa-user me-2"></i>
               Vincular a paciente existente
             </button>
-            <button class="btn btn-primary my-3">
+            <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
               <i class="fas fa-plus me-2"></i>
               Criar novo paciente
             </button>
@@ -192,7 +187,7 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
                 Nome:
               </label>
-              <input type="text" class="form-control" v-bind="nomeNovoPaciente">
+              <input type="text" class="form-control" v-model="novoPaciente.nome">
             </div>
 
             <div class="col-md-6 mt-3">
@@ -260,11 +255,11 @@ const cfg = {
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import { novoPaciente, getAllPacientes } from "@/services/pacientesService"
+import { addNovoPaciente, getAllPacientes } from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
-  { text: "DIAGNÓSTICO/TRATAMENTO", value: "diagnosis", sortable: true },
+  { text: "DIAGNÓSTICO/TRATAMENTO", value: "diagnostico", sortable: true },
   { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
   { text: "LOCALIDADE", value: "city", sortable: true },
 ];
@@ -273,6 +268,12 @@ var nomeNovoPaciente = '';
 
 var pacientes = []
 
+var search = ''
+
+var novoPaciente = {
+  nome: ''
+}
+
 export default {
   name: "tables",
   components: {
@@ -280,29 +281,32 @@ export default {
     SidenavListPacientes,
   },
   async mounted() {
-    this.pacientes = await getAllPacientes()
-
-    console.log('this.pacientes:', this.pacientes)
+    this.updateList()
   },
   methods: {
+    async updateList(search = '') {
+      this.pacientes = await getAllPacientes(search)
+    },
     statusClass(status) {
       const classMap = {
-        'NOT STARTED': 'bg-gradient-warning',
-        'COMPLETED': 'bg-gradient-success',
-        'ONGOING': 'bg-gradient-secondary',
+        'NÃO INICIADO': 'bg-gradient-warning',
+        'CONCLUÍDO': 'bg-gradient-success',
+        'ATIVO': 'bg-gradient-secondary',
       };
 
       return classMap[status] || '';
     },
     async addNovoPaciente() {
-      console.log('aaaaaa');
-      await novoPaciente()
+      await addNovoPaciente({
+        nome: this.novoPaciente.nome,
+      })
+      await this.updateList(this.search)
     },
     statusText(status) {
       const textMap = {
-        'NOT STARTED': 'NÃO INICIADO',
-        'COMPLETED': 'CONCLUÍDO',
-        'ONGOING': 'EM ANDAMENTO',
+        'NÃO INICIADO': 'NÃO INICIADO',
+        'CONCLUÍDO': 'CONCLUÍDO',
+        'ATIVO': 'EM ANDAMENTO',
       };
 
       return textMap[status] || '';
@@ -338,83 +342,8 @@ export default {
       cfg,
       evts,
       pacientes,
-      patients: [
-        {
-          id: 1,
-          name: 'Beatriz Souza Costa',
-          cpf: '019.647.076-50',
-          rg: '19.833.663',
-          diagnosis: 'Classe II',
-          email: 'bia.souza@gmail.com',
-          recommended_treatment: 'Usar arcos X',
-          place: 'Poços de Caldas',
-          picture_url: 'pictures/1/1.jpg',
-          registered_date: '2023-11-01 14:02:03',
-          completed_date: '2023-11-01 17:38:12',
-          status: 'COMPLETED',
-          progress: 12
-        },
-        {
-          id: 2,
-          name: 'Paciente da Silva',
-          cpf: '019.647.076-50',
-          rg: '19.833.663',
-          diagnosis: 'Mordida cruzada',
-          email: 'paciente.silva@gmail.com',
-          recommended_treatment: 'Usar arcos YY',
-          place: 'Poços de Caldas',
-          picture_url: 'pictures/1/2.jpg',
-          registered_date: '2023-12-01 14:02:03',
-          completed_date: '2023-12-01 17:38:12',
-          status: 'NOT STARTED',
-          progress: 86
-        },
-        {
-          id: 3,
-          name: 'Laura Antunes Mendes',
-          cpf: '019.647.076-50',
-          rg: '19.833.663',
-          diagnosis: 'Classe III',
-          email: 'laura.mendes@hotmail.com',
-          recommended_treatment: 'Usar arcos ZZZ',
-          place: 'Poços de Caldas',
-          picture_url: 'pictures/1/2.jpg',
-          registered_date: '2023-12-01 14:02:03',
-          completed_date: '2023-12-01 17:38:12',
-          status: 'ONGOING',
-          progress: 95
-        },
-        {
-          id: 3,
-          name: 'André Custódio Bueno',
-          cpf: '019.647.076-50',
-          rg: '19.833.663',
-          diagnosis: 'Classe I',
-          email: 'andre.bueno@gmail.com',
-          recommended_treatment: 'Usar arcos ZZZ',
-          place: 'Andradas',
-          picture_url: 'pictures/1/2.jpg',
-          registered_date: '2023-12-01 14:02:03',
-          completed_date: '2023-12-01 17:38:12',
-          status: 'ONGOING',
-          progress: 18
-        },
-        {
-          id: 3,
-          name: 'Mayara Alcântara Muniz',
-          cpf: '019.647.076-50',
-          rg: '19.833.663',
-          diagnosis: 'Classe I',
-          email: 'mayara.muniz@gmail.com',
-          recommended_treatment: 'Usar arcos ZZZ',
-          place: 'Poços de Caldas',
-          picture_url: 'pictures/1/2.jpg',
-          registered_date: '2023-12-01 14:02:03',
-          completed_date: '2023-12-01 17:38:12',
-          status: 'ONGOING',
-          progress: 26
-        },
-      ]
+      search,
+      novoPaciente,
     }
   }
 };

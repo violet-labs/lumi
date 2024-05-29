@@ -52,4 +52,4 @@ appInstance.use(vuetify)
 
 appInstance.mount("#app")
 appInstance.component('EasyDataTable', Vue3EasyDataTable)
-appInstance.component('font-awesome-icon', FontAwesomeIcon);
+// appInstance.component('font-awesome-icon', FontAwesomeIcon);

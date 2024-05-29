@@ -66,11 +66,13 @@ Front-end:
                 ✔ primeira_consulta @done(24-05-29 01:44)
                 ✔ ultima_consulta @done(24-05-29 01:44)
                 ✔ proxima_consulta @done(24-05-29 01:44)
-            ☐ Fazer a tabela listar do banco de dados
+            ✔ Fazer a tabela listar do banco de dados @done(24-05-29 02:00)
             ✔ (10m) API: fazer função para puxar dados de um usuário @done(24-05-29 01:32)
+            ✔ (20m) Fazer funcionar a busca @done(24-05-29 02:59)
             ☐ (10m) JavaScript: fazer função para puxar dados do usuário
-            ☐ (5m) Traduzir o DataTables
-
+            ☐ (5m) Fazer o outro botão também abrir o modal de novo paciente
+            
+        ☐ (5m) Traduzir o DataTables
         ☐ (10m) Fazer novo layout para rolar as perguntas  
         ☐ (30m) Executar a migração para a nova estrutura:
             ☐ Pergunta

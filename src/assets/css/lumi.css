@@ -289,3 +289,14 @@ textarea.form-control:active {
 .fs-table {
     font-size: 11pt;
 }
+
+.search-input {
+    font-size: 13pt;
+    border-bottom: 1px solid #999;
+    margin-bottom: 1rem;
+}
+
+.search-input:active, .search-input:focus {
+    border: none !important;
+    border-bottom: 1px solid #92b9d3;
+}
