@@ -5,8 +5,8 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-6">
             <mini-statistics-card
-              :title="{ text: 'Ações pendentes', value: '3' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>8</span> resolvidas hoje"
+              :title="{ text: 'Ações pendentes', value: '2' }"
+              detail="<span class='text-success text-sm font-weight-bolder'>3</span> resolvidas hoje"
               :icon="{
                 name: 'error',
                 color: 'text-white',
@@ -54,51 +54,33 @@
     <div class="row">
       <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
         <project-card
-          title="Projects"
-          description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>30 done</span> this month"
-          :headers="['Companies', 'Members', 'Budget', 'Progress']"
+          title="Histórico"
+          description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>4 ações</span> hoje"
+          :headers="['Ação', 'Dia', 'Horário', 'Usuário']"
           :projects="[
             {
-              logo: logoXD,
-              title: 'Material XD Material XD Version',
-              members: [team1, team2, team3, team4],
-              budget: '$14,000',
-              progress: { percentage: 60, color: 'info' },
+              acao: 'Adicionou paciente Lucas Carvalho',
+              dia: '27/05/2024',
+              horario: '12:12h',
+              usuario: 'Thales Lima',
             },
             {
-              logo: logoAtlassian,
-              title: 'Add Progress Track',
-              members: [team2, team4],
-              budget: '$3,000',
-              progress: { percentage: 10, color: 'info' },
+              acao: '<b>Beatriz O.</b> preencheu o formulário de boas-vindas',
+              dia: '26/05/2024',
+              horario: '10:05h',
+              usuario: '-',
             },
             {
-              logo: logoSlack,
-              title: 'Fix Platform Errors',
-              members: [team3, team1],
-              budget: 'Not set',
-              progress: { percentage: 100, color: 'success' },
+              acao: 'Criou tratamento #1',
+              dia: '24/05/2024',
+              horario: '14:30h',
+              usuario: 'Thales Lima',
             },
             {
-              logo: logoSpotify,
-              title: 'Launch our Mobile App',
-              members: [team4, team3, team4, team1],
-              budget: '$20,500',
-              progress: { percentage: 100, color: 'success' },
-            },
-            {
-              logo: logoJira,
-              title: 'Add the New Pricing Page',
-              members: [team4],
-              budget: '$500',
-              progress: { percentage: 25, color: 'info' },
-            },
-            {
-              logo: logoJira,
-              title: 'Redesign New Online Shop',
-              members: [team1, team4],
-              budget: '$2,000',
-              progress: { percentage: 40, color: 'info' },
+              acao: 'Adicionou paciente Teste da Silva',
+              dia: '24/05/2024',
+              horario: '09:47h',
+              usuario: 'Thales Lima',
             },
           ]"
         />
@@ -106,50 +88,41 @@
       <div class="col-lg-4 col-md-6">
         <timeline-list
           class="h-100"
-          title="Orders overview"
+          title="Últimos pacientes cadastrados"
           description="<i class='fa fa-arrow-up text-success' aria-hidden='true'></i>
-        <span class='font-weight-bold'>24%</span> this month"
+        <span class='font-weight-bold'>14</span> este mês"
         >
           <timeline-item
             :icon="{
-              component: 'notifications',
+              component: 'person',
               class: 'text-success',
             }"
-            title="$2400 Design changes"
-            date-time="22 DEC 7:20 PM"
+            title="Thales Casa Grande de Lima"
+            date-time="27 MAI 14:23h"
           />
-          <TimelineItem
+          <timeline-item
             :icon="{
-              component: 'code',
-              class: 'text-danger',
+              component: 'person',
+              class: 'text-success',
             }"
-            title="New order #1832412"
-            date-time="21 DEC 11 PM"
+            title="Thales Casa Grande de Lima"
+            date-time="27 MAI 09:34"
           />
-          <TimelineItem
+          <timeline-item
             :icon="{
-              component: 'shopping_cart',
-              class: 'text-info',
+              component: 'person',
+              class: 'text-success',
             }"
-            title="Server payments for April"
-            date-time="21 DEC 9:34 PM"
+            title="Thales Casa Grande de Lima"
+            date-time="25 MAI 10:43"
           />
-          <TimelineItem
+          <timeline-item
             :icon="{
-              component: 'credit_card',
-              class: 'text-warning',
+              component: 'person',
+              class: 'text-success',
             }"
-            title="New card added for order #4395133"
-            date-time="20 DEC 2:20 AM"
-          />
-          <TimelineItem
-            :icon="{
-              component: 'vpn_key',
-              class: 'text-primary',
-            }"
-            title="Unlock packages for development"
-            date-time="18 DEC 4:54 AM"
-            class="pb-1"
+            title="Thales Casa Grande de Lima"
+            date-time="23 MAI 09:05"
           />
         </timeline-list>
       </div>

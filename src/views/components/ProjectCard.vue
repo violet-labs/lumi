@@ -23,17 +23,17 @@
             >
               <li>
                 <a class="dropdown-item border-radius-md" href="javascript:;">
-                  Action
+                  Auditar
                 </a>
               </li>
               <li>
                 <a class="dropdown-item border-radius-md" href="javascript:;">
-                  AnotherAction
+                  Imprimir
                 </a>
               </li>
               <li>
                 <a class="dropdown-item border-radius-md" href="javascript:;">
-                  SomethingElse
+                  Limpar
                 </a>
               </li>
             </ul>
@@ -63,11 +63,10 @@
             <tr
               v-for="(
                 {
-                  logo,
-                  title,
-                  members,
-                  budget,
-                  progress: { percentage, color },
+                  acao,
+                  dia,
+                  horario,
+                  usuario,
                 },
                 index
               ) of projects"
@@ -76,52 +75,21 @@
               <td>
                 <div class="d-flex px-2 py-1">
                   <div>
-                    <img :src="logo" class="avatar avatar-sm me-3" alt="Logo" />
+                    <i class="fas fa-history me-2"></i>
                   </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{ title }}</h6>
+                    <h6 class="mb-0 text-sm"><span v-html="acao"></span></h6>
                   </div>
                 </div>
               </td>
               <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    v-for="(member, index) of members"
-                    :key="index"
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    title=""
-                    data-bs-original-title=""
-                  >
-                    <img :src="member" alt="Team member" />
-                  </a>
-                </div>
+                <span class="text-xs font-weight-bold"> {{ dia }} </span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold"> {{ budget }} </span>
+                <span class="text-xs font-weight-bold"> {{ horario }} </span>
               </td>
-              <td class="align-middle d-flex justify-content-end">
-                <div class="progress-wrapper w-75 mx-auto">
-                  <div class="progress-info">
-                    <div class="progress-percentage">
-                      <span class="text-xs font-weight-bold"
-                        >{{ percentage }}%
-                      </span>
-                    </div>
-                  </div>
-                  <div class="progress">
-                    <div
-                      class="progress-bar"
-                      :class="`w-${percentage}  bg-gradient-${color}`"
-                      role="progressbar"
-                      :aria-valuenow="percentage"
-                      aria-valuemin="0"
-                      aria-valuemax="100"
-                    ></div>
-                  </div>
-                </div>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold"> {{ usuario }} </span>
               </td>
             </tr>
           </tbody>
