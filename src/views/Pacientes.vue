@@ -126,7 +126,7 @@
 
       <template #item-city="{ dentista }">
         <div class="w-100 text-center">
-          <span class="text-secondary text-xs font-weight-bold">{{ dentista }}</span>
+          <span class="text-xs text-dark font-weight-bold">{{ dentista }}</span>
         </div>
       </template>
     </EasyDataTable>
