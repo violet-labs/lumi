@@ -21,12 +21,6 @@
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">settings_backup_restore</i></div>
-          <span>Reagendar</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">print</i></div>
           <span>Imprimir</span>
         </a>
@@ -36,25 +30,31 @@
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          EM CONSULTA
+          RELATÓRIOS
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person_add</i></div>
-          <span>Novo prontuário</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person</i></div>
+          <span>Baixa frequência</span>
         </a>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add_card</i></div>
-          <span>Pagamento</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person</i></div>
+          <span>Aguardando retorno</span>
         </a>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">text_snippet</i></div>
-          <span>Atestado</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">list</i></div>
+          <span>Todos pacientes</span>
+        </a>
+      </li>
+      <li class="nav-item nav-btn-container">
+        <a href="#" class="nav-btn">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">attach_money</i></div>
+          <span>Pagamentos</span>
         </a>
       </li>
     </ul>

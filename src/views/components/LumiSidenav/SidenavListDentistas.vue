@@ -9,13 +9,7 @@
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add</i></div>
-          <span>Nova consulta</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">settings_backup_restore</i></div>
-          <span>Reagendar</span>
+          <span>Novo dentista</span>
         </a>
       </li>
       <li class="nav-item nav-btn-container">
@@ -29,25 +23,19 @@
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          EM CONSULTA
+          RELATÓRIOS
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person_add</i></div>
-          <span>Novo prontuário</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">list</i></div>
+          <span>Todos dentistas</span>
         </a>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add_card</i></div>
-          <span>Pagamento</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">text_snippet</i></div>
-          <span>Atestado</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">calendar_month</i></div>
+          <span>Consultas agendadas</span>
         </a>
       </li>
     </ul>
