@@ -178,7 +178,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Novo paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="closeModalNovoPaciente"></button>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -301,6 +301,7 @@ export default {
         nome: this.novoPaciente.nome,
       })
       await this.updateList(this.search)
+      this.$refs.closeModalNovoPaciente.click()
     },
     statusText(status) {
       const textMap = {

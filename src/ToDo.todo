@@ -69,8 +69,9 @@ Front-end:
             ✔ Fazer a tabela listar do banco de dados @done(24-05-29 02:00)
             ✔ (10m) API: fazer função para puxar dados de um usuário @done(24-05-29 01:32)
             ✔ (20m) Fazer funcionar a busca @done(24-05-29 02:59)
+            ✔ (5m) Fazer o outro botão também abrir o modal de novo paciente @done(24-05-29 03:17)
+            ✔ (5m) Fazer fechar modal após adicionar paciente @done(24-05-29 03:22)
             ☐ (10m) JavaScript: fazer função para puxar dados do usuário
-            ☐ (5m) Fazer o outro botão também abrir o modal de novo paciente
             
         ☐ (5m) Traduzir o DataTables
         ☐ (10m) Fazer novo layout para rolar as perguntas  
