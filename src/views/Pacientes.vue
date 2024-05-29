@@ -7,9 +7,11 @@
     <div class="container-fluid mb-4">
       <div class="row">
         <div class="col-md-6">
-          <div class="card mt-3" style="border: 1px solid #DDD;">
-            <div class="card-body p-2 px-3">
-              <label for="" class="fs-6 fw-5">Últimos formulários</label>
+          <div class="card mt-3" style="border: 1px solid #EEE;">
+            <div class="card-body px-3">
+              <div class="pb-1 text-start">
+                <p class="mb-0" style="font-weight: 400;">Últimos formulários</p>
+              </div>
               <table class="table-sm w-100 vsm-table">
                 <thead>
                   <tr>
@@ -34,9 +36,11 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="card mt-3" style="border: 1px solid #DDD;">
+          <div class="card mt-3" style="border: 1px solid #EEE;">
             <div class="card-body">
-              <label for="" class="fs-6 fw-5">Últimos pacientes adicionados</label>
+              <div class="pb-1 text-start">
+                <p class="mb-0" style="font-weight: 400;">Últimos pacientes adicionados</p>
+              </div>
               <table class="table-sm w-100 vsm-table">
                 <thead>
                   <tr>
