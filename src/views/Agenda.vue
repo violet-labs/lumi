@@ -17,7 +17,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <lumi-calendar :events="events" :loading="false" :config="cfg" view="month" v-model:date="data"
+        <lumi-calendar :events="events" :loading="false" :config="cfg" view="week" v-model:date="data"
           @calendarClosed="void 0" @fetchEvents="void 0" @dateSelected="onDateSelected" />
       </div>
     </div>
