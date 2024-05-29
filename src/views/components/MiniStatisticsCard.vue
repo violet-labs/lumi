@@ -15,7 +15,7 @@
         <font-awesome-icon v-if="icon.type == 'fas'" :icon="['fas', icon.name]" :class="icon.color" class="material-icons" style="padding-top: 20px;" />
       </div>
       <div class="pt-1" :class="isRTL ? 'text-start' : 'text-end'">
-        <p class="text-sm mb-0">{{ title.text }}</p>
+        <p class="mb-0" style="font-weight: 400;">{{ title.text }}</p>
         <h4 class="mb-0">{{ title.value }}</h4>
       </div>
     </div>

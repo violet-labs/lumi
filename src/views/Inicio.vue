@@ -27,7 +27,7 @@
           </div>
           <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
             <mini-statistics-card
-              :title="{ text: 'Tratamentos em andamento', value: '26' }"
+              :title="{ text: 'Tratamentos', value: '26' }"
               detail="<span class='text-success text-sm font-weight-bolder'>+4</span> no último mês"
               :icon="{
                 name: 'leaderboard',
@@ -65,7 +65,7 @@
               usuario: 'Thales Lima',
             },
             {
-              acao: '<b>Beatriz O.</b> preencheu o formulário de boas-vindas',
+              acao: '<b>Beatriz</b> preencheu o formulário de boas-vindas',
               dia: '26/05/2024',
               horario: '10:05h',
               usuario: '-',
