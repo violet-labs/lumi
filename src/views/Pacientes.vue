@@ -10,7 +10,7 @@
           <div class="card mt-3" style="border: 1px solid #EEE;">
             <div class="card-body px-3">
               <div class="pb-1 text-start">
-                <p class="mb-0" style="font-weight: 400;">Últimos formulários</p>
+                <p class="mb-0" style="font-weight: 400;">Formulários de boas-vindas</p>
               </div>
               <table class="table-sm w-100 vsm-table">
                 <thead>
@@ -22,7 +22,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>29/05, às 10:33h</td>
+                    <td>
+                      <span class="text-sm font-weight-bold">29/05, às 10:33</span>
+                    </td>
                     <td>Beatriz Oliveira Martins</td>
                     <td>
                       <button class="btn btn-success btn-sm" title="Adicionar paciente" style="padding: 4px 8px;" data-bs-toggle="modal" data-bs-target="#modalAdicionarPacienteDoFormulario"><i
@@ -50,11 +52,15 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>hoje, às 11:58h</td>
+                    <td>
+                      <span class="text-sm font-weight-bold">29/05, às 11:58</span>
+                    </td>
                     <td>Luca Mathias Sanches</td>
                   </tr>
                   <tr>
-                    <td>25/05, às 16:12h</td>
+                    <td>
+                      <span class="text-sm font-weight-bold">25/05, às 16:12</span>
+                    </td>
                     <td>Júlia Simões Manzoli</td>
                   </tr>
                 </tbody>
