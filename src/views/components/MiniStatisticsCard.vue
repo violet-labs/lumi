@@ -9,8 +9,10 @@
           class="material-icons opacity-10"
           :class="icon.color"
           aria-hidden="true"
+          v-if="icon.type != 'fas'"
           >{{ icon.name }}</i
         >
+        <font-awesome-icon v-if="icon.type == 'fas'" :icon="['fas', icon.name]" :class="icon.color" class="material-icons" style="padding-top: 20px;" />
       </div>
       <div class="pt-1" :class="isRTL ? 'text-start' : 'text-end'">
         <p class="text-sm mb-0">{{ title.text }}</p>
