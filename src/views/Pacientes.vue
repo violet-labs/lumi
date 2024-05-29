@@ -10,7 +10,7 @@
           <div class="card mt-3" style="border: 1px solid #DDD;">
             <div class="card-body p-2 px-3">
               <label for="" class="fs-6 fw-5">Últimos formulários</label>
-              <table class="table-sm w-100 vsm-table fs-table">
+              <table class="table-sm w-100 vsm-table">
                 <thead>
                   <tr>
                     <th>Data</th>
@@ -260,7 +260,7 @@ const cfg = {
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import { novoPaciente } from "@/services/pacientesService"
+import { novoPaciente, getAllPacientes } from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -271,11 +271,18 @@ const headers = [
 
 var nomeNovoPaciente = '';
 
+var pacientes = []
+
 export default {
   name: "tables",
   components: {
     LumiSidenav,
     SidenavListPacientes,
+  },
+  async mounted() {
+    this.pacientes = await getAllPacientes()
+
+    console.log('this.pacientes:', this.pacientes)
   },
   methods: {
     statusClass(status) {
@@ -330,6 +337,7 @@ export default {
       headers,
       cfg,
       evts,
+      pacientes,
       patients: [
         {
           id: 1,

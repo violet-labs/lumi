@@ -18,7 +18,7 @@ axios.defaults.baseURL = API_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 
-axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2LmFwaS5sdW1pL2F1dGgvbG9naW4iLCJpYXQiOjE3MTY4NjQwMTcsImV4cCI6MTcxNjg2NzYxNywibmJmIjoxNzE2ODY0MDE3LCJqdGkiOiJzNmRvR3dIS0ZUOU1JR1FMIiwic3ViIjoiMTAiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.jKV1n3DotNW3Ldrn2DzZW5LwJpv2JkHq0E1eAoyXK94'
+axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2LmFwaS5sdW1pL2F1dGgvbG9naW4iLCJpYXQiOjE3MTY5NTc1MTgsImV4cCI6MTcxNjk2MTExOCwibmJmIjoxNzE2OTU3NTE4LCJqdGkiOiJpY05udnFkOFBLZDhpV0QyIiwic3ViIjoiMTAiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.liL1oPZSYRkCo8RnJcbSdUZRgGMrDekHVeSqtB67juE'
 
 // axios.refreshToken = () => {
 // 	axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')

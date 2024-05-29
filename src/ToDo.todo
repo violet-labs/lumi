@@ -51,6 +51,26 @@ Front-end:
             ✔ whatsapp @done(24-05-29 00:20)
             ✔ dados @done(24-05-29 00:20)
         ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
+        
+        Fazer funcionar a tela dos pacientes:
+            ✔ (2m) Adicionar "dev.lumiorthosystem:8080" nas regras de CORS @done(24-05-29 01:39)
+            ✔ (2m) verificar a função getPacientes pelo Insomnia @done(24-05-29 01:24)
+            ✔ (5m) fazer funcionar a função de listar os pacientes @done(24-05-29 01:32)
+            ✔ (7m) criar chamada no axios para listar @done(24-05-29 01:39)
+            ✔ (8m) adicionar mais campos nos pacientes: @done(24-05-29 01:44)
+                ✔ diagnostico @done(24-05-29 01:44)
+                ✔ tratamento @done(24-05-29 01:44)
+                ✔ data_inicio_tratamento @done(24-05-29 01:44)
+                ✔ data_final_prevista, @done(24-05-29 01:44)
+                ✔ status_tratamento, @done(24-05-29 01:44)
+                ✔ primeira_consulta @done(24-05-29 01:44)
+                ✔ ultima_consulta @done(24-05-29 01:44)
+                ✔ proxima_consulta @done(24-05-29 01:44)
+            ☐ Fazer a tabela listar do banco de dados
+            ✔ (10m) API: fazer função para puxar dados de um usuário @done(24-05-29 01:32)
+            ☐ (10m) JavaScript: fazer função para puxar dados do usuário
+            ☐ (5m) Traduzir o DataTables
+
         ☐ (10m) Fazer novo layout para rolar as perguntas  
         ☐ (30m) Executar a migração para a nova estrutura:
             ☐ Pergunta
@@ -60,7 +80,7 @@ Front-end:
                 ☐ personalDetail
                 ☐ detailType (good, neutral, attention, bad)
                 ☐ openText (texto aberto por uma opção do tipo open-text)
-        ☐ (5m) Criar rota em Users para receber o formulário de boas-vindas
+        ☐ (5m) Criar rota para receber o formulário de boas-vindas
         ☐ (7m) Fazer função JavaScript para enviar o formulário
         ☐ (7m) Fazer função na API para receber o formulário
         ☐ (10m) Fazer funcionar o INSERT do formulário
@@ -84,6 +104,7 @@ Outro dia:
             ☐ Tela para ver as informações do dentista
             Colocar a sidenav nas outras telas também:
                 ☐ Finanças
+        ☐ Excluir arquivos que não forem ser usados
     Backend:
         Verificar os models e migrations:
             ☐ Formulários
@@ -93,8 +114,10 @@ Outro dia:
         Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
             ☐ Formulários
             ☐ Dentistas
-            ☐ Consultas
-            ☐ Agenda
+            ☐ Consultas / agenda
+        Tabela pacientes:
+            ☐ picture_url
+            ☐ status
 
 -- -------------------------------------------------- --
 
@@ -102,7 +125,6 @@ IDEAS:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
 
 TEMP HELPERS: 
-
     ☐ O que mais te incomoda em seu sorriso? O que você gostaria de mudar?
     ☐ (Dentes encavalados, dentes pra frente etc)
     ☐ Categoria: percepções do paciente
@@ -111,42 +133,9 @@ TEMP HELPERS:
     ☐ (Vergonha, dificuldade na fala etc)
     ☐ Categoria: X
     ---------------------------------------------------
-
     ☐ Você tem, ou já teve, algum destes hábitos?
     ☐ (Chupeta, roer unhas etc)
     ☐ Categoria: hábitos do paciente (Possui hábito de roer unhas)
-
     -----------------------------------------------------------
     ☐ Quão bem você respira pelo nariz?
     ☐ ()
-
-
-
-Later:
-    ☐ Excluir arquivos que não forem ser usados
-
-
-
-
--- TodDos antigo (vue-argon-dashboard)
-    Tela de formulários:
-        ☐ Criar rota
-        ☐ Criar objeto com as perguntas
-        ☐ Criar formulário
-    
-    Tabela tratamentos:
-        ☐ id
-        ☐ name
-        ☐ cpf
-        ☐ rg
-        ☐ picture_url
-        ☐ registered_date
-        ☐ completed_date
-        ☐ status (OPEN, COMPLETED)
-
-
-
-
-
-
-
