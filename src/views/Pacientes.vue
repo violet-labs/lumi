@@ -85,7 +85,7 @@
       </template>
       <template #header-city="header">
         <div class="text-center w-100 p-0">
-          LOCALIDADE
+          DENTISTA
         </div>
       </template>
 
@@ -124,9 +124,9 @@
         </div>
       </template>
 
-      <template #item-city="{ place }">
+      <template #item-city="{ dentista }">
         <div class="w-100 text-center">
-          <span class="text-secondary text-xs font-weight-bold">{{ place }}</span>
+          <span class="text-secondary text-xs font-weight-bold">{{ dentista }}</span>
         </div>
       </template>
     </EasyDataTable>

@@ -21,6 +21,7 @@ export async function getAllPacientes(search = '') {
     for (const paciente of allPacientes.data){
         paciente.progress = 95
         paciente.place = 'Poços de Caldas'
+        paciente.dentista = 'DANIEL SALLES'
         paciente.email = 'thales-lima@live.com'
         response.push(paciente)
     }
