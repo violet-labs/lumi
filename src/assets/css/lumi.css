@@ -1,3 +1,17 @@
+/* Animations */
+
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+
+/* -------------------- */
+
 :root {
     --primary-background: #fbfdfe;
 }
@@ -10,7 +24,8 @@ html {
     margin: 0 auto;
 }
 
-.text-center {text-align: center !important;
+.text-center {
+    text-align: center !important;
 }
 
 body {
@@ -73,45 +88,57 @@ body {
     width: 210px;
 }
 
-.tab-selector-container {
+.selector-tab-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.tab-selector-item {
+.selector-tab-item {
     background: #F8F8F8;
     font-size: 13pt;
     width: 50%;
     text-align: center;
     padding-top: 5px;
+    border: 1px solid #DDD;
 }
 
-.tab-selector-item.active {
+div > .selector-tab-item:first-child {
+    border-radius: 3px 0px 0px 3px;
+}
+
+div > .selector-tab-item:last-child {
+    border-radius: 0px 3px 3px 0px;
+}
+
+.selector-tab-item.active {
     background: #FFF !important;
     color: rgb(28, 137, 226);
+    border: 1px solid rgb(28, 137, 226);
+    border-right: 1px solid rgb(28, 137, 226) !important;
 }
 
-.tab-selector-item:hover {
+.selector-tab-item:hover {
     cursor: pointer;
     background: linear-gradient(to right, #FFF, #F8F8F8, #FFF)
 }
 
-.tab-selector-item:first-child {
+.selector-tab-item:first-child {
     border-right: 1px solid #EEE;
 }
 
-.tab-selector-divider {
-    height: 100%;
-    width: 1px;
-}
-
-.tab-selector-item::after {
+.selector-tab-item::after {
     content: '';
     background-image: linear-gradient(to right, #FFF, #EEE, rgb(187, 187, 232), #EEE, #FFF);
-    height: 1px; /*for horizontal border; width for vertical*/
+    height: 1px;
+    /*for horizontal border; width for vertical*/
     display: block;
     margin-top: 4px;
+}
+
+.selector-tab-divider {
+    height: 100%;
+    width: 1px;
 }
 
 .clickable {
@@ -172,27 +199,30 @@ body {
 }
 
 .page-width {
-    -webkit-box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
-    -moz-box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
-    box-shadow: 1px 1px 25px 0px rgba(138,138,138,0.2);
+    -webkit-box-shadow: 1px 1px 25px 0px rgba(138, 138, 138, 0.2);
+    -moz-box-shadow: 1px 1px 25px 0px rgba(138, 138, 138, 0.2);
+    box-shadow: 1px 1px 25px 0px rgba(138, 138, 138, 0.2);
     background: #FFF;
     max-width: 1200px;
     margin: 0 auto;
-    border-left: 1px solid #EEE;
-    border-right: 1px solid #EEE;
+    border-left: 2px solid rgba(222, 222, 222, 0.6);
+    border-right: 2px solid rgba(222, 222, 222, 0.6);
 }
 
-input.form-control, textarea.form-control {
+input.form-control,
+textarea.form-control {
     border: 1px solid #DDD;
     padding: 8px 12px;
     font-size: 12pt;
 }
 
-input.form-control:focus, textarea.form-control:focus {
+input.form-control:focus,
+textarea.form-control:focus {
     border-color: #6ca5db !important;
 }
 
-input.form-control:active, textarea.form-control:active {
+input.form-control:active,
+textarea.form-control:active {
     border-color: #6ca5db !important;
 }
 
@@ -227,5 +257,10 @@ input.form-control:active, textarea.form-control:active {
 }
 
 .nav-btn span {
-    flex: 1 1 0%; font-size: 11pt;
+    flex: 1 1 0%;
+    font-size: 11pt;
+}
+
+.card.no-shadow {
+    border-radius: 0px !important;
 }

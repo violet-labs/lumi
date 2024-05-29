@@ -1,15 +1,70 @@
-+17m:
+Front-end:
+    ✔ (15m) Criar botões de verdade em vez dos nav-link da Sidenav @done(24-05-27 23:00)
 
-Front-end:    
+    Formulário de adicionar paciente:
+        ✔ (5m) Verificar se a tabela está correta no banco @done(24-05-27 23:00)
+        ✔ (5m) Verificar se precisa adicionar mais colunas @done(24-05-27 23:01)
+        ✔ (5m) Fazer o migration, se necessário @done(24-05-27 23:08)
+            ✔ (15m) Criar controller, model e rotas do paciente @done(24-05-27 23:27)
+            Criar modal simples para adicionar o paciente:
+                ✔ (5m) Criar HTML do Modal na página Pacientes @done(24-05-27 23:31)
+                    Campos:
+                        ✔ Nome @done(24-05-27 23:32)
+                        ✔ Dentista (opcional) @done(24-05-27 23:32)
+                        ✔ Celular (opcional) @done(24-05-27 23:32)
+                ✔ (2m) Fazer o botão "Novo paciente" abrir o modal @done(24-05-27 23:34)
+                ✔ (3m) Corrigir conflito do z-index entre modal e sidenav @done(24-05-27 23:37)
+                Fazer função de salvar:
+                    ✔ (10m) Fazer função no JavaScript @done(24-05-27 23:56)
+                    ✔ (15m) Fazer função no Back-end @done(24-05-27 23:56)
+    
     Fazer funcionar o formulário de bem-vindo:
-        ☐ (5m) Criar model "detalhe_pessoal"
-        ☐ (8m) Criar tabela "detalhes_pessoais":
+        ✔ (10m) Remover top navigation @done(24-05-28 21:14)
+        ✔ (5m) Criar model "detalhe_pessoal" @done(24-05-28 21:37)
+        ✔ (8m) Criar tabela "detalhes_pessoais": @done(24-05-28 21:37)
             Colunas:
+                ✔ id @done(24-05-28 21:37)
+                ✔ id_paciente @done(24-05-28 21:37)
+                ✔ tipo @done(24-05-28 21:37)
+                ✔ categoria @done(24-05-28 21:37)
+                ✔ descricao @done(24-05-28 21:37)
+        
+        Passar as perguntas para objetos complexos:
+            Criar lista com os formulários de boas-vindas que forem preenchidos:
+                ☐ (2m) Criar container da lista, com uns 3 slots
+                ☐ (2m) Criar o elemento da lista
+                ☐ (2m) Criar outras duas listas:
+                    ☐ Últimos adicionados
+                    ☐ Próximas consultas
+                ☐ (5m) Preencher linhas da lista:
+                    ☐ Nome
+                    ☐ Horário
+                    ☐ Botão para criar paciente
+            ☐ (10m) Fazer novo layout para rolar as perguntas
+            ✔ (10m) CORRIGIR: lumi-app não está carregando @done(24-05-28 21:54)
+            ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
+            ☐ (15m) Criar model, controller e rota para o formulário de boas-vindas:
                 ☐ id
-                ☐ id_paciente
-                ☐ tipo
-                ☐ categoria
-                ☐ descricao
+                ☐ horario
+                ☐ id_paciente -> nullable()
+                ☐ nome
+                ☐ email
+                ☐ whatsapp
+                ☐ dados
+            ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
+                ✔ tipo (radio, multiple-choices, open-text), @done(24-05-28 21:52)
+                ✔ condition @done(24-05-28 21:52)
+                ☐ options (para radio e multiple-choices) - array de opções possíveis - opção {
+                    ☐ personalDetail
+                    ☐ detailType (good, neutral, attention, bad)
+                    ☐ openText (texto aberto por uma opção do tipo open-text)
+                }
+            ☐ (30m) Executar a migração para a nova estrutura
+            ☐ (5m) Criar rota em Users para receber o formulário de boas-vindas
+            ☐ (7m) Fazer função JavaScript para enviar o formulário
+            ☐ (7m) Fazer função na API para receber o formulário
+            ☐ (10m) Fazer funcionar o INSERT do formulário
+
         ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
         ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
         ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)

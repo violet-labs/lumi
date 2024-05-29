@@ -2,7 +2,7 @@
   <div class="page-width-container">
   <main class="page-width">
     <div class="container-fluid p-0">
-      <div class="card">
+      <div class="card no-shadow">
         <div class="card-body p-3">
           <div class="row gx-4">
             <div class="col-auto">
@@ -61,23 +61,25 @@
     <div class="p-0 container-fluid" v-if="!showTratamento">
       <div class="row">
         <div class="col-md-12">
-              <div class="tab-selector-container">
-                <div class="tab-selector-item" :class="activeTab == 'perfilPessoal' ? 'active' : ''"
+              <div class="selector-tab-container">
+                <div class="selector-tab-item" :class="activeTab == 'perfilPessoal' ? 'active' : ''"
                   @click="setTab('perfilPessoal')">
                   <font-awesome-icon :icon="['fas', 'id-card-clip']" />
                   <br>
                   Perfil pessoal
                 </div>
-                <div class="tab-selector-divider">
+                <div class="selector-tab-divider">
                   &nbsp;
                 </div>
-                <div class="tab-selector-item" :class="activeTab == 'perfilClinico' ? 'active' : ''"
+                <div class="selector-tab-item" :class="activeTab == 'perfilClinico' ? 'active' : ''"
                   @click="setTab('perfilClinico')">
                   <font-awesome-icon :icon="['fas', 'id-card']" />
                   <br>
                   Perfil clínico
                 </div>
               </div>
+              
+<Transition>
               <div class="main-container" v-if="activeTab == 'perfilPessoal'">
                 <div class="row p-3 pt-0 w-100 mx-auto">
                   <div class="col-md-6">
@@ -163,7 +165,7 @@
                   </div>
                 </div>
                 <div class="row p-0 w-100 mx-auto" style="border-top: 1px solid #EEE; background: linear-gradient(to bottom, #d7e6ef, #e6eff4,  #e6eff4, #FFF, #FFF);">
-                  <div class="col-12 text-center mb-1 d-flex flex-column p-2 m-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1))">
+                  <div class="col-12 text-center mb-1 d-flex flex-column p-3 m-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1))">
                     <span class="fs-5" style="">Detalhes do paciente</span>
                     <span>(visível apenas para dentistas)</span>
                   </div>
@@ -197,8 +199,11 @@
 
                 </div>
               </div>
+            </Transition>
+            <Transition>
               <div v-if="activeTab == 'perfilClinico'">
               </div>
+            </Transition>
         </div>
         <!-- <div class="col-md-4">
           <profile-card />
@@ -267,14 +272,14 @@ var personalPerceptions = {
       text: 'Já fez outros tratamentos'
     }
   ],
-  'Históricos': [
+  'Saúde': [
     {
       type: 'attention',
-      text: 'Já bateu os dentes'
+      text: 'Toma medicação controlada'
     },
     {
-      type: 'neutral',
-      text: 'Já fez outros tratamentos'
+      type: 'attention',
+      text: 'Possui pressão alta'
     }
   ],
 }
