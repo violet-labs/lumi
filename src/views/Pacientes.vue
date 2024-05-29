@@ -4,6 +4,97 @@
   </lumi-sidenav>
 
   <div class="main-page-content">
+    <div class="container-fluid mb-4">
+      <div class="row">
+        <div class="col-md-12 col-lg-4">
+          <div class="card mt-3" style="border: 1px solid #DDD;">
+            <div class="card-body p-2 px-3">
+              <label for="" class="fs-6 fw-5">Últimos formulários</label>
+              <table class="table-sm w-100 vsm-table fs-table">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Paciente</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>29/05, às 10:33h</td>
+                    <td>Beatriz Oliveira Martins</td>
+                    <td>
+                      <button class="btn btn-success btn-sm" title="Adicionar paciente" style="padding: 4px 8px;" data-bs-toggle="modal" data-bs-target="#modalAdicionarPacienteDoFormulario"><i
+                          class="fas fa-plus me-1" style="font-size: 7pt"></i><i class="fas fa-user d-none d-md-inline"
+                          style="font-size: 10pt"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>29/05, às 13:48h</td>
+                    <td>Thales Casa Grande</td>
+                    <td>
+                      <button class="btn btn-success btn-sm" title="Adicionar paciente" style="padding: 4px 8px;" data-bs-toggle="modal" data-bs-target="#modalAdicionarPacienteDoFormulario"><i
+                          class="fas fa-plus me-1" style="font-size: 7pt"></i><i class="fas fa-user d-none d-md-inline"
+                          style="font-size: 10pt"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card mt-3" style="border: 1px solid #DDD;">
+            <div class="card-body">
+              <label for="" class="fs-6 fw-5">Últimos pacientes adicionados</label>
+              <table class="table-sm w-100 vsm-table">
+                <thead>
+                  <tr>
+                    <th>Adicionado em</th>
+                    <th>Paciente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>hoje, às 11:58h</td>
+                    <td>Luca Mathias Sanches</td>
+                  </tr>
+                  <tr>
+                    <td>25/05, às 16:12h</td>
+                    <td>Júlia Simões Manzoli</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card mt-3" style="border: 1px solid #DDD;">
+            <div class="card-body">
+              <label for="" class="fs-6 fw-5">Próximos a consultar</label>
+              <table class="table-sm w-100 vsm-table">
+                <thead>
+                  <tr>
+                    <th>Consulta</th>
+                    <th>Paciente</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>hoje, às 17:00h</td>
+                    <td>Thales Casa Grande</td>
+                  </tr>
+                  <tr>
+                    <td>hoje, às 17:30h</td>
+                    <td>Graziela Ramos dos Santos</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <EasyDataTable :headers="headers" :items="patients" @click-row="openPaciente" body-row-class-name="clickable"
       header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
@@ -39,7 +130,7 @@
         <div class="align-middle text-center text-sm">
           <span class="badge badge-sm" :class="statusClass(status)" v-if="status !== 'ONGOING'">{{
             statusText(status)
-          }}</span>
+            }}</span>
 
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status === 'ONGOING'">
             <div class="progress" style="width: 50%;">
@@ -47,7 +138,8 @@
                 aria-valuemax="100" :style="{ width: progress + '%' }"></div>
             </div>
             <span class="me-2 text-xs font-weight-bold"
-              style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{ progress }}%</span>
+              style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{
+              progress }}%</span>
           </div>
         </div>
       </template>
@@ -58,6 +150,32 @@
         </div>
       </template>
     </EasyDataTable>
+  </div>
+
+  <div class="modal" tabindex="-1" id="modalAdicionarPacienteDoFormulario">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar paciente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-4">
+          <div class="d-flex flex-column">
+            <button class="btn btn-secondary my-3">
+              <i class="fas fa-user me-2"></i>
+              Vincular a paciente existente
+            </button>
+            <button class="btn btn-primary my-3">
+              <i class="fas fa-plus me-2"></i>
+              Criar novo paciente
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-bs-dismiss="modal">Voltar</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="modal" tabindex="-1" id="modalNovoPaciente">

@@ -268,3 +268,24 @@ textarea.form-control:active {
 .card.no-shadow {
     border-radius: 0px !important;
 }
+
+.fs-6 {
+    font-size: 1rem;
+}
+
+.vsm-table tr, .vsm-table td, .vsm-table th {
+    padding: 0px;
+    height: 10px !important;
+}
+
+.fw-5 {
+    font-weight: 500;
+}
+
+.btn-default {
+    border: 1px solid #CCC !important;
+}
+
+.fs-table {
+    font-size: 11pt;
+}

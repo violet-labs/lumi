@@ -28,42 +28,43 @@ Front-end:
                 ✔ tipo @done(24-05-28 21:37)
                 ✔ categoria @done(24-05-28 21:37)
                 ✔ descricao @done(24-05-28 21:37)
-        
-        Passar as perguntas para objetos complexos:
-            Criar lista com os formulários de boas-vindas que forem preenchidos:
-                ☐ (2m) Criar container da lista, com uns 3 slots
-                ☐ (2m) Criar o elemento da lista
-                ☐ (2m) Criar outras duas listas:
-                    ☐ Últimos adicionados
-                    ☐ Próximas consultas
-                ☐ (5m) Preencher linhas da lista:
-                    ☐ Nome
-                    ☐ Horário
-                    ☐ Botão para criar paciente
-            ☐ (10m) Fazer novo layout para rolar as perguntas
-            ✔ (10m) CORRIGIR: lumi-app não está carregando @done(24-05-28 21:54)
-            ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
-            ☐ (15m) Criar model, controller e rota para o formulário de boas-vindas:
-                ☐ id
-                ☐ horario
-                ☐ id_paciente -> nullable()
-                ☐ nome
-                ☐ email
-                ☐ whatsapp
-                ☐ dados
-            ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
-            ☐ (30m) Executar a migração para a nova estrutura:
-                ☐ Pergunta
-                ☐ tipo (radio, multiple-choices, open-text),
-                ☐ condition
-                ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
-                    ☐ personalDetail
-                    ☐ detailType (good, neutral, attention, bad)
-                    ☐ openText (texto aberto por uma opção do tipo open-text)
-            ☐ (5m) Criar rota em Users para receber o formulário de boas-vindas
-            ☐ (7m) Fazer função JavaScript para enviar o formulário
-            ☐ (7m) Fazer função na API para receber o formulário
-            ☐ (10m) Fazer funcionar o INSERT do formulário
+
+        Criar lista com os formulários de boas-vindas que forem preenchidos:
+            ✔ (2m) Criar container da lista, com uns 3 slots @done(24-05-29 00:23)
+            ✔ (2m) Criar o elemento da lista @done(24-05-29 01:13)
+            ✔ (2m) Criar outras duas listas: @done(24-05-29 01:13)
+                ✔ Últimos adicionados @done(24-05-29 01:13)
+                ✔ Próximas consultas @done(24-05-29 01:13)
+            ✔ (5m) Preencher linhas da lista: @done(24-05-29 01:13)
+                ✔ Nome @done(24-05-29 01:13)
+                ✔ Horário @done(24-05-29 01:13)
+                ✔ Botão para criar paciente @done(24-05-29 01:13)
+                
+        ✔ (10m) CORRIGIR: lumi-app não está carregando @done(24-05-28 21:54)
+        ✔ (15m) Melhorar layout da tela dos pacientes @done(24-05-29 00:15)
+        ✔ (15m) Criar model, controller e rota para o formulário de boas-vindas: @done(24-05-29 00:20)
+            ✔ id @done(24-05-29 00:20)
+            ✔ horario @done(24-05-29 00:20)
+            ✔ id_paciente -> nullable() @done(24-05-29 00:20)
+            ✔ nome @done(24-05-29 00:20)
+            ✔ email @done(24-05-29 00:20)
+            ✔ whatsapp @done(24-05-29 00:20)
+            ✔ dados @done(24-05-29 00:20)
+        ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
+        ☐ (10m) Fazer novo layout para rolar as perguntas  
+        ☐ (30m) Executar a migração para a nova estrutura:
+            ☐ Pergunta
+            ☐ tipo (radio, multiple-choices, open-text),
+            ☐ condition
+            ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
+                ☐ personalDetail
+                ☐ detailType (good, neutral, attention, bad)
+                ☐ openText (texto aberto por uma opção do tipo open-text)
+        ☐ (5m) Criar rota em Users para receber o formulário de boas-vindas
+        ☐ (7m) Fazer função JavaScript para enviar o formulário
+        ☐ (7m) Fazer função na API para receber o formulário
+        ☐ (10m) Fazer funcionar o INSERT do formulário
+        ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
 
         ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
         ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
