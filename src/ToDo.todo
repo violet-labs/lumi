@@ -86,11 +86,11 @@ Front-end:
                     ✔ Imagens @done(24-06-01 23:37)
                     ✔ Histórico @done(24-06-01 23:37)
 
-            ☐ (15m) Passar metas terapêuticas para array de objetos:
+            ✔ (15m) Passar metas terapêuticas para array de objetos: @done(24-06-02 17:48)
                 Props:
-                    ☐ id
-                    ☐ nome
-                    ☐ descricao
+                    ✔ id @done(24-06-02 17:48)
+                    ✔ alvo @done(24-06-02 17:48)
+                    ✔ meta @done(24-06-02 17:48)
             Criar seção com informações gerais do tratamento:
                 ✔ (5m) Criar seção @done(24-06-02 15:55)
                 Itens:
@@ -101,14 +101,14 @@ Front-end:
             Aba "Análise":
                 ✔ (2m) Criar seção @done(24-06-02 17:13)
                 ✔ (4m) Criar navegação @done(24-06-02 17:13)
-                ☐ Criar conteúdo:
+                ✔ Criar conteúdo: @done(24-06-02 18:15)
                     Colocar os 3 tipos de análises:
                         Extra-bucal:
-                            ☐ (5m) Criar card
+                            ✔ (5m) Criar card @done(24-06-02 18:15)
                         Intra-bucal:
-                            ☐ (5m) Criar card
+                            ✔ (5m) Criar card @done(24-06-02 18:15)
                         Análises radiográficas:
-                            ☐ (5m) Criar card
+                            ✔ (5m) Criar card @done(24-06-02 18:15)
             Aba "Resumo e planejamento":
                 ✔ Criar seção @done(24-06-01 23:38)
                 ✔ Criar navegação @done(24-06-02 17:13)
@@ -121,13 +121,14 @@ Front-end:
                 ✔ Criar seção @done(24-06-02 17:13)
                 ✔ Criar navegação @done(24-06-02 17:13)
                 Criar conteúdo:
-                    ☐ Criar seção Raio-X
-                    ☐ Criar seção Fotos
+                    ✔ Criar seção Radiografias @done(24-06-02 18:40)
+                    ✔ Criar seção Fotos @done(24-06-02 18:40)
             Aba histórico:
                 ✔ Criar seção @done(24-06-02 17:13)
                 ✔ Criar navegação @done(24-06-02 17:13)
                 Criar conteúdo:
-                    
+                
+        ✔ (10m) Instalar moment e ecriar filtro global para datas @done(24-06-02 17:29)
 
         Laravel - aprender:
             ☐ (15m) Como criar relação entre models
