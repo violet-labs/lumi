@@ -300,3 +300,39 @@ textarea.form-control:active {
     border: none !important;
     border-bottom: 1px solid #92b9d3;
 }
+
+.p-horizontal-divider {
+    width: calc(100% - 30px);
+    margin: 15px;
+    height: 1px;
+    background: linear-gradient(to right, #F8F8F8, #E6E6E6, #F8F8F8);
+}
+
+.p-horizontal-divider.m1 {
+    margin: 5px;
+}
+
+.p-horizontal-divider.m2 {
+    margin: 10px;
+}
+
+.p-horizontal-divider.m3 {
+    margin: 15px;
+}
+
+.card {
+    border: 1px solid #EEE;
+}
+
+.card.active {
+    border-color: rgb(97, 167, 247);
+    border-width: 2px;
+}
+
+svg.pointer {
+    cursor: pointer;
+}
+
+svg.pointer:hover {
+    color: rgb(97, 167, 247);
+}

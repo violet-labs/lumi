@@ -1,15 +1,16 @@
 <template>
-    <label :class="variant === 'static' ? '' : 'form-label'">{{ label }}</label>
+    <label :for="id" :class="variant === 'static' ? '' : 'form-label'">{{ label }}</label>
     <input
       :id="id"
       :type="type"
       class="form-control"
-      :class="getClasses(size)"
+      :class="getClasses(size, centered)"
       :name="name"
       :value="value"
       :placeholder="placeholder"
       :isRequired="isRequired"
       :disabled="disabled"
+      :readonly="readonly"
       @input="$emit('update:value', $event.target.value)"
     />
 </template>
@@ -44,6 +45,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    readonly: {
+      type: Boolean,
+      default: false,
+    },
+    centered: {
+      type: Boolean,
+      default: false,
+    },
     name: {
       type: String,
       default: "",
@@ -74,10 +83,13 @@ export default {
     setMaterialInput();
   },
   methods: {
-    getClasses: (size) => {
+    getClasses: (size, centered) => {
       let sizeValue;
 
-      sizeValue = size ? `form-control-${size}` : null;
+      sizeValue = size ? `form-control-${size}` : '';
+
+      if (centered)
+        sizeValue += ' text-center'
 
       return sizeValue;
     },

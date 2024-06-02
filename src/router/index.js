@@ -9,7 +9,7 @@ import Dentistas from "../views/Dentistas.vue";
 import Financeiro from "../views/Financeiro.vue";
 import Forms from "@/views/Forms.vue";
 
-import Profile from "../views/Profile.vue";
+import Paciente from "../views/Paciente.vue";
 
 import { isAuthenticated } from "../api.js";
 
@@ -77,8 +77,16 @@ const routes = [
   },
   {
     path: "/paciente",
-    name: "Profile",
-    component: Profile,
+    name: "/paciente",
+    redirect: "/pacientes",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/paciente/:id",
+    name: "Paciente",
+    component: Paciente,
     meta: {
       requiresAuth: true
     }

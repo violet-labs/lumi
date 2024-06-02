@@ -12,7 +12,7 @@
               </div>
               <div class="col-auto my-auto">
                 <div class="h-100">
-                  <h5 class="mb-1 fs-4">{{ paciente.name }}</h5>
+                  <h5 class="mb-1 fs-4">{{ paciente.nome }}</h5>
                   <p class="mb-0 font-weight-bold">27 anos e 6 meses</p>
                 </div>
               </div>
@@ -62,34 +62,15 @@
         <div class="p-0 container-fluid" v-if="activeTab == 'perfil'">
           <div class="row">
             <div class="col-md-12">
-              <div class="selector-tab-container">
-                <div class="selector-tab-item" :class="activeProfileTab == 'perfilPessoal' ? 'active' : ''"
-                  @click="setProfileTab('perfilPessoal')">
-                  <font-awesome-icon :icon="['fas', 'id-card-clip']" />
-                  <br>
-                  Perfil pessoal
-                </div>
-                <div class="selector-tab-divider">
-                  &nbsp;
-                </div>
-                <div class="selector-tab-item" :class="activeProfileTab == 'perfilClinico' ? 'active' : ''"
-                  @click="setProfileTab('perfilClinico')">
-                  <font-awesome-icon :icon="['fas', 'id-card']" />
-                  <br>
-                  Perfil clínico
-                </div>
-              </div>
-
               <Transition>
                 <div class="main-container" v-if="activeProfileTab == 'perfilPessoal'">
                   <div class="row p-3 pt-0 w-100 mx-auto">
                     <div class="col-md-6">
-
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Informações pessoais</p>
                       <div class="row">
                         <div class="col-md-7">
-                          <label for="example-text-input" class="form-control-label">Dentista padrão</label>
-                          <select class="form-select" aria-label="Default select example">
+                          <label for="paciente_dentista" class="form-control-label">Dentista padrão</label>
+                          <select class="form-select" id="paciente_dentista">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -97,44 +78,34 @@
                           </select>
                         </div>
                         <div class="col-md-5 mb-2">
-                          <label for="example-text-input" class="form-control-label">Nascimento</label>
-                          <material-input type="date" value="1996-12-02" />
+                          <material-input label="Nascimento" type="date" v-bind:value="paciente.data_nascimento" id="paciente_dataNacsimento" />
                         </div>
                         <div class="col-md-7 mb-2">
-                          <label for="example-text-input" class="form-control-label">Objetivo do tratamento</label>
-                          <material-input type="text" value="" />
+                          <material-input type="text" label="Objetivo do tratamento" v-bind:value="paciente.objetivo_tratamento" id="paciente_objetivoTratamento" />
                         </div>
                         <div class="col-md-5">
-                          <label for="example-text-input" class="form-control-label">CPF</label>
-                          <material-input type="text" value="019.647.076-50" />
+                          <material-input label="CPF" type="text" v-bind:value="paciente.cpf" id="paciente_cpf" />
                         </div>
                         <div class="col-md-7">
-                          <label for="example-text-input" class="form-control-label">Convênio</label>
-                          <material-input type="text" value="Uniodonto" />
+                          <material-input label="Convênio" type="text" v-bind:value="paciente.id_convenio" id="paciente_convenio" />
                         </div>
                         <div class="col-md-5">
-                          <label for="example-text-input" class="form-control-label">Clínica</label>
-                          <material-input type="text" value="Instituto Daniel Salles" />
+                          <material-input label="Clínica" type="text" v-bind:value="paciente.id_clinica" id="paciente_clinica" />
                         </div>
                       </div>
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Consultas</p>
                       <div class="row">
-                        <div class="col-md-4">
-                          <label for="example-text-input" class="form-control-label">Primeira consulta</label>
-                          <material-input disabled type="date" value="2019-11-16" />
-                          <div class="w-100"><span>há 4 anos</span>
-                          </div>
+                        <div class="col-md-4 text-center">
+                          <material-input label="Primeira consulta" readonly centered type="text" v-bind:value="paciente.primeira_consulta" id="paciente_primeiraConsulta" />
+                          <span>há 4 anos</span>
                         </div>
-                        <div class="col-md-4">
-                          <label for="example-text-input" class="form-control-label">Última consulta</label>
-                          <material-input disabled type="date" value="2024-04-20" />
-                          <div class="w-100"><span>há 1 mês</span>
-                          </div>
+                        <div class="col-md-4 text-center">
+                          <material-input label="Última consulta" readonly centered type="text" v-bind:value="paciente.ultima_consulta" id="paciente_ultimaConsulta" />
+                          <span>há 1 mês</span>
                         </div>
-                        <div class="col-md-4">
-                          <label for="example-text-input" class="form-control-label">Próxima consulta</label>
-                          <material-input disabled type="date" value="2024-05-29" />
-                          <div class="w-100"><span class="text-success" style="font-weight: 500;">Hoje!</span></div>
+                        <div class="col-md-4 text-center">
+                          <material-input label="Próxima consulta" readonly centered type="text" v-bind:value="paciente.proxima_consulta" id="paciente_proximaConsulta" />
+                          <span class="text-success" style="font-weight: 500;">Hoje!</span>
                         </div>
                       </div>
                     </div>
@@ -144,12 +115,10 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Contato</p>
                       <div class="row">
                         <div class="col-md-6 mb-2">
-                          <label for="example-text-input4" class="form-control-label">Celular/WhatsApp</label>
-                          <material-input type="text" value="(35) 99108-4588" />
+                          <material-input label="Celular/WhatsApp" type="text" v-bind:value="paciente.celular" id="paciente_celular" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <label for="example-text-input4" class="form-control-label">E-mail</label>
-                          <material-input type="text" value="thales-lima@live.com" />
+                          <material-input label="E-mail" type="text" v-bind:value="paciente.email" id="paciente_email" />
                         </div>
                       </div>
 
@@ -157,38 +126,29 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <label for="example-text-input4" class="form-control-label">CEP</label>
-                          <material-input type="text" value="37.713-188" />
+                          <material-input label="CEP" type="text" v-bind:value="paciente.endereco_cep" id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <label for="example-text-input1" class="form-control-label">Logradouro</label>
-                          <material-input type="text" value="Av Miguel Vacarelli" />
+                          <material-input label="Logradouro" type="text" v-bind:value="paciente.endereco_logradouro" id="paciente_enderecoLogradouro" />
                         </div>
                         <div class="col-md-2 mb-2">
-                          <label for="example-text-input1" class="form-control-label">Nº</label>
-                          <material-input type="text" value="75" />
+                          <material-input label="Nº" type="text" v-bind:value="paciente.endereco_numero" id="paciente_enderecoNumero" />
                         </div>
                         <div class="col-md-4">
-                          <label for="example-text-input2" class="form-control-label">Complemento</label>
-                          <material-input type="text" value="" />
+                          <material-input label="Complemento" type="text" v-bind:value="paciente.endereco_complemento" id="paciente_enderecoComplemento" />
                         </div>
                         <div class="col-md-4">
-                          <label for="example-text-input2" class="form-control-label">Cidade</label>
-                          <material-input type="text" value="Poços de Caldas" />
+                          <material-input label="Cidade" type="text" v-bind:value="paciente.endereco_cidade" id="paciente_enderecoCidade" />
                         </div>
                         <div class="col-md-4">
-                          <label for="example-text-input3" class="form-control-label">Estado</label>
-                          <material-input type="text" value="Minas Gerais" />
+                          <material-input label="Estado" type="text" v-bind:value="paciente.endereco_estado" id="paciente_enderecoEstado" />
                         </div>
                       </div>
                       <hr class="horizontal dark" />
                       <!-- <p class="text-uppercase text-sm">About me</p> -->
-                      <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Observações</p>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                        </div>
-                      </div>
+                      <p class="text-uppercase text-sm mt-3" style="font-weight: 600"><label for="paciente_observacoes">Observações</label></p>
+                      <textarea class="form-control" id="paciente_observacoes" rows="2" v-model="paciente.observacoes">
+                      </textarea>
                     </div>
                   </div>
                   <div class="row p-0 w-100 mx-auto"
@@ -243,16 +203,7 @@
       </Transition>
 
       <Transition>
-        <div class="py-4 container-fluid" v-if="activeTab == 'tratamento'">
-          <div class="row">
-            <div class="col-md-12">
-              <Tratamento></Tratamento>
-            </div>
-            <!-- <div class="col-md-4">
-          <profile-card />
-        </div> -->
-          </div>
-        </div>
+        <Tratamento v-if="activeTab == 'tratamento'" />
       </Transition>
 
       <div class="py-4 container-fluid" v-if="activeTab == 'consultas'">
@@ -304,14 +255,11 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
+import { getPaciente } from "@/services/pacientesService"
 
 const body = document.getElementsByTagName("body")[0];
 
-var paciente = {
-  name: 'Thales Casa Grande de Lima',
-  email: 'thales-lima@live.com',
-  birthdate: '1996-12-02',
-};
+var paciente = {}
 
 var showTratamento = false;
 
@@ -395,6 +343,12 @@ export default {
     },
     openTab(tab) {
       this.activeTab = tab;
+    },
+    async getPacienteDetails(id) {
+      const paciente = await getPaciente(id)
+      if (paciente)
+        this.paciente = paciente
+      console.log('this.paciente:', this.paciente)
     }
   },
   components: {
@@ -404,27 +358,15 @@ export default {
     Tratamento
   },
 
-  mounted() {
-
-    // this.paciente = JSON.parse(useRoute().params.paciente);
+  async mounted() {
+    await this.getPacienteDetails(this.$route.params.id);
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
   },
-  beforeMount() {
-    this.$store.state.imageLayout = "profile-overview";
-    this.$store.state.showNavbar = false;
-    this.$store.state.showFooter = true;
-    this.$store.state.hideConfigButton = true;
-    body.classList.add("profile-overview");
+  async beforeMount() {
   },
   beforeUnmount() {
-    this.$store.state.isAbsolute = false;
-    this.$store.state.imageLayout = "default";
-    this.$store.state.showNavbar = true;
-    this.$store.state.showFooter = true;
-    this.$store.state.hideConfigButton = false;
-    body.classList.remove("profile-overview");
   }
 };
 </script>

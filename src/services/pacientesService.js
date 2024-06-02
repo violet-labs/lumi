@@ -8,6 +8,15 @@ export async function addNovoPaciente(paciente) {
     return (response && response.status == 200)
 }
 
+export async function getPaciente(id) {
+    const paciente = await axios.get('/pacientes/' + id)
+
+    if (!paciente || !paciente.data)
+        return null
+
+    return paciente.data
+}
+
 export async function getAllPacientes(search = '') {
     const allPacientes = await axios.post('/pacientes/search', {
         search: search
