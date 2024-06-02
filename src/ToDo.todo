@@ -74,27 +74,8 @@ Front-end:
             ✔ (2m) Remover pacotes masonry do projeto @done(24-06-02 13:51)
             ✔ (10m) JavaScript: fazer função para puxar dados do usuário @done(24-06-02 13:51)
             ✔ (5m) Colocar os itens que vieram via JS nos respectivos campos do Perfil @done(24-06-02 14:13)
-
-        Telefones:
-            ☐ (5m) Criar model/controller/rotas para Telefone
-            ☐ (10m) Criar listagem de telefones na tela do paciente
-            ☐ (15m) Puxar listagem relacionando do banco
-            ☐ (5m) Fazer botão para adicionar novo telefone
-            ☐ (10m) Fazer função para cadastrar novo telefone
-
-        Emails:
-            ☐ (5m) Criar model/controller/rotas para Email
-            ☐ (10m) Criar listagem de emails na tela do paciente
-            ☐ (15m) Puxar listagem relacionando do banco
-            ☐ (5m) Fazer botão para adicionar novo email
-            ☐ (10m) Fazer função para cadastrar novo email
         
-        ☐ (8m) Colocar transition na view principal do router
-
-        Laravel - aprender:
-            ☐ (15m) Como criar relação entre models
-            ☐ (10m) Como trazer os objetos relacionados no get do Model
-            ☐ (10m) Como fazer paginação do lado do servidor
+        ✔ (8m) Colocar transition na view principal do router @done(24-06-02 14:33)
 
         Aba tratamento:
             Navbar:
@@ -104,15 +85,22 @@ Front-end:
                     ✔ Resumo e planejamento @done(24-06-01 23:37)
                     ✔ Imagens @done(24-06-01 23:37)
                     ✔ Histórico @done(24-06-01 23:37)
+
+            ☐ (15m) Passar metas terapêuticas para array de objetos:
+                Props:
+                    ☐ id
+                    ☐ nome
+                    ☐ descricao
             Criar seção com informações gerais do tratamento:
-                ☐ (5m) Criar seção
+                ✔ (5m) Criar seção @done(24-06-02 15:55)
                 Itens:
-                    ☐ (3m) Data de início
-                    ☐ (3m) Fase atual
-                    ☐ (10m) Término previsto (com cálculo do progresso atual)
+                    ✔ (3m) Data de início @done(24-06-02 15:55)
+                    ✔ (3m) Fase atual @done(24-06-02 15:55)
+                    ✔ (10m) Término previsto @done(24-06-02 15:55)
+                    ✔ (20m) Progresso @done(24-06-02 15:55)
             Aba "Análise":
-                ☐ (2m) Criar seção
-                ☐ (4m) Criar navegação
+                ✔ (2m) Criar seção @done(24-06-02 17:13)
+                ✔ (4m) Criar navegação @done(24-06-02 17:13)
                 ☐ Criar conteúdo:
                     Colocar os 3 tipos de análises:
                         Extra-bucal:
@@ -123,22 +111,28 @@ Front-end:
                             ☐ (5m) Criar card
             Aba "Resumo e planejamento":
                 ✔ Criar seção @done(24-06-01 23:38)
-                ☐ Criar navegação
+                ✔ Criar navegação @done(24-06-02 17:13)
                 Criar seções:
                     ✔ Diagnóstico @done(24-06-01 23:37)
                     ✔ Prognóstico @done(24-06-01 23:37)
                     ✔ Metas terapêuticas @done(24-06-01 23:37)
                     ✔ Plano de tratamento @done(24-06-01 23:37)
             Aba "Imagens":
-                ☐ Criar seção
-                ☐ Criar navegação
+                ✔ Criar seção @done(24-06-02 17:13)
+                ✔ Criar navegação @done(24-06-02 17:13)
                 Criar conteúdo:
                     ☐ Criar seção Raio-X
                     ☐ Criar seção Fotos
             Aba histórico:
-                ☐ Criar seção
-                ☐ Criar navegação
-                ☐ Criar conteúdo
+                ✔ Criar seção @done(24-06-02 17:13)
+                ✔ Criar navegação @done(24-06-02 17:13)
+                Criar conteúdo:
+                    
+
+        Laravel - aprender:
+            ☐ (15m) Como criar relação entre models
+            ☐ (10m) Como trazer os objetos relacionados no get do Model
+            ☐ (10m) Como fazer paginação do lado do servidor
 
         Plano de tratamento:
             ✔ Criar cards das fases @done(24-06-01 23:52)
@@ -146,7 +140,7 @@ Front-end:
                 ✔ Criar seção @done(24-06-01 23:55)
                 ☐ Incluir observações na Aparatologia
             Gerenciador de metas terapêuticas:
-                ☐ (5m) Colocar as metas terapêuticas em cards
+                ✔ (5m) Colocar as metas terapêuticas em cards @done(24-06-02 14:32)
                 ☐ (10m) Criar model/controller/routes para Meta Terapêutica
                 ☐ 
             Gerenciador do plano de tratamento:
@@ -207,6 +201,20 @@ Front-end:
         ☐ (10m) Centralizar todos .modal no centro vertical da tela
 
         ☐ (15m) Traduzir o DataTables
+
+        Telefones:
+            ☐ (5m) Criar model/controller/rotas para Telefone
+            ☐ (10m) Criar listagem de telefones na tela do paciente
+            ☐ (15m) Puxar listagem relacionando do banco
+            ☐ (5m) Fazer botão para adicionar novo telefone
+            ☐ (10m) Fazer função para cadastrar novo telefone
+
+        Emails:
+            ☐ (5m) Criar model/controller/rotas para Email
+            ☐ (10m) Criar listagem de emails na tela do paciente
+            ☐ (15m) Puxar listagem relacionando do banco
+            ☐ (5m) Fazer botão para adicionar novo email
+            ☐ (10m) Fazer função para cadastrar novo email
 
         Financeiro:
             Tela do Financeiro:

@@ -298,11 +298,11 @@ export default {
       return textMap[status] || '';
     },
     openPaciente(paciente) {
-      console.log('paciente:', paciente)
-      console.log('paciente.name:', paciente.name)
       this.$router.push({
-        name: "Profile",
-        params: { paciente: JSON.stringify(paciente) }
+        name: "Paciente",
+        params: {
+          id: paciente.id
+        }
       });
     }
   },

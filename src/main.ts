@@ -33,6 +33,9 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons'
 
+import filters from './helpers/filters'
+
+
 library.add(fas);
 
 const appInstance = createApp(App)
@@ -42,6 +45,8 @@ appInstance.use(MaterialDashboard)
 appInstance.use(LumiCalendar)
 appInstance.use(VioletJs)
 appInstance.use(i18n)
+
+appInstance.config.globalProperties.$filters = filters
 
 const vuetify = createVuetify({
     components,

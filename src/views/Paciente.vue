@@ -96,15 +96,15 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Consultas</p>
                       <div class="row">
                         <div class="col-md-4 text-center">
-                          <material-input label="Primeira consulta" readonly centered type="text" v-bind:value="paciente.primeira_consulta" id="paciente_primeiraConsulta" />
+                          <material-input label="Primeira consulta" readonly centered type="text" v-bind:value="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
                           <span>há 4 anos</span>
                         </div>
                         <div class="col-md-4 text-center">
-                          <material-input label="Última consulta" readonly centered type="text" v-bind:value="paciente.ultima_consulta" id="paciente_ultimaConsulta" />
+                          <material-input label="Última consulta" readonly centered type="text" v-bind:value="$filters.dateDmy(paciente.ultima_consulta)" id="paciente_ultimaConsulta" />
                           <span>há 1 mês</span>
                         </div>
                         <div class="col-md-4 text-center">
-                          <material-input label="Próxima consulta" readonly centered type="text" v-bind:value="paciente.proxima_consulta" id="paciente_proximaConsulta" />
+                          <material-input label="Próxima consulta" readonly centered type="text" v-bind:value="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
                           <span class="text-success" style="font-weight: 500;">Hoje!</span>
                         </div>
                       </div>
@@ -203,7 +203,7 @@
       </Transition>
 
       <Transition>
-        <Tratamento v-if="activeTab == 'tratamento'" />
+        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" />
       </Transition>
 
       <div class="py-4 container-fluid" v-if="activeTab == 'consultas'">
@@ -359,10 +359,10 @@ export default {
   },
 
   async mounted() {
-    await this.getPacienteDetails(this.$route.params.id);
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
+    await this.getPacienteDetails(this.$route.params.id);
   },
   async beforeMount() {
   },
