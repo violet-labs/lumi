@@ -130,6 +130,8 @@ Front-end:
                 
         ✔ (10m) Instalar moment e ecriar filtro global para datas @done(24-06-02 17:29)
 
+        ✔ (10m) Fazer cálculo de porcentagem de progresso na tela dos pacientes @done(24-06-03 01:05)
+
         Laravel - aprender:
             ☐ (15m) Como criar relação entre models
             ☐ (10m) Como trazer os objetos relacionados no get do Model

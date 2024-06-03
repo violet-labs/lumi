@@ -106,7 +106,7 @@
         <p class="text-xs text-secondary mb-0">{{ tratamento }}</p>
       </template>
 
-      <template #item-status="{ status_tratamento, progress }">
+      <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_previsa }">
         <div class="align-middle text-center text-sm">
           <span class="badge badge-sm" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
             statusText(status_tratamento)
@@ -115,11 +115,11 @@
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
             <div class="progress" style="width: 50%;">
               <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                aria-valuemax="100" :style="{ width: progress + '%' }"></div>
+                aria-valuemax="100" :style="{ width: getProgresso(data_inicio_tratamento, data_final_previsa) + '%' }"></div>
             </div>
             <span class="me-2 text-xs font-weight-bold"
               style="margin-top: -13px; background: rgba(255,255,255,0.5); border-radius: 50%; font-weight: 700 !important; padding: 2px;">{{
-              progress }}%</span>
+              getProgresso(data_inicio_tratamento, data_final_previsa) }}%</span>
           </div>
         </div>
       </template>
@@ -304,7 +304,28 @@ export default {
           id: paciente.id
         }
       });
-    }
+    },
+    getProgresso(data_inicio_tratamento, data_final_previsa) {
+      if (!data_inicio_tratamento || !data_final_previsa)
+        return '-';
+
+      const inicio = new Date(data_inicio_tratamento);
+      console.log('inicioo:', inicio)
+      const termino = new Date(data_final_previsa);
+      const hoje = new Date();
+
+      if (hoje < inicio)
+        return 0.00;
+      if (hoje > termino)
+        return 100.00;
+
+      const duracaoTotal = termino.getTime() - inicio.getTime();
+      const duracaoAteHoje = hoje.getTime() - inicio.getTime();
+
+      const progresso = (duracaoAteHoje / duracaoTotal) * 100;
+
+      return parseFloat(progresso.toFixed(2));
+    },
   },
   computed: {
     ...mapState([

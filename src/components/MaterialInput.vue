@@ -1,5 +1,5 @@
 <template>
-    <label :for="id" :class="variant === 'static' ? '' : 'form-label'">{{ label }}</label>
+    <label :for="id" class="form-label" :class="labelClass">{{ label }}</label>
     <input
       :id="id"
       :type="type"
@@ -26,6 +26,10 @@ export default {
       default: "outline",
     },
     label: {
+      type: String,
+      default: "",
+    },
+    labelClass: {
       type: String,
       default: "",
     },
