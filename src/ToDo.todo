@@ -135,6 +135,10 @@ Front-end:
             ☐ (10m) Como trazer os objetos relacionados no get do Model
             ☐ (10m) Como fazer paginação do lado do servidor
 
+        Tela de análise clínica (form):
+            ☐ Calcular o tratamento recomendado, através das respostas do formulário
+            ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
+
         Plano de tratamento:
             ✔ Criar cards das fases @done(24-06-01 23:52)
             Criar seção "aparatologia":
@@ -162,13 +166,6 @@ Front-end:
             
             ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
             ☐ Dar opção para o paciente consultar o seu plano de tratamento
-
-        Perfil clínico (vai mudar):
-            Fazer cards na tela, no seguinte formato:
-                ☐ Imagem da condição no header, texto descritivo no body
-                ☐ (Talvez categorizar?)
-            ☐ Calcular o tratamento recomendado, através das respostas do formulário
-            ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
 
         ☐ Colocar transition na view do calendario (day/week/month)
 

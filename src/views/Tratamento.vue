@@ -37,67 +37,67 @@
       </div>
     </div>
 
-    <div class="p-horizontal-divider mt-0"></div>
+    <div class="p-horizontal-divider my-0"></div>
 
-    <div class="tratamento-tabs-container">
-      <div class="tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''" style="flex: 3 1 100px"
+    <div class="row" style="padding: 15px 10px;">
+      <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
         @click="selectTratamentoTab('analise')">
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="mr-3" />
         Análise
       </div>
-      <div class="tratamento-tab" :class="tratamentoTab == 'resumo' ? 'active' : ''" style="flex: 4 1  100px"
+      <div class="col-md-4 tratamento-tab" :class="tratamentoTab == 'resumo' ? 'active' : ''"
         @click="selectTratamentoTab('resumo')">
         <font-awesome-icon :icon="['fas', 'list-check']" class="mr-3" />
         Resumo e planejamento
       </div>
-      <div class="tratamento-tab" :class="tratamentoTab == 'imagens' ? 'active' : ''" style="flex: 3 1  100px"
+      <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'imagens' ? 'active' : ''"
         @click="selectTratamentoTab('imagens')">
         <font-awesome-icon :icon="['fas', 'image']" class="mr-3" />
         Imagens
       </div>
-      <div class="tratamento-tab" :class="tratamentoTab == 'historico' ? 'active' : ''" style="flex: 3 1  100px"
+      <div class="col-md-2 tratamento-tab" :class="tratamentoTab == 'historico' ? 'active' : ''"
         @click="selectTratamentoTab('historico')">
         <font-awesome-icon :icon="['fas', 'history']" class="mr-3" />
         Histórico
       </div>
     </div>
 
-<div class="p-horizontal-divider mb-0"></div>
+<div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
       <div class="tratamento-content" v-if="tratamentoTab === 'analise'">
 
-        <div class="custom-card primary">
-          <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-              title="Editar" /></div>
-          <div class="custom-card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="info-container good">
-                  <div style="width: 30px; text-align: center;">
-                    <font-awesome-icon :icon="['fas', 'thumbs-up']" />
-                  </div>
-                  <div class="">
-                    <span>Teste</span>
-                  </div>
+      <div class="custom-card primary">
+        <div class="custom-card-header">Extra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+            title="Editar" /></div>
+        <div class="custom-card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="info-container good">
+                <div style="width: 30px; text-align: center;">
+                  <font-awesome-icon :icon="['fas', 'thumbs-up']" />
+                </div>
+                <div class="">
+                  <span>Teste</span>
                 </div>
               </div>
-              <div class="col-md-6">
-                <div class="info-container good">
-                  <div style="width: 30px; text-align: center;">
-                    <font-awesome-icon :icon="['fas', 'thumbs-up']" />
-                  </div>
-                  <div class="">
-                    <span>Teste</span>
-                  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-container good">
+                <div style="width: 30px; text-align: center;">
+                  <font-awesome-icon :icon="['fas', 'thumbs-up']" />
+                </div>
+                <div class="">
+                  <span>Teste</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
         <div class="custom-card primary mt-4">
-          <div class="custom-card-header">Extra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+          <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
               title="Editar" /></div>
           <div class="custom-card-body">
             <div class="row">
@@ -283,21 +283,61 @@
             <div class="section-header">
               <font-awesome-icon :icon="['fas', 'x-ray']" />
               Radiografias
+              <div class="p-horizontal-divider"></div>
+              <div class="radiografias-container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <v-table>
+                      <tbody>
+                        <tr>
+                          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                            Não há histórico a ser exibido.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </div>
+                  <!-- <div class="col-md-4">
+                  <profile-card />
+                </div> -->
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-md-6">           
             <div class="section-header">
               <font-awesome-icon :icon="['fas', 'camera']" />
               Fotos
+              <div class="p-horizontal-divider"></div>
+              <div class="fotos-container">
+                <br>
+                <br>
+                <br>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </Transition>
-    <Transition>
 
+    <Transition>
       <div class="tratamento-content" v-if="tratamentoTab === 'historico'">
-        Histórico
+        <div class="row">
+          <div class="col-md-12">
+            <v-table>
+              <tbody>
+                <tr>
+                  <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                    Não há histórico a ser exibido.
+                  </td>
+                </tr>
+              </tbody>
+            </v-table>
+          </div>
+          <!-- <div class="col-md-4">
+          <profile-card />
+        </div> -->
+        </div>
       </div>
     </Transition>
   </div>
@@ -305,8 +345,8 @@
 
 <style scoped>
 .tratamento-tabs-container {
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   border-radius: 5px;
 }
 
@@ -351,6 +391,7 @@
 
 .tratamento-content {
   padding: 20px;
+  padding-top: 5px;
 }
 
 .wrapper {
@@ -402,7 +443,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(to right, #F8F8F8, #EEE, #F8F8F8);
+  background: linear-gradient(to right, #E8E8E8, #DDD, #E8E8E8);
   border-radius: 10px 10px 0px 0px;
   padding: 7px 5px;
 }
@@ -487,6 +528,14 @@ export default {
 
       return textMap[status] || '';
     },
+    getProgressoClass(progresso) {
+      if  (progresso < 20)
+        return 'bg-gradient-warning'
+      else if (progresso < 70)
+        return 'bg-gradient-primary'
+      else
+        return 'bg-gradient-success'
+    },  
     selectTratamentoTab(tab) {
       this.tratamentoTab = tab
     }

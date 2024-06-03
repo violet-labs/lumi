@@ -356,7 +356,7 @@ svg.pointer {
 }
 
 svg.pointer:hover {
-    color: rgb(97, 167, 247);
+    color: rgb(138, 212, 255);
 }
 
 .btn-vsm {
@@ -399,7 +399,7 @@ svg.pointer:hover {
 }
 
 .primary .custom-card-header {
-    background: linear-gradient(to right, #9bb9cf, #80a1bb, #9bb9cf);
+    background: linear-gradient(to right, #89abc4, #80a1bb, rgb(136, 171, 196));
     color: #FFF;
 }
 
@@ -439,4 +439,18 @@ svg.pointer:hover {
 .section-header svg {
     margin-bottom: 5px;
     font-size: 18pt;
+}
+
+input:read-only {
+    background: #F8F8F8 !important;
+}
+
+.col-md-6.border-end {
+    border-image: linear-gradient(180deg, #F8F8F8, #E6E6E6, #F8F8F8) 30;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+.table thead th {
+    text-transform: none;
 }
