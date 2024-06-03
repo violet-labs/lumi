@@ -481,11 +481,11 @@ tr.good td {
 }
 
 tr.bad td {
-    color: rgb(179, 46, 46) !important;
+    color: rgb(219, 82, 82) !important;
 }
 
 tr.attention td {
-    color: rgb(216, 149, 25) !important;
+    color: rgb(238, 155, 0) !important;
 }
 
 tr.neutral td {
