@@ -169,7 +169,7 @@ Front-end:
             ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
             ☐ Dar opção para o paciente consultar o seu plano de tratamento
 
-        ☐ Colocar transition na view do calendario (day/week/month)
+        ✔ (8m) Colocar transition na view do calendario (day/week/month) @done(24-06-03 01:14)
 
         ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
 

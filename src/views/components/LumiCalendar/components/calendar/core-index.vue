@@ -2,7 +2,7 @@
   <div class="widget-calendar-wrapper relative w-full flex bg-lumi" :class="defineView !== 'month' ? 'px-2' : ''">
     <!-- left menu-->
     <!-- <LeftMenu :date="externalRequestDate" @calendar:datepicker="dateSelected = $event" ref="leftMenu" style="margin: 0 auto;"> -->
-        <!-- <template #closeButton>
+    <!-- <template #closeButton>
           <template v-if="slots.closeButton">
             <span class="inline-flex">
               <component
@@ -13,8 +13,8 @@
           </template>
 loseButton v-else @tap="closeCalendar()" />
 template> -->
-        <!-- / -->
-        <!-- <template #loader>
+    <!-- / -->
+    <!-- <template #loader>
           <template v-if="slots.loader">
             <span class="inline-flex">
               <component :is="slots.loader" :calendarGotLoading="isLoading" />
@@ -22,8 +22,8 @@ template> -->
           </template>
           <Loader v-else-if="isLoading" />
         </template> -->
-        <!---->
-        <!-- <template #sideEvent>
+    <!---->
+    <!-- <template #sideEvent>
           <div
             class="side-event-box overflow-y-auto custom-scrll p-1"
             :class="{
@@ -50,42 +50,48 @@ template> -->
             </template>
           </div>
         </template> -->
-      <!-- </LeftMenu> -->
+    <!-- </LeftMenu> -->
     <!-- calendar base-->
-      <div class="calendar-base w-full grow border border-white bg-lumi mt-2 pb-0" style="flex: 1">
-        <!-- calendar base header -->
-        <HeaderComp>
-          <!--Arrows-->
-          <!-- <Arrows @calendar-arrow:today="leftMenu.datepicked = new Date()"
+    <div class="calendar-base w-full grow border border-white bg-lumi mt-2 pb-0" style="flex: 1">
+      <!-- calendar base header -->
+      <HeaderComp>
+        <!--Arrows-->
+        <!-- <Arrows @calendar-arrow:today="leftMenu.datepicked = new Date()"
             @calendar-arrow:left="leftMenu.datepicked = prevDate(dateSelected)"
             @calendar-arrow:right="leftMenu.datepicked = nextDate(dateSelected)" :label="/calendar/i.test(dateLabel(dateSelected))
             ? $t(`${dateLabel(dateSelected)}`)
             : dateLabel(dateSelected)
           " :slots="slots" /> -->
-          <div class="flex flex-wrap center-self">
-            <!--Search-->
-            <!-- <Search @calendar:search="void 0" @typing:finished="runSearch" :placeholder="configs.searchPlaceholder"
+        <div class="flex flex-wrap center-self">
+          <!--Search-->
+          <!-- <Search @calendar:search="void 0" @typing:finished="runSearch" :placeholder="configs.searchPlaceholder"
               :slots="slots" class="center-self" /> -->
-            <!-- DayToggle-->
-            <Toggle ref="viewToggle" @calendar:view-changed="defineView = $event" :view="view" class="center-self" />
-          </div>
-        </HeaderComp>
-        <!--calendar-->
-        <div data-widget-item="widget-calendar-comp" class="calendar-wrapper w-full mt-2 overflow-y-auto custom-scrll">
-          <!--calendar week-view-->
+          <!-- DayToggle-->
+          <Toggle ref="viewToggle" @calendar:view-changed="defineView = $event" :view="view" class="center-self" />
+        </div>
+      </HeaderComp>
+      <!--calendar-->
+      <div data-widget-item="widget-calendar-comp" class="calendar-wrapper w-full mt-2 overflow-y-auto custom-scrll">
+        <!--calendar week-view-->
+        <Transition>
           <template v-if="defineView === 'week'">
             <WeekView :weekDays="weekDays" :dateSelected="dateSelected" :dayTimes="dayTimes" :slots="slots" />
           </template>
-          <!--calendar day-view-->
+        </Transition>
+        <!--calendar day-view-->
+        <Transition>
           <template v-if="defineView === 'day'">
             <DayView :dateSelected="dateSelected" :dayTimes="dayTimes" :slots="slots" />
           </template>
-          <!--calendar month-view-->
+        </Transition>
+        <!--calendar month-view-->
+        <Transition>
           <template v-if="defineView === 'month'">
             <MonthView :weekDays="weekDays" :monthDays="monthDays" :dateSelected="dateSelected" :slots="slots" />
           </template>
-        </div>
+        </Transition>
       </div>
+    </div>
     <!---->
   </div>
 </template>
