@@ -454,3 +454,44 @@ input:read-only {
 .table thead th {
     text-transform: none;
 }
+
+.analises-table td {
+    padding: 2px 8px !important;
+    font-size: 11pt;
+    color: #555 !important;
+    text-align: left;
+}
+
+.analises-table tr > td:first-child {
+    border-right: 1px solid #EEE;
+    font-weight: 500 !important;
+}
+
+.analises-table tr > td:last-child {
+    border-right: 1px solid #EEE;
+    font-weight: 400 !important;
+}
+
+.analises-table tr:nth-of-type(odd) > * {
+    background: #F8F8F8;
+}
+
+tr.good td {
+    color: rgb(46, 179, 46) !important;
+}
+
+tr.bad td {
+    color: rgb(179, 46, 46) !important;
+}
+
+tr.attention td {
+    color: rgb(216, 149, 25) !important;
+}
+
+tr.neutral td {
+    color: #666 !important;
+}
+
+.analises-table {
+    border-radius: 5px;
+}
