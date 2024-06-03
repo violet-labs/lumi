@@ -294,6 +294,13 @@
                             Ainda não há radiografias.
                           </td>
                         </tr>
+                        <tr>
+                          <td class="text-center pt-3">
+                            <button class="btn bg-gradient-primary">
+                              Adicionar
+                            </button>
+                          </td>
+                        </tr>
                       </tbody>
                     </v-table>
                   </div>
@@ -301,6 +308,7 @@
               </div>
             </div>
           </div>
+          <div class="p-horizontal-divider d-block d-md-none"></div>
           <div class="col-md-6">           
             <div class="section-header">
               <font-awesome-icon :icon="['fas', 'camera']" />
@@ -314,6 +322,13 @@
                         <tr>
                           <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
                             Ainda não há fotos.
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="text-center pt-3">
+                            <button class="btn bg-gradient-primary">
+                              Adicionar
+                            </button>
                           </td>
                         </tr>
                       </tbody>
@@ -459,7 +474,7 @@
 <script>
 import MaterialInput from "@/components/MaterialInput.vue";
 
-var tratamentoTab = 'analise'
+var tratamentoTab = 'imagens'
 
 const metasTerapeuticas = [
   {
