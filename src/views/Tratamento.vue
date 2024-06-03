@@ -284,22 +284,19 @@
               <font-awesome-icon :icon="['fas', 'x-ray']" />
               Radiografias
               <div class="p-horizontal-divider"></div>
-              <div class="radiografias-container">
+              <div class="radiografias-container w-100">
                 <div class="row">
                   <div class="col-md-12">
                     <v-table>
                       <tbody>
                         <tr>
                           <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
-                            Não há histórico a ser exibido.
+                            Ainda não há radiografias.
                           </td>
                         </tr>
                       </tbody>
                     </v-table>
                   </div>
-                  <!-- <div class="col-md-4">
-                  <profile-card />
-                </div> -->
                 </div>
               </div>
             </div>
@@ -309,10 +306,20 @@
               <font-awesome-icon :icon="['fas', 'camera']" />
               Fotos
               <div class="p-horizontal-divider"></div>
-              <div class="fotos-container">
-                <br>
-                <br>
-                <br>
+              <div class="fotos-container w-100">
+                <div class="row">
+                  <div class="col-md-12">
+                    <v-table>
+                      <tbody>
+                        <tr>
+                          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                            Ainda não há fotos.
+                          </td>
+                        </tr>
+                      </tbody>
+                    </v-table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
