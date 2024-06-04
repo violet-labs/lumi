@@ -18,11 +18,9 @@ Formulário de bem-vindo e tratamento das respostas:
     ☐ (7m) Fazer função na API para receber o formulário
     ☐ (10m) Fazer funcionar o INSERT do formulário
     ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
-
     ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
     ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
     ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
-
     ☐ (10m) Centralizar todos .modal no centro vertical da tela
 
 Meios de contato:
