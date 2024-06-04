@@ -8,24 +8,28 @@
       </div>
       <div class="col-sm-6 col-md-2 px-2 py-1 py-md-3 text-center">
         <material-input label="Início do tratamento" readonly type="text" centered
-          v-bind:value="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento" label-class="me-3" />
+          v-bind:value="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
+          label-class="me-3" />
         <span class="text-sm">há 4 anos</span>
       </div>
       <div class="col-sm-6 col-md-2 px-2 py-1 py-md-3 text-center">
         <material-input label="Término previsto" readonly type="text" centered
-          v-bind:value="$filters.dateDmy(paciente.data_final_previsa)" id="paciente_inicio_tratamento" label-class="me-3" />
+          v-bind:value="$filters.dateDmy(paciente.data_final_previsa)" id="paciente_inicio_tratamento"
+          label-class="me-3" />
         <span class="text-sm text-success">em 1 ano</span>
       </div>
       <div class="col-sm-6 col-md-4 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
         <label for="" class="me-3">Progresso</label>
         <div class="d-flex flex-column align-items-center justify-content-center w-100 p-0 m-0">
           <div class="progress progress-lg w-100" style="">
-            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="95" aria-valuemin="0"
-              aria-valuemax="100" :style="{ width: getProgresso + '%' }"></div>
+            <div :style="{ width: getProgresso + '%' }">
+              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="95" aria-valuemin="0"
+                aria-valuemax="100"></div>
+            </div>
           </div>
           <span class="me-2"
             style="margin-top: -34px; background: rgba(255, 255, 255, 0.4); font-weight: 500 !important; font-size: 13pt; padding: 0px 9px; border-radius: 0.375rem; color: #666;">{{
-              getProgresso }}%</span>
+            getProgresso }}%</span>
           <span class="text-sm" style="margin-top: 11px;">com <strong>3 de 6</strong> metas concluídas</span>
         </div>
       </div>
@@ -65,108 +69,109 @@
       </div>
     </div>
 
-<div class="p-horizontal-divider mt-0"></div>
+    <div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
       <div class="tratamento-content" v-if="tratamentoTab === 'analise'">
 
-      <div class="row">
-        <div class="col-md-5 pe-md-1">
+        <div class="row">
+          <div class="col-md-5 pe-md-1">
 
-          <div class="custom-card primary">
-            <div class="custom-card-header">
-              Extra-bucal
-              <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer" title="Editar" />
+            <div class="custom-card primary">
+              <div class="custom-card-header">
+                Extra-bucal
+                <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer" title="Editar" />
+              </div>
+              <div class="custom-card-body p-0">
+                <v-table density="compact" class="analises-table">
+                  <tbody>
+                    <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id" :class="analise.type">
+                      <td>
+                        {{analise.name}}
+                      </td>
+                      <td>
+                        {{analise.text}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </v-table>
+              </div>
             </div>
-            <div class="custom-card-body p-0">
-              <v-table density="compact" class="analises-table">
-                <tbody>
-                  <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id" :class="analise.type">
-                    <td>
-                      {{analise.name}}
-                    </td>
-                    <td>
-                      {{analise.text}}
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
+
+          </div>
+
+          <div class="col-md-7 mt-4 mt-md-0">
+            <div class="custom-card primary">
+              <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></div>
+              <div class="custom-card-body p-0">
+                <v-table density="compact" class="analises-table">
+                  <tbody>
+                    <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id" :class="analise.type">
+                      <td>
+                        {{analise.name}}
+                      </td>
+                      <td>
+                        {{analise.text}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </v-table>
+              </div>
             </div>
           </div>
-          
-        </div>
 
-        <div class="col-md-7 mt-4 mt-md-0">
-          <div class="custom-card primary">
-            <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                title="Editar" /></div>
-            <div class="custom-card-body p-0">
-              <v-table density="compact" class="analises-table">
-                <tbody>
-                  <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id" :class="analise.type">
-                    <td>
-                      {{analise.name}}
-                    </td>
-                    <td>
-                      {{analise.text}}
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
+          <div class="col-md-5 pe-md-1">
+            <div class="custom-card primary mt-4">
+              <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
+                  class="ml-3 pointer" title="Editar" /></div>
+              <div class="custom-card-body p-0">
+                <v-table density="compact" class="analises-table">
+                  <tbody>
+                    <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id" :class="analise.type">
+                      <td>
+                        {{analise.name}}
+                      </td>
+                      <td>
+                        {{analise.text}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </v-table>
+              </div>
+            </div>
+
+            <div class="custom-card primary mt-4">
+              <div class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon :icon="['fas', 'edit']"
+                  class="ml-3 pointer" title="Editar" /></div>
+              <div class="custom-card-body pt-2">
+                Não há necessidade de encaminhamentos.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-md-5 pe-md-1">
-          <div class="custom-card primary mt-4">
-            <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
-                class="ml-3 pointer" title="Editar" /></div>
-            <div class="custom-card-body p-0">
-              <v-table density="compact" class="analises-table">
-                <tbody>
-                  <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id" :class="analise.type">
-                    <td>
-                      {{analise.name}}
-                    </td>
-                    <td>
-                      {{analise.text}}
-                    </td>
-                  </tr>
-                </tbody>
-              </v-table>
-            </div>
-          </div>
-          
-          <div class="custom-card primary mt-4">
-            <div class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon :icon="['fas', 'edit']"
-                class="ml-3 pointer" title="Editar" /></div>
-            <div class="custom-card-body pt-2">
-              Não há necessidade de encaminhamentos.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-7">
-          <div class="custom-card primary mt-4">
-            <div class="custom-card-header">
-              Relatos do paciente
-            </div>
-            <div class="custom-card-body p-0 pb-3">
-              <div class="row px-3">
-                <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
-                  class="col-md-6 mt-2 px-2 py-1">
-                  <div class="card">
-                    <div class="card-header p-3 pb-0">
-                      <p class="text-uppercase text-sm" style="font-weight: 500">{{ categoria }}</p>
-                    </div>
-                    <div class="card-body m-0 p-3 pt-2">
-                      <div class="info-container" v-for="perception in perceptions" v-bind:key="perception.text"
-                        :class="perception.type">
-                        <div style="width: 30px; text-align: center;">
-                          <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
-                        </div>
-                        <div class="">
-                          <span>{{ perception.text }}</span>
+          <div class="col-md-7">
+            <div class="custom-card primary mt-4">
+              <div class="custom-card-header">
+                Relatos do paciente
+              </div>
+              <div class="custom-card-body p-0 pb-3">
+                <div class="row px-3">
+                  <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
+                    class="col-md-6 mt-2 px-2 py-1">
+                    <div class="card">
+                      <div class="card-header p-3 pb-0">
+                        <p class="text-uppercase text-sm" style="font-weight: 500">{{ categoria }}</p>
+                      </div>
+                      <div class="card-body m-0 p-3 pt-2">
+                        <div class="info-container" v-for="perception in perceptions" v-bind:key="perception.text"
+                          :class="perception.type">
+                          <div style="width: 30px; text-align: center;">
+                            <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
+                          </div>
+                          <div class="">
+                            <span>{{ perception.text }}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -175,9 +180,8 @@
               </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        </div>
 
       </div>
     </Transition>
@@ -304,7 +308,7 @@
 
       <div class="tratamento-content" v-if="tratamentoTab === 'imagens'">
         <div class="row border-between">
-          <div class="col-md-6 border-end">            
+          <div class="col-md-6 border-end">
             <div class="section-header">
               <font-awesome-icon :icon="['fas', 'x-ray']" />
               Radiografias
@@ -315,7 +319,8 @@
                     <v-table>
                       <tbody>
                         <tr>
-                          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                          <td class="bg-gradient-light text-dark text-center"
+                            style="border-radius: 3px; padding: 2px 20px;">
                             Ainda não há radiografias.
                           </td>
                         </tr>
@@ -334,7 +339,7 @@
             </div>
           </div>
           <div class="p-horizontal-divider d-block d-md-none"></div>
-          <div class="col-md-6">           
+          <div class="col-md-6">
             <div class="section-header">
               <font-awesome-icon :icon="['fas', 'camera']" />
               Fotos
@@ -345,7 +350,8 @@
                     <v-table>
                       <tbody>
                         <tr>
-                          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                          <td class="bg-gradient-light text-dark text-center"
+                            style="border-radius: 3px; padding: 2px 20px;">
                             Ainda não há fotos.
                           </td>
                         </tr>
@@ -503,7 +509,7 @@ const analises = {
   'Extra-bucal': [
     {
       id: 10,
-      type: 'neutral',
+      type: 'good',
       name: 'Agradabilidade facial',
       text: 'aceitável',
       observation: '',
@@ -517,7 +523,7 @@ const analises = {
     },
     {
       id: 30,
-      type: 'neutral',
+      type: 'good',
       name: 'Simetria facial',
       text: 'simétrico',
       observation: '',
@@ -531,7 +537,7 @@ const analises = {
     },
     {
       id: 50,
-      type: 'neutral',
+      type: 'good',
       name: 'Selamento labial',
       text: 'selamento passivo',
       observation: '',
@@ -660,7 +666,7 @@ const analises = {
     },
     {
       id: 230,
-      type: 'neutral',
+      type: 'good',
       name: 'Formato do arco inferior',
       text: 'normal',
       observation: '',
@@ -879,7 +885,7 @@ export default {
 
       const progresso = (duracaoAteHoje / duracaoTotal) * 100;
 
-      return parseFloat(progresso.toFixed(2));
+      return parseFloat(progresso.toFixed(1));
     },
   },
 

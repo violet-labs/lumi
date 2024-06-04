@@ -22,9 +22,7 @@ body {
   <div class="user-access" v-if="isAuthenticated() && $route.name !== 'Entrar'">
     <tab-navigation class="bg-gradient-primary" v-if="isAuthenticated() && $route.name !== 'Forms'" />
     <main class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden">
-      <Transition>
-        <router-view />
-      </Transition>
+      <router-view />
       <app-footer v-show="showFooter" />
       <fab-search :toggle="toggleConfigurator" :class="[showConfig ? 'show' : '', hideConfigButton ? 'd-none' : '']" />
     </main>

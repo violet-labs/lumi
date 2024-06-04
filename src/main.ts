@@ -30,13 +30,14 @@ import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
 import filters from './helpers/filters'
 
 
 library.add(fas);
+library.add(fab);
 
 const appInstance = createApp(App)
 appInstance.use(store)

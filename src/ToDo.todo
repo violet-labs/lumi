@@ -132,6 +132,20 @@ Front-end:
 
         ✔ (10m) Fazer cálculo de porcentagem de progresso na tela dos pacientes @done(24-06-03 01:05)
 
+        ✔ (30m) Melhorar o layout da tabela dos meios de contato @done(24-06-04 00:17)
+
+        ✔ (10m) Colocar Transition nos lugares que estiverem faltando: @done(24-06-04 00:47)
+            ✔ Pacientes > Consultas @done(24-06-04 00:47)
+            ✔ Pacientes > Financeiro @done(24-06-04 00:47)
+            ✔ Início @done(24-06-04 00:47)
+            ✔ Agenda @done(24-06-04 00:47)
+            ✔ Financeiro @done(24-06-04 00:47)
+            ✔ Dentistas @done(24-06-04 00:47)
+            ✔ Pacientes @done(24-06-04 00:47)
+
+        ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
+        ☐ (15m) Corrigir padding-bottom da página do tratamento (está cortando a parte de baixo, quando no mobile)
+
         Laravel - aprender:
             ☐ (15m) Como criar relação entre models
             ☐ (10m) Como trazer os objetos relacionados no get do Model

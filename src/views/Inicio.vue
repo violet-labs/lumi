@@ -1,130 +1,97 @@
 <template>
-  <div class="py-4 container-fluid">
-    <div class="row mb-4">
-      <div class="col-lg-12 position-relative z-index-2">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <mini-statistics-card
-              :title="{ text: 'Ações pendentes', value: '2' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>3</span> resolvidas hoje"
-              :icon="{
-                name: 'error',
-                color: 'text-white',
-                background: 'warning',
-              }"
-            />
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
-            <mini-statistics-card
-              :title="{ text: 'Consultas hoje', value: '7' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>16</span> ainda nesta semana"
-              :icon="{
-                name: 'calendar_month',
-                color: 'text-white',
-                background: 'success',
-              }"
-            />
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
-            <mini-statistics-card
-              :title="{ text: 'Tratamentos', value: '26' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>+4</span> no último mês"
-              :icon="{
-                name: 'leaderboard',
-                color: 'text-white',
-                background: 'primary',
-              }"
-            />
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
-            <mini-statistics-card
-              :title="{ text: 'Dentistas ativos', value: '37' }"
-              detail="<span class='text-success text-sm font-weight-bolder'>+2</span> no último mês"
-              :icon="{
-                name: 'person_4',
-                color: 'text-white',
-                background: 'info',
-              }"
-            />
+  <div class="main-page-content">
+    <div class="py-4 container-fluid">
+      <div class="row mb-4">
+        <div class="col-lg-12 position-relative z-index-2">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <mini-statistics-card :title="{ text: 'Ações pendentes', value: '2' }"
+                detail="<span class='text-success text-sm font-weight-bolder'>3</span> resolvidas hoje" :icon="{
+                  name: 'error',
+                  color: 'text-white',
+                  background: 'warning',
+                }" />
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+              <mini-statistics-card :title="{ text: 'Consultas hoje', value: '7' }"
+                detail="<span class='text-success text-sm font-weight-bolder'>16</span> ainda nesta semana" :icon="{
+                  name: 'calendar_month',
+                  color: 'text-white',
+                  background: 'success',
+                }" />
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+              <mini-statistics-card :title="{ text: 'Tratamentos', value: '26' }"
+                detail="<span class='text-success text-sm font-weight-bolder'>+4</span> no último mês" :icon="{
+                  name: 'leaderboard',
+                  color: 'text-white',
+                  background: 'primary',
+                }" />
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 mt-lg-0 mt-4">
+              <mini-statistics-card :title="{ text: 'Dentistas ativos', value: '37' }"
+                detail="<span class='text-success text-sm font-weight-bolder'>+2</span> no último mês" :icon="{
+                  name: 'person_4',
+                  color: 'text-white',
+                  background: 'info',
+                }" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-        <project-card
-          title="Histórico"
-          description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>4 ações</span> hoje"
-          :headers="['Ação', 'Dia', 'Horário', 'Usuário']"
-          :projects="[
-            {
-              acao: 'Adicionou paciente Lucas Carvalho',
-              dia: '27/05/2024',
-              horario: '12:12h',
-              usuario: 'Thales Lima',
-            },
-            {
-              acao: '<b>Beatriz</b> preencheu o formulário de boas-vindas',
-              dia: '26/05/2024',
-              horario: '10:05h',
-              usuario: '-',
-            },
-            {
-              acao: 'Criou tratamento #1',
-              dia: '24/05/2024',
-              horario: '14:30h',
-              usuario: 'Thales Lima',
-            },
-            {
-              acao: 'Adicionou paciente Teste da Silva',
-              dia: '24/05/2024',
-              horario: '09:47h',
-              usuario: 'Thales Lima',
-            },
-          ]"
-        />
-      </div>
-      <div class="col-lg-4 col-md-6">
-        <timeline-list
-          class="h-100"
-          title="Últimos pacientes cadastrados"
-          description="<i class='fa fa-arrow-up text-success' aria-hidden='true'></i>
-        <span class='font-weight-bold'>14</span> este mês"
-        >
-          <timeline-item
-            :icon="{
+      <div class="row">
+        <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
+          <project-card title="Histórico"
+            description="<i class='fa fa-check text-info' aria-hidden='true'></i> <span class='font-weight-bold ms-1'>4 ações</span> hoje"
+            :headers="['Ação', 'Dia', 'Horário', 'Usuário']" :projects="[
+              {
+                acao: 'Adicionou paciente Lucas Carvalho',
+                dia: '27/05/2024',
+                horario: '12:12h',
+                usuario: 'Thales Lima',
+              },
+              {
+                acao: '<b>Beatriz</b> preencheu o formulário de boas-vindas',
+                dia: '26/05/2024',
+                horario: '10:05h',
+                usuario: '-',
+              },
+              {
+                acao: 'Criou tratamento #1',
+                dia: '24/05/2024',
+                horario: '14:30h',
+                usuario: 'Thales Lima',
+              },
+              {
+                acao: 'Adicionou paciente Teste da Silva',
+                dia: '24/05/2024',
+                horario: '09:47h',
+                usuario: 'Thales Lima',
+              },
+            ]" />
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <timeline-list class="h-100" title="Últimos pacientes cadastrados" description="<i class='fa fa-arrow-up text-success' aria-hidden='true'></i>
+        <span class='font-weight-bold'>14</span> este mês">
+            <timeline-item :icon="{
               component: 'person',
               class: 'text-success',
-            }"
-            title="Thales Casa Grande de Lima"
-            date-time="27 MAI 14:23h"
-          />
-          <timeline-item
-            :icon="{
+            }" title="Thales Casa Grande de Lima" date-time="27 MAI 14:23h" />
+            <timeline-item :icon="{
               component: 'person',
               class: 'text-success',
-            }"
-            title="Thales Casa Grande de Lima"
-            date-time="27 MAI 09:34"
-          />
-          <timeline-item
-            :icon="{
+            }" title="Thales Casa Grande de Lima" date-time="27 MAI 09:34" />
+            <timeline-item :icon="{
               component: 'person',
               class: 'text-success',
-            }"
-            title="Thales Casa Grande de Lima"
-            date-time="25 MAI 10:43"
-          />
-          <timeline-item
-            :icon="{
+            }" title="Thales Casa Grande de Lima" date-time="25 MAI 10:43" />
+            <timeline-item :icon="{
               component: 'person',
               class: 'text-success',
-            }"
-            title="Thales Casa Grande de Lima"
-            date-time="23 MAI 09:05"
-          />
-        </timeline-list>
+            }" title="Thales Casa Grande de Lima" date-time="23 MAI 09:05" />
+          </timeline-list>
+        </div>
       </div>
     </div>
   </div>
