@@ -196,7 +196,7 @@
                                   style="display: inline-block; width: calc(100% - 30px);">
                               </div>
                             </td>
-                            <td style="vertical-align: middle; padding-top: 5zpx;">
+                            <td style="vertical-align: middle; padding-top: 5px;">
                               <input type="text" class="form-control input-sm"
                                 style="display: inline; width: calc(100% - 51px);">
                               <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;">

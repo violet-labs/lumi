@@ -10,18 +10,18 @@ strong {
 }
 
 .main-page-content {
-    animation: slide-in 0.1s forwards;
-    -webkit-animation: slide-in 0.1s forwards;
+    animation: slide-in 0.1s ease-in-out forwards;
+    -webkit-animation: slide-in 0.1s ease-in-out forwards;
 }
 
 .v-enter-active {
-    animation: slide-in 0.1s forwards;
-    -webkit-animation: slide-in 0.1s forwards;
+    animation: slide-in 0.3s ease-in-out forwards;
+    -webkit-animation: slide-in 0.3s ease-in-out forwards;
 }
 
 @keyframes slide-in {
     0% {
-        transform: translateY(10%);
+        transform: translateY(3px);
         opacity: 0
     }
 
@@ -33,7 +33,7 @@ strong {
 
 @-webkit-keyframes slide-in {
     0% {
-        transform: translateY(10%);
+        transform: translateY(3px);
         opacity: 0
     }
 
