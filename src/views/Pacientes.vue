@@ -108,12 +108,12 @@
 
       <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_previsa }">
         <div class="align-middle text-center text-sm">
-          <span class="badge badge-sm w-40" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
+          <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
             statusText(status_tratamento)
             }}</span>
 
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
-            <div class="progress progress-md w-40">
+            <div class="progress progress-md w-100 w-md-40">
               <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_previsa) + '%' }">
                 <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>

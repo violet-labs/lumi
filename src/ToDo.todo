@@ -1,250 +1,83 @@
-Front-end:
-    ✔ (15m) Criar botões de verdade em vez dos nav-link da Sidenav @done(24-05-27 23:00)
+Laravel - aprender:
+    ☐ (15m) Como criar relação entre models
+    ☐ (10m) Como trazer os objetos relacionados no get do Model
+    ☐ (10m) Como fazer paginação do lado do servidor
 
-    Formulário de adicionar paciente:
-        ✔ (5m) Verificar se a tabela está correta no banco @done(24-05-27 23:00)
-        ✔ (5m) Verificar se precisa adicionar mais colunas @done(24-05-27 23:01)
-        ✔ (5m) Fazer o migration, se necessário @done(24-05-27 23:08)
-            ✔ (15m) Criar controller, model e rotas do paciente @done(24-05-27 23:27)
-            Criar modal simples para adicionar o paciente:
-                ✔ (5m) Criar HTML do Modal na página Pacientes @done(24-05-27 23:31)
-                    Campos:
-                        ✔ Nome @done(24-05-27 23:32)
-                        ✔ Dentista (opcional) @done(24-05-27 23:32)
-                        ✔ Celular (opcional) @done(24-05-27 23:32)
-                ✔ (2m) Fazer o botão "Novo paciente" abrir o modal @done(24-05-27 23:34)
-                ✔ (3m) Corrigir conflito do z-index entre modal e sidenav @done(24-05-27 23:37)
-                Fazer função de salvar:
-                    ✔ (10m) Fazer função no JavaScript @done(24-05-27 23:56)
-                    ✔ (15m) Fazer função no Back-end @done(24-05-27 23:56)
-    
-    Fazer funcionar o formulário de bem-vindo:
-        ✔ (10m) Remover top navigation @done(24-05-28 21:14)
-        ✔ (5m) Criar model "detalhe_pessoal" @done(24-05-28 21:37)
-        ✔ (8m) Criar tabela "detalhes_pessoais": @done(24-05-28 21:37)
-            Colunas:
-                ✔ id @done(24-05-28 21:37)
-                ✔ id_paciente @done(24-05-28 21:37)
-                ✔ tipo @done(24-05-28 21:37)
-                ✔ categoria @done(24-05-28 21:37)
-                ✔ descricao @done(24-05-28 21:37)
+Formulário de bem-vindo e tratamento das respostas:
+    ☐ (10m) Fazer novo layout para rolar as perguntas  
+    ☐ (30m) Executar a migração para a nova estrutura:
+        ☐ Pergunta
+        ☐ tipo (radio, multiple-choices, open-text),
+        ☐ condition
+        ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
+            ☐ personalDetail
+            ☐ detailType (good, neutral, attention, bad)
+            ☐ openText (texto aberto por uma opção do tipo open-text)
+    ☐ (5m) Criar rota para receber o formulário de boas-vindas
+    ☐ (7m) Fazer função JavaScript para enviar o formulário
+    ☐ (7m) Fazer função na API para receber o formulário
+    ☐ (10m) Fazer funcionar o INSERT do formulário
+    ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
 
-        Criar lista com os formulários de boas-vindas que forem preenchidos:
-            ✔ (2m) Criar container da lista, com uns 3 slots @done(24-05-29 00:23)
-            ✔ (2m) Criar o elemento da lista @done(24-05-29 01:13)
-            ✔ (2m) Criar outras duas listas: @done(24-05-29 01:13)
-                ✔ Últimos adicionados @done(24-05-29 01:13)
-                ✔ Próximas consultas @done(24-05-29 01:13)
-            ✔ (5m) Preencher linhas da lista: @done(24-05-29 01:13)
-                ✔ Nome @done(24-05-29 01:13)
-                ✔ Horário @done(24-05-29 01:13)
-                ✔ Botão para criar paciente @done(24-05-29 01:13)
-                
-        ✔ (10m) CORRIGIR: lumi-app não está carregando @done(24-05-28 21:54)
-        ✔ (15m) Melhorar layout da tela dos pacientes @done(24-05-29 00:15)
-        ✔ (15m) Criar model, controller e rota para o formulário de boas-vindas: @done(24-05-29 00:20)
-            ✔ id @done(24-05-29 00:20)
-            ✔ horario @done(24-05-29 00:20)
-            ✔ id_paciente -> nullable() @done(24-05-29 00:20)
-            ✔ nome @done(24-05-29 00:20)
-            ✔ email @done(24-05-29 00:20)
-            ✔ whatsapp @done(24-05-29 00:20)
-            ✔ dados @done(24-05-29 00:20)
-        ✔ (15m) Observar as perguntas e pensar em uma estrutura para encaixá-las (pensar em uma forma que funcione com v-bind) @done(24-05-28 21:52)
-        
-        Fazer funcionar a tela dos pacientes:
-            ✔ (2m) Adicionar "dev.lumiorthosystem:8080" nas regras de CORS @done(24-05-29 01:39)
-            ✔ (2m) verificar a função getPacientes pelo Insomnia @done(24-05-29 01:24)
-            ✔ (5m) fazer funcionar a função de listar os pacientes @done(24-05-29 01:32)
-            ✔ (7m) criar chamada no axios para listar @done(24-05-29 01:39)
-            ✔ (8m) adicionar mais campos nos pacientes: @done(24-05-29 01:44)
-                ✔ diagnostico @done(24-05-29 01:44)
-                ✔ tratamento @done(24-05-29 01:44)
-                ✔ data_inicio_tratamento @done(24-05-29 01:44)
-                ✔ data_final_prevista, @done(24-05-29 01:44)
-                ✔ status_tratamento, @done(24-05-29 01:44)
-                ✔ primeira_consulta @done(24-05-29 01:44)
-                ✔ ultima_consulta @done(24-05-29 01:44)
-                ✔ proxima_consulta @done(24-05-29 01:44)
-            ✔ Fazer a tabela listar do banco de dados @done(24-05-29 02:00)
-            ✔ (10m) API: fazer função para puxar dados de um usuário @done(24-05-29 01:32)
-            ✔ (20m) Fazer funcionar a busca @done(24-05-29 02:59)
-            ✔ (5m) Fazer o outro botão também abrir o modal de novo paciente @done(24-05-29 03:17)
-            ✔ (5m) Fazer fechar modal após adicionar paciente @done(24-05-29 03:22)
-            ✔ (2m) Remover pacotes masonry do projeto @done(24-06-02 13:51)
-            ✔ (10m) JavaScript: fazer função para puxar dados do usuário @done(24-06-02 13:51)
-            ✔ (5m) Colocar os itens que vieram via JS nos respectivos campos do Perfil @done(24-06-02 14:13)
-        
-        ✔ (8m) Colocar transition na view principal do router @done(24-06-02 14:33)
+    ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
+    ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
+    ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
 
-        Aba tratamento:
-            Navbar:
-                ✔ Criar navbar @done(24-06-01 23:37)
-                Itens:
-                    ✔ Análise @done(24-06-01 23:37)
-                    ✔ Resumo e planejamento @done(24-06-01 23:37)
-                    ✔ Imagens @done(24-06-01 23:37)
-                    ✔ Histórico @done(24-06-01 23:37)
+    ☐ (10m) Centralizar todos .modal no centro vertical da tela
 
-            ✔ (15m) Passar metas terapêuticas para array de objetos: @done(24-06-02 17:48)
-                Props:
-                    ✔ id @done(24-06-02 17:48)
-                    ✔ alvo @done(24-06-02 17:48)
-                    ✔ meta @done(24-06-02 17:48)
-            Criar seção com informações gerais do tratamento:
-                ✔ (5m) Criar seção @done(24-06-02 15:55)
-                Itens:
-                    ✔ (3m) Data de início @done(24-06-02 15:55)
-                    ✔ (3m) Fase atual @done(24-06-02 15:55)
-                    ✔ (10m) Término previsto @done(24-06-02 15:55)
-                    ✔ (20m) Progresso @done(24-06-02 15:55)
-            Aba "Análise":
-                ✔ (2m) Criar seção @done(24-06-02 17:13)
-                ✔ (4m) Criar navegação @done(24-06-02 17:13)
-                ✔ Criar conteúdo: @done(24-06-02 18:15)
-                    Colocar os 3 tipos de análises:
-                        Extra-bucal:
-                            ✔ (5m) Criar card @done(24-06-02 18:15)
-                        Intra-bucal:
-                            ✔ (5m) Criar card @done(24-06-02 18:15)
-                        Análises radiográficas:
-                            ✔ (5m) Criar card @done(24-06-02 18:15)
-            Aba "Resumo e planejamento":
-                ✔ Criar seção @done(24-06-01 23:38)
-                ✔ Criar navegação @done(24-06-02 17:13)
-                Criar seções:
-                    ✔ Diagnóstico @done(24-06-01 23:37)
-                    ✔ Prognóstico @done(24-06-01 23:37)
-                    ✔ Metas terapêuticas @done(24-06-01 23:37)
-                    ✔ Plano de tratamento @done(24-06-01 23:37)
-            Aba "Imagens":
-                ✔ Criar seção @done(24-06-02 17:13)
-                ✔ Criar navegação @done(24-06-02 17:13)
-                Criar conteúdo:
-                    ✔ Criar seção Radiografias @done(24-06-02 18:40)
-                    ✔ Criar seção Fotos @done(24-06-02 18:40)
-            Aba histórico:
-                ✔ Criar seção @done(24-06-02 17:13)
-                ✔ Criar navegação @done(24-06-02 17:13)
-                Criar conteúdo:
-                
-        ✔ (10m) Instalar moment e ecriar filtro global para datas @done(24-06-02 17:29)
+Meios de contato:
+    ☐ (5m) Criar model/controller/rotas para Meio de contato
+    ☐ (15m) Puxar listagem relacionando do banco
+    ☐ (10m) Fazer função para cadastrar novo meio de contato
 
-        ✔ (10m) Fazer cálculo de porcentagem de progresso na tela dos pacientes @done(24-06-03 01:05)
+Tela de análise clínica (form):
+    ☐ Calcular o tratamento recomendado, através das respostas do formulário
+    ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
 
-        ✔ (30m) Melhorar o layout da tabela dos meios de contato @done(24-06-04 00:17)
+Plano de tratamento:
+    Seção "aparatologia":
+        ☐ Incluir observações na Aparatologia
+    Gerenciador de metas terapêuticas:
+        ☐ (10m) Criar model/controller/routes para Meta Terapêutica
+        ☐ 
+    Gerenciador do plano de tratamento:
+        ☐ (10m) Criar model/controller/routes para Fases do Plano de Tratamento (verificar como chamar)
+        Criar modal com um botão pra "adicionar fase de tratamento":
+            ☐ (5m) Criar modal
+            ☐ (5m) Criar input para data de início do tratamento
+            ☐ (5m) Criar botão adicionar fase de tratamento
+            ☐ (15m) Ao adicionar a fase, appendar um card no body do modal
+            Card:
+                ☐ Nome da etapa/fase
+                ☐ Duração (dar opção de meses ou semanas)
+                ☐ Objetivo
+                ☐ Mecânica
+                ☐ Acompanhamento
+        Ao adicionar o plano de tratamento, calcular:
+            ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada            
+    ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
+    ☐ Dar opção para o paciente consultar o seu plano de tratamento
 
-        ✔ (10m) Colocar Transition nos lugares que estiverem faltando: @done(24-06-04 00:47)
-            ✔ Pacientes > Consultas @done(24-06-04 00:47)
-            ✔ Pacientes > Financeiro @done(24-06-04 00:47)
-            ✔ Início @done(24-06-04 00:47)
-            ✔ Agenda @done(24-06-04 00:47)
-            ✔ Financeiro @done(24-06-04 00:47)
-            ✔ Dentistas @done(24-06-04 00:47)
-            ✔ Pacientes @done(24-06-04 00:47)
+Consertar layout:
+    ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
+    ☐ (20m) A sidenav não está chegando até o final da tela
 
-        ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
-        ☐ (15m) Corrigir padding-bottom da página do tratamento (está cortando a parte de baixo, quando no mobile)
-
-        Laravel - aprender:
-            ☐ (15m) Como criar relação entre models
-            ☐ (10m) Como trazer os objetos relacionados no get do Model
-            ☐ (10m) Como fazer paginação do lado do servidor
-
-        Tela de análise clínica (form):
-            ☐ Calcular o tratamento recomendado, através das respostas do formulário
-            ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
-
-        Plano de tratamento:
-            ✔ Criar cards das fases @done(24-06-01 23:52)
-            Criar seção "aparatologia":
-                ✔ Criar seção @done(24-06-01 23:55)
-                ☐ Incluir observações na Aparatologia
-            Gerenciador de metas terapêuticas:
-                ✔ (5m) Colocar as metas terapêuticas em cards @done(24-06-02 14:32)
-                ☐ (10m) Criar model/controller/routes para Meta Terapêutica
-                ☐ 
-            Gerenciador do plano de tratamento:
-                ☐ (10m) Criar model/controller/routes para Fases do Plano de Tratamento (verificar como chamar)
-                Criar modal com um botão pra "adicionar fase de tratamento":
-                    ☐ (5m) Criar modal
-                    ☐ (5m) Criar input para data de início do tratamento
-                    ☐ (5m) Criar botão adicionar fase de tratamento
-                    ☐ (15m) Ao adicionar a fase, appendar um card no body do modal
-                    Card:
-                        ☐ Nome da etapa/fase
-                        ☐ Duração (dar opção de meses ou semanas)
-                        ☐ Objetivo
-                        ☐ Mecânica
-                        ☐ Acompanhamento
-                Ao adicionar o plano de tratamento, calcular:
-                    ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada            
-            
-            ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
-            ☐ Dar opção para o paciente consultar o seu plano de tratamento
-
-        ✔ (8m) Colocar transition na view do calendario (day/week/month) @done(24-06-03 01:14)
-
-        ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
-
-        ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
-
-        ☐ Verificar o porque de estar lento para abrir a Agenda
-
-        ☐ Colocar campo de indicação no cadastro do paciente
-
-        ☐ (10m) Fazer novo layout para rolar as perguntas  
-        ☐ (30m) Executar a migração para a nova estrutura:
-            ☐ Pergunta
-            ☐ tipo (radio, multiple-choices, open-text),
-            ☐ condition
-            ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
-                ☐ personalDetail
-                ☐ detailType (good, neutral, attention, bad)
-                ☐ openText (texto aberto por uma opção do tipo open-text)
-        ☐ (5m) Criar rota para receber o formulário de boas-vindas
-        ☐ (7m) Fazer função JavaScript para enviar o formulário
-        ☐ (7m) Fazer função na API para receber o formulário
-        ☐ (10m) Fazer funcionar o INSERT do formulário
-        ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
-
-        ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
-        ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
-        ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
-
-        ☐ (10m) Centralizar todos .modal no centro vertical da tela
-
-        ☐ (15m) Traduzir o DataTables
-
-        Telefones:
-            ☐ (5m) Criar model/controller/rotas para Telefone
-            ☐ (10m) Criar listagem de telefones na tela do paciente
-            ☐ (15m) Puxar listagem relacionando do banco
-            ☐ (5m) Fazer botão para adicionar novo telefone
-            ☐ (10m) Fazer função para cadastrar novo telefone
-
-        Emails:
-            ☐ (5m) Criar model/controller/rotas para Email
-            ☐ (10m) Criar listagem de emails na tela do paciente
-            ☐ (15m) Puxar listagem relacionando do banco
-            ☐ (5m) Fazer botão para adicionar novo email
-            ☐ (10m) Fazer função para cadastrar novo email
-
-        Financeiro:
-            Tela do Financeiro:
-                ☐ Criar tabela de contas
-                ☐ Criar sidenav com opções pertinentes ao financeiro
-            Tela do Paciente:
-                ☐ Criar tabela de contas
-                ☐ Criar sidenav com opções pertinentes ao financeiro
-
-    ☐ Colocar histórico de consultas na dashboard Inicio
-    ☐ Colocar histórico de ações na dashboard Inicio
-
+Later:
+    ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
+    ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
+    ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
+    ☐ Verificar o porque de estar lento para abrir a Agenda
+    ☐ Colocar campo de indicação no cadastro do paciente
+    ☐ (15m) Traduzir o DataTables
+    Financeiro:
+        Tela do Financeiro:
+            ☐ Criar tabela de contas
+            ☐ Criar sidenav com opções pertinentes ao financeiro
+        Tela do Paciente:
+            ☐ Criar tabela de contas
+            ☐ Criar sidenav com opções pertinentes ao financeiro
     ☐ Backend: verificar os models e migrations dos pacientes (comparar com o da CECLOP e verificar se tá faltando algum campo)
-
--- ----------------------------------------------------------------- --
-
+    
 Outro dia:
     Front-end:
         Desenvolver:
@@ -266,26 +99,6 @@ Outro dia:
         Tabela pacientes:
             ☐ picture_url
             ☐ status
-
--- -------------------------------------------------- --
-
-IDEAS:
+            
+Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
-
-TEMP HELPERS: 
-    ☐ O que mais te incomoda em seu sorriso? O que você gostaria de mudar?
-    ☐ (Dentes encavalados, dentes pra frente etc)
-    ☐ Categoria: percepções do paciente
-    -------------------------------------------------
-    ☐ O que isso interfere no seu dia-a-dia?
-    ☐ (Vergonha, dificuldade na fala etc)
-    ☐ Categoria: X
-    ---------------------------------------------------
-    ☐ Você tem, ou já teve, algum destes hábitos?
-    ☐ (Chupeta, roer unhas etc)
-    ☐ Categoria: hábitos do paciente (Possui hábito de roer unhas)
-    -----------------------------------------------------------
-    ☐ Quão bem você respira pelo nariz?
-    ☐ ()
-
-    -----------------------------
