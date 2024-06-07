@@ -1,3 +1,14 @@
+Coisas que preciso ver como será feito:
+    ✔ Relacionamento entre models do Laravel @done(24-06-07 02:02)
+    ☐ Upload de arquivos com VueJS e com Laravel (talvez será necessário salvar no diretório público do app, pra carregar mais rápido - perguntar pro Gemini como faz e se tem diferença fazendo assim)
+
+    ☐ Estrutura do formulário de bem-vindo
+    ☐ Estrutura da análise clínica
+
+Outras coisas mais importentes:
+    ☐ Cadastro das fases do tratamento
+    ☐ Análise do perfil clínico e sugestão do melhor tratamento
+-- ------------------------------------------ --
 Laravel - aprender:
     ☐ (15m) Como criar relação entre models
     ☐ (10m) Como trazer os objetos relacionados no get do Model
@@ -100,3 +111,4 @@ Outro dia:
             
 Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
+    ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)

@@ -404,14 +404,48 @@ svg.pointer {
     cursor: pointer;
 }
 
+svg.pointer.active {
+    color: #546a8f;
+}
+
 svg.pointer:hover {
-    color: rgb(138, 212, 255);
+    color: #546a8f;
+}
+
+.btn-primary-light {
+    background: #4487d3;
+    color: #FFF;
+}
+
+.btn-primary-light:hover {
+    background: #4e90db;
+    color: #F8F8F8;
+}
+
+.text-primary-light {
+    color: #4487d3;
+}
+
+.text-danger-dark {
+    color: #ce3b3b;
+}
+
+.pointer.text-danger-dark:hover {
+    color: #e45252;
 }
 
 .btn-vsm {
     padding: 2px 8px;
     margin: 0px;
     border-radius: 5px;
+}
+
+.btn-desmarcar-meta:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 10x #4CAF50;
+    -moz-box-shadow:inset 0px 0px 0px 1px #4CAF50;
+    box-shadow:inset 0px 0px 0px 1px #4CAF50;
+    color: #4CAF50;
+    background: rgba(255,255,255,0);
 }
 
 .btn-outline-success:hover {

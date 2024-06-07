@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="p-horizontal-divider my-0"></div>
+    <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
     <div class="row" style="padding: 15px 10px;">
       <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
@@ -54,8 +54,8 @@
       </div>
       <div class="col-md-4 tratamento-tab" :class="tratamentoTab == 'resumo' ? 'active' : ''"
         @click="selectTratamentoTab('resumo')">
-        <font-awesome-icon :icon="['fas', 'list-check']" class="mr-3" />
-        Resumo e planejamento
+        <font-awesome-icon :icon="['fas', 'file-pen']" class="mr-3" />
+        Diagnóstico e planejamento
       </div>
       <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'imagens' ? 'active' : ''"
         @click="selectTratamentoTab('imagens')">
@@ -206,22 +206,36 @@
               paciente um sorriso esteticamente agradável e funcional.
             </p>
           </div>
-          <div class="box primary">
-            <p class="custom-card-header">Metas terapêuticas<font-awesome-icon :icon="['fas', 'edit']"
-                class="ml-3 pointer" title="Editar" /></p>
+          <div class="box primary" ref="metasTerapeuticasBox">
+            <p class="custom-card-header">
+              Metas terapêuticas
+              <font-awesome-icon :icon="['fas', 'edit']"
+                class="ml-3 pointer" :class="{'active':isEditing['metasTerapeuticas']}" :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'" @click="toggleEditMode('metasTerapeuticas')" />
+            </p>
+
+            <button class="btn btn-sm btn-primary mt-3 mb-0" v-if="isEditing['metasTerapeuticas']" title="Adicionar uma nova meta terapêutica">
+              Adicionar
+            </button>
 
             <div v-for="meta in metasTerapeuticas" v-bind:key="meta.id" class="card m-3"
               :class="meta.finished ? 'border-success' : ''">
               <div class="fase-header d-flex flex-row">
+                <i class="fas fa-trash ms-1 text-danger-dark pointer" v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"></i>
                 <div class="col" :style="meta.finished ? { 'padding-left': '30px' } : {}">
                   <strong>{{ meta.alvo }}</strong>
                 </div>
                 <div class="col-auto">
+                  
                   <button v-if="!meta.finished" class="btn btn-vsm btn-outline-success mr-1"
                     title="Marcar como concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
-                  <span v-if="meta.finished" class="text-success px-2 text-sm font-weight-bold">
+                  
+                  <button v-if="meta.finished && isEditing['metasTerapeuticas']" class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
+                    title="Marcar como não concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
+
+                  <span v-if="meta.finished && !isEditing['metasTerapeuticas']" class="text-success px-2 text-sm font-weight-bold">
                     CONCLUÍDA
                   </span>
+
                 </div>
               </div>
               <div class="card-body px-4 py-3 text-center" v-html="meta.meta.replaceAll('\n', '<br>')">
@@ -248,7 +262,10 @@
                 <strong>Necessidades de exercícios miofuncionais</strong>: nenhuma.
               </div>
             </div>
-            <div class="card m-3">
+
+            <div class="p-horizontal-divider"></div>
+
+            <div class="card m-3 mb-2">
               <div class="fase-header">
                 <strong>Fase 1: Expansão Palatina (3 meses)</strong>
                 <span class="text-sm" style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
@@ -265,7 +282,10 @@
                 aparelho.
               </div>
             </div>
-            <div class="card m-3 active">
+
+            <font-awesome-icon :icon="['fas', 'arrow-down']" />
+
+            <div class="card m-3 mt-2 mb-2 active">
               <div class="fase-header">
                 <span class="active"><strong>Fase 2 (atual): Alinhamento e Nivelamento (12 meses)</strong></span>
                 <span class="text-sm font-weight-bold active">Maio/2024 a Maio/2025</span>
@@ -279,7 +299,10 @@
                 aparelho.<br>
               </div>
             </div>
-            <div class="card m-3">
+
+            <font-awesome-icon :icon="['fas', 'arrow-down']" />
+
+            <div class="card m-3 mt-2">
               <div class="fase-header">
                 <strong>Fase 3: Finalização e Contenção (9 meses)</strong>
                 <span class="text-sm">Maio/2024 a Maio/2025</span>
@@ -503,6 +526,7 @@
 </style>
 
 <script>
+
 import MaterialInput from "@/components/MaterialInput.vue";
 
 const analises = {
@@ -774,8 +798,10 @@ const metasTerapeuticas = [
   },
 ];
 
-const items = [
-]
+var isEditing = []
+
+const items = []
+
 export default {
   name: "tratamento",
   props: {
@@ -790,11 +816,23 @@ export default {
     return {
       items,
       tratamentoTab,
+      isEditing,
       metasTerapeuticas,
       analises,
     }
   },
   methods: {
+    toggleEditMode(section) {
+      this.isEditing[section] = !this.isEditing[section]
+
+      if (this.isEditing[section]) {
+        this.$refs['metasTerapeuticasFraming'].scrollIntoView(
+          {
+            behavior: 'smooth',
+          }
+        )
+      }
+    },
     getInfoIcon(type) {
       var icon = null
       switch (type) {
