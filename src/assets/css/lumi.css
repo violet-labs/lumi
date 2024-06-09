@@ -509,7 +509,7 @@ svg.pointer:hover {
     padding-bottom: 10px;
 }
 
-.border-between>.col-md-6:before {
+.border-between>[class*='col-']:before {
     background: #000 !important;
     bottom: 0;
     content: " ";
@@ -540,7 +540,7 @@ input:read-only {
     background: #F8F8F8 !important;
 }
 
-.col-md-6.border-end {
+div[class*="col-"].border-end {
     border-image: linear-gradient(180deg, #F0F0F0, #DEDEDE, #F0F0F0) 30;
     border-right-width: 1px;
     border-right-style: solid;

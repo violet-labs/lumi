@@ -195,18 +195,41 @@
       <div class="tratamento-content" v-if="tratamentoTab === 'diagnostico'">
         <div class="row">
 
-          <div class="col-12">
+          <div class="col-md-6">
+            <div class="box primary h-100">
+              <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <p class="text-justify py-2 px-4">
+                Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
+                anterior leve.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-3 mt-md-0">
+            <div class="box primary h-100">
+              <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <p class="text-justify py-2 px-4">
+                Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao
+                paciente um sorriso esteticamente agradável e funcional.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 mt-3">
             <div class="box primary">
-              <p class="custom-card-header">Análise automática<font-awesome-icon :icon="['fas', 'edit']"
-                  class="ml-3 pointer" title="Editar" /></p>
+              <p class="custom-card-header">Análise automática<font-awesome-icon :icon="['fas', 'info-circle']"
+                  class="ml-3 pointer" title="Como funciona" /></p>
 
-              <div class="row">
+              <div class="row border-between py-3">
 
-                <div class="col-sm-5 col-md-4 pt-2 pb-3 px-4">
-                  <p class="text-uppercase mt-1 pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento recomendado:</p>
+                <div class="col-sm-5 col-md-4 pb-1 px-4 border-end">
+                  <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento recomendado:
+                  </p>
 
                   <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
-                    <div class="card-header">
+                    <div class="card-header p-0">
                       <div class="option-image-container">
                         <img :src="imgCirurgiaOrtognatica" class="card-img-top">
                       </div>
@@ -232,28 +255,6 @@
 
               </div>
 
-            </div>
-          </div>
-
-          <div class="col-md-6 mt-3">
-            <div class="box primary">
-              <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                  title="Editar" /></p>
-              <p class="text-justify py-2 px-4">
-                Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
-                anterior leve.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6 mt-3">
-            <div class="box primary">
-              <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                  title="Editar" /></p>
-              <p class="text-justify py-2 px-4">
-                Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao
-                paciente um sorriso esteticamente agradável e funcional.
-              </p>
             </div>
           </div>
 
@@ -618,11 +619,15 @@
 }
 
 .treatment-title {
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
   width: 100%;
   text-align: center;
   font-weight: 600;
   font-size: 13pt;
   color: #333;
+  text-shadow: 2px 0 #F0F0F0, -2px 0 #F0F0F0, 0 2px #F0F0F0, 0 -2px #F0F0F0,
+    1px 1px #F0F0F0, -1px -1px #F0F0F0, 1px -1px #F0F0F0, -1px 1px #F0F0F0;
 }
 </style>
 
