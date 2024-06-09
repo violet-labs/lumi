@@ -76,24 +76,24 @@
 
     <div class="p-horizontal-divider mt-0"></div>
 
-    <Transition v-if="tratamentoTab === 'analise'">
-      <Analise :personalPerceptions="personalPerceptions" />
+    <Transition>
+      <Analise v-if="tratamentoTab === 'analise'" :personalPerceptions="personalPerceptions" />
     </Transition>
 
-    <Transition v-if="tratamentoTab === 'diagnostico'">
-      <Diagnostico />
+    <Transition>
+      <Diagnostico v-if="tratamentoTab === 'diagnostico'" />
     </Transition>
 
-    <Transition v-if="tratamentoTab === 'planoTratamento'">
-      <PlanoTratamento />
+    <Transition>
+      <PlanoTratamento v-if="tratamentoTab === 'planoTratamento'" :paciente="paciente" />
     </Transition>
 
-    <Transition v-if="tratamentoTab === 'imagens'">
-      <Imagens />
+    <Transition>
+      <Imagens v-if="tratamentoTab === 'imagens'" />
     </Transition>
 
-    <Transition v-if="tratamentoTab === 'historico'">
-      <Historico />
+    <Transition>
+      <Historico v-if="tratamentoTab === 'historico'" />
     </Transition>
 
   </div>

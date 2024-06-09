@@ -30,17 +30,31 @@ Fazer modelos de código:
     ✔ Componente Vue @done(24-06-09 18:03)
 
 Cadastro das fases do tratamento:
-    ☐ Criar model da fase do tratamento
-    ☐ Criar migration da tabela de fases_tratamento
-    ☐ Criar relacionamento de Pacientes com FasesTratamento
-    ☐ Criar relacionamento de FaseTratamento com Pacientes
-    ☐ Criar função getTratamentos no paciente
-    ☐ Adicionar propriedade "tratamento" no paciente retornado em getPaciente
-    ☐ (10m) Transformar as fases atuais em objetos
+    ✔ Criar model da fase do tratamento @done(24-06-09 18:30)
+    ✔ Criar migration da tabela de fases_tratamento @done(24-06-09 18:30)
+    ✔ Criar relacionamento de Pacientes com FasesTratamento @done(24-06-09 18:30)
+    ✔ Criar relacionamento de FaseTratamento com Pacientes @done(24-06-09 18:30)
+    ✔ Criar função getFasesTratamento no paciente @done(24-06-09 18:49)
+    ✔ Adicionar propriedade "fases_tratamento" no paciente retornado em getPaciente @done(24-06-09 18:49)
+    ✔ (10m) Transformar as fases atuais em objetos @done(24-06-09 19:22)
+    ✔ Puxar as fases do banco e exibí-las no componente @done(24-06-09 19:22)
+    ✔ Criar variável pra armazenar o ID da fase atual @done(24-06-09 19:23)
+    ✔ Criar condicional no estilo da fase atual e exibí-la destacada @done(24-06-09 19:23)
     ☐ (3m) Criar estado "editing"
     ☐ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases
     ☐ (10m) Ao entrar em modo de edição, exibir inputs/textareas, em vez dos valores
     ☐ (20m) Ao clicar em Adicionar, ele deve fazer append de uma nova fase e dar focus/scroll? nela
+
+Metas terapêuticas:
+    ✔ Criar model da meta terapeutica @done(24-06-09 19:36)
+    ✔ Criar migration da tabela metas_terapeuticas @done(24-06-09 19:36)
+    ✔ Criar relacionamento de pacientes com MetasTerapeuticas @done(24-06-09 19:36)
+    ✔ Criar relacionamento de MetasTerapeuticas com Pacientes @done(24-06-09 19:36)
+    ✔ Criar função getMetasTerapeuticas no paciente @done(24-06-09 19:36)
+    ✔ Adicionar propriedade metas_terapeuticas no paciente retornado em getPaciente @done(24-06-09 19:36)
+    ✔ Puxar as metas terapêuticas do banco @done(24-06-09 19:36)
+    ✔ Criar condicional para metas terapêuticas concluídas @done(24-06-09 19:36)
+    ☐ Criar migration para alterar o campo metas_terapeuticas.concluida para boolean()
 
 Coisas que preciso ver como será feito:
     ☐ (1h) Estrutura do formulário de bem-vindo
