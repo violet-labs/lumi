@@ -24,7 +24,18 @@ Separar as seções do tratamento em componentes:
     ✔ (5m) Passar componentes dos componentes @done(24-06-09 17:21)
     ✔ (5m) Passar data dos componentes @done(24-06-09 17:21)
 
+Fazer modelos de código:
+    ✔ Relacionamento entre models @done(24-06-09 18:26)
+    ✔ Migrations @done(24-06-09 18:08)
+    ✔ Componente Vue @done(24-06-09 18:03)
+
 Cadastro das fases do tratamento:
+    ☐ Criar model da fase do tratamento
+    ☐ Criar migration da tabela de fases_tratamento
+    ☐ Criar relacionamento de Pacientes com FasesTratamento
+    ☐ Criar relacionamento de FaseTratamento com Pacientes
+    ☐ Criar função getTratamentos no paciente
+    ☐ Adicionar propriedade "tratamento" no paciente retornado em getPaciente
     ☐ (10m) Transformar as fases atuais em objetos
     ☐ (3m) Criar estado "editing"
     ☐ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases
