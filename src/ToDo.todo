@@ -94,11 +94,7 @@ Tela de análise clínica (form):
 Plano de tratamento:
     Seção "aparatologia":
         ☐ Incluir observações na Aparatologia
-    Gerenciador de metas terapêuticas:
-        ☐ (10m) Criar model/controller/routes para Meta Terapêutica
-        ☐ 
     Gerenciador do plano de tratamento:
-        ✔ (10m) Criar model/controller/routes para Fases do Plano de Tratamento (verificar como chamar) @done(24-06-09 20:03)
         Criar modal com um botão pra "adicionar fase de tratamento":
             ☐ (5m) Criar modal
             ☐ (5m) Criar input para data de início do tratamento

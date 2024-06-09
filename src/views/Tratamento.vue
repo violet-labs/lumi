@@ -2,7 +2,7 @@
   <div>
     <div class="row py-3 py-md-0 px-3">
       <div class="col-sm-6 col-md-4 px-2 py-1 py-md-3 text-center">
-        <material-input label="Fase atual (2/3)" readonly type="text" centered value="Alinhamento e Nivelamento"
+        <material-input label="Fase atual" readonly type="text" centered :value="paciente.fase_atual.nome"
           id="paciente_inicio_tratamento" label-class="me-3" />
         <span class="text-sm">Maio/2024 a Maio/2025</span>
       </div>

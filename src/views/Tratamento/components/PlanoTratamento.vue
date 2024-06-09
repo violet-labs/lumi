@@ -75,9 +75,9 @@
                     <div v-for="(fase, index) in paciente.fases_tratamento" v-bind:key="fase.id">
                         <div class="card mx-3 my-2">
                             <div class="fase-header">
-                                <span :class="{ 'active': fase.id == currentPhaseId }">
+                                <span :class="{ 'active': fase.id == paciente.fase_atual.id }">
                                     <strong>Fase {{ index + 1 }}: {{ fase.nome }} (3 meses)</strong></span>
-                                <span class="text-sm" :class="{ 'font-weight-bold active': fase.id == currentPhaseId }"
+                                <span class="text-sm" :class="{ 'font-weight-bold active': fase.id == paciente.fase_atual.id }"
                                     style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
                             </div>
                             <div class="card-body px-4 py-3">
@@ -147,8 +147,6 @@
 
 <script>
 
-var currentPhaseId = null;
-
 var isEditing = []
 
 export default {
@@ -161,34 +159,18 @@ export default {
     data() {
         return {
             isEditing,
-            currentPhaseId,
         }
     },
     methods: {
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },
-        setCurrentPhaseId() {
-            const now = new Date().getTime();
-            for (const fase of this.paciente.fases_tratamento) {
-                const startDate = new Date(fase.data_inicio).getTime();
-                const finishDate = new Date(fase.data_fim).getTime();
-
-                if (now >= startDate && now < finishDate) {
-                    this.currentPhaseId = fase.id;
-                    break;
-                }
-            }
-
-            console.log('currentPhaseId:', this.currentPhaseId);
-        }
     },
     components: {
     },
     mounted() {
     },
     beforeMount() {
-        this.setCurrentPhaseId();
     },
     beforeUnmount() {
     }
