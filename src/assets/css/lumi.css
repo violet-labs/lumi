@@ -441,11 +441,11 @@ svg.pointer:hover {
 }
 
 .btn-desmarcar-meta:hover {
-    -webkit-box-shadow:inset 0px 0px 0px 10x #4CAF50;
-    -moz-box-shadow:inset 0px 0px 0px 1px #4CAF50;
-    box-shadow:inset 0px 0px 0px 1px #4CAF50;
+    -webkit-box-shadow: inset 0px 0px 0px 10x #4CAF50;
+    -moz-box-shadow: inset 0px 0px 0px 1px #4CAF50;
+    box-shadow: inset 0px 0px 0px 1px #4CAF50;
     color: #4CAF50;
-    background: rgba(255,255,255,0);
+    background: rgba(255, 255, 255, 0);
 }
 
 .btn-outline-success:hover {
@@ -557,17 +557,17 @@ input:read-only {
     text-align: left;
 }
 
-.analises-table tr > td:first-child {
+.analises-table tr>td:first-child {
     border-right: 1px solid #EEE;
     font-weight: 500 !important;
 }
 
-.analises-table tr > td:last-child {
+.analises-table tr>td:last-child {
     border-right: 1px solid #EEE;
     font-weight: 400 !important;
 }
 
-.analises-table tr:nth-of-type(odd) > * {
+.analises-table tr:nth-of-type(odd)>* {
     background: #F8F8F8;
 }
 
@@ -615,8 +615,9 @@ tr.neutral td {
     font-weight: 800;
 }
 
-a.hoverable:hover, a.hoverable:hover svg {
-    color:rgb(28, 137, 226) !important;
+a.hoverable:hover,
+a.hoverable:hover svg {
+    color: rgb(28, 137, 226) !important;
 }
 
 .pointer {
@@ -680,3 +681,30 @@ span.dropdown-toggle::after {
 .input-sm {
     height: 32px;
 }
+
+
+
+.card.option-card {
+    transition: transform 1.5s ease;
+    text-align: center;
+    border: 1px solid #DDD;
+    border: 2px solid transparent;
+
+    &:hover,
+    &:focus {
+        /* margin-top: 3px; */
+        cursor: pointer;
+        border: 2px solid #73A0DF;
+    }
+}
+
+
+
+.option-image-container {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .option-image-container img {
+    margin: 0 auto;
+  }

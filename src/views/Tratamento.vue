@@ -80,7 +80,7 @@
       <div class="tratamento-content" v-if="tratamentoTab === 'analise'">
 
         <div class="row">
-          <div class="col-md-5 pe-md-1">
+          <div class="col-md-5 pe-md-0">
 
             <div class="custom-card primary">
               <div class="custom-card-header">
@@ -105,7 +105,7 @@
 
           </div>
 
-          <div class="col-md-7 mt-4 mt-md-0">
+          <div class="col-md-7 mt-4 mt-md-0 ps-md-4">
             <div class="custom-card primary">
               <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                   title="Editar" /></div>
@@ -126,7 +126,7 @@
             </div>
           </div>
 
-          <div class="col-md-5 pe-md-1">
+          <div class="col-md-5 pe-md-0">
             <div class="custom-card primary mt-4">
               <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
                   class="ml-3 pointer" title="Editar" /></div>
@@ -155,7 +155,7 @@
             </div>
           </div>
 
-          <div class="col-md-7">
+          <div class="col-md-7 ps-md-4">
             <div class="custom-card primary mt-4">
               <div class="custom-card-header">
                 Relatos do paciente
@@ -197,11 +197,41 @@
 
           <div class="col-12">
             <div class="box primary">
-              <p class="custom-card-header">Tratamento recomendado<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                  title="Editar" /></p>
-              <div>
+              <p class="custom-card-header">Análise automática<font-awesome-icon :icon="['fas', 'edit']"
+                  class="ml-3 pointer" title="Editar" /></p>
+
+              <div class="row">
+
+                <div class="col-sm-5 col-md-4 pt-2 pb-3 px-4">
+                  <p class="text-uppercase mt-1 pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento recomendado:</p>
+
+                  <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                    <div class="card-header">
+                      <div class="option-image-container">
+                        <img :src="imgCirurgiaOrtognatica" class="card-img-top">
+                      </div>
+                      <div class="treatment-title p-2 bg-gradient-light">
+                        <h5>Cirurgia ortognática</h5>
+                      </div>
+                    </div>
+                    <div class="card-body p-3">
+                      <p class="card-text p-0">
+                        <strong>Protrator mandibular:</strong>
+                        <br>
+                        <span style="font-size: 11pt;">SOMENTE quando, após os dentes nivelados, o avanço da mandíbula
+                          NÃO abrir a mordida</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-7 col-md-8">
+                  A recomendação deste tratamento se baseia nos seguintes fatores do quadro clínico do paciente:
+                  <br>
+                </div>
 
               </div>
+
             </div>
           </div>
 
@@ -586,12 +616,21 @@
   font-weight: 500;
   font-size: 11pt;
 }
+
+.treatment-title {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 13pt;
+  color: #333;
+}
 </style>
 
 <script>
 
 import MaterialInput from "@/components/MaterialInput.vue";
 import { uploadImage } from "@/services/pacientesService"
+import imgCirurgiaOrtognatica from "@/assets/img/protocolos/treatments/cirurgia-ortognatica.jpg"
 
 const analises = {
   'Extra-bucal': [
@@ -883,6 +922,7 @@ export default {
       isEditing,
       metasTerapeuticas,
       analises,
+      imgCirurgiaOrtognatica,
     }
   },
   methods: {
