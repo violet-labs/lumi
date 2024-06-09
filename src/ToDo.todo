@@ -1,17 +1,26 @@
+Tratamento recomendado:
+    ☐ (3m) Criar box
+    ☐ (10m) Exibir o tratamento recomendado
+    ☐ (10m) Exibir as características do paciente que foram cruciais para chegar no tratamento recomendado
+
+Análise do perfil clínico:
+    ☐ (3m) Criar estado "editing"
+    ☐ (10m) No estado editing, exibir selects em vez dos valores
+    ☐ (10m) Colocar opção "Outro.../Especificar..." no select, e abrir um input pra digitar
+
+Cadastro das fases do tratamento:
+    ☐ (10m) Transformar as fases atuais em objetos
+    ☐ (3m) Criar estado "editing"
+    ☐ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases
+    ☐ (10m) Ao entrar em modo de edição, exibir inputs/textareas, em vez dos valores
+    ☐ (20m) Ao clicar em Adicionar, ele deve fazer append de uma nova fase e dar focus/scroll? nela
+
 Coisas que preciso ver como será feito:
-    ✔ Relacionamento entre models do Laravel @done(24-06-07 02:02)
-    ☐ Upload de arquivos com VueJS e com Laravel (talvez será necessário salvar no diretório público do app, pra carregar mais rápido - perguntar pro Gemini como faz e se tem diferença fazendo assim)
+    ☐ (1h) Estrutura do formulário de bem-vindo
+    ☐ (1h) Estrutura da análise clínica
 
-    ☐ Estrutura do formulário de bem-vindo
-    ☐ Estrutura da análise clínica
-
-Outras coisas mais importentes:
-    ☐ Cadastro das fases do tratamento
-    ☐ Análise do perfil clínico e sugestão do melhor tratamento
 -- ------------------------------------------ --
 Laravel - aprender:
-    ☐ (15m) Como criar relação entre models
-    ☐ (10m) Como trazer os objetos relacionados no get do Model
     ☐ (10m) Como fazer paginação do lado do servidor
 
 Formulário de bem-vindo e tratamento das respostas:

@@ -67,7 +67,7 @@
                   <div class="row p-3 pt-1 pb-4 w-100 mx-auto">
                     <div class="col-md-6 border-end pe-4">
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Informações pessoais</p>
-                      <div class="row">
+                      <div class="row mt-4">
                         <div class="col-md-6 mb-2">
                           <label for="paciente_dentista" class="form-control-label">Dentista padrão</label>
                           <select class="form-select" id="paciente_dentista">
@@ -114,8 +114,7 @@
                     <div class="col-md-6 ps-4">
 
                       <hr class="horizontal dark" />
-                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
-                        contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
+                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
                       <v-table style="font-size: 12pt;">
                         <thead>
@@ -240,10 +239,9 @@
                   </div>
                   <div class="row p-0 w-100 mx-auto"
                     style="border-top: 1px solid #EEE; background: linear-gradient(to bottom, #d7e6ef, #e6eff4,  #e6eff4, #FFF, #FFF);">
-                    <div class="col-12 text-center mb-1 d-flex flex-column p-3 m-0"
+                    <div class="col-12 text-center mb-1 p-3 m-0"
                       style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1))">
                       <span class="fs-5" style="">Detalhes do paciente</span>
-                      <span>(visível apenas para dentistas)</span>
                     </div>
 
                     <div class="col-12">

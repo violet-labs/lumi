@@ -29,7 +29,7 @@
           </div>
           <span class="me-2"
             style="margin-top: -34px; background: rgba(255, 255, 255, 0.4); font-weight: 500 !important; font-size: 13pt; padding: 0px 9px; border-radius: 0.375rem; color: #666;">{{
-            getProgresso }}%</span>
+              getProgresso }}%</span>
           <span class="text-sm" style="margin-top: 11px;">com <strong>3 de 6</strong> metas concluídas</span>
         </div>
       </div>
@@ -46,24 +46,29 @@
 
     <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
-    <div class="row" style="padding: 15px 10px;">
-      <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
+    <div class="d-flex flex-row w-100" style="padding: 15px 10px; align-content: space-evenly !important;">
+      <div class="tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
         @click="selectTratamentoTab('analise')">
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="mr-3" />
         Análise
       </div>
-      <div class="col-md-4 tratamento-tab" :class="tratamentoTab == 'resumo' ? 'active' : ''"
-        @click="selectTratamentoTab('resumo')">
-        <font-awesome-icon :icon="['fas', 'file-pen']" class="mr-3" />
-        Diagnóstico e planejamento
+      <div class="tratamento-tab" :class="tratamentoTab == 'diagnostico' ? 'active' : ''"
+        @click="selectTratamentoTab('diagnostico')">
+        <font-awesome-icon :icon="['fas', 'tooth']" class="mr-3" />
+        Diagnóstico
       </div>
-      <div class="col-md-3 tratamento-tab" :class="tratamentoTab == 'imagens' ? 'active' : ''"
+      <div class="tratamento-tab" :class="tratamentoTab == 'planoTratamento' ? 'active' : ''"
+        @click="selectTratamentoTab('planoTratamento')">
+        <font-awesome-icon :icon="['fas', 'file-pen']" class="mr-3" />
+        Plano de tratamento
+      </div>
+      <div class="tratamento-tab" :class="tratamentoTab == 'imagens' ? 'active' : ''"
         @click="selectTratamentoTab('imagens')">
         <font-awesome-icon :icon="['fas', 'image']" class="mr-3" />
         Imagens
       </div>
-      <div class="col-md-2 tratamento-tab" :class="tratamentoTab == 'historico' ? 'active' : ''"
-        @click="selectTratamentoTab('historico')">
+      <div class="tratamento-tab" :class="tratamentoTab == 'historico' ? 'active' : ''"
+        @click="selectTratamentoTab('historico')" style="flex: 1">
         <font-awesome-icon :icon="['fas', 'history']" class="mr-3" />
         Histórico
       </div>
@@ -87,10 +92,10 @@
                   <tbody>
                     <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id" :class="analise.type">
                       <td>
-                        {{analise.name}}
+                        {{ analise.name }}
                       </td>
                       <td>
-                        {{analise.text}}
+                        {{ analise.text }}
                       </td>
                     </tr>
                   </tbody>
@@ -109,10 +114,10 @@
                   <tbody>
                     <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id" :class="analise.type">
                       <td>
-                        {{analise.name}}
+                        {{ analise.name }}
                       </td>
                       <td>
-                        {{analise.text}}
+                        {{ analise.text }}
                       </td>
                     </tr>
                   </tbody>
@@ -130,10 +135,10 @@
                   <tbody>
                     <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id" :class="analise.type">
                       <td>
-                        {{analise.name}}
+                        {{ analise.name }}
                       </td>
                       <td>
-                        {{analise.text}}
+                        {{ analise.text }}
                       </td>
                     </tr>
                   </tbody>
@@ -187,139 +192,165 @@
     </Transition>
     <Transition>
 
-      <div class="tratamento-content" v-if="tratamentoTab === 'resumo'">
-        <div class="wrapper">
-          <div class="box primary">
-            <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                title="Editar" /></p>
-            <p class="text-justify py-2 px-4">
-              Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
-              anterior leve.
-            </p>
+      <div class="tratamento-content" v-if="tratamentoTab === 'diagnostico'">
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="box primary">
+              <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <p class="text-justify py-2 px-4">
+                Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
+                anterior leve.
+              </p>
+            </div>
           </div>
-          <div class="box primary">
-            <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
-                title="Editar" /></p>
 
-            <p class="text-justify py-2 px-4">
-              Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao
-              paciente um sorriso esteticamente agradável e funcional.
-            </p>
+          <div class="col-md-6 mt-3 mt-md-0">
+            <div class="box primary">
+              <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <p class="text-justify py-2 px-4">
+                Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao
+                paciente um sorriso esteticamente agradável e funcional.
+              </p>
+            </div>
           </div>
-          <div class="box primary" ref="metasTerapeuticasBox">
-            <p class="custom-card-header">
-              Metas terapêuticas
-              <font-awesome-icon :icon="['fas', 'edit']"
-                class="ml-3 pointer" :class="{'active':isEditing['metasTerapeuticas']}" :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'" @click="toggleEditMode('metasTerapeuticas')" />
-            </p>
 
-            <button class="btn btn-sm btn-primary mt-3 mb-0" v-if="isEditing['metasTerapeuticas']" title="Adicionar uma nova meta terapêutica">
-              Adicionar
-            </button>
+        </div>
+      </div>
+    </Transition>
 
-            <div v-for="meta in metasTerapeuticas" v-bind:key="meta.id" class="card m-3"
-              :class="meta.finished ? 'border-success' : ''">
-              <div class="fase-header d-flex flex-row">
-                <i class="fas fa-trash ms-1 text-danger-dark pointer" v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"></i>
-                <div class="col" :style="meta.finished ? { 'padding-left': '30px' } : {}">
-                  <strong>{{ meta.alvo }}</strong>
+
+    <Transition>
+
+      <div class="tratamento-content" v-if="tratamentoTab === 'planoTratamento'">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="box primary" ref="metasTerapeuticasBox">
+              <p class="custom-card-header">
+                Metas terapêuticas
+                <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  :class="{ 'active': isEditing['metasTerapeuticas'] }"
+                  :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
+                  @click="toggleEditMode('metasTerapeuticas')" />
+              </p>
+              <button class="btn btn-sm btn-primary mt-3 mb-0" v-if="isEditing['metasTerapeuticas']"
+                title="Adicionar uma nova meta terapêutica">
+                Adicionar
+              </button>
+              <div v-for="meta in metasTerapeuticas" v-bind:key="meta.id" class="card m-3"
+                :class="meta.finished ? 'border-success' : ''">
+                <div class="fase-header d-flex flex-row">
+                  <i class="fas fa-trash ms-1 text-danger-dark pointer" v-if="isEditing['metasTerapeuticas']"
+                    title="Excluir esta meta terapêutica"></i>
+                  <div class="col" :style="meta.finished ? { 'padding-left': '30px' } : {}">
+                    <strong>{{ meta.alvo }}</strong>
+                  </div>
+                  <div class="col-auto">
+                    <button v-if="!meta.finished" class="btn btn-vsm btn-outline-success mr-1"
+                      title="Marcar como concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
+                    <button v-if="meta.finished && isEditing['metasTerapeuticas']"
+                      class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
+                      title="Marcar como não concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
+                    <span v-if="meta.finished && !isEditing['metasTerapeuticas']"
+                      class="text-success px-2 text-sm font-weight-bold">
+                      CONCLUÍDA
+                    </span>
+                  </div>
                 </div>
-                <div class="col-auto">
-                  
-                  <button v-if="!meta.finished" class="btn btn-vsm btn-outline-success mr-1"
-                    title="Marcar como concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
-                  
-                  <button v-if="meta.finished && isEditing['metasTerapeuticas']" class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
-                    title="Marcar como não concluída"><font-awesome-icon :icon="['fas', 'check']" /></button>
-
-                  <span v-if="meta.finished && !isEditing['metasTerapeuticas']" class="text-success px-2 text-sm font-weight-bold">
-                    CONCLUÍDA
-                  </span>
-
+                <div class="card-body px-4 py-3 text-center" v-html="meta.meta.replaceAll('\n', '<br>')">
                 </div>
               </div>
-              <div class="card-body px-4 py-3 text-center" v-html="meta.meta.replaceAll('\n', '<br>')">
-              </div>
             </div>
-
           </div>
-          <div class="box primary">
-            <p class="custom-card-header">Plano de tratamento<font-awesome-icon :icon="['fas', 'edit']"
-                class="ml-3 pointer" title="Editar" /></p>
-            <div class="card m-3">
-              <div class="fase-header">
-                <strong>Aparatologia</strong>
-              </div>
-              <div class="card-body px-4 py-3">
-                <strong>Aparelho utilizado</strong>: autoligado metálico bidimensional.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Tipo de colagem</strong>: Alexander (x = centro da coroa clínica pré-molar).
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Contenção superior</strong>: placa acetato.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Contenção inferior</strong>: placa acetato.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Necessidades de exercícios miofuncionais</strong>: nenhuma.
+
+          <div class="col-md-6">
+            <div class="box primary">
+              <p class="custom-card-header">Aparatologia<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <div class="card-body p-0">
+
+                <table class="table-sm table-striped w-100 table-aparatologia">
+                  <tbody>
+                    <tr>
+                      <td><strong>Aparelho utilizado:</strong></td>
+                      <td>autoligado metálico bidimensional</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Tipo de colagem:</strong></td>
+                      <td>Alexander (x = centro da coroa clínica pré-molar)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Contenção superior:</strong></td>
+                      <td>placa acetato</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Contenção inferior:</strong></td>
+                      <td>placa acetato</td>
+                    </tr>
+                  </tbody>
+                </table>
+
               </div>
             </div>
+            <div class="box primary mt-4">
+              <p class="custom-card-header">Plano de tratamento<font-awesome-icon :icon="['fas', 'edit']"
+                  class="ml-3 pointer" title="Editar" /></p>
 
-            <div class="p-horizontal-divider"></div>
-
-            <div class="card m-3 mb-2">
-              <div class="fase-header">
-                <strong>Fase 1: Expansão Palatina (3 meses)</strong>
-                <span class="text-sm" style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
+              <div class="card m-3 mb-2">
+                <div class="fase-header">
+                  <strong>Fase 1: Expansão Palatina (3 meses)</strong>
+                  <span class="text-sm" style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
+                </div>
+                <div class="card-body px-4 py-3">
+                  <strong>Objetivo</strong>: descomprimir os arcos dentários e criar espaço para o alinhamento dos
+                  dentes.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Mecânica</strong>: aparelho expansor palatino com ativação semanal.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Acompanhamento</strong>: consultas mensais para acompanhamento da expansão e avaliação da
+                  necessidade
+                  de ajustes no
+                  aparelho.
+                </div>
               </div>
-              <div class="card-body px-4 py-3">
-                <strong>Objetivo</strong>: descomprimir os arcos dentários e criar espaço para o alinhamento dos
-                dentes.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Mecânica</strong>: aparelho expansor palatino com ativação semanal.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Acompanhamento</strong>: consultas mensais para acompanhamento da expansão e avaliação da
-                necessidade
-                de ajustes no
-                aparelho.
-              </div>
-            </div>
 
-            <font-awesome-icon :icon="['fas', 'arrow-down']" />
-
-            <div class="card m-3 mt-2 mb-2 active">
-              <div class="fase-header">
-                <span class="active"><strong>Fase 2 (atual): Alinhamento e Nivelamento (12 meses)</strong></span>
-                <span class="text-sm font-weight-bold active">Maio/2024 a Maio/2025</span>
+              <font-awesome-icon :icon="['fas', 'arrow-down']" />
+              <div class="card m-3 mt-2 mb-2 active">
+                <div class="fase-header">
+                  <span class="active"><strong>Fase 2 (atual): Alinhamento e Nivelamento (12 meses)</strong></span>
+                  <span class="text-sm font-weight-bold active">Maio/2024 a Maio/2025</span>
+                </div>
+                <div class="card-body px-4 py-3">
+                  <strong>Objetivo</strong>: alinhar e nivelar os dentes em ambos os arcos.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Mecânica</strong>: aparelho fixo vestibular com bráquetes metálicos e fios de níquel-titânio.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Acompanhamento</strong>: consultas quinzenais para ativação dos fios e ajustes no
+                  aparelho.<br>
+                </div>
               </div>
-              <div class="card-body px-4 py-3">
-                <strong>Objetivo</strong>: alinhar e nivelar os dentes em ambos os arcos.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Mecânica</strong>: aparelho fixo vestibular com bráquetes metálicos e fios de níquel-titânio.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Acompanhamento</strong>: consultas quinzenais para ativação dos fios e ajustes no
-                aparelho.<br>
-              </div>
-            </div>
-
-            <font-awesome-icon :icon="['fas', 'arrow-down']" />
-
-            <div class="card m-3 mt-2">
-              <div class="fase-header">
-                <strong>Fase 3: Finalização e Contenção (9 meses)</strong>
-                <span class="text-sm">Maio/2024 a Maio/2025</span>
-              </div>
-              <div class="card-body px-4 py-3">
-                <strong>Objetivo</strong>: finalizar o alinhamento e nivelamento dos dentes, estabelecer a oclusão
-                ideal
-                e
-                manter a
-                estabilidade do tratamento.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Mecânica</strong>: aparelho fixo vestibular com bráquetes metálicos e fios de aço inoxidável
-                com
-                posterior contenção fixa.
-                <div class="p-horizontal-divider m2"></div>
-                <strong>Acompanhamento</strong>: consultas mensais para ajustes no aparelho e acompanhamento da
-                oclusão.
+              <font-awesome-icon :icon="['fas', 'arrow-down']" />
+              <div class="card m-3 mt-2">
+                <div class="fase-header">
+                  <strong>Fase 3: Finalização e Contenção (9 meses)</strong>
+                  <span class="text-sm">Maio/2024 a Maio/2025</span>
+                </div>
+                <div class="card-body px-4 py-3">
+                  <strong>Objetivo</strong>: finalizar o alinhamento e nivelamento dos dentes, estabelecer a oclusão
+                  ideal
+                  e
+                  manter a
+                  estabilidade do tratamento.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Mecânica</strong>: aparelho fixo vestibular com bráquetes metálicos e fios de aço inoxidável
+                  com
+                  posterior contenção fixa.
+                  <div class="p-horizontal-divider m2"></div>
+                  <strong>Acompanhamento</strong>: consultas mensais para ajustes no aparelho e acompanhamento da
+                  oclusão.
+                </div>
               </div>
             </div>
           </div>
@@ -380,9 +411,12 @@
                         </tr>
                         <tr>
                           <td class="text-center pt-3">
+                            <input type="file" accept="image/*" @change="uploadImage($event, 'radiografia')" id="file-input">
+
                             <button class="btn bg-gradient-primary">
                               Adicionar
                             </button>
+
                           </td>
                         </tr>
                       </tbody>
@@ -427,6 +461,7 @@
 }
 
 .tratamento-tab {
+  flex: 1.5;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -480,8 +515,8 @@
 }
 
 .box {
-  box-sizing: border-box;
-  width: calc(50% - 10px);
+  /* box-sizing: border-box;
+  width: calc(50% - 10px); */
   text-align: center;
   align-items: center;
   vertical-align: middle;
@@ -489,9 +524,9 @@
   border: 1px solid #DDD;
   border-radius: 5px;
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     width: 100%;
-  }
+  } */
 }
 
 .box p {
@@ -523,11 +558,29 @@
   border-radius: 10px 10px 0px 0px;
   padding: 7px 5px;
 }
+
+.table-aparatologia td {
+  padding: 10px 10px;
+  text-align: center;
+  border-bottom: 1px solid #DDD;
+}
+
+.table-aparatologia tr>td:first-child {
+  width: 40%;
+  background: #F8F8F8;
+  border-right: 1px solid #DDD;
+}
+
+.table-aparatologia tr>td:last-child {
+  font-weight: 500;
+  font-size: 11pt;
+}
 </style>
 
 <script>
 
 import MaterialInput from "@/components/MaterialInput.vue";
+import { uploadImage } from "@/services/pacientesService"
 
 const analises = {
   'Extra-bucal': [
@@ -822,6 +875,7 @@ export default {
     }
   },
   methods: {
+    uploadImage,
     toggleEditMode(section) {
       this.isEditing[section] = !this.isEditing[section]
 
@@ -871,19 +925,19 @@ export default {
       return textMap[status] || '';
     },
     getProgressoClass(progresso) {
-      if  (progresso < 20)
+      if (progresso < 20)
         return 'bg-gradient-warning'
       else if (progresso < 70)
         return 'bg-gradient-primary'
       else
         return 'bg-gradient-success'
-    },  
+    },
     selectTratamentoTab(tab) {
       this.tratamentoTab = tab
     },
     getTextClass(type) {
       var textClass = null
-      switch(type) {
+      switch (type) {
         case 'neutral':
           textClass = 'text-dark'
           break

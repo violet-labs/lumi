@@ -27,7 +27,7 @@ export async function getAllPacientes(search = '') {
 
 
     const response = []
-    for (const paciente of allPacientes.data){
+    for (const paciente of allPacientes.data) {
         paciente.progress = 95
         paciente.place = 'Poços de Caldas'
         paciente.dentista = 'DANIEL SALLES'
@@ -36,4 +36,17 @@ export async function getAllPacientes(search = '') {
     }
 
     return response
+}
+
+export async function uploadImage(event, imageType) {
+    console.log('aaaaa');
+    let data = new FormData();
+    data.append('name', 'my-picture');
+    data.append('image', event.target.files[0]);
+    data.append('imageType', imageType);
+
+    await axios.post('/pacientes/upload-image', data,
+    {
+        header: {'Content-Type': 'image/png' }
+    })
 }
