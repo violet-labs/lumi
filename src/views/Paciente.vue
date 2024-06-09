@@ -124,39 +124,21 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr v-for="contato in paciente.contatos" v-bind:key="contato.id">
                             <td>
                               <a href="#" class="hoverable">
                                 <span class="d-inline-block text-center" style="width: 30px;">
-                                  <font-awesome-icon :icon="['fab', 'whatsapp']" class="text-success me-2"
-                                    style="font-size: 15pt;" />
+
+                                  <font-awesome-icon v-if="contato.tipo != 'telefone'" :icon="getContatoIcon(contato.tipo)" class="me-2"
+                                  :class="{'text-success':contato.tipo == 'whatsapp', 'fs-14': contato.tipo == 'email', 'fs-15': contato.tipo != 'email'}" />
+
+                                  <v-icon v-if="contato.tipo == 'telefone'" class="me-2" style="font-size: 17pt;">{{getContatoIcon(contato.tipo)}}</v-icon>
+
                                 </span>
-                                (35) 99108-4588
+                                {{ contato.contato }}
                               </a>
                             </td>
-                            <td>WhatsApp particular</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span class="d-inline-block text-center" style="width: 30px;">
-                                <!-- <font-awesome-icon icon="fa-solid fa-mobile-screen-button" class="me-2" style="font-size: 15pt;" /> -->
-                                <v-icon class="me-2" style="font-size: 17pt;">mdi-phone</v-icon>
-                              </span>
-                              (35) 95822-6675
-                            </td>
-                            <td>Thaís (irmã)</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <a href="#" class="hoverable">
-                                <span class="d-inline-block text-center" style="width: 30px;">
-                                  <font-awesome-icon icon="fa-solid fa-envelope" class="me-2"
-                                    style="font-size: 14pt;" />
-                                </span>
-                                thales-lima@live.com
-                              </a>
-                            </td>
-                            <td>E-mail particular</td>
+                            <td>{{ contato.descricao }}</td>
                           </tr>
                           <tr>
                             <td style="vertical-align: middle;">
@@ -443,6 +425,25 @@ export default {
     };
   },
   methods: {
+    getContatoIcon(type) {
+      var icon = null;
+      switch(type) {
+        case 'whatsapp':
+          icon = ['fab', 'whatsapp'];
+          break;
+        case 'celular':
+          icon = ['fas', 'mobile-screen-button'];
+          break;
+        case 'telefone':
+          icon = 'mdi-phone';
+          break;
+        case 'email':
+          icon = ['fas', 'envelope'];
+          break;
+      }
+
+      return icon;
+    },
     getInfoIcon(type) {
       var icon = null
       switch (type) {

@@ -509,28 +509,28 @@ svg.pointer:hover {
 }
 
 .box {
-  /* box-sizing: border-box;
+    /* box-sizing: border-box;
   width: calc(50% - 10px); */
-  text-align: center;
-  align-items: center;
-  vertical-align: middle;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
 
-  border: 1px solid #DDD;
-  border-radius: 5px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
 
-  /* @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
     width: 100%;
   } */
 }
 
 .box p {
-  text-align: center;
-  padding: 0px 30px;
-  padding-bottom: 20px;
+    text-align: center;
+    padding: 0px 30px;
+    padding-bottom: 20px;
 }
 
 .box .card {
-  text-align: justify;
+    text-align: justify;
 }
 
 .box.primary,
@@ -721,7 +721,8 @@ span.dropdown-toggle::after {
     height: 32px;
 }
 
-p, .card-body  {
+p,
+.card-body {
     color: #545d6e;
 }
 
@@ -745,19 +746,25 @@ p, .card-body  {
     }
 }
 
-
-
 .option-image-container {
     width: 100%;
     text-align: center;
-  }
-  
-  .option-image-container img {
-    margin: 0 auto;
-  }
+}
 
-  
+.option-image-container img {
+    margin: 0 auto;
+}
+
+
 .tratamento-content {
     padding: 20px;
     padding-top: 5px;
+}
+
+.fs-14 {
+    font-size: 14pt;
+}
+
+.fs-15 {
+    font-size: 15pt;
 }

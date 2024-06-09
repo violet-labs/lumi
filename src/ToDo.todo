@@ -54,15 +54,14 @@ Metas terapêuticas:
     ✔ Adicionar propriedade metas_terapeuticas no paciente retornado em getPaciente @done(24-06-09 19:36)
     ✔ Puxar as metas terapêuticas do banco @done(24-06-09 19:36)
     ✔ Criar condicional para metas terapêuticas concluídas @done(24-06-09 19:36)
-    ☐ Criar migration para alterar o campo metas_terapeuticas.concluida para boolean()
+    ✔ Criar migration para alterar o campo metas_terapeuticas.concluida para boolean() @done(24-06-09 19:40)
 
-Coisas que preciso ver como será feito:
-    ☐ (1h) Estrutura do formulário de bem-vindo
-    ☐ (1h) Estrutura da análise clínica
+Meios de contato:
+    ✔ (5m) Criar model/controller/rotas para Meio de contato @done(24-06-09 20:02)
+    ✔ (15m) Puxar listagem relacionando do banco @done(24-06-09 20:02)
+    ☐ (10m) Fazer função para cadastrar novo meio de contato
 
 -- ------------------------------------------ --
-Laravel - aprender:
-    ☐ (10m) Como fazer paginação do lado do servidor
 
 Formulário de bem-vindo e tratamento das respostas:
     ☐ (10m) Fazer novo layout para rolar as perguntas  
@@ -84,10 +83,9 @@ Formulário de bem-vindo e tratamento das respostas:
     ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
     ☐ (10m) Centralizar todos .modal no centro vertical da tela
 
-Meios de contato:
-    ☐ (5m) Criar model/controller/rotas para Meio de contato
-    ☐ (15m) Puxar listagem relacionando do banco
-    ☐ (10m) Fazer função para cadastrar novo meio de contato
+Coisas que preciso ver como será feito:
+    ☐ (1h) Estrutura do formulário de bem-vindo
+    ☐ (1h) Estrutura da análise clínica
 
 Tela de análise clínica (form):
     ☐ Calcular o tratamento recomendado, através das respostas do formulário
@@ -100,18 +98,11 @@ Plano de tratamento:
         ☐ (10m) Criar model/controller/routes para Meta Terapêutica
         ☐ 
     Gerenciador do plano de tratamento:
-        ☐ (10m) Criar model/controller/routes para Fases do Plano de Tratamento (verificar como chamar)
+        ✔ (10m) Criar model/controller/routes para Fases do Plano de Tratamento (verificar como chamar) @done(24-06-09 20:03)
         Criar modal com um botão pra "adicionar fase de tratamento":
             ☐ (5m) Criar modal
             ☐ (5m) Criar input para data de início do tratamento
             ☐ (5m) Criar botão adicionar fase de tratamento
-            ☐ (15m) Ao adicionar a fase, appendar um card no body do modal
-            Card:
-                ☐ Nome da etapa/fase
-                ☐ Duração (dar opção de meses ou semanas)
-                ☐ Objetivo
-                ☐ Mecânica
-                ☐ Acompanhamento
         Ao adicionar o plano de tratamento, calcular:
             ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada            
     ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
@@ -122,6 +113,9 @@ Consertar layout:
     ☐ (20m) A sidenav não está chegando até o final da tela
 
 Later:
+    Laravel - aprender:
+        ☐ (10m) Como fazer paginação do lado do servidor
+
     ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
     ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
     ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
