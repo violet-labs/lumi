@@ -195,7 +195,17 @@
       <div class="tratamento-content" v-if="tratamentoTab === 'diagnostico'">
         <div class="row">
 
-          <div class="col-md-6">
+          <div class="col-12">
+            <div class="box primary">
+              <p class="custom-card-header">Tratamento recomendado<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                  title="Editar" /></p>
+              <div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 mt-3">
             <div class="box primary">
               <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                   title="Editar" /></p>
@@ -206,7 +216,7 @@
             </div>
           </div>
 
-          <div class="col-md-6 mt-3 mt-md-0">
+          <div class="col-md-6 mt-3">
             <div class="box primary">
               <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                   title="Editar" /></p>
@@ -411,7 +421,8 @@
                         </tr>
                         <tr>
                           <td class="text-center pt-3">
-                            <input type="file" accept="image/*" @change="uploadImage($event, 'radiografia')" id="file-input">
+                            <input type="file" accept="image/*" @change="uploadImage($event, 'radiografia')"
+                              id="file-input">
 
                             <button class="btn bg-gradient-primary">
                               Adicionar

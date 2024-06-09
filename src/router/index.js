@@ -7,7 +7,7 @@ import Pacientes from "../views/Pacientes.vue";
 import Tratamento from "../views/Tratamento.vue";
 import Dentistas from "../views/Dentistas.vue";
 import Financeiro from "../views/Financeiro.vue";
-import Forms from "@/views/Forms.vue";
+import WelcomeForm from "@/views/WelcomeForm.vue";
 
 import Paciente from "../views/Paciente.vue";
 
@@ -93,8 +93,8 @@ const routes = [
   },
   {
     path: "/bem-vindo",
-    name: "Forms",
-    component: Forms,
+    name: "WelcomeForm",
+    component: WelcomeForm,
     meta: {
       requiresAuth: false
     }

@@ -735,7 +735,7 @@ var currentPage = 1;
 var totalPages = 18;
 
 export default {
-    name: "entrar",
+    name: "welcomeForm",
     components: {
         MaterialInput,
     },
