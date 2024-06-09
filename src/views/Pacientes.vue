@@ -311,7 +311,6 @@ export default {
         return '-';
 
       const inicio = new Date(data_inicio_tratamento);
-      console.log('inicioo:', inicio)
       const termino = new Date(data_final_previsa);
       const hoje = new Date();
 

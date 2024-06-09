@@ -472,7 +472,6 @@ export default {
       const paciente = await getPaciente(id)
       if (paciente)
         this.paciente = paciente
-      console.log('this.paciente:', this.paciente)
     }
   },
 

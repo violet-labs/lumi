@@ -963,7 +963,6 @@ export default {
         return '-';
 
       const inicio = new Date(this.paciente.data_inicio_tratamento);
-      console.log('inicioo:', inicio)
       const termino = new Date(this.paciente.data_final_previsa);
       const hoje = new Date();
 

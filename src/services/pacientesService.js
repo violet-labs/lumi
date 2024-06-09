@@ -39,7 +39,6 @@ export async function getAllPacientes(search = '') {
 }
 
 export async function uploadImage(event, imageType) {
-    console.log('aaaaa');
     let data = new FormData();
     data.append('name', 'my-picture');
     data.append('image', event.target.files[0]);

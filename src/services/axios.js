@@ -49,7 +49,7 @@ axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGc
 // axios.refreshToken()
 
 axios.interceptors.request.use(request => {
-    console.log(request);
+    // console.log(request);
     // Edit request config
     return request;
 }, error => {
@@ -58,7 +58,7 @@ axios.interceptors.request.use(request => {
 });
 
 axios.interceptors.response.use(response => {
-    console.log(response);
+    // console.log(response);
     // Edit response config
     return response;
 }, error => {
