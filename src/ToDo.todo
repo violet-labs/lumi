@@ -1,7 +1,7 @@
 Tratamento recomendado:
     ✔ (3m) Criar box @started(24-06-08 23:32) @done(24-06-08 23:39) @lasted(7m6s)
     ✔ (10m) Exibir o tratamento recomendado @done(24-06-09 00:19)
-    ☐ (10m) Exibir as características do paciente que foram cruciais para chegar no tratamento recomendado
+    ✔ (10m) Exibir as características do paciente que foram cruciais para chegar no tratamento recomendado @done(24-06-09 01:26)
 
 Análise do perfil clínico:
     ☐ (3m) Criar estado "editing"

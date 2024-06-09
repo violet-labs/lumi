@@ -551,7 +551,7 @@ div[class*="col-"].border-end {
 }
 
 .analises-table td {
-    padding: 2px 8px !important;
+    padding: 2px 1.5rem !important;
     font-size: 11pt;
     color: #555 !important;
     text-align: left;

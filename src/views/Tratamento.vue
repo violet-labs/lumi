@@ -82,13 +82,13 @@
         <div class="row">
           <div class="col-md-5 pe-md-0">
 
-            <div class="custom-card primary">
+            <div class="custom-card primary h-100">
               <div class="custom-card-header">
                 Extra-bucal
                 <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer" title="Editar" />
               </div>
               <div class="custom-card-body p-0">
-                <v-table density="compact" class="analises-table">
+                <v-table density="compact" class="analises-table" style="border: 1px solid #DDD;">
                   <tbody>
                     <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id" :class="analise.type">
                       <td>
@@ -217,7 +217,7 @@
             </div>
           </div>
 
-          <div class="col-12 mt-3">
+          <div class="col-12 mt-4">
             <div class="box primary">
               <p class="custom-card-header">Análise automática<font-awesome-icon :icon="['fas', 'info-circle']"
                   class="ml-3 pointer" title="Como funciona" /></p>
@@ -246,11 +246,110 @@
                       </p>
                     </div>
                   </div>
+
                 </div>
 
                 <div class="col-sm-7 col-md-8">
-                  A recomendação deste tratamento se baseia nos seguintes fatores do quadro clínico do paciente:
-                  <br>
+                  <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Análise realizada:
+                  </p>
+
+                  <p class="text-justify">
+                    Através dos dados fornecidos na seção "<font-awesome-icon :icon="['fas', 'fa-search']" class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">análise</span>", é possível designar um tratamento específico para o caso.
+                    <br><br>
+
+                    Se você tiver dúvidas sobre esta recomendação para o caso do paciente, você pode <a href="#" class="underline">solicitar uma análise</a> a um de nossos especialistas.
+
+                    <br><br>
+                    A recomendação da <strong>cirurgia ortognática</strong> como tratamento é devida aos seguintes fatores clínicos do paciente:
+                  </p>
+
+                  <div class="conditions-container">
+
+                    <div class="condition">
+                      <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                        <div class="card-header p-0">
+                          <div class="option-image-container">
+                            <img :src="imgClasseII" class="card-img-top">
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <p class="card-text p-0">
+                            <strong>Classe II:</strong>
+                            <br>
+                            <span style="font-size: 11pt;">Arco inferior distal ao normal em sua relação para o arco superior</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="condition">
+                      <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                        <div class="card-header p-0">
+                          <div class="option-image-container">
+                            <img :src="imgLinhaMediaSemDesvio" class="card-img-top">
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <p class="card-text p-0">
+                            <strong>Desvio da linha média:</strong>
+                            <br>
+                            <span style="font-size: 11pt;">Sem desvio</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="condition">
+                      <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                        <div class="card-header p-0">
+                          <div class="option-image-container">
+                            <img :src="imgDefault" class="card-img-top">
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <p class="card-text p-0">
+                            <strong>Tamanho do desvio classe II:</strong>
+                            <br>
+                            <span style="font-size: 11pt;">Grande (5mm/+)</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="condition">
+                      <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                        <div class="card-header p-0">
+                          <div class="option-image-container">
+                            <img :src="imgDefault" class="card-img-top">
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <p class="card-text p-0">
+                            <strong>Protrusão maxilar e retrusão mandibular</strong>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="condition">
+                      <div class="card mx-2 mt-0" style="border: 2px solid #EEE;">
+                        <div class="card-header p-0">
+                          <div class="option-image-container">
+                            <img :src="imgMesoBraqui" class="card-img-top">
+                          </div>
+                        </div>
+                        <div class="card-body p-3">
+                          <p class="card-text p-0">
+                            <strong>Biotipo facial:</strong>
+                            <br>
+                            <span style="font-size: 11pt;">Braqui / Meso</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </div>
 
               </div>
@@ -629,6 +728,24 @@
   text-shadow: 2px 0 #F0F0F0, -2px 0 #F0F0F0, 0 2px #F0F0F0, 0 -2px #F0F0F0,
     1px 1px #F0F0F0, -1px -1px #F0F0F0, 1px -1px #F0F0F0, -1px 1px #F0F0F0;
 }
+
+.conditions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  grid-row-gap: 20px;
+}
+
+.condition {
+  max-width: 190px;
+  font-size: 8pt;
+}
+
+.condition .card {
+  height: 100%;
+}
+
 </style>
 
 <script>
@@ -636,6 +753,10 @@
 import MaterialInput from "@/components/MaterialInput.vue";
 import { uploadImage } from "@/services/pacientesService"
 import imgCirurgiaOrtognatica from "@/assets/img/protocolos/treatments/cirurgia-ortognatica.jpg"
+import imgClasseII from "@/assets/img/protocolos/classe2.png";
+import imgLinhaMediaSemDesvio from "@/assets/img/protocolos/linhamedia-sem-desvio.png"
+import imgDefault from "@/assets/img/protocolos/default.png";
+import imgMesoBraqui from "@/assets/img/protocolos/biotipo-meso-braqui.png"
 
 const analises = {
   'Extra-bucal': [
@@ -928,6 +1049,10 @@ export default {
       metasTerapeuticas,
       analises,
       imgCirurgiaOrtognatica,
+      imgClasseII,
+      imgLinhaMediaSemDesvio,
+      imgDefault,
+      imgMesoBraqui,
     }
   },
   methods: {
