@@ -294,6 +294,10 @@
 
           <div class="row">
             <div class="col-sm-6 col-md-3 text-center">
+              <material-input label="Total de consultas" readonly centered type="text"
+                v-bind:value="paciente.total_consultas ? paciente.total_consultas : 0" id="paciente_proximaConsulta" />
+            </div>
+            <div class="col-sm-6 col-md-3 text-center">
               <material-input label="Primeira consulta" readonly centered type="text"
                 v-bind:value="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
               <span>há 4 anos</span>
@@ -307,10 +311,6 @@
               <material-input label="Próxima consulta" readonly centered type="text"
                 v-bind:value="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
               <span class="text-success" style="font-weight: 500;">Hoje!</span>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Total de consultas" readonly centered type="text"
-                v-bind:value="paciente.total_consultas ? paciente.total_consultas : 0" id="paciente_proximaConsulta" />
             </div>
           </div>
 

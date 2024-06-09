@@ -1,12 +1,28 @@
+✔ (5m) Remover scroll do modo de edição das metas terapêuticas @started(24-06-09 01:42) @done(24-06-09 01:43) @lasted(1m3s) +4m
+
 Tratamento recomendado:
     ✔ (3m) Criar box @started(24-06-08 23:32) @done(24-06-08 23:39) @lasted(7m6s)
     ✔ (10m) Exibir o tratamento recomendado @done(24-06-09 00:19)
     ✔ (10m) Exibir as características do paciente que foram cruciais para chegar no tratamento recomendado @done(24-06-09 01:26)
 
 Análise do perfil clínico:
-    ☐ (3m) Criar estado "editing"
-    ☐ (10m) No estado editing, exibir selects em vez dos valores
-    ☐ (10m) Colocar opção "Outro.../Especificar..." no select, e abrir um input pra digitar
+    ✔ (3m) Criar estado "editing" do Extra-bucal @started(24-06-09 01:46) @done(24-06-09 01:49) @lasted(3m6s)
+    ✔ (3m) Criar estado "editing" do Intra-bucal @done(24-06-09 01:49) +3m
+    ✔ (3m) Criar estado "editing" das análises radiográficas @done(24-06-09 01:49) +3m
+    ✔ (10m) Extra-bucal: No estado editing, exibir selects em vez dos valores @done(24-06-09 01:57)
+    ✔ (5m) Intra-bucal: No estado editing, exibir selects em vez dos valores @done(24-06-09 02:02)
+    ✔ (5m) Radiográficas: No estado editing, exibir selects em vez dos valores @done(24-06-09 02:03)
+    ✔ (10m) Colocar opção "Outro.../Especificar..." no select @done(24-06-09 02:03)
+    ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
+
+Separar as seções do tratamento em componentes:
+    ✔ (5m) Criar componentes @done(24-06-09 17:11)
+    ✔ (5m) Importar componentes no do Tratamento @done(24-06-09 17:11)
+    ✔ (10m) Passar template dos componentes @done(24-06-09 17:21)
+    ✔ (5m) Passar estilo dos componentes @done(24-06-09 17:29)
+    ✔ (5m) Passar métodos dos componentes @done(24-06-09 17:21)
+    ✔ (5m) Passar componentes dos componentes @done(24-06-09 17:21)
+    ✔ (5m) Passar data dos componentes @done(24-06-09 17:21)
 
 Cadastro das fases do tratamento:
     ☐ (10m) Transformar as fases atuais em objetos

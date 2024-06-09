@@ -498,6 +498,31 @@ svg.pointer:hover {
     color: #FFF;
 }
 
+.box {
+  /* box-sizing: border-box;
+  width: calc(50% - 10px); */
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+
+  border: 1px solid #DDD;
+  border-radius: 5px;
+
+  /* @media (max-width: 768px) {
+    width: 100%;
+  } */
+}
+
+.box p {
+  text-align: center;
+  padding: 0px 30px;
+  padding-bottom: 20px;
+}
+
+.box .card {
+  text-align: justify;
+}
+
 .box.primary,
 .custom-card.primary {
     border: 1px solid #80a1bb !important;
@@ -682,6 +707,18 @@ span.dropdown-toggle::after {
     height: 32px;
 }
 
+.select-sm {
+    height: 32px;
+}
+
+p, .card-body  {
+    color: #545d6e;
+}
+
+.highlight {
+    color: rgb(28, 137, 226);
+}
+
 
 
 .card.option-card {
@@ -708,3 +745,9 @@ span.dropdown-toggle::after {
   .option-image-container img {
     margin: 0 auto;
   }
+
+  
+.tratamento-content {
+    padding: 20px;
+    padding-top: 5px;
+}
