@@ -11,12 +11,13 @@
                             @click="toggleEditMode('extraBucal')" />
                     </div>
                     <div v-if="isEditing['extraBucal']" class="w-100 text-center mb-3 mt-0">
-                        <button class="btn btn-sm btn-primary mt-3 mb-0" title="Salvar as alterações realizadas">
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
                             Salvar
                         </button>
                     </div>
-                    <div class="custom-card-body p-0">
-                        <v-table density="compact" class="analises-table" style="border: 1px solid #DDD;">
+                    <div class="custom-card-body p-0 card-top-border">
+                        <v-table density="compact" class="analises-table" style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id"
                                     :class="analise.type">
@@ -48,11 +49,12 @@
                             :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar os parâmetros intra-bucais'"
                             @click="toggleEditMode('intraBucal')" /></div>
                     <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
-                        <button class="btn btn-sm btn-primary mt-3 mb-0" title="Salvar as alterações realizadas">
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
                             Salvar
                         </button>
                     </div>
-                    <div class="custom-card-body p-0">
+                    <div class="custom-card-body p-0 card-top-border">
                         <v-table density="compact" class="analises-table">
                             <tbody>
                                 <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
@@ -85,11 +87,12 @@
                             :title="isEditing['analisesRadiograficas'] ? 'Sair do modo de edição' : 'Editar as análises radiográficas'"
                             @click="toggleEditMode('analisesRadiograficas')" /></div>
                     <div v-if="isEditing['analisesRadiograficas']" class="w-100 text-center mb-3 mt-0">
-                        <button class="btn btn-sm btn-primary mt-3 mb-0" title="Salvar as alterações realizadas">
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
                             Salvar
                         </button>
                     </div>
-                    <div class="custom-card-body p-0">
+                    <div class="custom-card-body p-0 card-top-border">
                         <v-table density="compact" class="analises-table">
                             <tbody>
                                 <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id"
@@ -115,17 +118,31 @@
                     </div>
                 </div>
                 <div class="custom-card primary mt-4">
-                    <div class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon
-                            :icon="['fas', 'edit']" class="ml-3 pointer" title="Editar" /></div>
-                    <div class="custom-card-body pt-2">
-                        Não há necessidade de encaminhamentos.
+                    <p class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon
+                            :icon="['fas', 'edit']" class="ml-3 pointer"
+                            :class="{ 'active': isEditing['necessidadesEncaminhamento'] }"
+                            :title="isEditing['necessidadesEncaminhamento'] ? 'Sair do modo de edição' : 'Editar as necessidades de encaminhamento'"
+                            @click="toggleEditMode('necessidadesEncaminhamento')" /></p>
+
+                    <div v-if="isEditing['necessidadesEncaminhamento']" class="w-100 text-center mb-3">
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
                     </div>
+                    <p v-if="!isEditing['necessidadesEncaminhamento']" class="text-justify py-2 px-4">
+                        Não há necessidade de encaminhamentos.
+                    </p>
+                    <textarea v-if="isEditing['necessidadesEncaminhamento']" name="" id="" class="form-control"
+                        rows="4">Não há necessidade de encaminhamentos.</textarea>
                 </div>
             </div>
             <div class="col-md-7 ps-md-4">
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
-                        Relatos do paciente
+                        Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']"
+                            class="ml-3 pointer" title="Como funciona?" />
                     </div>
                     <div class="custom-card-body p-0 pb-3">
                         <div class="row px-3">

@@ -4,28 +4,50 @@
             <div class="col-md-6">
                 <div class="box primary h-100">
                     <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" title="Editar" /></p>
-                    <p class="text-justify py-2 px-4">
+                            class="ml-3 pointer" :class="{ 'active': isEditing['diagnostico'] }"
+                            :title="isEditing['diagnostico'] ? 'Sair do modo de edição' : 'Editar o diagnóstico'"
+                            @click="toggleEditMode('diagnostico')" /></p>
+
+                    <div v-if="isEditing['diagnostico']" class="w-100 text-center mb-3">
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit" title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+
+                    <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4">
                         Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
                         anterior leve.
                     </p>
+                    <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control"
+                        rows="4">Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta anterior leve.</textarea>
                 </div>
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
                 <div class="box primary h-100">
                     <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" title="Editar" /></p>
-                    <p class="text-justify py-2 px-4">
-                        Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão,
-                        proporcionando ao
-                        paciente um sorriso esteticamente agradável e funcional.
+                            class="ml-3 pointer" :class="{ 'active': isEditing['prognostico'] }"
+                            :title="isEditing['prognostico'] ? 'Sair do modo de edição' : 'Editar o prognóstico'"
+                            @click="toggleEditMode('prognostico')" /></p>
+
+                    <div v-if="isEditing['prognostico']" class="w-100 text-center mb-3">
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit" title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+
+                    <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4">
+                        Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao paciente um sorriso esteticamente agradável e funcional.
                     </p>
+                    <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control"
+                        rows="4">Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao paciente um sorriso esteticamente agradável e funcional.</textarea>
                 </div>
             </div>
             <div class="col-12 mt-4">
                 <div class="box primary">
                     <p class="custom-card-header">Análise automática<font-awesome-icon :icon="['fas', 'info-circle']"
-                            class="ml-3 pointer" title="Como funciona" /></p>
+                            class="ml-3 pointer" title="Como funciona?" /></p>
                     <div class="row border-between py-3">
                         <div class="col-sm-5 col-md-4 pb-1 px-4 border-end">
                             <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento
@@ -218,6 +240,8 @@ import imgLinhaMediaSemDesvio from "@/assets/img/protocolos/linhamedia-sem-desvi
 import imgDefault from "@/assets/img/protocolos/default.png";
 import imgMesoBraqui from "@/assets/img/protocolos/biotipo-meso-braqui.png"
 
+var isEditing = []
+
 export default {
     name: "Diagnostico",
     data() {
@@ -227,9 +251,13 @@ export default {
             imgLinhaMediaSemDesvio,
             imgDefault,
             imgMesoBraqui,
+            isEditing,
         }
     },
     methods: {
+        toggleEditMode(section) {
+            this.isEditing[section] = !this.isEditing[section]
+        },
     },
     components: {
     },

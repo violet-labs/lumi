@@ -40,9 +40,9 @@ Cadastro das fases do tratamento:
     ✔ Puxar as fases do banco e exibí-las no componente @done(24-06-09 19:22)
     ✔ Criar variável pra armazenar o ID da fase atual @done(24-06-09 19:23)
     ✔ Criar condicional no estilo da fase atual e exibí-la destacada @done(24-06-09 19:23)
-    ☐ (3m) Criar estado "editing"
-    ☐ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases
-    ☐ (10m) Ao entrar em modo de edição, exibir inputs/textareas, em vez dos valores
+    ✔ (3m) Criar estado "editing" @done(24-06-09 20:31)
+    ✔ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases @done(24-06-09 20:31)
+    ✔ (10m) Ao entrar em modo de edição, exibir inputs/textareas, em vez dos valores @done(24-06-09 20:36)
     ☐ (20m) Ao clicar em Adicionar, ele deve fazer append de uma nova fase e dar focus/scroll? nela
 
 Metas terapêuticas:

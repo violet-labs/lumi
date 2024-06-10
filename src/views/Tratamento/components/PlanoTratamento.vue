@@ -10,10 +10,20 @@
                             :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('metasTerapeuticas')" />
                     </p>
-                    <button class="btn btn-sm btn-primary mt-3 mb-0" v-if="isEditing['metasTerapeuticas']"
-                        title="Adicionar uma nova meta terapêutica">
-                        Adicionar
-                    </button>
+
+                    <div v-if="isEditing['metasTerapeuticas']" class="d-flex flex-row w-100 justify-center">
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Adicionar uma nova meta terapêutica">
+                            Adicionar meta
+                        </button>
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+
+
                     <div v-for="meta in paciente.metas_terapeuticas" v-bind:key="meta.id" class="card m-3"
                         :class="meta.concluida ? 'border-success' : ''">
                         <div class="fase-header d-flex flex-row">
@@ -36,16 +46,33 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="card-body px-4 py-3 text-center" v-html="meta.descricao.replaceAll('\\n', '<br>')">
+                        <div v-if="!isEditing['metasTerapeuticas']" class="card-body px-4 py-3 text-center"
+                            v-html="meta.descricao.replaceAll('\\n', '<br />')">
                         </div>
+                        <textarea v-if="isEditing['metasTerapeuticas']" name="" id="" class="form-control text-center"
+                            v-html="textNewLine(meta.descricao)"></textarea>
                     </div>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="box primary">
                     <p class="custom-card-header">Aparatologia<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" title="Editar" /></p>
-                    <div class="card-body p-0">
+                            class="ml-3 pointer" :class="{ 'active': isEditing['aparatologia'] }"
+                            :title="isEditing['aparatologia'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
+                            @click="toggleEditMode('aparatologia')" /></p>
+
+                    <div v-if="isEditing['aparatologia']" class="d-flex flex-row w-100 justify-center my-3">
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit"
+                            title="Adicionar um novo item">
+                            Adicionar
+                        </button>
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+
+                    <div class="card-body p-0 card-top-border">
                         <table class="table-sm table-striped w-100 table-aparatologia">
                             <tbody>
                                 <tr>
@@ -70,30 +97,60 @@
                 </div>
                 <div class="box primary mt-4 pb-2">
                     <p class="custom-card-header mb-3">Plano de tratamento<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" title="Editar" /></p>
+                            class="ml-3 pointer" :class="{ 'active': isEditing['planoTratamento'] }"
+                            :title="isEditing['planoTratamento'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
+                            @click="toggleEditMode('planoTratamento')" /></p>
+
+                    <div v-if="isEditing['planoTratamento']" class="d-flex flex-row w-100 justify-center mt-0 mb-3">
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit"
+                            title="Adicionar uma nova fase de tratamento">
+                            Adicionar fase
+                        </button>
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
 
                     <div v-for="(fase, index) in paciente.fases_tratamento" v-bind:key="fase.id">
                         <div class="card mx-3 my-2">
-                            <div class="fase-header">
-                                <span :class="{ 'active': fase.id == paciente.fase_atual.id }">
-                                    <strong>Fase {{ index + 1 }}: {{ fase.nome }} (3 meses)</strong></span>
-                                <span class="text-sm" :class="{ 'font-weight-bold active': fase.id == paciente.fase_atual.id }"
-                                    style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
+
+                            <div class="fase-header d-flex flex-row">
+                                <i class="fas fa-trash ms-2 text-danger-dark pointer"
+                                    v-if="isEditing['planoTratamento']" title="Excluir esta fase do plano de tratamento"></i>
+
+                                <div class="col d-flex flex-column" style="padding-left: 30px;">
+
+                                    <span :class="{ 'active': fase.id == paciente.fase_atual.id }">
+                                        <strong>Fase {{ index + 1 }}: {{ fase.nome }} (3 meses)</strong></span>
+
+                                    <span class="text-sm"
+                                        :class="{ 'font-weight-bold active': fase.id == paciente.fase_atual.id }"
+                                        style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
+                                </div>
                             </div>
+
                             <div class="card-body px-4 py-3">
-                                <strong>Objetivo</strong>: {{ fase.objetivo }}
+                                <strong>Objetivo</strong>:
+                                <span v-if="!isEditing['planoTratamento']">{{ fase.objetivo }}</span>
+                                <textarea v-if="isEditing['planoTratamento']" class="form-control"
+                                    v-model="fase.objetivo"></textarea>
 
                                 <div class="p-horizontal-divider m2"></div>
                                 <strong>Mecânica</strong>:
-                                {{ fase.mecanica }}
+                                <span v-if="!isEditing['planoTratamento']">{{ fase.mecanica }}</span>
+                                <textarea v-if="isEditing['planoTratamento']" class="form-control"
+                                    v-model="fase.mecanica"></textarea>
 
                                 <div class="p-horizontal-divider m2"></div>
                                 <strong>Acompanhamento</strong>:
-                                {{ fase.acompanhamento }}
+                                <span v-if="!isEditing['planoTratamento']">{{ fase.acompanhamento }}</span>
+                                <textarea v-if="isEditing['planoTratamento']" class="form-control"
+                                    v-model="fase.acompanhamento"></textarea>
                             </div>
                         </div>
 
-                        <font-awesome-icon v-if="index < paciente.fases_tratamento.length -1"
+                        <font-awesome-icon v-if="index < paciente.fases_tratamento.length - 1"
                             :icon="['fas', 'arrow-down']" />
                     </div>
                 </div>
@@ -161,10 +218,15 @@ export default {
             isEditing,
         }
     },
+    computed: {
+    },
     methods: {
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },
+        textNewLine(descricao) {
+            return descricao.replaceAll('\\n', '&#13;&#10;')
+        }
     },
     components: {
     },

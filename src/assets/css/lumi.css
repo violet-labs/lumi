@@ -392,6 +392,25 @@ textarea.form-control:active {
     margin: 15px;
 }
 
+.p-vertical-divider {
+    width: 1px;
+    margin: 0px 15px;
+    height: 100%;
+    background: linear-gradient(to bottom, #F0F0F0, #DEDEDE, #F0F0F0);
+}
+
+.p-vertical-divider.m1 {
+    margin: 0px 5px;
+}
+
+.p-vertical-divider.m2 {
+    margin: 0px 10px;
+}
+
+.p-vertical-divider.m3 {
+    margin: 0px 15px;
+}
+
 .card {
     border: 1px solid #EEE;
 }
@@ -721,7 +740,7 @@ span.dropdown-toggle::after {
     height: 32px;
 }
 
-p,
+p:not(.text-uppercase),
 .card-body {
     color: #545d6e;
 }
@@ -767,4 +786,12 @@ p,
 
 .fs-15 {
     font-size: 15pt;
+}
+
+.btn-edit {
+    width: 140px;
+}
+
+.card-top-border {
+    border-top: 1px solid #DDD;
 }

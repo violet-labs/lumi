@@ -50,8 +50,8 @@
                                         </tr>
                                         <tr>
                                             <td class="text-center pt-3">
-                                                <input type="file" accept="image/*"
-                                                    @change="uploadImage($event, 'radiografia')" id="file-input">
+                                                <!-- <input type="file" accept="image/*"
+                                                    @change="uploadImage($event, 'radiografia')" id="file-input"> -->
 
                                                 <button class="btn bg-gradient-primary">
                                                     Adicionar
