@@ -1,64 +1,25 @@
-✔ (5m) Remover scroll do modo de edição das metas terapêuticas @started(24-06-09 01:42) @done(24-06-09 01:43) @lasted(1m3s) +4m
+Tratamento:
+    Colocar opções nas tabelas de edição dos componentes:
+        ☐ Extra-bucal
+        ☐ Intra-bucal
+        ☐ Análises radiográficas
+        ☐ Aparatologia?
 
 Tratamento recomendado:
-    ✔ (3m) Criar box @started(24-06-08 23:32) @done(24-06-08 23:39) @lasted(7m6s)
-    ✔ (10m) Exibir o tratamento recomendado @done(24-06-09 00:19)
-    ✔ (10m) Exibir as características do paciente que foram cruciais para chegar no tratamento recomendado @done(24-06-09 01:26)
 
 Análise do perfil clínico:
-    ✔ (3m) Criar estado "editing" do Extra-bucal @started(24-06-09 01:46) @done(24-06-09 01:49) @lasted(3m6s)
-    ✔ (3m) Criar estado "editing" do Intra-bucal @done(24-06-09 01:49) +3m
-    ✔ (3m) Criar estado "editing" das análises radiográficas @done(24-06-09 01:49) +3m
-    ✔ (10m) Extra-bucal: No estado editing, exibir selects em vez dos valores @done(24-06-09 01:57)
-    ✔ (5m) Intra-bucal: No estado editing, exibir selects em vez dos valores @done(24-06-09 02:02)
-    ✔ (5m) Radiográficas: No estado editing, exibir selects em vez dos valores @done(24-06-09 02:03)
-    ✔ (10m) Colocar opção "Outro.../Especificar..." no select @done(24-06-09 02:03)
     ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
 
 Separar as seções do tratamento em componentes:
-    ✔ (5m) Criar componentes @done(24-06-09 17:11)
-    ✔ (5m) Importar componentes no do Tratamento @done(24-06-09 17:11)
-    ✔ (10m) Passar template dos componentes @done(24-06-09 17:21)
-    ✔ (5m) Passar estilo dos componentes @done(24-06-09 17:29)
-    ✔ (5m) Passar métodos dos componentes @done(24-06-09 17:21)
-    ✔ (5m) Passar componentes dos componentes @done(24-06-09 17:21)
-    ✔ (5m) Passar data dos componentes @done(24-06-09 17:21)
 
 Fazer modelos de código:
-    ✔ Relacionamento entre models @done(24-06-09 18:26)
-    ✔ Migrations @done(24-06-09 18:08)
-    ✔ Componente Vue @done(24-06-09 18:03)
 
 Cadastro das fases do tratamento:
-    ✔ Criar model da fase do tratamento @done(24-06-09 18:30)
-    ✔ Criar migration da tabela de fases_tratamento @done(24-06-09 18:30)
-    ✔ Criar relacionamento de Pacientes com FasesTratamento @done(24-06-09 18:30)
-    ✔ Criar relacionamento de FaseTratamento com Pacientes @done(24-06-09 18:30)
-    ✔ Criar função getFasesTratamento no paciente @done(24-06-09 18:49)
-    ✔ Adicionar propriedade "fases_tratamento" no paciente retornado em getPaciente @done(24-06-09 18:49)
-    ✔ (10m) Transformar as fases atuais em objetos @done(24-06-09 19:22)
-    ✔ Puxar as fases do banco e exibí-las no componente @done(24-06-09 19:22)
-    ✔ Criar variável pra armazenar o ID da fase atual @done(24-06-09 19:23)
-    ✔ Criar condicional no estilo da fase atual e exibí-la destacada @done(24-06-09 19:23)
-    ✔ (3m) Criar estado "editing" @done(24-06-09 20:31)
-    ✔ (10m) Ao entrar em modo de edição, exibir botão pra Adicionar e Excluir as fases @done(24-06-09 20:31)
-    ✔ (10m) Ao entrar em modo de edição, exibir inputs/textareas, em vez dos valores @done(24-06-09 20:36)
     ☐ (20m) Ao clicar em Adicionar, ele deve fazer append de uma nova fase e dar focus/scroll? nela
 
 Metas terapêuticas:
-    ✔ Criar model da meta terapeutica @done(24-06-09 19:36)
-    ✔ Criar migration da tabela metas_terapeuticas @done(24-06-09 19:36)
-    ✔ Criar relacionamento de pacientes com MetasTerapeuticas @done(24-06-09 19:36)
-    ✔ Criar relacionamento de MetasTerapeuticas com Pacientes @done(24-06-09 19:36)
-    ✔ Criar função getMetasTerapeuticas no paciente @done(24-06-09 19:36)
-    ✔ Adicionar propriedade metas_terapeuticas no paciente retornado em getPaciente @done(24-06-09 19:36)
-    ✔ Puxar as metas terapêuticas do banco @done(24-06-09 19:36)
-    ✔ Criar condicional para metas terapêuticas concluídas @done(24-06-09 19:36)
-    ✔ Criar migration para alterar o campo metas_terapeuticas.concluida para boolean() @done(24-06-09 19:40)
 
 Meios de contato:
-    ✔ (5m) Criar model/controller/rotas para Meio de contato @done(24-06-09 20:02)
-    ✔ (15m) Puxar listagem relacionando do banco @done(24-06-09 20:02)
     ☐ (10m) Fazer função para cadastrar novo meio de contato
 
 -- ------------------------------------------ --

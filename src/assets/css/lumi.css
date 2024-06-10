@@ -740,9 +740,12 @@ span.dropdown-toggle::after {
     height: 32px;
 }
 
-p:not(.text-uppercase),
+p:not(.text-uppercase, .font-weight-bold),
 .card-body {
     color: #545d6e;
+}
+p.text-uppercase, p.font-weight-bold {
+    color: #7B809A;
 }
 
 .highlight {
