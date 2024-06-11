@@ -74,21 +74,18 @@
                     <div class="card-body p-0 card-top-border">
                         <table class="table-sm table-striped w-100 table-aparatologia">
                             <tbody>
-                                <tr>
-                                    <td><strong>Aparelho utilizado:</strong></td>
-                                    <td>autoligado metálico bidimensional</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Tipo de colagem:</strong></td>
-                                    <td>Alexander (x = centro da coroa clínica pré-molar)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Contenção superior:</strong></td>
-                                    <td>placa acetato</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Contenção inferior:</strong></td>
-                                    <td>placa acetato</td>
+                                <tr v-for="item in aparatologia" v-bind:key="item.id">
+                                    <td><strong>{{ item.name }}:</strong></td>
+                                    <td>
+                                        <span v-if="!isEditing['aparatologia']">{{ item.text }}</span>
+                                        <select v-if="isEditing['aparatologia'] && item.type == 'options'" class="form-select select-sm"
+                                            :value="item.text" style="min-width: 170px;">
+                                            <option v-for="option in item.options" v-bind:key="option.id" :class="'text-' + option.mood" :selected="option.text == item.text">{{ option.text }}</option>
+                                            <option>Outro (especificar)...</option>
+                                        </select>
+                                        <input v-if="false" class="form-control input-sm"
+                                            placeholder="Especifique..." />
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -237,6 +234,76 @@
 
 <script>
 
+const aparatologia = [
+    {
+        id: 10,
+        name: 'Aparelho utilizado',
+        text: 'autoligado metálico bidimensional',
+        observation: '',
+        type: 'options',
+        options: [
+            { id: 10, text: 'autoligado metálico bidimensional' },
+            { id: 20, text: 'autoligado estético' },
+            { id: 30, text: 'alinhadores' },
+            { id: 40, text: 'miofuncional' },
+            { id: 50, text: 'autoligado + miofuncional' },
+            { id: 60, text: 'alinhadores + miofuncional' },
+        ],
+    },
+    {
+        id: 20,
+        name: 'Tipo de colagem',
+        text: 'Alexander (x = centro da coroa clínica pré-molar)',
+        observation: '',
+        type: 'options',
+        options: [
+            { id: 70, text: 'agradávRoth (x = 4)el' },
+            { id: 80, text: 'Alexander (x = centro da coroa clínica pré-molar)' },
+            { id: 90, text: 'Pitts (smile arc)' },
+            { id: 95, text: 'SADB' },
+        ],
+    },
+    {
+        id: 30,
+        name: 'Contenção superior',
+        text: 'placa acetato',
+        observation: '',
+        type: 'options',
+        options: [
+            { id: 100, text: 'placa acetato' },
+            { id: 105, text: 'placa acetato com posicionado de língua' },
+            { id: 110, text: 'placa Hawley' },
+            { id: 115, text: 'placa picvem' },
+            { id: 120, text: 'placa acetato + placa de Michigan' },
+            { id: 125, text: 'contenção fixa 6x6' },
+        ],
+    },
+    {
+        id: 40,
+        name: 'Contenção inferior',
+        text: 'placa acetato',
+        observation: '',
+        type: 'options',
+        options: [
+            { id: 130, text: 'placa acetato' },
+            { id: 140, text: 'contenção fixa 6x6' },
+        ]
+    },
+    // {
+    //     id: 50,
+    //     name: 'Necessidade de exercícios miofuncionais',
+    //     text: 'nenhuma',
+    //     observation: '',
+    //     type: 'options',
+    //     options: [
+    //         { id: 150, text: 'nenhuma' },
+    //         { id: 160, text: 'respiração' },
+    //         { id: 170, text: 'deglutição' },
+    //         { id: 180, text: 'posição de língua' },
+    //     ]
+    // },
+]
+
 var isEditing = []
 
 export default {
@@ -249,6 +316,7 @@ export default {
     data() {
         return {
             isEditing,
+            aparatologia,
         }
     },
     computed: {

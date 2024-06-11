@@ -625,19 +625,19 @@ div[class*="col-"].border-end {
     background: #F8F8F8;
 }
 
-tr.good td {
+tr.good td, .text-good {
     color: rgb(46, 179, 46) !important;
 }
 
-tr.bad td {
+tr.bad td, .text-bad {
     color: rgb(219, 82, 82) !important;
 }
 
-tr.attention td {
+tr.attention, .text-attention {
     color: rgb(238, 155, 0) !important;
 }
 
-tr.neutral td {
+tr.neutral td, .text-neutral {
     color: #666 !important;
 }
 
@@ -737,6 +737,7 @@ span.dropdown-toggle::after {
 }
 
 .select-sm {
+    padding-top: 3px;
     height: 32px;
 }
 
