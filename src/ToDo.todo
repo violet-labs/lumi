@@ -1,3 +1,96 @@
+-- ------------------------------------------ --
+
+Remover da tela do perfil
+Convenio
+Clínica
+Objetivo do tratamento
+Indicado por
+
+Adicionar no perfil do paciente
+	RG (no lugar do objetivo)
+	Ortodontista
+	Nome do pai
+	Nome da mae
+
+Responsável
+	Nome completo
+	CPF
+	RG
+    
+
+Remover fase atual do tratamento
+Aumentar a barra de progresso
+
+Permitir edição do nome no formulário de bem-vindo
+
+Colocar link do formulário na tela do perfil
+Alterar para VER FORMULARIO depois de preenchido
+
+Passar a analise para orientação horizontal
+
+Relatos do paciente vai para o topo
+
+Analises radiografias:
+Campo aberto POEF
+Campo aberto observa;óes
+
+Diagnostico
+Passar para orientação horizontal
+Montar o texto do diagnóstico, de acordo com a ficha
+
+Prognostico
+Passar para o final da tela
+Deixar opções fixas
+Deixar campo aberto de obs
+
+Analise automatica:
+Alterar o nome para Protocolo de Tratamento
+
+Alterar o texto para Solicitar uma mentoria deste caso (sem especialiista)
+
+Diagnostico
+Passar tudo para orientação horizontal
+
+Colocar botão de solicitar analise grande no final
+
+Passar o tratamento para cima da explicação da analise
+
+Passar o prognostico para o fina da tela
+
+Prognostico: opções fixas + campo aberto
+
+Puxar as metas terapêuticas do diagnostico automatico realizado 
+
+Colocar mais uma opção na meta terapêutica: 
+Nao foi possível concluir ou Depende de outra área para tratamento
+
+Permitir adicionar mais metas
+
+Permitir remover metas adicionadas automaticamente
+
+Plano de tratamento
+Passar para orientação horizontal
+
+Metas no topo
+Aparatologia em baixo
+
+Separar da aparatologia: contenção (colocar na frente)
+
+Plano de tratamento
+Mudar para Planejamento
+Deixar um campo aberto
+Colocar no final, campo para Meses de Previsão de termino do tratamento
+
+Necessidade de encaminhamentos:
+Passar para o plano de tratamento
+Preencher automaticamente a partir da analise
+Exibir de qual item foi gerada a necessidade de encaminhamento
+
+Inicio do tratamento:Preencher com a data da primeira consulta
+
+-- ------------------------------------------ --
+
+
 Plano de tratamento:
     Gerenciador do plano de tratamento:
         Criar modal com um botão pra "adicionar fase de tratamento":
