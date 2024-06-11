@@ -798,3 +798,53 @@ p.text-uppercase, p.font-weight-bold {
 .card-top-border {
     border-top: 1px solid #DDD;
 }
+.input-group input,
+.input-group input:hover,
+.input-group input:active,
+.input-group input:focus,
+.l-input-group input,
+.l-input-group input:hover,
+.l-input-group input:active,
+.l-input-group input:focus {
+    background: #FFF;
+}
+
+.l-input-group {
+    display: flex;
+    flex-direction: row;;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.l-input-group > * {
+    height: 32px;
+    border-top: 1px solid #D0D0D0;
+    border-bottom: 1px solid #D0D0D0;
+    border-radius: 0px;
+}
+
+.l-input-group > :first-child {
+    border-left: 1px solid #D0D0D0;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.l-input-group > :last-child {
+    border-right: 1px solid #D0D0D0;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.l-input-group input {
+    background: #FFF;
+}
+
+.l-input-group span {
+    font-weight: 500;
+    padding: 3px 12px;
+    vertical-align: middle;
+    background: #F2F2F2;
+}
+
+.inline-input {
+    display: inline;
+    background: #FFF;
+}

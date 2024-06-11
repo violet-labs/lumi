@@ -4,20 +4,26 @@
       <div class="col-sm-6 col-md-4 px-2 py-1 py-md-3 text-center">
         <material-input label="Fase atual" readonly type="text" centered :value="paciente.fase_atual.nome"
           id="paciente_inicio_tratamento" label-class="me-3" />
-        <span class="text-sm">Maio/2024 a Maio/2025</span>
+        <span class="text-sm">
+          {{ $filters.dateDDY(paciente.fase_atual.data_inicio) }}
+          a
+          {{ $filters.dateDDY(paciente.fase_atual.data_fim) }}
+        </span>
       </div>
+
       <div class="col-sm-6 col-md-2 px-2 py-1 py-md-3 text-center">
         <material-input label="Início do tratamento" readonly type="text" centered
           v-bind:value="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
           label-class="me-3" />
-        <span class="text-sm">há 4 anos</span>
+        <span class="text-sm">{{$filters.howMuchTime(paciente.data_inicio_tratamento, new Date())}}</span>
       </div>
+
       <div class="col-sm-6 col-md-2 px-2 py-1 py-md-3 text-center">
-        <material-input label="Término previsto" readonly type="text" centered
-          v-bind:value="$filters.dateDmy(paciente.data_final_previsa)" id="paciente_inicio_tratamento"
-          label-class="me-3" />
-        <span class="text-sm text-success">em 1 ano</span>
+        <material-input label="Término previsto" readonly type="text" centered v-bind:value="$filters.dateDmy(paciente.data_final_previsa)"
+          id="paciente_fim_tratamento" label-class="me-3" />
+        <span class="text-sm text-success">{{$filters.howMuchTime(paciente.data_final_previsa, new Date())}}</span>
       </div>
+
       <div class="col-sm-6 col-md-4 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
         <label for="" class="me-3">Progresso</label>
         <div class="d-flex flex-column align-items-center justify-content-center w-100 p-0 m-0">
@@ -237,6 +243,9 @@ export default {
     MaterialInput,
   },
   computed: {
+    ultimaFase() {
+      return this.paciente.fases_tratamento[this.paciente.fases_tratamento.length - 1].data_fim;
+    },
     getProgresso() {
       if (!this.paciente.data_inicio_tratamento)
         return '-';

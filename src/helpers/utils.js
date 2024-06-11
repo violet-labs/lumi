@@ -18,3 +18,7 @@ export function getTratamentoProgresso(data_inicio_tratamento, data_final_previs
 
     return parseFloat(progresso.toFixed(2));
 }
+
+export function capitalizeFirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

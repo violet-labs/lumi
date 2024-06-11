@@ -25,11 +25,13 @@
             </div>
             <div class="col-md-6 mt-3 mt-md-0">
                 <div class="box primary h-100">
-                    <p class="custom-card-header">Prognóstico<font-awesome-icon :icon="['fas', 'edit']"
+                    <p class="custom-card-header">
+                        Prognóstico
+                        <font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['prognostico'] }"
                             :title="isEditing['prognostico'] ? 'Sair do modo de edição' : 'Editar o prognóstico'"
-                            @click="toggleEditMode('prognostico')" /></p>
-
+                            @click="toggleEditMode('prognostico')" />
+                    </p>
                     <div v-if="isEditing['prognostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit" title="Salvar as alterações realizadas">
@@ -83,7 +85,7 @@
                                 possível designar um tratamento específico para o caso deste paciente.
                             </p>
                             <p class="text-justify my-0 py-1">
-                                Se você tiver dúvidas sobre esta recomendação para este caso, você pode <a href="#"
+                                Se você tiver dúvidas sobre esta recomendação, você pode <a href="#"
                                     class="underline highlight">solicitar uma análise deste caso</a> a um de nossos
                                 especialistas.
                             </p>

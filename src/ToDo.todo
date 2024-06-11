@@ -5,19 +5,22 @@ Tratamento:
         ☐ Análises radiográficas
         ☐ Aparatologia?
 
-Tratamento recomendado:
+Plano de tratamento:
+    Gerenciador do plano de tratamento:
+        Criar modal com um botão pra "adicionar fase de tratamento":
+            ☐ (5m) Criar modal
+            ☐ (5m) Criar input para data de início do tratamento
+            ☐ (5m) Criar botão adicionar fase de tratamento
+        Ao adicionar o plano de tratamento, calcular:
+            ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada    
+        ☐ (20m) Fazer função na API para atualizar as fases de tratamento        
+    ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
+
+Seção "aparatologia":
+    ☐ Incluir observações na Aparatologia
 
 Análise do perfil clínico:
     ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
-
-Separar as seções do tratamento em componentes:
-
-Fazer modelos de código:
-
-Cadastro das fases do tratamento:
-    ☐ (20m) Ao clicar em Adicionar, ele deve fazer append de uma nova fase e dar focus/scroll? nela
-
-Metas terapêuticas:
 
 Meios de contato:
     ☐ (10m) Fazer função para cadastrar novo meio de contato
@@ -51,19 +54,6 @@ Coisas que preciso ver como será feito:
 Tela de análise clínica (form):
     ☐ Calcular o tratamento recomendado, através das respostas do formulário
     ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
-
-Plano de tratamento:
-    Seção "aparatologia":
-        ☐ Incluir observações na Aparatologia
-    Gerenciador do plano de tratamento:
-        Criar modal com um botão pra "adicionar fase de tratamento":
-            ☐ (5m) Criar modal
-            ☐ (5m) Criar input para data de início do tratamento
-            ☐ (5m) Criar botão adicionar fase de tratamento
-        Ao adicionar o plano de tratamento, calcular:
-            ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada            
-    ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
-    ☐ Dar opção para o paciente consultar o seu plano de tratamento
 
 Consertar layout:
     ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
@@ -113,3 +103,4 @@ Outro dia:
 Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
     ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)
+    ☐ Dar opção para o paciente consultar o seu plano de tratamento

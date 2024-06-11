@@ -62,8 +62,7 @@
                             @click="toggleEditMode('aparatologia')" /></p>
 
                     <div v-if="isEditing['aparatologia']" class="d-flex flex-row w-100 justify-center my-3">
-                        <button class="btn btn-sm btn-primary mb-0 btn-edit"
-                            title="Adicionar um novo item">
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Adicionar um novo item">
                             Adicionar
                         </button>
                         <div class="p-vertical-divider"></div>
@@ -107,7 +106,8 @@
                             Adicionar fase
                         </button>
                         <div class="p-vertical-divider"></div>
-                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Salvar as alterações realizadas">
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Salvar as alterações realizadas"
+                            @click="save('fasesTratamento')">
                             Salvar
                         </button>
                     </div>
@@ -116,17 +116,50 @@
                         <div class="card mx-3 my-2">
 
                             <div class="fase-header d-flex flex-row">
-                                <i class="fas fa-trash ms-2 text-danger-dark pointer"
-                                    v-if="isEditing['planoTratamento']" title="Excluir esta fase do plano de tratamento"></i>
+                                <i class="fas fa-trash ms-4 text-danger-dark pointer"
+                                    v-if="isEditing['planoTratamento']"
+                                    title="Excluir esta fase do plano de tratamento" style="font-size: 14pt;"></i>
 
                                 <div class="col d-flex flex-column" style="padding-left: 30px;">
 
                                     <span :class="{ 'active': fase.id == paciente.fase_atual.id }">
-                                        <strong>Fase {{ index + 1 }}: {{ fase.nome }} (3 meses)</strong></span>
+                                        <strong>
+                                            <span v-if="!isEditing['planoTratamento']">
+                                                Fase {{ index + 1 }}
+                                                <span v-if="fase.id == paciente.fase_atual.id">
+                                                    (atual)</span>: 
+                                            </span>
 
-                                    <span class="text-sm"
+                                            <span v-if="!isEditing['planoTratamento']">{{ fase.nome }}</span>
+
+                                            <div v-if="isEditing['planoTratamento']" class="l-input-group mb-1">
+                                                <span>Fase {{ index + 1 }}</span>
+                                                <input type="text"
+                                                    class="form-control inline-input text-center input-sm"
+                                                    v-model="fase.nome" style="max-width: 250px;">
+                                            </div>
+                                            ({{ $filters.howMuchTime(fase.data_inicio, fase.data_fim, false) }})
+                                        </strong>
+                                    </span>
+
+                                    <span v-if="!isEditing['planoTratamento']" class="text-sm"
                                         :class="{ 'font-weight-bold active': fase.id == paciente.fase_atual.id }"
-                                        style="text-decoration: line-through;">Maio/2024 a Maio/2025</span>
+                                        :style="new Date() >= new Date(fase.data_fim) ? { 'text-decoration': 'line-through' } : {}">
+                                        {{ $filters.dateDDY(fase.data_inicio) }}
+                                        a
+                                        {{ $filters.dateDDY(fase.data_fim) }}
+                                    </span>
+
+                                    <div v-if="isEditing['planoTratamento']"
+                                        class="d-flex flex-row flex-wrap l-input-group mt-2 w-100 pe-2"
+                                        style="margin: 0 auto;">
+                                        <span>De</span>
+                                        <input type="date" class="form-control input-sm" v-model="fase.data_inicio"
+                                            style="max-width: 165px;" />
+                                        <span>a</span>
+                                        <input type="date" class="form-control input-sm" v-model="fase.data_fim"
+                                            style="max-width: 165px;" />
+                                    </div>
                                 </div>
                             </div>
 
@@ -219,8 +252,32 @@ export default {
         }
     },
     computed: {
+        ultimaFase() {
+            return this.paciente.fases_tratamento[this.paciente.fases_tratamento.length - 1];
+        }
     },
     methods: {
+        save(section) {
+            switch (section) {
+                case 'fasesTratamento':
+                    this.saveFasesTratamento();
+                    break;
+                case 'aparatologia':
+                    this.saveAparatologia()
+                    break
+                case 'metasTerapeuticas':
+                    this.saveMetasTerapeuticas()
+            }
+        },
+        saveFasesTratamento() {
+            console.log(this.paciente.fases_tratamento)
+        },
+        saveAparatologia() {
+
+        },
+        saveMetasTerapeuticas() {
+
+        },
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },
