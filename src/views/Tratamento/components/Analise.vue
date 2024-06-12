@@ -111,26 +111,6 @@
                         </v-table>
                     </div>
                 </div>
-                <div class="custom-card primary mt-4">
-                    <p class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon
-                            :icon="['fas', 'edit']" class="ml-3 pointer"
-                            :class="{ 'active': isEditing['necessidadesEncaminhamento'] }"
-                            :title="isEditing['necessidadesEncaminhamento'] ? 'Sair do modo de edição' : 'Editar as necessidades de encaminhamento'"
-                            @click="toggleEditMode('necessidadesEncaminhamento')" /></p>
-
-                    <div v-if="isEditing['necessidadesEncaminhamento']" class="w-100 text-center mb-3">
-                        <div class="p-vertical-divider"></div>
-                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
-                            Salvar
-                        </button>
-                    </div>
-                    <p v-if="!isEditing['necessidadesEncaminhamento']" class="text-justify py-2 px-4">
-                        Não há necessidade de encaminhamentos.
-                    </p>
-                    <textarea v-if="isEditing['necessidadesEncaminhamento']" name="" id="" class="form-control"
-                        rows="4">Não há necessidade de encaminhamentos.</textarea>
-                </div>
             </div>
             <div class="col-md-7 ps-md-4">
                 <div class="custom-card primary mt-4">

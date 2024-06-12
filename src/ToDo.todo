@@ -1,118 +1,87 @@
 -- ------------------------------------------ --
-
-Remover da tela do perfil
-Convenio
-Clínica
-Objetivo do tratamento
-Indicado por
-
-Adicionar no perfil do paciente
-	RG (no lugar do objetivo)
-	Ortodontista
-	Nome do pai
-	Nome da mae
-
-Responsável
-	Nome completo
-	CPF
-	RG
-    
-
-Remover fase atual do tratamento
-Aumentar a barra de progresso
-
-Permitir edição do nome no formulário de bem-vindo
-
-Colocar link do formulário na tela do perfil
-Alterar para VER FORMULARIO depois de preenchido
-
-Passar a analise para orientação horizontal
-
-Relatos do paciente vai para o topo
-
-Analises radiografias:
-Campo aberto POEF
-Campo aberto observa;óes
-
-Diagnostico
-Passar para orientação horizontal
-Montar o texto do diagnóstico, de acordo com a ficha
-
-Prognostico
-Passar para o final da tela
-Deixar opções fixas
-Deixar campo aberto de obs
-
-Analise automatica:
-Alterar o nome para Protocolo de Tratamento
-
-Alterar o texto para Solicitar uma mentoria deste caso (sem especialiista)
-
-Diagnostico
-Passar tudo para orientação horizontal
-
-Colocar botão de solicitar analise grande no final
-
-Passar o tratamento para cima da explicação da analise
-
-Passar o prognostico para o fina da tela
-
-Prognostico: opções fixas + campo aberto
-
-Puxar as metas terapêuticas do diagnostico automatico realizado 
-
-Colocar mais uma opção na meta terapêutica: 
-Nao foi possível concluir ou Depende de outra área para tratamento
-
-Permitir adicionar mais metas
-
-Permitir remover metas adicionadas automaticamente
-
-Plano de tratamento
-Passar para orientação horizontal
-
-Metas no topo
-Aparatologia em baixo
-
-Separar da aparatologia: contenção (colocar na frente)
-
-Plano de tratamento
-Mudar para Planejamento
-Deixar um campo aberto
-Colocar no final, campo para Meses de Previsão de termino do tratamento
-
-Necessidade de encaminhamentos:
-Passar para o plano de tratamento
-Preencher automaticamente a partir da analise
-Exibir de qual item foi gerada a necessidade de encaminhamento
-
-Inicio do tratamento:Preencher com a data da primeira consulta
-
+(1h) Perfil do paciente:
+    Adicionar:
+        ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
+        ☐ RG (no lugar do "objetivo do tratamento")
+        ☐ Ortodontista
+        ☐ Nome do pai
+        ☐ Nome da mãe
+        Campo do responsável:
+            ☐ Nome completo
+            ☐ CPF
+            ☐ RG  
+    Remover:
+        ☐ Convênio
+        ☐ Clínica
+        ☐ Objetivo do tratamento
+        ☐ Indicado por
 -- ------------------------------------------ --
-
-
+Tratamento:
+    ☐ Inicio do tratamento: preencher com a data da primeira consulta
+-- ------------------------------------------ --
+Tela de Análise ():
+    ☐ Passar tela para a orientação vertical
+    ☐ Relatos do paciente vai para o topo
+-- ------------------------------------------ --
+Tela de Diagnóstico/Prognóstico:
+    ✔ Passar tela para a orientação vertical @done(24-06-11 22:16)
+    ✔ Alterar o nome de "Análise automática" para "Protocolo de Tratamento" @done(24-06-11 22:10)
+    ✔ Alterar o texto para "Solicitar uma mentoria deste caso" (sem especialista) @done(24-06-11 22:11)
+    ✔ Colocar botão de "solicitar análise", grande, no final @done(24-06-11 22:35)
+    -- NO: Passar o tratamento para cima da explicação da análise
+    ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
+    Prognóstico:
+        ✔ Passar para o final da tela @done(24-06-11 22:44)
+        ☐ Deixar opções fixas
+        ☐ Deixar campo aberto para observação
+-- ------------------------------------------ --
+Tela de Plano de tratamento:
+    ☐ Passar tela para a orientação vertical
+    ☐ Remover fase atual do tratamento (aumentando a barra de progresso)
+    ☐ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento"
+    ☐ Colocar as metas no topo
+    ☐ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo?)
+    ☐ Separar da aparatologia: contenção (colocar na frente)
+    ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando de adicionar novas, manualmente)
+    ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
+    ☐ Deixar um campo aberto
+    Colocar mais uma opção na meta terapêutica: 
+        ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
+    Seção "Necessidade de encaminhamentos":
+        ✔ Passar para o "Plano de tratamento" @done(24-06-11 22:46)
+        ☐ Preencher automaticamente a partir da analise
+        ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
+-- ------------------------------------------ --
+Tela do Histórico:
+    ☐ Passar tela para a orientação vertical
+-- ------------------------------------------ --
+Formulário de bem-vindo:  
+    ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
+-- ------------------------------------------ --
+Analises radiográficas:
+    Adicionar campos:
+        ☐ POEF (aberto)
+        ☐ Observações (aberto)
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
 Plano de tratamento:
-    Gerenciador do plano de tratamento:
-        Criar modal com um botão pra "adicionar fase de tratamento":
-            ☐ (5m) Criar modal
-            ☐ (5m) Criar input para data de início do tratamento
-            ☐ (5m) Criar botão adicionar fase de tratamento
-        Ao adicionar o plano de tratamento, calcular:
-            ☐ (20m) Início e fim de cada etapa, de acordo com a duração especificada    
-        ☐ (20m) Fazer função na API para atualizar as fases de tratamento        
-    ☐ Exibir botão "Criar plano de tratamento", quando estiver vazio
-
+    ☐ Excluir tudo de "fases de tratamento" (Backend e Front-end)
 Seção "aparatologia":
     ☐ Incluir observações na Aparatologia
-
 Análise do perfil clínico:
     ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
-
 Meios de contato:
     ☐ (10m) Fazer função para cadastrar novo meio de contato
-
 -- ------------------------------------------ --
-
+-- ------------------------------------------ --
+-- ------------------------------------------ --
 Formulário de bem-vindo e tratamento das respostas:
     ☐ (10m) Fazer novo layout para rolar as perguntas  
     ☐ (30m) Executar a migração para a nova estrutura:
@@ -132,23 +101,18 @@ Formulário de bem-vindo e tratamento das respostas:
     ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
     ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
     ☐ (10m) Centralizar todos .modal no centro vertical da tela
-
 Coisas que preciso ver como será feito:
     ☐ (1h) Estrutura do formulário de bem-vindo
     ☐ (1h) Estrutura da análise clínica
-
 Tela de análise clínica (form):
     ☐ Calcular o tratamento recomendado, através das respostas do formulário
     ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
-
 Consertar layout:
     ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
     ☐ (20m) A sidenav não está chegando até o final da tela
-
 Later:
     Laravel - aprender:
         ☐ (10m) Como fazer paginação do lado do servidor
-
     ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
     ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
     ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
@@ -163,7 +127,9 @@ Later:
             ☐ Criar tabela de contas
             ☐ Criar sidenav com opções pertinentes ao financeiro
     ☐ Backend: verificar os models e migrations dos pacientes (comparar com o da CECLOP e verificar se tá faltando algum campo)
-    
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
 Outro dia:
     Front-end:
         Desenvolver:
@@ -184,9 +150,16 @@ Outro dia:
             ☐ Consultas / agenda
         Tabela pacientes:
             ☐ picture_url
-            ☐ status
-            
+            ☐ status            
 Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
     ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)
     ☐ Dar opção para o paciente consultar o seu plano de tratamento
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+New ideas:
+    ☐ No diagnóstico, colocar 3 colunas de <ul>, com os itens apresentados na análise
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
