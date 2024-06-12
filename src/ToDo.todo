@@ -20,8 +20,8 @@ Tratamento:
     ☐ Inicio do tratamento: preencher com a data da primeira consulta
 -- ------------------------------------------ --
 Tela de Análise ():
-    ☐ Passar tela para a orientação vertical
-    ☐ Relatos do paciente vai para o topo
+    ✔ Passar tela para a orientação vertical @done(24-06-11 22:52)
+    ✔ Relatos do paciente vai para o topo @done(24-06-11 22:52)
 -- ------------------------------------------ --
 Tela de Diagnóstico/Prognóstico:
     ✔ Passar tela para a orientação vertical @done(24-06-11 22:16)
@@ -36,12 +36,12 @@ Tela de Diagnóstico/Prognóstico:
         ☐ Deixar campo aberto para observação
 -- ------------------------------------------ --
 Tela de Plano de tratamento:
-    ☐ Passar tela para a orientação vertical
-    ☐ Remover fase atual do tratamento (aumentando a barra de progresso)
-    ☐ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento"
-    ☐ Colocar as metas no topo
-    ☐ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo?)
-    ☐ Separar da aparatologia: contenção (colocar na frente)
+    ✔ Passar tela para a orientação vertical @done(24-06-11 23:01)
+    ✔ Remover fase atual do tratamento (aumentando a barra de progresso) @done(24-06-11 22:49)
+    ✔ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento" @done(24-06-11 22:52)
+    ✔ Colocar as metas no topo @done(24-06-11 23:01)
+    ✔ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo? - foi colocado em baixo das metas) @done(24-06-11 23:01)
+    ✔ Separar da aparatologia: contenção (colocar na frente) @done(24-06-11 23:02)
     ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando de adicionar novas, manualmente)
     ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
     ☐ Deixar um campo aberto
@@ -53,7 +53,7 @@ Tela de Plano de tratamento:
         ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
 -- ------------------------------------------ --
 Tela do Histórico:
-    ☐ Passar tela para a orientação vertical
+    ✔ Passar tela para a orientação vertical @done(24-06-11 23:02)
 -- ------------------------------------------ --
 Formulário de bem-vindo:  
     ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)

@@ -1,8 +1,41 @@
 <template>
     <div class="tratamento-content">
         <div class="row">
-            <div class="col-md-5 pe-md-0">
-                <div class="custom-card primary h-100">
+            
+            <div class="col-12">
+                <div class="custom-card primary">
+                    <div class="custom-card-header">
+                        Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']"
+                            class="ml-3 pointer" title="Como funciona?" />
+                    </div>
+                    <div class="custom-card-body p-0 pb-3">
+                        <div class="row px-3">
+                            <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
+                                class="col-md-6 mt-2 px-2 py-1">
+                                <div class="card">
+                                    <div class="card-header p-3 pb-0">
+                                        <p class="text-uppercase text-sm" style="font-weight: 500">{{ categoria }}</p>
+                                    </div>
+                                    <div class="card-body m-0 p-3 pt-2">
+                                        <div class="info-container" v-for="perception in perceptions"
+                                            v-bind:key="perception.text" :class="perception.type">
+                                            <div style="width: 30px; text-align: center;">
+                                                <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
+                                            </div>
+                                            <div class="">
+                                                <span>{{ perception.text }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="custom-card primary h-100 mt-4">
                     <div class="custom-card-header">
                         Extra-bucal
                         <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
@@ -40,7 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 mt-4 mt-md-0 ps-md-4">
+
+            <div class="col-12 mt-4">
                 <div class="custom-card primary h-100">
                     <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['intraBucal'] }"
@@ -76,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5 pe-md-0">
+            <div class="col-12">
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['analisesRadiograficas'] }"
@@ -109,37 +143,6 @@
                                 </tr>
                             </tbody>
                         </v-table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7 ps-md-4">
-                <div class="custom-card primary mt-4">
-                    <div class="custom-card-header">
-                        Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']"
-                            class="ml-3 pointer" title="Como funciona?" />
-                    </div>
-                    <div class="custom-card-body p-0 pb-3">
-                        <div class="row px-3">
-                            <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
-                                class="col-md-6 mt-2 px-2 py-1">
-                                <div class="card">
-                                    <div class="card-header p-3 pb-0">
-                                        <p class="text-uppercase text-sm" style="font-weight: 500">{{ categoria }}</p>
-                                    </div>
-                                    <div class="card-body m-0 p-3 pt-2">
-                                        <div class="info-container" v-for="perception in perceptions"
-                                            v-bind:key="perception.text" :class="perception.type">
-                                            <div style="width: 30px; text-align: center;">
-                                                <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
-                                            </div>
-                                            <div class="">
-                                                <span>{{ perception.text }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="tratamento-content">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-12">
                 <div class="box primary" ref="metasTerapeuticasBox">
                     <p class="custom-card-header">
                         Metas terapêuticas
@@ -54,8 +54,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="box primary">
+
+            <div class="col-6 h-100">
+                <div class="box primary mt-4">
                     <p class="custom-card-header">Aparatologia<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['aparatologia'] }"
                             :title="isEditing['aparatologia'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
@@ -78,9 +79,11 @@
                                     <td><strong>{{ item.name }}:</strong></td>
                                     <td>
                                         <span v-if="!isEditing['aparatologia']">{{ item.text }}</span>
-                                        <select v-if="isEditing['aparatologia'] && item.type == 'options'" class="form-select select-sm"
-                                            :value="item.text" style="min-width: 170px;">
-                                            <option v-for="option in item.options" v-bind:key="option.id" :class="'text-' + option.mood" :selected="option.text == item.text">{{ option.text }}</option>
+                                        <select v-if="isEditing['aparatologia'] && item.type == 'options'"
+                                            class="form-select select-sm" :value="item.text" style="min-width: 170px;">
+                                            <option v-for="option in item.options" v-bind:key="option.id"
+                                                :class="'text-' + option.mood" :selected="option.text == item.text">{{
+                                                option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
                                         <input v-if="false" class="form-control input-sm"
@@ -91,8 +94,52 @@
                         </table>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-6">
+                <div class="box primary mt-4" style="height: calc(100% - 1.5rem)">
+                    <p class="custom-card-header">Contenção<font-awesome-icon :icon="['fas', 'edit']"
+                            class="ml-3 pointer" :class="{ 'active': isEditing['contencao'] }"
+                            :title="isEditing['contencao'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
+                            @click="toggleEditMode('contencao')" /></p>
+
+                    <div v-if="isEditing['contencao']" class="d-flex flex-row w-100 justify-center my-3">
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Adicionar um novo item">
+                            Adicionar
+                        </button>
+                        <div class="p-vertical-divider"></div>
+                        <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+
+                    <div class="card-body p-0 card-top-border">
+                        <table class="table-sm table-striped w-100 table-aparatologia">
+                            <tbody>
+                                <tr v-for="item in contencao" v-bind:key="item.id">
+                                    <td><strong>{{ item.name }}:</strong></td>
+                                    <td>
+                                        <span v-if="!isEditing['contencao']">{{ item.text }}</span>
+                                        <select v-if="isEditing['contencao'] && item.type == 'options'"
+                                            class="form-select select-sm" :value="item.text" style="min-width: 170px;">
+                                            <option v-for="option in item.options" v-bind:key="option.id"
+                                                :class="'text-' + option.mood" :selected="option.text == item.text">{{
+                                                option.text }}</option>
+                                            <option>Outro (especificar)...</option>
+                                        </select>
+                                        <input v-if="false" class="form-control input-sm"
+                                            placeholder="Especifique..." />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
                 <div class="box primary mt-4 pb-2">
-                    <p class="custom-card-header mb-3">Plano de tratamento<font-awesome-icon :icon="['fas', 'edit']"
+                    <p class="custom-card-header mb-3">Planejamento<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['planoTratamento'] }"
                             :title="isEditing['planoTratamento'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('planoTratamento')" /></p>
@@ -114,8 +161,8 @@
 
                             <div class="fase-header d-flex flex-row">
                                 <i class="fas fa-trash ms-4 text-danger-dark pointer"
-                                    v-if="isEditing['planoTratamento']"
-                                    title="Excluir esta fase do plano de tratamento" style="font-size: 14pt;"></i>
+                                    v-if="isEditing['planoTratamento']" title="Excluir esta fase do plano de tratamento"
+                                    style="font-size: 14pt;"></i>
 
                                 <div class="col d-flex flex-column" style="padding-left: 30px;">
 
@@ -124,7 +171,7 @@
                                             <span v-if="!isEditing['planoTratamento']">
                                                 Fase {{ index + 1 }}
                                                 <span v-if="fase.id == paciente.fase_atual.id">
-                                                    (atual)</span>: 
+                                                    (atual)</span>:
                                             </span>
 
                                             <span v-if="!isEditing['planoTratamento']">{{ fase.nome }}</span>
@@ -284,6 +331,22 @@ const aparatologia = [
             { id: 95, text: 'SADB' },
         ],
     },
+    // {
+    //     id: 50,
+    //     name: 'Necessidade de exercícios miofuncionais',
+    //     text: 'nenhuma',
+    //     observation: '',
+    //     type: 'options',
+    //     options: [
+    //         { id: 150, text: 'nenhuma' },
+    //         { id: 160, text: 'respiração' },
+    //         { id: 170, text: 'deglutição' },
+    //         { id: 180, text: 'posição de língua' },
+    //     ]
+    // },
+]
+
+const contencao = [
     {
         id: 30,
         name: 'Contenção superior',
@@ -338,6 +401,7 @@ export default {
         return {
             isEditing,
             aparatologia,
+            contencao,
         }
     },
     computed: {
