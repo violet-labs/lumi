@@ -46,11 +46,6 @@
                                 </span>
                             </div>
                         </div>
-                        <div v-if="!isEditing['metasTerapeuticas']" class="card-body px-4 py-3 text-center"
-                            v-html="meta.descricao.replaceAll('\\n', '<br />')">
-                        </div>
-                        <textarea v-if="isEditing['metasTerapeuticas']" name="" id="" class="form-control text-center"
-                            v-html="textNewLine(meta.descricao)"></textarea>
                     </div>
                 </div>
             </div>

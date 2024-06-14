@@ -69,8 +69,8 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Informações pessoais</p>
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
-                          <label for="paciente_dentista" class="form-control-label">Dentista padrão</label>
-                          <select class="form-select" id="paciente_dentista">
+                          <label for="paciente_ortodontista" class="form-control-label">Ortodontista</label>
+                          <select class="form-select" id="paciente_ortodontista">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -79,30 +79,38 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <material-input label="Nascimento" type="date" v-bind:value="paciente.data_nascimento"
-                            id="paciente_dataNacsimento" />
+                            id="paciente_dataNascimento" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input type="text" label="Objetivo do tratamento"
-                            v-bind:value="paciente.objetivo_tratamento" id="paciente_objetivoTratamento" />
+                          <material-input type="text" label="RG"
+                            v-bind:value="paciente.rg" id="paciente_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <material-input label="CPF" type="text" v-bind:value="paciente.cpf" id="paciente_cpf" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <material-input label="Convênio" type="text" v-bind:value="paciente.id_convenio"
-                            id="paciente_convenio" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <material-input label="Clínica" type="text" v-bind:value="paciente.id_clinica"
-                            id="paciente_clinica" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <material-input label="Como conheceu a clínica" type="text"
                             v-bind:value="paciente.como_conheceu" id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Indicado por" type="text" v-bind:value="paciente.indicado_por"
-                            id="paciente_indicado_por" />
+                          <material-input label="Nome do pai" type="text"
+                            v-bind:value="paciente.nome_pai" id="paciente_nome_pai" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <material-input label="Nome do mãe" type="text"
+                            v-bind:value="paciente.nome_mae" id="paciente_nome_mae" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <material-input label="Nome" type="text"
+                            v-bind:value="paciente.responsavel_nome" id="responsavel_nome" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <material-input label="RG" type="text"
+                            v-bind:value="paciente.responsavel_rg" id="responsavel_rg" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <material-input label="CPF" type="text"
+                            v-bind:value="paciente.responsavel_cpf" id="responsavel_cpf" />
                         </div>
                       </div>
 

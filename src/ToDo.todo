@@ -1,4 +1,4 @@
-☐ Gerar itens do "D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual"
+☐ Gerar tarefas de funcionalidades do outro sistema ("D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual")
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -13,19 +13,20 @@ Reunião 11/06/2024:
 (1h) Perfil do paciente:
     Adicionar:
         ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
-        ☐ RG (no lugar do "objetivo do tratamento")
-        ☐ Ortodontista
-        ☐ Nome do pai
-        ☐ Nome da mãe
+        ✔ RG (no lugar do "objetivo do tratamento") @done(24-06-14 00:18)
+        ✔ Ortodontista @done(24-06-13 23:43)
+        ✔ Nome do pai @done(24-06-14 00:18)
+        ✔ Nome da mãe @done(24-06-14 00:18)
         Campo do responsável:
-            ☐ Nome completo
-            ☐ CPF
-            ☐ RG  
+            ✔ Nome completo @done(24-06-14 00:18)
+            ✔ CPF @done(24-06-14 00:18)
+            ✔ RG @done(24-06-14 00:18)
     Remover:
-        ☐ Convênio
-        ☐ Clínica
-        ☐ Objetivo do tratamento
-        ☐ Indicado por
+        ✔ Dentista padrão @done(24-06-13 23:43)
+        ✔ Convênio @done(24-06-14 00:18)
+        ✔ Clínica @done(24-06-14 00:18)
+        ✔ Objetivo do tratamento @done(24-06-14 00:18)
+        ✔ Indicado por @done(24-06-14 00:18)
 -- ------------------------------------------ --
 Tratamento:
     ☐ Fazer carousel de imagens abaixo do resumo do tratamento
@@ -55,6 +56,7 @@ Tela de Plano de tratamento:
     ✔ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo? - foi colocado em baixo das metas) @done(24-06-11 23:01)
     ✔ Separar da aparatologia: contenção (colocar na frente) @done(24-06-11 23:02)
     ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando de adicionar novas, manualmente)
+    ✔ Remover a descrição das metas terapêuticas @done(24-06-14 00:22)
     ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
     ☐ Deixar um campo aberto
     Colocar mais uma opção na meta terapêutica: 
