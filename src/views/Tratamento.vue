@@ -41,7 +41,13 @@
       </div>
     </div>
 
-    <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
+<div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
+
+<div class="py-2 px-3 d-flex flex-row img-carousel-container">
+  <img v-for="image in carouselImages" v-bind:key="image.id" :src="image.src" alt="">
+</div>
+
+<div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
     <div class="d-flex flex-row w-100" style="padding: 15px 10px; align-content: space-evenly !important;">
       <div class="tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
@@ -147,6 +153,21 @@
   padding: 20px;
   padding-top: 5px;
 }
+
+.img-carousel-container {
+  background: #F2F2F2;
+  border-width: 0px 1px 0px 1px;
+  border-style: solid;
+  border-color: #e2e2e2;
+  gap: 10px;
+}
+
+.img-carousel-container img {
+  border: 2px solid #aaa;
+  border-radius: 3px;
+  max-width: 120px;
+}
+
 </style>
 
 <script>
@@ -159,6 +180,33 @@ import PlanoTratamento from "./Tratamento/components/PlanoTratamento.vue"
 
 var tratamentoTab = 'analise'
 const items = []
+
+const carouselImages = [
+  {
+    id: 1,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+  {
+    id: 2,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+  {
+    id: 3,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+  {
+    id: 4,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+  {
+    id: 5,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+  {
+    id: 6,
+    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+  },
+]
 
 export default {
   name: "tratamento",
@@ -174,6 +222,7 @@ export default {
     return {
       items,
       tratamentoTab,
+      carouselImages,
     }
   },
   methods: {
