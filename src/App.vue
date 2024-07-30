@@ -20,7 +20,7 @@ body {
 <template>
   <entrar v-if="!isAuthenticated() || $route.name === 'Entrar'"></entrar>
   <div class="user-access" v-if="isAuthenticated() && $route.name !== 'Entrar'">
-    <tab-navigation class="bg-gradient-primary" v-if="isAuthenticated() && $route.name !== 'Forms'" />
+    <tab-navigation class="bg-gradient-primary" v-if="isAuthenticated() && $route.name !== 'WelcomeForm'" />
     <main class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden">
       <router-view />
       <app-footer v-show="showFooter" />

@@ -44,7 +44,15 @@
 <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
 <div class="py-2 px-3 d-flex flex-row img-carousel-container">
-  <img v-for="image in carouselImages" v-bind:key="image.id" :src="image.src" alt="">
+  <div v-for="image in carouselImages" v-bind:key="image.id">
+    <div>
+      <img :src="image.src" alt="">
+    </div>
+  </div>
+
+  <div v-for="i in emptyPhotos" :key="i" class="empty-photo">
+    
+  </div>
 </div>
 
 <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
@@ -162,10 +170,28 @@
   gap: 10px;
 }
 
-.img-carousel-container img {
-  border: 2px solid #aaa;
+.img-carousel-container > div {
+  background: #000;
+  border: 2px solid #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   border-radius: 3px;
+}
+
+.img-carousel-container img {
   max-width: 120px;
+  max-height: 90px;
+}
+
+.img-carousel-container > div:hover {
+  filter: brightness(90%);
+}
+
+.empty-photo {
+  width: 300px;
+  height: 96px;
 }
 
 </style>
@@ -183,30 +209,28 @@ const items = []
 
 const carouselImages = [
   {
-    id: 1,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
-  },
-  {
     id: 2,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr2.jpg'
   },
   {
     id: 3,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr3.jpg'
   },
   {
     id: 4,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i1.png'
   },
   {
     id: 5,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i2.jpg'
   },
   {
     id: 6,
-    src: 'http://dev.lumiorthosystem:8080/img/team-2.1593fb7f.jpg'
+    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i3.jpg'
   },
 ]
+
+var emptyPhotos = 10;
 
 export default {
   name: "tratamento",
@@ -223,6 +247,7 @@ export default {
       items,
       tratamentoTab,
       carouselImages,
+      emptyPhotos,
     }
   },
   methods: {

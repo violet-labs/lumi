@@ -1,10 +1,34 @@
+Formulário de boas-vindas:
+    ✔ Corrigir a contagem da porcentagem @done(24-07-29 21:59)
+    ✔ Trocar o texto "É um prazer recebê-lo!" por algo como "Vamos lá!" @done(24-07-29 21:59)
+    ✔ Colocar propriedade "required": true em todas questões @done(24-07-29 22:00)
+    ☐ Alterar required para false nas questões que não forem obrigatórias
+    ✔ Fazer estilização das questões obrigatórias @done(24-07-29 22:08)
+    ☐ Fazer comportamento do botão de avançar (scrolling)
+    ☐ Colocar as propriedades de "detalhamento" nas questões que precisarem
+    ☐ Colocar os "titulo_detalhe" nas questões que precisarem
+    
+    ☐ Ver se o objeto está refletido corretamente
+    ☐ Tentar enviar via request
+    ☐ Receber e conferir o objeto
+    ☐ Iniciar funções da API
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+Front-end:
+    ☐ (30m) checar e finalizar visual e funcionalidades do formulário    
+    ☐ (10m) criar chamada na API para entregar o formulário
+
+☐ Intervalo
+
+Back-end:
+    ☐ (20m) criar model do formulário de bem-vindo    
+    ☐ (10m) criar migration para gerar a tabela do formulário    
+    ☐ (30m) criar rota para receber o formulário e salvá-lo
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
 ☐ Gerar tarefas de funcionalidades do outro sistema ("D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual")
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -13,61 +37,26 @@ Reunião 11/06/2024:
 (1h) Perfil do paciente:
     Adicionar:
         ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
-        ✔ RG (no lugar do "objetivo do tratamento") @done(24-06-14 00:18)
-        ✔ Ortodontista @done(24-06-13 23:43)
-        ✔ Nome do pai @done(24-06-14 00:18)
-        ✔ Nome da mãe @done(24-06-14 00:18)
-        Campo do responsável:
-            ✔ Nome completo @done(24-06-14 00:18)
-            ✔ CPF @done(24-06-14 00:18)
-            ✔ RG @done(24-06-14 00:18)
-    Remover:
-        ✔ Dentista padrão @done(24-06-13 23:43)
-        ✔ Convênio @done(24-06-14 00:18)
-        ✔ Clínica @done(24-06-14 00:18)
-        ✔ Objetivo do tratamento @done(24-06-14 00:18)
-        ✔ Indicado por @done(24-06-14 00:18)
 -- ------------------------------------------ --
 Tratamento:
-    ✔ Fazer carousel de imagens abaixo do resumo do tratamento @done(24-06-15 22:25)
     ☐ Inicio do tratamento: preencher com a data da primeira consulta
 -- ------------------------------------------ --
-Tela de Análise ():
-    ✔ Passar tela para a orientação vertical @done(24-06-11 22:52)
-    ✔ Relatos do paciente vai para o topo @done(24-06-11 22:52)
--- ------------------------------------------ --
 Tela de Diagnóstico/Prognóstico:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 22:16)
-    ✔ Alterar o nome de "Análise automática" para "Protocolo de Tratamento" @done(24-06-11 22:10)
-    ✔ Alterar o texto para "Solicitar uma mentoria deste caso" (sem especialista) @done(24-06-11 22:11)
-    ✔ Colocar botão de "solicitar análise", grande, no final @done(24-06-11 22:35)
     -- NO: Passar o tratamento para cima da explicação da análise
     ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
     Prognóstico:
-        ✔ Passar para o final da tela @done(24-06-11 22:44)
         ☐ Deixar opções fixas
         ☐ Deixar campo aberto para observação
 -- ------------------------------------------ --
 Tela de Plano de tratamento:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 23:01)
-    ✔ Remover fase atual do tratamento (aumentando a barra de progresso) @done(24-06-11 22:49)
-    ✔ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento" @done(24-06-11 22:52)
-    ✔ Colocar as metas no topo @done(24-06-11 23:01)
-    ✔ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo? - foi colocado em baixo das metas) @done(24-06-11 23:01)
-    ✔ Separar da aparatologia: contenção (colocar na frente) @done(24-06-11 23:02)
     ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
-    ✔ Remover a descrição das metas terapêuticas @done(24-06-14 00:22)
     ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
     ☐ Deixar um campo aberto
     Colocar mais uma opção na meta terapêutica: 
         ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
     Seção "Necessidade de encaminhamentos":
-        ✔ Passar para o "Plano de tratamento" @done(24-06-11 22:46)
         ☐ Preencher automaticamente a partir da analise
         ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
--- ------------------------------------------ --
-Tela do Histórico:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 23:02)
 -- ------------------------------------------ --
 Formulário de bem-vindo:  
     ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
@@ -76,12 +65,6 @@ Analises radiográficas:
     Adicionar campos:
         ☐ POEF (aberto)
         ☐ Observações (aberto)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --

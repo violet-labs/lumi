@@ -1,9 +1,37 @@
 import axios from '@/services/axios'
 
+export async function sendWelcomeForm(form) {
+    try {
+        const response = await axios.post('/api/welcome', form);
+
+        if (response.data && response.data.status === 'uccess')
+            return true
+
+    } catch (error) {
+        console.error('Erro ao enviar formulário de boas-vindas:', error);
+    }
+
+    return false
+}
+
+export async function getEnderecoByCep(cep) {
+    const enderecoInfo = await axios.get('https://api.brasilaberto.com/v1/zipcode/' + cep, { withCredentials: false })
+
+    return enderecoInfo.data && enderecoInfo.data.result ? enderecoInfo.data.result : null
+}
+
 export async function addNovoPaciente(paciente) {
     const response = await axios.post('/pacientes', {
         nome: paciente.nome
     })
+
+    return (response && response.status == 200)
+}
+
+export async function updatePaciente(paciente) {
+    const response = await axios.put('/pacientes/' + paciente.id, paciente)
+
+    console.log('response:', response)
 
     return (response && response.status == 200)
 }
@@ -29,7 +57,6 @@ export async function getAllPacientes(search = '') {
     const response = []
     for (const paciente of allPacientes.data) {
         paciente.progress = 95
-        paciente.place = 'Poços de Caldas'
         paciente.dentista = 'DANIEL SALLES'
         paciente.email = 'thales-lima@live.com'
         response.push(paciente)
@@ -38,14 +65,15 @@ export async function getAllPacientes(search = '') {
     return response
 }
 
-export async function uploadImage(event, imageType) {
+export async function uploadImage(image, type, date, description) {
     let data = new FormData();
-    data.append('name', 'my-picture');
-    data.append('image', event.target.files[0]);
-    data.append('imageType', imageType);
+    data.append('image', image);
+    data.append('type', type);
+    data.append('date', date);
+    data.append('description', description);
 
     await axios.post('/pacientes/upload-image', data,
-    {
-        header: {'Content-Type': 'image/png' }
-    })
+        {
+            header: { 'Content-Type': 'image/png' }
+        })
 }

@@ -17,13 +17,8 @@
                                     <div v-if="!hasStarted" class="pb-0 card-header text-start">
                                         <h4 class="font-weight-bolder">Seja muito bem-vindo!</h4>
                                     </div>
-                                    <div v-if="currentPage == totalPages" class="pb-0 card-header text-center"
-                                        style="padding-top: 50px;">
-                                        <h4 class="font-weight-bolder">
-                                            É um prazer recebê-lo, Thales!
-                                        </h4>
-                                    </div>
                                     <div class="card-body">
+
                                         <div v-if="!hasStarted">
                                             <div class="main-container">
                                                 <p class="mb-0">Por favor, responda esta ficha com carinho, para que
@@ -34,531 +29,105 @@
                                                     @click="startForm">Iniciar</button>
                                             </div>
                                         </div>
-                                        <div v-if="hasStarted">
-                                            <div v-if="currentPage == 1" id="form-page1">
-                                                <div class="main-container">
-                                                    <label for="nome_completo">Nos diga o seu nome completo:</label>
-                                                    <MaterialInput id="nome_completo" name="nome_completo">
-                                                    </MaterialInput>
 
-                                                    <div class="option-divider"></div>
+                                        <div v-if="hasStarted && hasFinished">
+                                            <div class="main-container">
+                                                <p class="mb-3">Obrigado por suas respostas! Elas irão nos ajudar a
+                                                    entender melhor as suas necessidades e te apresentar a melhor
+                                                    solução! Nos vemos jajá :z.</p>
 
-                                                    <label for="nome_completo">Qual é a sua idade?</label>
-                                                    <MaterialInput id="nome_completo" name="nome_completo">
-                                                    </MaterialInput>
+                                                <h4>Siga-nos nas redes sociais:</h4>
 
-                                                    <div class="option-divider"></div>
+                                                <button class="btn btn-sm start-button bg-gradient-secondary"
+                                                    @click="startForm">Facebook</button>
+                                            </div>
+                                        </div>
 
-                                                    <label for="nome_completo">Seu e-mail, para ficar informado:</label>
-                                                    <MaterialInput id="nome_completo" name="nome_completo">
-                                                    </MaterialInput>
+                                        <div v-if="hasStarted && !hasFinished" class="px-4">
+                                            <div class="pb-0 pt-4 text-center">
+                                                <h4 class="font-weight-bolder">
+                                                    Vamos lá!
+                                                </h4>
+                                            </div>
 
-                                                    <div class="option-divider"></div>
+                                            <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4">
+                                                <label v-if="question.tipo !== 'text'"
+                                                    class="mb-0 p-0 font-weight-bolder">{{ question.questao }}
+                                                    <span v-if="question.obrigatoria" class="text-danger">*</span>
+                                                </label>
 
-                                                    <label for="nome_completo">Agora seu celular/WhatsApp:</label>
-                                                    <MaterialInput id="nome_completo" name="nome_completo">
-                                                    </MaterialInput>
+                                                <div v-if="question.tipo === 'text'" class="mt-0 p-0">
+                                                    <MaterialInput :name="question.id" :id="question.id"
+                                                        :label="question.questao" labelClass="font-weight-bolder"
+                                                        v-model="question.resposta"
+                                                        :required="question.obrigatoria"
+                                                        :input="refreshProgress"/>
+                                                </div>
 
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 2">
-                                                <div class="question-container">
-                                                    O que mais te incomoda em seu sorriso? O que você gostaria de mudar?
-                                                </div>
-                                                <div class="main-container">
+                                                <div v-else-if="question.tipo === 'checkbox'">
                                                     <table class="options-checkbox">
-                                                        <tr>
+                                                        <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
+                                                            :key="alternativaIndex">
                                                             <td>
-                                                                <label><input type="checkbox"> dentes
-                                                                    encavalados</label>
+                                                                <input type="checkbox" :name="question.id + '-' + alternativa.resposta"
+                                                                    :id="question.id + '-' + alternativa.resposta"
+                                                                    v-model="alternativa.selecionada"
+                                                                    @change="refreshProgress" />
+                                                                <label :for="question.id + '-' + alternativa.resposta">{{ alternativa.resposta }}</label>
                                                             </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> dentes para frente
-                                                                    (dentuço)</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> espaço entre os
-                                                                    dentes</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> sorriso torto</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> dor ou sensibilidade nos
-                                                                    dentes</label>
-                                                            </td>
-                                                            <td></td>
                                                         </tr>
                                                     </table>
+                                                </div>
 
-                                                    <label><input type="checkbox"> Outro(s):</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 3">
-                                                <div class="question-container">
-                                                    O que isso interfere no seu dia-a-dia?
-                                                </div>
-                                                <div class="main-container">
+                                                <div v-else-if="question.tipo === 'radio'">
                                                     <table class="options-checkbox">
-                                                        <tr>
+                                                        <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
+                                                            :key="alternativaIndex">
                                                             <td>
-                                                                <label><input type="checkbox"> Vergonha / medo de
-                                                                    sorrir</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Dificuldade em falar /
-                                                                    pronunciar algumas palavras</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> medo e/ou preocupação em
-                                                                    comer ou beber algo</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Outro(s):</label>
+                                                                <input type="radio" :name="question.id"
+                                                                    :id="`alternativa-${question.id}-${alternativaIndex}`"
+                                                                    @input="updateSelectedOption(question.id, alternativa.resposta)" />
+                                                                <label :for="`alternativa-${question.id}-${alternativaIndex}`">{{
+                                                                    alternativa.resposta }}</label>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                 </div>
-                                            </div>
-                                            <div v-if="currentPage == 4">
-                                                <div class="question-container">
-                                                    Você tem, ou já teve, algum destes hábitos?
+
+                                                <div v-if="question.detalhar && question.detalhar === 'opcional'">
+                                                    <input type="checkbox" :name="question.id + '-detalhar-cb'" :id="question.id + '-detalhar-cb'"
+                                                        v-model="question.detalhando"
+                                                        @change="refreshProgress" />
+                                                    <label :for="question.id + '-detalhar-cb'">
+                                                        {{  question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Detalhar...'  }}
+                                                    </label>
                                                 </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Chupar chupeta</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Chupar dedos</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Roer unhas</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Ranger os dentes</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Apertar os dentes</label>
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="checkbox"> Outro(s):</label>
+
+                                                <!-- Caso a questão tiver detalhamento obrigatório ou o detalhamento for optado pelo usuário -->
+                                                <div
+                                                    v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
+                                                    <MaterialInput :name="question.id + '-detalhar'"
+                                                        :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
+                                                        :id="question.id + '-detalhar'" v-model="question.detalhe"
+                                                        :input="refreshProgress" />
                                                 </div>
-                                            </div>
-                                            <div v-if="currentPage == 5">
-                                                <div class="question-container">
-                                                    Quão bem você respira pelo nariz?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Muito bem</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Normal</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Não muito bem</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Quase nada</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Nada</label>
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="radio"> Detalhar:</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 6">
-                                                <div class="question-container">
-                                                    Você costuma ter dores de cabeça?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sempre</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Quase sempre</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Às vezes</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Dificilmente</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Nunca</label>
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="radio"> Detalhar:</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 7">
-                                                <div class="question-container">
-                                                    Descreva como é a sua dor de cabeça:
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você pratica algum esporte de contato físico?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 8">
-                                                <div class="question-container">
-                                                    Qual é a sua profissão/ocupação?
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você lida com o público?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você já fez tratamento ortodôntico?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!-- v-if="Se a resposta acima for sim": -->
-                                            <div v-if="currentPage == 9">
-                                                <div class="question-container">
-                                                    Como foi sua experiência com aparelho fixo?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Sem incômodo</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Desagradável</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Quebrava
-                                                                    constantamente</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Machucava minha
-                                                                    boca</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Não combinava
-                                                                    comigo</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Era difícil de
-                                                                    higienizar</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="checkbox"> Detalhar:</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 10">
-                                                <div class="question-container">
-                                                    Qual sua percepção ao ver alguém com aparelho fixo?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Acho normal</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Acho bonito</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Acho estranho</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Acho feio</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Parece doer</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Parece coisa de
-                                                                    adolescente</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="checkbox"> Detalhar:</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 11">
-                                                <div class="question-container">
-                                                    O que você considera importante em um tratamento ortodôntico?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Ser estético</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Ser removível</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Facilidade de
-                                                                    limpar</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Não atrapalhar na
-                                                                    alimentação</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Não dificultar a higiene
-                                                                    dos dentes</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Previsibilidade do
-                                                                    resultado final</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="checkbox"> Detalhar:</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 12">
-                                                <div class="question-container">
-                                                    Você está sob tratamento médico?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você tem algum destes problemas de saúde?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Pressão alta</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="checkbox"> Diabetes</label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="checkbox"> Problema cardíaco</label>
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </table>
-                                                    <label><input type="checkbox"> Outro(s):</label>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 13">
-                                                <div class="question-container">
-                                                    Você já sofreu algum acidente em que bateu a boca?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você já teve algum problema em um tratamento odontológico anterior?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!-- v-if="Se a resposta da pergunta acima for Sim" -->
-                                            <div v-if="currentPage == 14">
-                                                <div class="question-container">
-                                                    Conte-nos como foi o problema que você enfrentou:
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                                <div class="question-container">
-                                                    Quando foi sua última consulta e/ou tratamento odontológico? Se
-                                                    quiser, pode nos contar como foi sua experiência:
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 15">
-                                                <div class="question-container">
-                                                    Nos conte como você conheceu o Instituto Daniel Salles:
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                                <div class="question-container">
-                                                    Você bem atendido(a) pela nossa equipe?
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <!-- v-if="Se a resposta anterior for Sim" -->
-                                            <!-- <div v-if="currentPage == 16">
-                                                <div class="question-container">
-                                                    Por favor, nos diga o que houve:
-                                                </div>
-                                                <div class="main-container">
-                                                    <MaterialInput></MaterialInput>
-                                                </div>
-                                            </div> -->
-                                            <div v-if="currentPage == 17">
-                                                <div class="question-container">
-                                                    Você autoriza a nossa equipe a tirar algumas fotos durante seu
-                                                    atendimento? Lembrando que não há exposição direta do paciente.
-                                                </div>
-                                                <div class="main-container">
-                                                    <table class="options-checkbox align-center">
-                                                        <tr>
-                                                            <td>
-                                                                <label><input type="radio"> Sim</label>
-                                                            </td>
-                                                            <td>
-                                                                <label><input type="radio"> Não</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div v-if="currentPage == 18">
-                                                <div class="main-container">
-                                                    <p>
-                                                        <br>
-                                                        Obrigado por suas respostas! Elas irão nos ajudar a entender
-                                                        melhor as suas necessidades e te apresentar a melhor solução!
-                                                        <br>
-                                                        Nos vemos jajá :)
-                                                    </p>
-                                                </div>
-                                            </div>
+
+                                                <div class="p-horizontal-divider"></div>
+
+                                            </div> <!-- v-for / -->
+
                                         </div>
                                     </div>
                                     <div class="card-footer">
                                         <div v-if="hasStarted">
                                             <button v-if="currentPage < totalPages - 1"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="nextPage" :disabled="currentPage >= totalPages">Avançar</button>
+                                                @click="console.log(questions)" :disabled="false">Avançar</button>
                                             <button v-if="currentPage == totalPages - 1"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="nextPage">Finalizar</button>
+                                                @click="finish">Finalizar</button>
                                             <div class="progress progress-striped">
-                                                <div class="progress-bar">
+                                                <div class="progress-bar" style="width: 0% !important">
                                                 </div>
                                             </div>
                                         </div>
@@ -730,9 +299,398 @@ const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
 import { isMobile } from "@/utils.js";
 
-var hasStarted = false;
-var currentPage = 1;
-var totalPages = 18;
+const questions = [
+    {
+        questao: 'Nos diga o seu nome completo:',
+        tipo: 'text',
+        id: 'nome_completo',
+        ordem: 10,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'Qual é a sua idade?',
+        tipo: 'text',
+        id: 'idade',
+        ordem: 20,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'Seu e-mail, para ficar informado:',
+        tipo: 'text',
+        id: 'email',
+        ordem: 30,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'Agora seu celular/WhatsApp:',
+        tipo: 'text',
+        id: 'telefone',
+        ordem: 40,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'O que mais te incomoda em seu sorriso e que você gostaria de mudar?',
+        tipo: 'checkbox',
+        id: 'sorriso_incomodo',
+        ordem: 50,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'dentes encavalados', selecionada: false, ponto_atencao: 'Dentes encavalados' },
+            { resposta: 'dentes para frente (dentuço)', selecionada: false, ponto_atencao: 'Dentes para frente' },
+            { resposta: 'espaço entre os dentes', selecionada: false, ponto_atencao: 'Espaço entre os dentes' },
+            { resposta: 'sorriso torto', selecionada: false, ponto_atencao: 'Sorriso torto' },
+            { resposta: 'dor ou sensibilidade nos dentes', selecionada: false, ponto_atencao: 'Dor ou sensibilidade nos dentes' },
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Outro(s):",
+        titulo_consideracoes_detalhe: "Incômodos com o sorriso",
+        detalhe: "",
+    },
+    {
+        questao: 'Você já teve algum destes problemas?',
+        tipo: 'checkbox',
+        id: 'problemas_sorriso',
+        ordem: 60,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Vergonha / medo de sorrir', selecionada: false, ponto_negativo: 'Vergonha ou medo de sorrir' },
+            { resposta: 'Dificuldade em falar / pronunciar algumas palavras', selecionada: false, ponto_atencao: 'Dificuldade em falar' },
+            { resposta: 'Medo e/ou preocupação em comer ou beber algo', selecionada: false, ponto_atencao: 'Preocupação em comer ou beber' },
+            { resposta: 'Outro(s):', selecionada: false, ponto_neutro: 'Outros problemas' }
+        ]
+    },
+    {
+        questao: 'Você tem, ou já teve, algum destes hábitos?',
+        tipo: 'checkbox',
+        id: 'habitos_ruins',
+        ordem: 70,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Chupar chupeta' },
+            { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Chupar dedos' },
+            { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Roer unhas' },
+            { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Ranger os dentes' },
+            { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Apertar os dentes' },
+            { resposta: 'Outro(s):', selecionada: false, ponto_neutro: 'Hábitos' }
+        ]
+    },
+
+
+    {
+        questao: 'Quão bem você respira pelo nariz?',
+        tipo: 'radio',
+        id: 'respiracao_nariz',
+        ordem: 80,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Muito bem', selecionada: false, ponto_positivo: 'Respira muito bem pelo nariz' },
+            { resposta: 'Normal', selecionada: false, ponto_neutro: 'Respira normalmente pelo nariz' },
+            { resposta: 'Não muito bem', selecionada: false, ponto_negativo: 'Não respira muito bem pelo nariz' },
+            { resposta: 'Quase nada', selecionada: false, ponto_negativo: 'Quase não respira pelo nariz' },
+            { resposta: 'Nada', selecionada: false, ponto_negativo: 'Não respira pelo nariz' },
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Detalhar:",
+        titulo_consideracoes_detalhe: "Respiração pelo nariz",
+        detalhe: "",
+    },
+    {
+        questao: 'Você costuma ter dores de cabeça?',
+        tipo: 'radio',
+        id: 'dores_cabeca',
+        ordem: 90,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sempre', selecionada: false, ponto_negativo: 'Sempre tem dores de cabeça' },
+            { resposta: 'Quase sempre', selecionada: false, ponto_negativo: 'Quase sempre tem dores de cabeça' },
+            { resposta: 'Às vezes', selecionada: false, ponto_neutro: 'Às vezes tem dores de cabeça' },
+            { resposta: 'Dificilmente', selecionada: false, ponto_positivo: 'Dificilmente tem dores de cabeça' },
+            { resposta: 'Nunca', selecionada: false, ponto_positivo: 'Nunca tem dores de cabeça' },
+            { resposta: 'Detalhar:', selecionada: false, ponto_atencao: 'Dores de cabeça' }
+        ],
+        detalhar: "sempre",
+        detalhando: false,
+        titulo_questao_detalhe: "Se sim, por favor descreva:",
+        titulo_consideracoes_detalhe: "Detalhes sobre a dor de cabeça",
+        detalhe: "",
+    },
+    {
+        questao: 'Você pratica algum esporte de contato físico?',
+        tipo: 'radio',
+        id: 'esporte_contato',
+        ordem: 110,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false, ponto_atencao: 'Pratica esporte de contato físico' },
+            { resposta: 'Não', selecionada: false }
+        ]
+    },
+    {
+        questao: 'Você tem algum problema de saúde?',
+        tipo: 'checkbox',
+        id: 'problemas_saude',
+        ordem: 120,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Diabetes', selecionada: false, ponto_negativo: 'Tem diabetes' },
+            { resposta: 'Hipertensão', selecionada: false, ponto_negativo: 'Tem hipertensão' },
+            { resposta: 'Doença cardíaca', selecionada: false, ponto_negativo: 'Tem doença cardíaca' },
+            { resposta: 'Doença respiratória', selecionada: false, ponto_negativo: 'Tem doença respiratória' },
+            { resposta: 'Outro(s):', selecionada: false, ponto_atencao: 'Tem outro problema de saúde' }
+        ]
+    },
+    {
+        questao: 'Você tem algum problema de saúde mental?',
+        tipo: 'checkbox',
+        id: 'problemas_saude_mental',
+        ordem: 130,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Ansiedade', selecionada: false, ponto_negativo: 'Tem ansiedade' },
+            { resposta: 'Depressão', selecionada: false, ponto_negativo: 'Tem depressão' },
+            { resposta: 'Outro(s):', selecionada: false, ponto_atencao: 'Tem problema(s) de saúde mental' }
+        ]
+    },
+    {
+        questao: 'Você tem algum hábito de saúde?',
+        tipo: 'checkbox',
+        id: 'habitos_saude',
+        ordem: 140,
+        obrigatoria: true,
+        alternativas: [
+            {
+                resposta: 'Fumar',
+                selecionada: false,
+                ponto_negativo: 'Possui hábito de fumar'
+            },
+            {
+                resposta: 'Beber',
+                selecionada: false,
+                ponto_negativo: 'Possui hábito de beber'
+            },
+            {
+                resposta: 'Outro(s):',
+                selecionada: false,
+                ponto_neutro: 'Hábitos de saúde'
+            }
+        ]
+    },
+    {
+        questao: 'Você tem algum problema de saúde bucal?',
+        tipo: 'checkbox',
+        id: 'problemas_saude_bucal',
+        ordem: 150,
+        obrigatoria: true,
+        alternativas: [
+            {
+                resposta: 'Dor de dente',
+                selecionada: false,
+                ponto_atencao: 'Possui dor de dente'
+            },
+            {
+                resposta: 'Sensibilidade nos dentes',
+                selecionada: false,
+                ponto_atencao: 'Possui sensibilidade nos dentes'
+            },
+            {
+                resposta: 'Gengivite',
+                selecionada: false,
+                ponto_negativo: 'Possui gengivite'
+            },
+            {
+                resposta: 'Periodontite',
+                selecionada: false,
+                ponto_negativo: 'Possui periodontite'
+            },
+            {
+                resposta: 'Outro(s):',
+                selecionada: false,
+                ponto_neutro: 'Problemas de saúde bucal'
+            }
+        ]
+    },
+    {
+        questao: 'Você autoriza a nossa equipe a tirar algumas fotos durante seu atendimento? Lembrando que não há exposição direta do paciente',
+        tipo: 'radio',
+        id: 'autorizacao_fotos',
+        ordem: 160,
+        obrigatoria: true,
+        alternativas: [
+            {
+                resposta: 'Sim',
+                selecionada: false,
+                ponto_positivo: 'Autorizou a tirada de fotos'
+            },
+            {
+                resposta: 'Não',
+                selecionada: false,
+                ponto_neutro: 'Não autorizou a tirada de fotos'
+            }
+        ]
+    },
+    {
+        questao: 'O que você faz? (qual sua profissão e sua ocupação atual)',
+        tipo: 'text',
+        id: 'profissao_ocupacao',
+        ordem: 170,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'Você lida com o público?',
+        tipo: 'radio',
+        id: 'lida_publico',
+        ordem: 180,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false },
+            { resposta: 'Não', selecionada: false }
+        ]
+    },
+    {
+        questao: 'Você já fez tratamento ortodôntico no passado? Usou aparelho fixo ou removível?',
+        tipo: 'radio',
+        id: 'tratamento_ortodontico_passado',
+        ordem: 190,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false },
+            { resposta: 'Não', selecionada: false }
+        ]
+    },
+    {
+        questao: 'Como foi sua experiência com aparelho fixo? (assinale quantas opções você quiser)',
+        tipo: 'checkbox',
+        id: 'experiencia_aparelho_fixo',
+        ordem: 200,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Normal - nenhum incômodo', selecionada: false },
+            { resposta: 'Desagradável', selecionada: false },
+            { resposta: 'Quebrava / descolava constantemente', selecionada: false },
+            { resposta: 'Machucava meus lábios, bochecha e/ou gengiva', selecionada: false },
+            { resposta: 'Não combinava com minha personalidade / não gostava', selecionada: false },
+            { resposta: 'Era difícil de higienizar', selecionada: false },
+        ],
+        detalhar: "sempre",
+        detalhando: false,
+        titulo_questao_detalhe: "Por favor, descreva:",
+        titulo_consideracoes_detalhe: "",
+        detalhe: "",
+    },
+    {
+        questao: 'Qual sua percepção quando você vê alguém com aparelho fixo? (assinale quantas opções você quiser)',
+        tipo: 'checkbox',
+        id: 'percepcao_aparelho_fixo',
+        ordem: 210,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Normal', selecionada: false },
+            { resposta: 'Acho bonito', selecionada: false },
+            { resposta: 'Acho estranho', selecionada: false },
+            { resposta: 'Acho feio', selecionada: false },
+            { resposta: 'Deve doer', selecionada: false },
+            { resposta: 'Não combina com a idade da pessoa - se ela é mais velha', selecionada: false },
+            { resposta: 'Aparelho fixo é coisa de adolescentes', selecionada: false },
+        ],
+        detalhar: "sempre",
+        detalhando: false,
+        titulo_questao_detalhe: "Por favor, descreva:",
+        titulo_consideracoes_detalhe: "",
+        detalhe: "",
+    },
+    {
+        questao: 'O que você considera importante em um tratamento ortodôntico? (assinale quantas opções você quiser)',
+        tipo: 'checkbox',
+        id: 'importante_tratamento_ortodontico',
+        ordem: 220,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Ser estético', selecionada: false },
+            { resposta: 'Ser removível', selecionada: false },
+            { resposta: 'Fácil de limpar', selecionada: false },
+            { resposta: 'Não atrapalhar na alimentação', selecionada: false },
+            { resposta: 'Fácil de higienizar os dentes', selecionada: false },
+            { resposta: 'Saber como ficará meu sorriso no final do tratamento (previsibilidade)', selecionada: false },
+        ],
+        detalhar: "sempre",
+        detalhando: false,
+        titulo_questao_detalhe: "Por favor, descreva:",
+        titulo_consideracoes_detalhe: "",
+        detalhe: "",
+    },
+    {
+        questao: 'Você está sob tratamento médico?',
+        tipo: 'radio',
+        id: 'tratamento_medico',
+        ordem: 230,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false },
+            { resposta: 'Não', selecionada: false },
+        ],
+        detalhar: "sempre",
+        detalhando: false,
+        titulo_questao_detalhe: "Por favor, descreva:",
+        titulo_consideracoes_detalhe: "",
+        detalhe: "",
+    },
+    {
+        questao: 'Você já teve algum acidente e bateu a boca?',
+        tipo: 'radio',
+        id: 'acidente_bateu_boca',
+        ordem: 240,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false },
+            { resposta: 'Não', selecionada: false },
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_detalhe: "",
+        detalhe: "",
+    },
+    {
+        questao: 'Você já teve algum problema em tratamentos odontológicos anteriores?',
+        tipo: 'radio',
+        id: 'problema_tratamento_odontologico',
+        ordem: 250,
+        obrigatoria: true,
+        alternativas: [
+            { resposta: 'Sim', selecionada: false },
+            { resposta: 'Não', selecionada: false }
+        ]
+    },
+    {
+        questao: 'Se já teve algum problema em tratamentos anteriores, nos conte como foi:',
+        tipo: 'text',
+        id: 'descricao_problema_tratamento_odontologico',
+        ordem: 260,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+    {
+        questao: 'Quando foi sua última consulta e/ou tratamento odontológico? (se quiser, pode nos dizer o nome do dentista e/ou como foi sua última experiência)',
+        tipo: 'text',
+        id: 'ultima_consulta_tratamento_odontologico',
+        ordem: 270,
+        obrigatoria: true,
+        resposta: '',
+        alternativas: null
+    },
+];
 
 export default {
     name: "welcomeForm",
@@ -740,6 +698,17 @@ export default {
         MaterialInput,
     },
     methods: {
+        updateSelectedOption(questionName, optionValue) {
+            this.questions.forEach((question) => {
+                if (question.id === questionName) {
+                    question.alternativas.forEach((option) => {
+                        option.selecionada = option.resposta === optionValue;
+                    });
+                }
+            });
+
+            this.refreshProgress()
+        },
         startForm() {
             this.hasStarted = true;
 
@@ -747,21 +716,38 @@ export default {
                 this.refreshProgress()
             }, 50)
         },
-        nextPage() {
-            if (this.currentPage > this.totalPages + 1)
-                return false;
-
-            this.currentPage++;
-
-            if (this.currentPage == 16)
-                this.currentPage = 17
-
-            this.refreshProgress()
-        },
         refreshProgress() {
-            var percentageComplete = parseFloat((this.currentPage - 1) / ((this.totalPages - 1) / 100)).toFixed(2)
+            const totalQuestions = this.questions.length
+            let answeredQuestions = 0;
 
-            document.getElementsByClassName('progress-bar')[0].style = 'width: ' + percentageComplete + '%';
+            for (const question of this.questions)
+                if (this.isQuestionAnswered(question))
+                    answeredQuestions++
+
+            const percentageComplete = (answeredQuestions / (totalQuestions / 100)).toFixed(2)
+
+            document.getElementsByClassName('progress-bar')[0].style = 'width: ' + percentageComplete + '% !important';
+        },
+        isQuestionAnswered(question) {
+            return (
+                (question.tipo === "text" && question.resposta !== '')
+
+                ||
+
+                (
+                (question.tipo === "checkbox" || question.tipo === "radio")
+                    &&
+                    question.alternativas.some(option => option.selecionada)
+                )
+
+                ||
+
+                (question.detalhar && question.detalhar === 'sempre' && question.detalhe && question.detalhe.trim() !== '')
+
+                ||
+
+                (question.detalhar && question.detalhar === 'opcional' && question.detalhando && question.detalhe && question.detalhe.trim() !== '')
+            )
         },
         getLogoClass() {
             return this.hasStarted ? 'small' : '';
@@ -771,10 +757,12 @@ export default {
         return {
             entrarImg,
             logo,
-            hasStarted,
-            currentPage,
-            totalPages,
-            isMobile: isMobile()
+            hasStarted: false,
+            hasFinished: false,
+            currentPage: 1,
+            totalPages: 18,
+            isMobile: isMobile(),
+            questions,
         }
     },
     created() {

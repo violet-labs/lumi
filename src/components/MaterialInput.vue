@@ -1,18 +1,9 @@
 <template>
-    <label :for="id" class="form-label" :class="labelClass">{{ label }}</label>
-    <input
-      :id="id"
-      :type="type"
-      class="form-control"
-      :class="getClasses(size, centered)"
-      :name="name"
-      :value="value"
-      :placeholder="placeholder"
-      :isRequired="isRequired"
-      :disabled="disabled"
-      :readonly="readonly"
-      @input="$emit('update:value', $event.target.value)"
-    />
+  <label v-if="label && label.trim() !== ''" :for="id" class="form-label" :class="labelClass">{{ label }}
+    <span v-if="required" class="text-danger">*</span>
+  </label>
+  <input :id="id" :type="type" class="form-control" :class="getClasses(size, centered)" :name="name" :value="modelValue"
+    :placeholder="placeholder" :isRequired="isRequired" :disabled="disabled" :readonly="readonly" @input="$emit('update:modelValue', $event.target.value); inputEvent();" />
 </template>
 
 <script>
@@ -21,6 +12,14 @@ import setMaterialInput from "@/assets/js/material-input.js";
 export default {
   name: "MaterialInput",
   props: {
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    input: {
+      type: Function,
+      default: null,
+    },
     variant: {
       type: String,
       default: "outline",
@@ -65,7 +64,7 @@ export default {
       type: String,
       required: true,
     },
-    value: {
+    modelValue: {
       type: String,
       default: "",
     },
@@ -82,11 +81,16 @@ export default {
       default: false,
     },
   },
-  emits: ["update:value"],
+  emits: ["update:modelValue", 'input'],
   mounted() {
     setMaterialInput();
   },
   methods: {
+    inputEvent() {
+      if (this.input)
+        this.input()
+    },
+
     getClasses: (size, centered) => {
       let sizeValue;
 

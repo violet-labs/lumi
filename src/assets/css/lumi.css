@@ -851,3 +851,27 @@ p.text-uppercase, p.font-weight-bold {
     display: inline;
     background: #FFF;
 }
+
+
+.fadeHeight-enter-active,
+.fadeHeight-leave-active {
+  transition: all 1s;
+}
+.fadeHeight-enter-from,
+.fadeHeight-leave-to
+{
+  opacity: 0;
+  max-height: 0px;
+}
+.fadeHeight-enter-to,
+.fadeHeight-leave-from
+{
+  opacity: 1;
+  max-height: 230px;
+}
+
+[v-cloak].init-hidden {
+    display: none !important;
+}
+
+[v-cloak] { display:none; }

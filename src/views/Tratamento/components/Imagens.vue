@@ -19,9 +19,43 @@
                                         </tr>
                                         <tr>
                                             <td class="text-center pt-3">
-                                                <button class="btn bg-gradient-primary">
-                                                    Adicionar
-                                                </button>
+                                                
+                                                <div v-if="!pendingXrayUpload">
+                                                    <input id="xrayFileInput" type="file" accept="image/*"
+                                                        @change=setXrayPreview hidden>
+
+                                                    <button class="btn bg-gradient-primary" @click="chooseXrayFile()">
+                                                        Adicionar
+                                                    </button>
+                                                </div>
+
+                                                <div v-if="pendingXrayUpload" class="d-flex flex-column align-center">
+                                                    <img :src="xrayPreviewImage" class="image-preview" />
+
+                                                    <div class="l-input-group mt-3">
+                                                        <span>Data:</span>
+                                                        <input type="date" class="form-control input-sm"
+                                                            v-model="xrayDate" />
+                                                    </div>
+
+                                                    <div class="l-input-group mt-3 w-100">
+                                                        <span>Descrição:</span>
+                                                        <input type="text" ref="xrayDescriptionInput"
+                                                            class="form-control input-sm" v-model="xrayDescription" />
+                                                    </div>
+
+                                                    <div class="d-flex flex-row justify-center mt-3" style="gap: 10px;">
+                                                        <button class="btn btn-sm btn-danger"
+                                                            @click="cancelXrayUpload()">
+                                                            Cancelar
+                                                        </button>
+                                                        <button class="btn btn-sm btn-primary"
+                                                            @click="confirmXrayUpload()">
+                                                            Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -50,12 +84,42 @@
                                         </tr>
                                         <tr>
                                             <td class="text-center pt-3">
-                                                <!-- <input type="file" accept="image/*"
-                                                    @change="uploadImage($event, 'radiografia')" id="file-input"> -->
 
-                                                <button class="btn bg-gradient-primary">
-                                                    Adicionar
-                                                </button>
+                                                <div v-if="!pendingPhotoUpload">
+                                                    <input id="photoFileInput" type="file" accept="image/*"
+                                                        @change=setPhotoPreview hidden>
+
+                                                    <button class="btn bg-gradient-primary" @click="choosePhotoFile()">
+                                                        Adicionar
+                                                    </button>
+                                                </div>
+
+                                                <div v-if="pendingPhotoUpload" class="d-flex flex-column align-center">
+                                                    <img :src="photoPreviewImage" class="image-preview" />
+
+                                                    <div class="l-input-group mt-3">
+                                                        <span>Data:</span>
+                                                        <input type="date" class="form-control input-sm"
+                                                            v-model="photoDate" />
+                                                    </div>
+
+                                                    <div class="l-input-group mt-3 w-100">
+                                                        <span>Descrição:</span>
+                                                        <input type="text" ref="photoDescriptionInput"
+                                                            class="form-control input-sm" v-model="photoDescription" />
+                                                    </div>
+
+                                                    <div class="d-flex flex-row justify-center mt-3" style="gap: 10px;">
+                                                        <button class="btn btn-sm btn-danger"
+                                                            @click="cancelPhotoUpload()">
+                                                            Cancelar
+                                                        </button>
+                                                        <button class="btn btn-sm btn-primary"
+                                                            @click="confirmPhotoUpload()">
+                                                            Salvar
+                                                        </button>
+                                                    </div>
+                                                </div>
 
                                             </td>
                                         </tr>
@@ -70,19 +134,91 @@
     </div>
 </template>
 
-<style></style>
+<style>
+.image-preview {
+    border: 2px solid #AAA;
+    border-radius: 5px;
+    width: 150px !important;
+    height: 150px !important;
+}
+</style>
 
 <script>
 import { uploadImage } from "@/services/pacientesService"
+
+let pendingPhotoFile = null
+let pendingXrayFile = null
 
 export default {
     name: "Imagens",
     data() {
         return {
+            photoPreviewImage: null,
+            pendingPhotoUpload: false,
+            photoDescription: '',
+            photoDate: new Date().toISOString().slice(0, 10),
+            xrayPreviewImage: null,
+            pendingXrayUpload: false,
+            xrayDescription: '',
+            xrayDate: new Date().toISOString().slice(0, 10)
         }
     },
     methods: {
-        uploadImage,
+        cancelPhotoUpload() {
+            this.pendingPhotoUpload = false
+            this.pendingPhotoFile = null
+            this.photoPreviewImage = null
+        },
+
+        choosePhotoFile() {
+            document.getElementById('photoFileInput').click()
+        },
+
+        async confirmPhotoUpload() {
+            const response = await uploadImage(this.pendingPhotoFile, 'photo', this.photoDate, this.photoDescription)
+        },
+
+        setPhotoPreview(e) {
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e => {
+                this.photoPreviewImage = e.target.result
+                this.pendingPhotoUpload = true
+                this.pendingPhotoFile = image
+                this.$nextTick(() => {
+                    this.$refs.photoDescriptionInput.focus()
+                });
+            };
+        },
+
+        cancelXrayUpload() {
+            this.pendingXrayUpload = false
+            this.pendingXrayFile = null
+            this.xrayPreviewImage = null
+        },
+
+        chooseXrayFile() {
+            document.getElementById('xrayFileInput').click()
+        },
+
+        async confirmXrayUpload() {
+            const response = await uploadImage(this.pendingXrayFile, 'xray', this.xrayDate, this.xrayDescription)
+        },
+
+        setXrayPreview(e) {
+            const image = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e => {
+                this.xrayPreviewImage = e.target.result
+                this.pendingXrayUpload = true
+                this.pendingXrayFile = image
+                this.$nextTick(() => {
+                    this.$refs.xrayDescriptionInput.focus()
+                });
+            };
+        }
     },
     components: {
     },

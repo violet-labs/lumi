@@ -13,7 +13,8 @@
               <div class="col-auto my-auto">
                 <div class="h-100">
                   <h5 class="mb-1 fs-4">{{ paciente.nome }}</h5>
-                  <p class="mb-0 font-weight-bold">{{ $filters.howMuchTime(paciente.data_nascimento, new Date(), false) }}</p>
+                  <p class="mb-0 font-weight-bold">{{ $filters.howMuchTime(paciente.data_nascimento, new Date(), false)
+                    }}</p>
                 </div>
               </div>
               <div class="mx-auto mt-3 col-md-6 my-sm-auto ms-sm-auto me-sm-0">
@@ -70,7 +71,7 @@
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
                           <label for="paciente_ortodontista" class="form-control-label">Ortodontista</label>
-                          <select class="form-select" id="paciente_ortodontista">
+                          <select class="form-select" id="paciente_ortodontista" v-model="paciente.id_dentista">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -78,39 +79,38 @@
                           </select>
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nascimento" type="date" v-bind:value="paciente.data_nascimento"
+                          <material-input label="Nascimento" type="date" v-model:value="paciente.data_nascimento"
                             id="paciente_dataNascimento" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input type="text" label="RG"
-                            v-bind:value="paciente.rg" id="paciente_rg" />
+                          <material-input type="text" label="RG" v-model:value="paciente.rg" id="paciente_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="CPF" type="text" v-bind:value="paciente.cpf" id="paciente_cpf" />
+                          <material-input label="CPF" type="text" v-model:value="paciente.cpf" id="paciente_cpf" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <material-input label="Como conheceu a clínica" type="text"
-                            v-bind:value="paciente.como_conheceu" id="paciente_como_conheceu" />
+                            v-model:value="paciente.como_conheceu" id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome do pai" type="text"
-                            v-bind:value="paciente.nome_pai" id="paciente_nome_pai" />
+                          <material-input label="Nome do pai" type="text" v-model:value="paciente.nome_pai"
+                            id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome do mãe" type="text"
-                            v-bind:value="paciente.nome_mae" id="paciente_nome_mae" />
+                          <material-input label="Nome do mãe" type="text" v-model:value="paciente.nome_mae"
+                            id="paciente_nome_mae" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome" type="text"
-                            v-bind:value="paciente.responsavel_nome" id="responsavel_nome" />
+                          <material-input label="Nome" type="text" v-model:value="paciente.responsavel_nome"
+                            id="responsavel_nome" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="RG" type="text"
-                            v-bind:value="paciente.responsavel_rg" id="responsavel_rg" />
+                          <material-input label="RG" type="text" v-model:value="paciente.responsavel_rg"
+                            id="responsavel_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="CPF" type="text"
-                            v-bind:value="paciente.responsavel_cpf" id="responsavel_cpf" />
+                          <material-input label="CPF" type="text" v-model:value="paciente.responsavel_cpf"
+                            id="responsavel_cpf" />
                         </div>
                       </div>
 
@@ -122,7 +122,8 @@
                     <div class="col-md-6 ps-4">
 
                       <hr class="horizontal dark" />
-                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
+                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
+                        contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
                       <v-table style="font-size: 12pt;">
                         <thead>
@@ -137,10 +138,12 @@
                               <a href="#" class="hoverable">
                                 <span class="d-inline-block text-center" style="width: 30px;">
 
-                                  <font-awesome-icon v-if="contato.tipo != 'telefone'" :icon="getContatoIcon(contato.tipo)" class="me-2"
-                                  :class="{'text-success':contato.tipo == 'whatsapp', 'fs-14': contato.tipo == 'email', 'fs-15': contato.tipo != 'email'}" />
+                                  <font-awesome-icon v-if="contato.tipo != 'telefone'"
+                                    :icon="getContatoIcon(contato.tipo)" class="me-2"
+                                    :class="{ 'text-success': contato.tipo == 'whatsapp', 'fs-14': contato.tipo == 'email', 'fs-15': contato.tipo != 'email' }" />
 
-                                  <v-icon v-if="contato.tipo == 'telefone'" class="me-2" style="font-size: 17pt;">{{getContatoIcon(contato.tipo)}}</v-icon>
+                                  <v-icon v-if="contato.tipo == 'telefone'" class="me-2" style="font-size: 17pt;">{{
+                                    getContatoIcon(contato.tipo) }}</v-icon>
 
                                 </span>
                                 {{ contato.contato }}
@@ -202,7 +205,7 @@
                       <div class="row">
                         <div class="col-md-4 mb-2">
                           <material-input label="CEP" type="text" v-bind:value="paciente.endereco_cep"
-                            id="paciente_enderecoCep" />
+                            :input="getEndereco" id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <material-input label="Logradouro" type="text" v-bind:value="paciente.endereco_logradouro"
@@ -227,6 +230,16 @@
                       </div>
                     </div>
                   </div>
+                  <Transition name="fadeHeight">
+                    <div v-cloak v-if="hasPendingChanges" class="row col-12">
+                      <div class="p-horizontal-divider my-0"></div>
+                      <div class="w-100 py-3 text-center">
+                        <button class="btn btn btn-primary m-0">
+                          Salvar alterações
+                        </button>
+                      </div>
+                    </div>
+                  </Transition>
                   <div class="row p-0 w-100 mx-auto"
                     style="border-top: 1px solid #EEE; background: linear-gradient(to bottom, #d7e6ef, #e6eff4,  #e6eff4, #FFF, #FFF);">
                     <div class="col-12 text-center mb-1 p-3 m-0"
@@ -261,6 +274,7 @@
                     </div>
 
                   </div>
+
                 </div>
               </Transition>
               <Transition>
@@ -362,15 +376,19 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
-import { getPaciente } from "@/services/pacientesService"
+import { getPaciente, updatePaciente, getEnderecoByCep } from "@/services/pacientesService"
 
 const body = document.getElementsByTagName("body")[0];
 
 var paciente = {}
 
+var originalPaciente = {}
+
 var showTratamento = false;
 
 var activeProfileTab = 'perfilPessoal';
+
+var hasPendingChanges = false;
 
 var personalPerceptions = {
   'Sobre aparelho': [
@@ -426,16 +444,57 @@ export default {
     return {
       showMenu: false,
       paciente,
+      originalPaciente,
       showTratamento,
       activeTab,
       activeProfileTab,
       personalPerceptions
     };
   },
+  computed: {
+    hasPendingChanges() {
+      return JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
+    }
+  },
+  watch: {
+    paciente: {
+      handler() {
+        for (const propriedade in this.paciente)
+          if (this.paciente[propriedade] === '')
+            this.paciente[propriedade] = null
+      },
+      deep: true // Observação profunda de alterações aninhadas
+    }
+  },
   methods: {
+    validarCep(cep) {
+      return /^\d{8}$/.test(cep.replace(/[^\d]+/g, ""))
+    },
+    zipCodeMask(value) {
+      if (!value) return ""
+      value = value.replace(/\D/g, '')
+      value = value.replace(/(\d{5})(\d)/, '$1-$2')
+      return value
+    },
+    async getEndereco(event) {
+      var cep = event.target.value
+      this.paciente.endereco_cep = this.zipCodeMask(cep)
+      cep = this.paciente.endereco_cep
+
+      if (!this.validarCep(cep))
+        return false
+
+      const enderecoInfo = await getEnderecoByCep(cep)
+      if (!enderecoInfo)
+        return false
+
+      this.paciente.endereco_logradouro = enderecoInfo.street
+      this.paciente.endereco_cidade = enderecoInfo.city
+      this.paciente.endereco_estado = enderecoInfo.state
+    },
     getContatoIcon(type) {
       var icon = null;
-      switch(type) {
+      switch (type) {
         case 'whatsapp':
           icon = ['fab', 'whatsapp'];
           break;
@@ -478,12 +537,17 @@ export default {
       this.activeTab = tab;
     },
     async getPacienteDetails(id) {
+      console.log('getPacienteDetails()')
       const paciente = await getPaciente(id)
-      if (paciente)
-        this.paciente = paciente
+      if (paciente) {
+        this.paciente = JSON.parse(JSON.stringify(paciente))
+        this.originalPaciente = JSON.parse(JSON.stringify(paciente))
+      }
+    },
+    async savePaciente() {
+      await updatePaciente(paciente)
     }
   },
-
   async mounted() {
     this.$store.state.isAbsolute = true;
     setNavPills();
@@ -491,6 +555,7 @@ export default {
     await this.getPacienteDetails(this.$route.params.id);
   },
   async beforeMount() {
+    this.hasPendingChanges = false;
   },
   beforeUnmount() {
   }
