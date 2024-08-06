@@ -15,7 +15,7 @@
                             <div class="card-container">
                                 <div class="card card-plain">
                                     <div v-if="!hasStarted" class="pb-0 card-header text-start">
-                                        <h4 class="font-weight-bolder">Seja muito bem-vindo!</h4>
+                                        <h4 class="font-weight-bolder highlight-txt">Seja muito bem-vindo!</h4>
                                     </div>
                                     <div class="card-body">
 
@@ -43,63 +43,69 @@
                                             </div>
                                         </div>
 
-                                        <div v-if="hasStarted && !hasFinished" class="px-4">
-                                            <div class="pb-0 pt-4 text-center">
-                                                <h4 class="font-weight-bolder">
-                                                    Vamos lá!
+                                        <div v-if="hasStarted && !hasFinished" class="px-4 main-form-container">
+                                            <div class="pb-0 pt-4 text-center mb-4">
+                                                <h4 class="font-weight-bolder highlight-txt">
+                                                    Será um prazer atendê-lo!
                                                 </h4>
                                             </div>
 
-                                            <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4">
+                                            <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4"
+                                                :ref="'question' + index">
                                                 <label v-if="question.tipo !== 'text'"
-                                                    class="mb-0 p-0 font-weight-bolder">{{ question.questao }}
+                                                    class="mb-3 p-0 font-weight-bolder label-highlight">{{
+                                                    question.questao }}
                                                     <span v-if="question.obrigatoria" class="text-danger">*</span>
                                                 </label>
 
                                                 <div v-if="question.tipo === 'text'" class="mt-0 p-0">
                                                     <MaterialInput :name="question.id" :id="question.id"
-                                                        :label="question.questao" labelClass="font-weight-bolder"
-                                                        v-model="question.resposta"
-                                                        :required="question.obrigatoria"
-                                                        :input="refreshProgress"/>
+                                                        :label="question.questao"
+                                                        labelClass="font-weight-bolder label-highlight"
+                                                        v-model="question.resposta" :required="question.obrigatoria"
+                                                        :input="refreshProgress" />
                                                 </div>
 
-                                                <div v-else-if="question.tipo === 'checkbox'">
+                                                <div v-else-if="question.tipo === 'checkbox'" class="px-3">
                                                     <table class="options-checkbox">
                                                         <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
                                                             :key="alternativaIndex">
-                                                            <td>
-                                                                <input type="checkbox" :name="question.id + '-' + alternativa.resposta"
+                                                            <td class="d-flex flex-row align-center">
+                                                                <input type="checkbox" class="form-checkbox"
+                                                                    :name="question.id + '-' + alternativa.resposta"
                                                                     :id="question.id + '-' + alternativa.resposta"
                                                                     v-model="alternativa.selecionada"
                                                                     @change="refreshProgress" />
-                                                                <label :for="question.id + '-' + alternativa.resposta">{{ alternativa.resposta }}</label>
+                                                                <label :for="question.id + '-' + alternativa.resposta"
+                                                                    style="padding-top: 5px;">{{
+                                                                        alternativa.resposta }}</label>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                 </div>
 
-                                                <div v-else-if="question.tipo === 'radio'">
-                                                    <table class="options-checkbox">
-                                                        <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
-                                                            :key="alternativaIndex">
-                                                            <td>
-                                                                <input type="radio" :name="question.id"
-                                                                    :id="`alternativa-${question.id}-${alternativaIndex}`"
-                                                                    @input="updateSelectedOption(question.id, alternativa.resposta)" />
-                                                                <label :for="`alternativa-${question.id}-${alternativaIndex}`">{{
-                                                                    alternativa.resposta }}</label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                <div v-else-if="question.tipo === 'radio'" class="row px-3">
+                                                    <div v-for="(alternativa, alternativaIndex) in question.alternativas" v-bind:key="alternativaIndex"
+                                                        class="col-6" style="text-align: left;">
+                                                        <input type="radio" class="form-radio" :name="question.id"
+                                                            :id="`alternativa-${question.id}-${alternativaIndex}`"
+                                                            @input="updateSelectedOption(question.id, alternativa.resposta)" />
+                                                        <label :for="`alternativa-${question.id}-${alternativaIndex}`"
+                                                            class="radio-label">
+                                                            {{ alternativa.resposta }}</label>
+                                                    </div>
                                                 </div>
 
-                                                <div v-if="question.detalhar && question.detalhar === 'opcional'">
-                                                    <input type="checkbox" :name="question.id + '-detalhar-cb'" :id="question.id + '-detalhar-cb'"
-                                                        v-model="question.detalhando"
+                                                <div v-if="question.detalhar && question.detalhar === 'opcional'"
+                                                    class="d-flex flex-row align-center justify-content-center">
+                                                    <input type="checkbox" class="form-checkbox"
+                                                        :name="question.id + '-detalhar-cb'"
+                                                        :id="question.id + '-detalhar-cb'" v-model="question.detalhando"
                                                         @change="refreshProgress" />
-                                                    <label :for="question.id + '-detalhar-cb'">
-                                                        {{  question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Detalhar...'  }}
+                                                    <label :for="question.id + '-detalhar-cb'" class="label-big"
+                                                        style="padding-top: 8px;">
+                                                        {{ question.titulo_questao_detalhe ?
+                                                            question.titulo_questao_detalhe : 'Detalhar...' }}
                                                     </label>
                                                 </div>
 
@@ -108,8 +114,8 @@
                                                     v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
                                                     <MaterialInput :name="question.id + '-detalhar'"
                                                         :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
-                                                        :id="question.id + '-detalhar'" v-model="question.detalhe"
-                                                        :input="refreshProgress" />
+                                                        labelClass="label-big" :id="question.id + '-detalhar'"
+                                                        v-model="question.detalhe" :input="refreshProgress" />
                                                 </div>
 
                                                 <div class="p-horizontal-divider"></div>
@@ -120,16 +126,21 @@
                                     </div>
                                     <div class="card-footer">
                                         <div v-if="hasStarted">
-                                            <button v-if="currentPage < totalPages - 1"
+
+                                            <button v-if="percentageCompleteRequired < 100"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="console.log(questions)" :disabled="false">Avançar</button>
-                                            <button v-if="currentPage == totalPages - 1"
+                                                @click="scrollToNextUnansweredQuestion"
+                                                :disabled="false">Avançar</button>
+
+                                            <button v-if="percentageCompleteRequired == 100"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
                                                 @click="finish">Finalizar</button>
+
                                             <div class="progress progress-striped">
                                                 <div class="progress-bar" style="width: 0% !important">
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -173,8 +184,8 @@
     text-align: center;
 }
 
-body {
-    background: linear-gradient(0deg, #EDEDED, #fbfbfb) !important;
+.main-content {
+    background: linear-gradient(0deg, #EDEDED, #F2F2F2) !important;
     min-height: 100vh;
 }
 
@@ -202,10 +213,9 @@ body {
 .card-container {
     height: auto !important;
     max-height: 87vh !important;
-    border: 1px solid #DDD;
+    border: 2px solid #E8E8E8;
     border-radius: 20px;
     background: #FBFBFB;
-    transition: box-shadow 0.3s ease;
     padding: 0px !important;
 }
 
@@ -216,6 +226,11 @@ body {
     justify-content: center;
     background: #FBFBFB !important;
     border-radius: 20px !important;
+    border-top-right-radius: 10px !important;
+}
+
+.card-container {
+    border-top-right-radius: 10px !important;
 }
 
 .card-body {
@@ -225,7 +240,53 @@ body {
     padding: 0px !important;
 }
 
+.card-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #f5f5f5;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.card-body::-webkit-scrollbar-track {
+    border-top-right-radius: 10px !important;
+    background-color: #EEE;
+}
+
 .card-footer {}
+
+.form-checkbox {
+    min-width: 18px;
+    min-height: 18px;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px !important;
+}
+
+.form-radio {
+    width: 19px;
+    height: 19px;
+    margin-right: 6px !important;
+}
+
+.radio-label {
+    padding-top: 7px;
+}
+
+.main-container p,
+.main-form-container label,
+.main-form-container span,
+.label-big {
+    font-size: 12pt !important;
+}
+
+.highlight-txt {
+    font-size: 14pt;
+    color: #666;
+}
 
 .start-button {
     width: 100%;
@@ -307,25 +368,25 @@ const questions = [
         ordem: 10,
         obrigatoria: true,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
-        questao: 'Qual é a sua idade?',
+        questao: 'A sua idade:',
         tipo: 'text',
         id: 'idade',
         ordem: 20,
         obrigatoria: true,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
         questao: 'Seu e-mail, para ficar informado:',
         tipo: 'text',
         id: 'email',
         ordem: 30,
-        obrigatoria: true,
+        obrigatoria: false,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
         questao: 'Agora seu celular/WhatsApp:',
@@ -334,7 +395,7 @@ const questions = [
         ordem: 40,
         obrigatoria: true,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
         questao: 'O que mais te incomoda em seu sorriso e que você gostaria de mudar?',
@@ -356,7 +417,7 @@ const questions = [
         detalhe: "",
     },
     {
-        questao: 'Você já teve algum destes problemas?',
+        questao: 'O que isso interfere no seu dia-a-dia?',
         tipo: 'checkbox',
         id: 'problemas_sorriso',
         ordem: 60,
@@ -365,23 +426,31 @@ const questions = [
             { resposta: 'Vergonha / medo de sorrir', selecionada: false, ponto_negativo: 'Vergonha ou medo de sorrir' },
             { resposta: 'Dificuldade em falar / pronunciar algumas palavras', selecionada: false, ponto_atencao: 'Dificuldade em falar' },
             { resposta: 'Medo e/ou preocupação em comer ou beber algo', selecionada: false, ponto_atencao: 'Preocupação em comer ou beber' },
-            { resposta: 'Outro(s):', selecionada: false, ponto_neutro: 'Outros problemas' }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Outro(s):",
+        titulo_consideracoes_detalhe: "Consequências no dia-a-dia",
+        detalhe: "",
     },
     {
         questao: 'Você tem, ou já teve, algum destes hábitos?',
         tipo: 'checkbox',
         id: 'habitos_ruins',
         ordem: 70,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Chupar chupeta' },
             { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Chupar dedos' },
             { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Roer unhas' },
             { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Ranger os dentes' },
             { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Apertar os dentes' },
-            { resposta: 'Outro(s):', selecionada: false, ponto_neutro: 'Hábitos' }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Outro(s):",
+        titulo_consideracoes_detalhe: "Hábitos",
+        detalhe: "",
     },
 
 
@@ -416,7 +485,6 @@ const questions = [
             { resposta: 'Às vezes', selecionada: false, ponto_neutro: 'Às vezes tem dores de cabeça' },
             { resposta: 'Dificilmente', selecionada: false, ponto_positivo: 'Dificilmente tem dores de cabeça' },
             { resposta: 'Nunca', selecionada: false, ponto_positivo: 'Nunca tem dores de cabeça' },
-            { resposta: 'Detalhar:', selecionada: false, ponto_atencao: 'Dores de cabeça' }
         ],
         detalhar: "sempre",
         detalhando: false,
@@ -440,33 +508,41 @@ const questions = [
         tipo: 'checkbox',
         id: 'problemas_saude',
         ordem: 120,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             { resposta: 'Diabetes', selecionada: false, ponto_negativo: 'Tem diabetes' },
             { resposta: 'Hipertensão', selecionada: false, ponto_negativo: 'Tem hipertensão' },
             { resposta: 'Doença cardíaca', selecionada: false, ponto_negativo: 'Tem doença cardíaca' },
             { resposta: 'Doença respiratória', selecionada: false, ponto_negativo: 'Tem doença respiratória' },
-            { resposta: 'Outro(s):', selecionada: false, ponto_atencao: 'Tem outro problema de saúde' }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Detalhar:",
+        titulo_consideracoes_detalhe: "Problemas de saúde",
+        detalhe: "",
     },
     {
         questao: 'Você tem algum problema de saúde mental?',
         tipo: 'checkbox',
         id: 'problemas_saude_mental',
         ordem: 130,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             { resposta: 'Ansiedade', selecionada: false, ponto_negativo: 'Tem ansiedade' },
             { resposta: 'Depressão', selecionada: false, ponto_negativo: 'Tem depressão' },
-            { resposta: 'Outro(s):', selecionada: false, ponto_atencao: 'Tem problema(s) de saúde mental' }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Detalhar:",
+        titulo_consideracoes_detalhe: "Problemas de saúde mental",
+        detalhe: "",
     },
     {
-        questao: 'Você tem algum hábito de saúde?',
+        questao: 'Você possui algum hábito que possa impactar negativamente sua saúde?',
         tipo: 'checkbox',
         id: 'habitos_saude',
         ordem: 140,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             {
                 resposta: 'Fumar',
@@ -478,19 +554,19 @@ const questions = [
                 selecionada: false,
                 ponto_negativo: 'Possui hábito de beber'
             },
-            {
-                resposta: 'Outro(s):',
-                selecionada: false,
-                ponto_neutro: 'Hábitos de saúde'
-            }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Outro(s):",
+        titulo_consideracoes_detalhe: "Maus hábitos à saúde",
+        detalhe: "",
     },
     {
         questao: 'Você tem algum problema de saúde bucal?',
         tipo: 'checkbox',
         id: 'problemas_saude_bucal',
         ordem: 150,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             {
                 resposta: 'Dor de dente',
@@ -512,12 +588,12 @@ const questions = [
                 selecionada: false,
                 ponto_negativo: 'Possui periodontite'
             },
-            {
-                resposta: 'Outro(s):',
-                selecionada: false,
-                ponto_neutro: 'Problemas de saúde bucal'
-            }
-        ]
+        ],
+        detalhar: "opcional",
+        detalhando: false,
+        titulo_questao_detalhe: "Outro(s):",
+        titulo_consideracoes_detalhe: "Problemas de saúde bucal",
+        detalhe: "",
     },
     {
         questao: 'Você autoriza a nossa equipe a tirar algumas fotos durante seu atendimento? Lembrando que não há exposição direta do paciente',
@@ -539,13 +615,13 @@ const questions = [
         ]
     },
     {
-        questao: 'O que você faz? (qual sua profissão e sua ocupação atual)',
+        questao: 'Qual sua profissão/ocupação atual?',
         tipo: 'text',
         id: 'profissao_ocupacao',
         ordem: 170,
         obrigatoria: true,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
         questao: 'Você lida com o público?',
@@ -556,7 +632,7 @@ const questions = [
         alternativas: [
             { resposta: 'Sim', selecionada: false },
             { resposta: 'Não', selecionada: false }
-        ]
+        ],
     },
     {
         questao: 'Você já fez tratamento ortodôntico no passado? Usou aparelho fixo ou removível?',
@@ -642,7 +718,7 @@ const questions = [
         ],
         detalhar: "sempre",
         detalhando: false,
-        titulo_questao_detalhe: "Por favor, descreva:",
+        titulo_questao_detalhe: "Se sim, descreva:",
         titulo_consideracoes_detalhe: "",
         detalhe: "",
     },
@@ -656,9 +732,10 @@ const questions = [
             { resposta: 'Sim', selecionada: false },
             { resposta: 'Não', selecionada: false },
         ],
-        detalhar: "opcional",
+        detalhar: "sempre",
         detalhando: false,
-        titulo_detalhe: "",
+        titulo_questao_detalhe: "Se sim, descreva:",
+        titulo_consideracoes_detalhe: "Acidentes com a boca",
         detalhe: "",
     },
     {
@@ -677,9 +754,9 @@ const questions = [
         tipo: 'text',
         id: 'descricao_problema_tratamento_odontologico',
         ordem: 260,
-        obrigatoria: true,
+        obrigatoria: false,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
     {
         questao: 'Quando foi sua última consulta e/ou tratamento odontológico? (se quiser, pode nos dizer o nome do dentista e/ou como foi sua última experiência)',
@@ -688,7 +765,7 @@ const questions = [
         ordem: 270,
         obrigatoria: true,
         resposta: '',
-        alternativas: null
+        alternativas: null,
     },
 ];
 
@@ -697,7 +774,43 @@ export default {
     components: {
         MaterialInput,
     },
+    computed: {
+        percentageComplete() {
+            const totalQuestions = this.questions.length;
+            let answeredQuestions = 0;
+
+            for (const question of this.questions) {
+                if (this.isQuestionAnswered(question)) {
+                    answeredQuestions++;
+                }
+            }
+
+            return (answeredQuestions / totalQuestions) * 100;
+        },
+        percentageCompleteRequired() {
+            const requiredQuestions = this.questions.filter(question => question.obrigatoria);
+            let answeredRequiredQuestions = 0;
+
+            for (const question of requiredQuestions) {
+                if (this.isQuestionAnswered(question)) {
+                    answeredRequiredQuestions++;
+                }
+            }
+
+            return (answeredRequiredQuestions / requiredQuestions.length) * 100;
+        },
+    },
     methods: {
+        scrollToNextUnansweredQuestion() {
+            const requiredQuestions = this.questions.filter(question => question.obrigatoria);
+
+            const unansweredQuestion = requiredQuestions.find(question => !this.isQuestionAnswered(question))
+
+            if (unansweredQuestion) {
+                const questionElement = this.$refs['question' + this.questions.indexOf(unansweredQuestion)][0]
+                questionElement.scrollIntoView({ behavior: 'smooth' })
+            }
+        },
         updateSelectedOption(questionName, optionValue) {
             this.questions.forEach((question) => {
                 if (question.id === questionName) {
@@ -717,16 +830,7 @@ export default {
             }, 50)
         },
         refreshProgress() {
-            const totalQuestions = this.questions.length
-            let answeredQuestions = 0;
-
-            for (const question of this.questions)
-                if (this.isQuestionAnswered(question))
-                    answeredQuestions++
-
-            const percentageComplete = (answeredQuestions / (totalQuestions / 100)).toFixed(2)
-
-            document.getElementsByClassName('progress-bar')[0].style = 'width: ' + percentageComplete + '% !important';
+            document.getElementsByClassName('progress-bar')[0].style = 'width: ' + this.percentageComplete + '% !important';
         },
         isQuestionAnswered(question) {
             return (
@@ -735,7 +839,7 @@ export default {
                 ||
 
                 (
-                (question.tipo === "checkbox" || question.tipo === "radio")
+                    (question.tipo === "checkbox" || question.tipo === "radio")
                     &&
                     question.alternativas.some(option => option.selecionada)
                 )
@@ -759,8 +863,6 @@ export default {
             logo,
             hasStarted: false,
             hasFinished: false,
-            currentPage: 1,
-            totalPages: 18,
             isMobile: isMobile(),
             questions,
         }
