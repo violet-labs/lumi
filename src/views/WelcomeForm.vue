@@ -52,18 +52,23 @@
 
                                             <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4"
                                                 :ref="'question' + index">
-                                                <label v-if="question.tipo !== 'text'"
+                                                <label
+                                                    v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone'"
                                                     class="mb-3 p-0 font-weight-bolder label-highlight">{{
-                                                    question.questao }}
+                                                        question.questao }}
                                                     <span v-if="question.obrigatoria" class="text-danger">*</span>
                                                 </label>
 
-                                                <div v-if="question.tipo === 'text'" class="mt-0 p-0">
-                                                    <MaterialInput :name="question.id" :id="question.id"
-                                                        :label="question.questao"
+                                                <div v-if="
+                                                    question.tipo === 'text'
+                                                    || question.tipo === 'date'
+                                                    || question.tipo === 'phone'" class="mt-0 p-0">
+                                                    <MaterialInput :type="question.tipo === 'date' ? 'date' : 'text'"
+                                                        :name="question.id" :id="question.id" :label="question.questao"
                                                         labelClass="font-weight-bolder label-highlight"
                                                         v-model="question.resposta" :required="question.obrigatoria"
-                                                        :input="refreshProgress" />
+                                                        :input="refreshProgress"
+                                                        :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined" />
                                                 </div>
 
                                                 <div v-else-if="question.tipo === 'checkbox'" class="px-3">
@@ -85,8 +90,10 @@
                                                 </div>
 
                                                 <div v-else-if="question.tipo === 'radio'" class="row px-3">
-                                                    <div v-for="(alternativa, alternativaIndex) in question.alternativas" v-bind:key="alternativaIndex"
-                                                        class="col-6" style="text-align: left;">
+                                                    <div v-for="(alternativa, alternativaIndex) in question.alternativas"
+                                                        v-bind:key="alternativaIndex" class="col-6"
+                                                        style="text-align: left;"
+                                                        :class="{ 'ps-6': (question.alternativas.length == 2 && alternativaIndex == 0) }">
                                                         <input type="radio" class="form-radio" :name="question.id"
                                                             :id="`alternativa-${question.id}-${alternativaIndex}`"
                                                             @input="updateSelectedOption(question.id, alternativa.resposta)" />
@@ -213,7 +220,7 @@
 .card-container {
     height: auto !important;
     max-height: 87vh !important;
-    border: 2px solid #E8E8E8;
+    border: 2px solid #E0E0E0;
     border-radius: 20px;
     background: #FBFBFB;
     padding: 0px !important;
@@ -358,7 +365,7 @@ import entrarImg from "@/assets/img/signin.png";
 import logo from "@/assets/img/lumi/logo-blue.png";
 const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
-import { isMobile } from "@/utils.js";
+import { isMobile, phoneMask } from "@/utils.js";
 
 const questions = [
     {
@@ -371,8 +378,8 @@ const questions = [
         alternativas: null,
     },
     {
-        questao: 'A sua idade:',
-        tipo: 'text',
+        questao: 'Sua data de nascimento:',
+        tipo: 'date',
         id: 'idade',
         ordem: 20,
         obrigatoria: true,
@@ -390,7 +397,7 @@ const questions = [
     },
     {
         questao: 'Agora seu celular/WhatsApp:',
-        tipo: 'text',
+        tipo: 'phone',
         id: 'telefone',
         ordem: 40,
         obrigatoria: true,
@@ -801,6 +808,9 @@ export default {
         },
     },
     methods: {
+        phoneMaskWrapper(length) {
+            return phoneMask(length);
+        },
         scrollToNextUnansweredQuestion() {
             const requiredQuestions = this.questions.filter(question => question.obrigatoria);
 

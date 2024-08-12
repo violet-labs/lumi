@@ -2,11 +2,14 @@ Formulário de boas-vindas:
     ✔ Corrigir a contagem da porcentagem @done(24-07-29 21:59)
     ✔ Trocar o texto "É um prazer recebê-lo!" por algo como "Vamos lá!" @done(24-07-29 21:59)
     ✔ Colocar propriedade "required": true em todas questões @done(24-07-29 22:00)
-    ☐ Alterar required para false nas questões que não forem obrigatórias
+    ✔ Alterar required para false nas questões que não forem obrigatórias @done(24-08-11 19:50)
     ✔ Fazer estilização das questões obrigatórias @done(24-07-29 22:08)
-    ☐ Fazer comportamento do botão de avançar (scrolling)
-    ☐ Colocar as propriedades de "detalhamento" nas questões que precisarem
-    ☐ Colocar os "titulo_detalhe" nas questões que precisarem
+    ✔ Fazer comportamento do botão de avançar (scrolling) @done(24-08-11 19:51)
+    ✔ Colocar as propriedades de "detalhamento" nas questões que precisarem @done(24-08-11 19:51)
+    ✔ Colocar os "titulo_detalhe" nas questões que precisarem @done(24-08-11 19:51)
+    ✔ Criar tipo de campo "date" @done(24-08-11 21:03)
+    ✔ Criar tipo de campo "phone" @done(24-08-11 21:03)
+    ✔ Acertar a máscara de telefone @done(24-08-11 21:03)
     
     ☐ Ver se o objeto está refletido corretamente
     ☐ Tentar enviar via request

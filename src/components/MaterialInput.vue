@@ -3,15 +3,22 @@
     <span v-if="required" class="text-danger">*</span>
   </label>
   <input :id="id" :type="type" class="form-control" :class="getClasses(size, centered)" :name="name" :value="modelValue"
-    :placeholder="placeholder" :isRequired="isRequired" :disabled="disabled" :readonly="readonly" @input="$emit('update:modelValue', $event.target.value); inputEvent();" />
+    :placeholder="placeholder" :isRequired="isRequired" :disabled="disabled" :readonly="readonly"
+    @input="$emit('update:modelValue', $event.target.value); inputEvent();" v-maska="mask" />
 </template>
 
 <script>
 import setMaterialInput from "@/assets/js/material-input.js";
+import { vMaska } from "maska/vue"
 
 export default {
   name: "MaterialInput",
+  directives: { maska: vMaska },
   props: {
+    mask: {
+      type: String,
+      default: null,
+    },
     required: {
       type: Boolean,
       default: false,

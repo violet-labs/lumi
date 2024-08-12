@@ -22,3 +22,17 @@ export function getTratamentoProgresso(data_inicio_tratamento, data_final_previs
 export function capitalizeFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function phoneMask(phoneLength) {
+    let phoneMask = null
+    if (phoneLength <= 8)
+        phoneMask = '####-####'
+    else if (phoneLength == 9)
+        phoneMask = '#####-####'
+    else if (phoneLength == 10)
+        phoneMask = '(##) ####-####'
+    else if (phoneLength >= 11)
+        phoneMask = '(##) #####-####'
+    
+    return phoneMask
+}
