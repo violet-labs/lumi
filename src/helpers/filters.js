@@ -1,5 +1,5 @@
 import moment from 'moment'
-import * as utils from './utils.js'
+import * as utils from '../utils.js'
 
 moment.locale('pt')
 

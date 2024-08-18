@@ -10,6 +10,7 @@ Formulário de boas-vindas:
     ✔ Criar tipo de campo "date" @done(24-08-11 21:03)
     ✔ Criar tipo de campo "phone" @done(24-08-11 21:03)
     ✔ Acertar a máscara de telefone @done(24-08-11 21:03)
+    ✔ Acertar placeholder da máscara de telefone @done(24-08-11 21:10)
     
     ☐ Ver se o objeto está refletido corretamente
     ☐ Tentar enviar via request

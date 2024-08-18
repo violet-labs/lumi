@@ -68,7 +68,8 @@
                                                         labelClass="font-weight-bolder label-highlight"
                                                         v-model="question.resposta" :required="question.obrigatoria"
                                                         :input="refreshProgress"
-                                                        :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined" />
+                                                        :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
+                                                        :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null" />
                                                 </div>
 
                                                 <div v-else-if="question.tipo === 'checkbox'" class="px-3">
@@ -141,7 +142,7 @@
 
                                             <button v-if="percentageCompleteRequired == 100"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="finish">Finalizar</button>
+                                                @click="submitForm">Finalizar</button>
 
                                             <div class="progress progress-striped">
                                                 <div class="progress-bar" style="width: 0% !important">
@@ -192,7 +193,7 @@
 }
 
 .main-content {
-    background: linear-gradient(0deg, #EDEDED, #F2F2F2) !important;
+    /* background: linear-gradient(0deg, #EDEDED, #F2F2F2) !important; */
     min-height: 100vh;
 }
 
@@ -366,6 +367,7 @@ import logo from "@/assets/img/lumi/logo-blue.png";
 const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
 import { isMobile, phoneMask } from "@/utils.js";
+import sendWelcomeForm from '@/services/pacientesService'
 
 const questions = [
     {
@@ -808,6 +810,9 @@ export default {
         },
     },
     methods: {
+        submitForm() {
+
+        },
         phoneMaskWrapper(length) {
             return phoneMask(length);
         },

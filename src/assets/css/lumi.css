@@ -1,5 +1,9 @@
 /* Animations */
 
+body {
+    background: #000;
+}
+
 div,
 p {
     font-family: "Roboto", Helvetica, Arial, sans-serif;
