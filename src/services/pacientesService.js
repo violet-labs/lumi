@@ -1,11 +1,16 @@
 import axios from '@/services/axios'
 
-export async function sendWelcomeForm(form) {
+export async function sendWelcomeForm(questions) {
     try {
-        const response = await axios.post('/api/welcome', form);
+        const response = await axios.post('/pacientes/welcome-form', {
+            id_paciente: 1,
+            questions,
+        });
 
-        if (response.data && response.data.status === 'uccess')
-            return true
+        if (!response || !response.data || response.data.status !== 'success')
+            return false
+
+        return response
 
     } catch (error) {
         console.error('Erro ao enviar formulário de boas-vindas:', error);

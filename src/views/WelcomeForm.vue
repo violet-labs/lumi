@@ -367,7 +367,7 @@ import logo from "@/assets/img/lumi/logo-blue.png";
 const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
 import { isMobile, phoneMask } from "@/utils.js";
-import sendWelcomeForm from '@/services/pacientesService'
+import { sendWelcomeForm } from '@/services/pacientesService'
 
 const questions = [
     {
@@ -400,9 +400,9 @@ const questions = [
     {
         questao: 'Agora seu celular/WhatsApp:',
         tipo: 'phone',
-        id: 'telefone',
+        id: 'whatsapp',
         ordem: 40,
-        obrigatoria: true,
+        obrigatoria: false,
         resposta: '',
         alternativas: null,
     },
@@ -413,11 +413,11 @@ const questions = [
         ordem: 50,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'dentes encavalados', selecionada: false, ponto_atencao: 'Dentes encavalados' },
-            { resposta: 'dentes para frente (dentuço)', selecionada: false, ponto_atencao: 'Dentes para frente' },
-            { resposta: 'espaço entre os dentes', selecionada: false, ponto_atencao: 'Espaço entre os dentes' },
-            { resposta: 'sorriso torto', selecionada: false, ponto_atencao: 'Sorriso torto' },
-            { resposta: 'dor ou sensibilidade nos dentes', selecionada: false, ponto_atencao: 'Dor ou sensibilidade nos dentes' },
+            { resposta: 'Dentes encavalados', selecionada: false, ponto_atencao: 'Dentes encavalados' },
+            { resposta: 'Dentes para frente (dentuço)', selecionada: false, ponto_atencao: 'Dentes para frente' },
+            { resposta: 'Espaço entre os dentes', selecionada: false, ponto_atencao: 'Espaço entre os dentes' },
+            { resposta: 'Sorriso torto', selecionada: false, ponto_atencao: 'Sorriso torto' },
+            { resposta: 'Dor ou sensibilidade nos dentes', selecionada: false, ponto_atencao: 'Dor ou sensibilidade nos dentes' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -810,8 +810,9 @@ export default {
         },
     },
     methods: {
-        submitForm() {
-
+        async submitForm() {
+            const response = await sendWelcomeForm(this.questions)
+            console.log('response:', response)
         },
         phoneMaskWrapper(length) {
             return phoneMask(length);
