@@ -418,7 +418,6 @@ export default {
             }
         },
         saveFasesTratamento() {
-            console.log(this.paciente.fases_tratamento)
         },
         saveAparatologia() {
 

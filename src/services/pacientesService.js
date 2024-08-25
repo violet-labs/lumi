@@ -36,8 +36,6 @@ export async function addNovoPaciente(paciente) {
 export async function updatePaciente(paciente) {
     const response = await axios.put('/pacientes/' + paciente.id, paciente)
 
-    console.log('response:', response)
-
     return (response && response.status == 200)
 }
 

@@ -861,7 +861,6 @@ export default {
         },
         async submitForm() {
             const response = await sendWelcomeForm(this.questions)
-            console.log('response:', response)
         },
         phoneMaskWrapper(length) {
             return phoneMask(length);
