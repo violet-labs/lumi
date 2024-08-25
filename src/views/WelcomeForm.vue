@@ -53,23 +53,23 @@
                                             <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4"
                                                 :ref="'question' + index">
                                                 <label
-                                                    v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone'"
+                                                    v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone' && question.tipo !== 'email'"
                                                     class="mb-3 p-0 font-weight-bolder label-highlight">{{
                                                         question.questao }}
                                                     <span v-if="question.obrigatoria" class="text-danger">*</span>
                                                 </label>
 
-                                                <div v-if="
-                                                    question.tipo === 'text'
-                                                    || question.tipo === 'date'
-                                                    || question.tipo === 'phone'" class="mt-0 p-0">
-                                                    <MaterialInput :type="question.tipo === 'date' ? 'date' : 'text'"
+                                                <div v-if="question.tipo === 'text' || question.tipo === 'date' || question.tipo === 'phone' || question.tipo === 'email'"
+                                                    class="mt-0 p-0">
+                                                    <MaterialInput
+                                                        :type="question.tipo === 'phone' ? 'text' : question.tipo"
                                                         :name="question.id" :id="question.id" :label="question.questao"
                                                         labelClass="font-weight-bolder label-highlight"
                                                         v-model="question.resposta" :required="question.obrigatoria"
-                                                        :input="refreshProgress"
+                                                        :input="function ($event) { textInputEvent($event, question) }"
                                                         :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
-                                                        :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null" />
+                                                        :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
+                                                        :style="question.textOptions && question.textOptions.includes('center') ? 'text-align: center !important' : ''" />
                                                 </div>
 
                                                 <div v-else-if="question.tipo === 'checkbox'" class="px-3">
@@ -140,9 +140,12 @@
                                                 @click="scrollToNextUnansweredQuestion"
                                                 :disabled="false">Avançar</button>
 
-                                            <button v-if="percentageCompleteRequired == 100"
-                                                class="btn btn-sm btn-primary next-button bg-gradient-secondary"
+                                            <button class="btn btn-sm btn-primary next-button bg-gradient-secondary"
                                                 @click="submitForm">Finalizar</button>
+
+                                            <!-- <button v-if="percentageCompleteRequired == 100"
+                                                class="btn btn-sm btn-primary next-button bg-gradient-secondary"
+                                                @click="submitForm">Finalizar</button> -->
 
                                             <div class="progress progress-striped">
                                                 <div class="progress-bar" style="width: 0% !important">
@@ -373,6 +376,7 @@ const questions = [
     {
         questao: 'Nos diga o seu nome completo:',
         tipo: 'text',
+        textOptions: ['capitalize-all', 'center'],
         id: 'nome_completo',
         ordem: 10,
         obrigatoria: true,
@@ -382,6 +386,7 @@ const questions = [
     {
         questao: 'Sua data de nascimento:',
         tipo: 'date',
+        textOptions: ['center'],
         id: 'idade',
         ordem: 20,
         obrigatoria: true,
@@ -390,8 +395,9 @@ const questions = [
     },
     {
         questao: 'Seu e-mail, para ficar informado:',
-        tipo: 'text',
+        tipo: 'email',
         id: 'email',
+        textOptions: ['center'],
         ordem: 30,
         obrigatoria: false,
         resposta: '',
@@ -401,6 +407,7 @@ const questions = [
         questao: 'Agora seu celular/WhatsApp:',
         tipo: 'phone',
         id: 'whatsapp',
+        textOptions: ['center'],
         ordem: 40,
         obrigatoria: false,
         resposta: '',
@@ -413,11 +420,11 @@ const questions = [
         ordem: 50,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Dentes encavalados', selecionada: false, ponto_atencao: 'Dentes encavalados' },
-            { resposta: 'Dentes para frente (dentuço)', selecionada: false, ponto_atencao: 'Dentes para frente' },
-            { resposta: 'Espaço entre os dentes', selecionada: false, ponto_atencao: 'Espaço entre os dentes' },
-            { resposta: 'Sorriso torto', selecionada: false, ponto_atencao: 'Sorriso torto' },
-            { resposta: 'Dor ou sensibilidade nos dentes', selecionada: false, ponto_atencao: 'Dor ou sensibilidade nos dentes' },
+            { resposta: 'Dentes encavalados', selecionada: false, ponto_atencao: 'Dentes encavalados', tipo_detalhe: 'clinico' },
+            { resposta: 'Dentes para frente (dentuço)', selecionada: false, ponto_atencao: 'Dentes para frente', tipo_detalhe: 'clinico' },
+            { resposta: 'Espaço entre os dentes', selecionada: false, ponto_atencao: 'Espaço entre os dentes', tipo_detalhe: 'clinico' },
+            { resposta: 'Sorriso torto', selecionada: false, ponto_atencao: 'Sorriso torto', tipo_detalhe: 'clinico' },
+            { resposta: 'Dor ou sensibilidade nos dentes', selecionada: false, ponto_atencao: 'Dor ou sensibilidade nos dentes', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -432,9 +439,9 @@ const questions = [
         ordem: 60,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Vergonha / medo de sorrir', selecionada: false, ponto_negativo: 'Vergonha ou medo de sorrir' },
-            { resposta: 'Dificuldade em falar / pronunciar algumas palavras', selecionada: false, ponto_atencao: 'Dificuldade em falar' },
-            { resposta: 'Medo e/ou preocupação em comer ou beber algo', selecionada: false, ponto_atencao: 'Preocupação em comer ou beber' },
+            { resposta: 'Vergonha / medo de sorrir', selecionada: false, ponto_negativo: 'Vergonha ou medo de sorrir', tipo_detalhe: 'clinico' },
+            { resposta: 'Dificuldade em falar / pronunciar algumas palavras', selecionada: false, ponto_atencao: 'Dificuldade em falar', tipo_detalhe: 'clinico' },
+            { resposta: 'Medo e/ou preocupação em comer ou beber algo', selecionada: false, ponto_atencao: 'Preocupação em comer ou beber', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -449,11 +456,11 @@ const questions = [
         ordem: 70,
         obrigatoria: false,
         alternativas: [
-            { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Chupar chupeta' },
-            { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Chupar dedos' },
-            { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Roer unhas' },
-            { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Ranger os dentes' },
-            { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Apertar os dentes' },
+            { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Chupar chupeta', tipo_detalhe: 'clinico' },
+            { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Chupar dedos', tipo_detalhe: 'clinico' },
+            { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Roer unhas', tipo_detalhe: 'clinico' },
+            { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Ranger os dentes', tipo_detalhe: 'clinico' },
+            { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Apertar os dentes', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -470,11 +477,11 @@ const questions = [
         ordem: 80,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Muito bem', selecionada: false, ponto_positivo: 'Respira muito bem pelo nariz' },
-            { resposta: 'Normal', selecionada: false, ponto_neutro: 'Respira normalmente pelo nariz' },
-            { resposta: 'Não muito bem', selecionada: false, ponto_negativo: 'Não respira muito bem pelo nariz' },
-            { resposta: 'Quase nada', selecionada: false, ponto_negativo: 'Quase não respira pelo nariz' },
-            { resposta: 'Nada', selecionada: false, ponto_negativo: 'Não respira pelo nariz' },
+            { resposta: 'Muito bem', selecionada: false, ponto_positivo: 'Respira muito bem pelo nariz', tipo_detalhe: 'clinico' },
+            { resposta: 'Normal', selecionada: false, ponto_neutro: 'Respira normalmente pelo nariz', tipo_detalhe: 'clinico' },
+            { resposta: 'Não muito bem', selecionada: false, ponto_negativo: 'Não respira muito bem pelo nariz', tipo_detalhe: 'clinico' },
+            { resposta: 'Quase nada', selecionada: false, ponto_negativo: 'Quase não respira pelo nariz', tipo_detalhe: 'clinico' },
+            { resposta: 'Nada', selecionada: false, ponto_negativo: 'Não respira pelo nariz', tipo_detalhe: 'clinico' }
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -489,11 +496,11 @@ const questions = [
         ordem: 90,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sempre', selecionada: false, ponto_negativo: 'Sempre tem dores de cabeça' },
-            { resposta: 'Quase sempre', selecionada: false, ponto_negativo: 'Quase sempre tem dores de cabeça' },
-            { resposta: 'Às vezes', selecionada: false, ponto_neutro: 'Às vezes tem dores de cabeça' },
-            { resposta: 'Dificilmente', selecionada: false, ponto_positivo: 'Dificilmente tem dores de cabeça' },
-            { resposta: 'Nunca', selecionada: false, ponto_positivo: 'Nunca tem dores de cabeça' },
+            { resposta: 'Sempre', selecionada: false, ponto_negativo: 'Sempre tem dores de cabeça', tipo_detalhe: 'clinico' },
+            { resposta: 'Quase sempre', selecionada: false, ponto_negativo: 'Quase sempre tem dores de cabeça', tipo_detalhe: 'clinico' },
+            { resposta: 'Às vezes', selecionada: false, ponto_neutro: 'Às vezes tem dores de cabeça', tipo_detalhe: 'clinico' },
+            { resposta: 'Dificilmente', selecionada: false, ponto_positivo: 'Dificilmente tem dores de cabeça', tipo_detalhe: 'clinico' },
+            { resposta: 'Nunca', selecionada: false, ponto_positivo: 'Nunca tem dores de cabeça', tipo_detalhe: 'clinico' }
         ],
         detalhar: "sempre",
         detalhando: false,
@@ -508,7 +515,7 @@ const questions = [
         ordem: 110,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false, ponto_atencao: 'Pratica esporte de contato físico' },
+            { resposta: 'Sim', selecionada: false, ponto_atencao: 'Pratica esporte de contato físico', tipo_detalhe: 'clinico' },
             { resposta: 'Não', selecionada: false }
         ]
     },
@@ -519,10 +526,10 @@ const questions = [
         ordem: 120,
         obrigatoria: false,
         alternativas: [
-            { resposta: 'Diabetes', selecionada: false, ponto_negativo: 'Tem diabetes' },
-            { resposta: 'Hipertensão', selecionada: false, ponto_negativo: 'Tem hipertensão' },
-            { resposta: 'Doença cardíaca', selecionada: false, ponto_negativo: 'Tem doença cardíaca' },
-            { resposta: 'Doença respiratória', selecionada: false, ponto_negativo: 'Tem doença respiratória' },
+            { resposta: 'Diabetes', selecionada: false, ponto_negativo: 'Tem diabetes', tipo_detalhe: 'clinico' },
+            { resposta: 'Hipertensão', selecionada: false, ponto_negativo: 'Tem hipertensão', tipo_detalhe: 'clinico' },
+            { resposta: 'Doença cardíaca', selecionada: false, ponto_negativo: 'Tem doença cardíaca', tipo_detalhe: 'clinico' },
+            { resposta: 'Doença respiratória', selecionada: false, ponto_negativo: 'Tem doença respiratória', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -537,8 +544,8 @@ const questions = [
         ordem: 130,
         obrigatoria: false,
         alternativas: [
-            { resposta: 'Ansiedade', selecionada: false, ponto_negativo: 'Tem ansiedade' },
-            { resposta: 'Depressão', selecionada: false, ponto_negativo: 'Tem depressão' },
+            { resposta: 'Ansiedade', selecionada: false, ponto_negativo: 'Tem ansiedade', tipo_detalhe: 'clinico' },
+            { resposta: 'Depressão', selecionada: false, ponto_negativo: 'Tem depressão', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -556,12 +563,14 @@ const questions = [
             {
                 resposta: 'Fumar',
                 selecionada: false,
-                ponto_negativo: 'Possui hábito de fumar'
+                ponto_negativo: 'Possui hábito de fumar',
+                tipo_detalhe: 'clinico'
             },
             {
                 resposta: 'Beber',
                 selecionada: false,
-                ponto_negativo: 'Possui hábito de beber'
+                ponto_negativo: 'Possui hábito de beber',
+                tipo_detalhe: 'clinico'
             },
         ],
         detalhar: "opcional",
@@ -580,22 +589,26 @@ const questions = [
             {
                 resposta: 'Dor de dente',
                 selecionada: false,
-                ponto_atencao: 'Possui dor de dente'
+                ponto_atencao: 'Possui dor de dente',
+                tipo_detalhe: 'clinico'
             },
             {
                 resposta: 'Sensibilidade nos dentes',
                 selecionada: false,
-                ponto_atencao: 'Possui sensibilidade nos dentes'
+                ponto_atencao: 'Possui sensibilidade nos dentes',
+                tipo_detalhe: 'clinico'
             },
             {
                 resposta: 'Gengivite',
                 selecionada: false,
-                ponto_negativo: 'Possui gengivite'
+                ponto_negativo: 'Possui gengivite',
+                tipo_detalhe: 'clinico'
             },
             {
                 resposta: 'Periodontite',
                 selecionada: false,
-                ponto_negativo: 'Possui periodontite'
+                ponto_negativo: 'Possui periodontite',
+                tipo_detalhe: 'clinico'
             },
         ],
         detalhar: "opcional",
@@ -614,13 +627,15 @@ const questions = [
             {
                 resposta: 'Sim',
                 selecionada: false,
-                ponto_positivo: 'Autorizou a tirada de fotos'
+                ponto_positivo: 'Autorizou a tirada de fotos',
+                tipo_detalhe: 'clinico'
             },
             {
                 resposta: 'Não',
                 selecionada: false,
-                ponto_neutro: 'Não autorizou a tirada de fotos'
-            }
+                ponto_neutro: 'Não autorizou a tirada de fotos',
+                tipo_detalhe: 'clinico'
+            },
         ]
     },
     {
@@ -783,6 +798,8 @@ export default {
     components: {
         MaterialInput,
     },
+    mounted() {
+    },
     computed: {
         percentageComplete() {
             const totalQuestions = this.questions.length;
@@ -810,6 +827,38 @@ export default {
         },
     },
     methods: {
+        fillRequiredQuestions() {
+            this.questions.forEach((question) => {
+                const radioInput = document.getElementById(`alternativa-${question.id}-0`);
+                if (radioInput && radioInput.type === 'radio')
+                    radioInput.checked = true;
+
+                switch (question.tipo) {
+                    case 'text':
+                        question.resposta = 'Preenchido';
+                        break;
+                    case 'date':
+                        question.resposta = '1996-12-02';
+                        break;
+                    case 'phone':
+                        question.resposta = '(35) 99108-4588';
+                        break;
+                    case 'email':
+                        question.resposta = 'thales-lima@live.com';
+                        break;
+                    case 'checkbox':
+                        question.alternativas.forEach((option) => {
+                            option.selecionada = true;
+                        });
+                        break;
+                    case 'radio':
+                        question.alternativas[0].selecionada = true;
+                        this.updateSelectedOption(question.id, question.alternativas[0].resposta)
+                        break;
+                }
+            });
+            this.refreshProgress();
+        },
         async submitForm() {
             const response = await sendWelcomeForm(this.questions)
             console.log('response:', response)
@@ -843,14 +892,25 @@ export default {
 
             window.setTimeout(() => {
                 this.refreshProgress()
+                this.fillRequiredQuestions()
             }, 50)
+        },
+        textInputEvent($event, question) {
+            this.refreshProgress();
+            if (question.textOptions && question.textOptions.includes('capitalize-all')) {
+                event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase());
+            }
         },
         refreshProgress() {
             document.getElementsByClassName('progress-bar')[0].style = 'width: ' + this.percentageComplete + '% !important';
         },
         isQuestionAnswered(question) {
             return (
-                (question.tipo === "text" && question.resposta !== '')
+                (
+                    ['text', 'date', 'phone', 'email', 'whatsapp'].includes(question.tipo)
+                    &&
+                    question.resposta !== ''
+                )
 
                 ||
 

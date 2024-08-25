@@ -3,7 +3,7 @@ import axios from '@/services/axios'
 export async function sendWelcomeForm(questions) {
     try {
         const response = await axios.post('/pacientes/welcome-form', {
-            id_paciente: 1,
+            id_paciente: 3,
             questions,
         });
 

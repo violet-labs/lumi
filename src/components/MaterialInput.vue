@@ -2,10 +2,20 @@
   <label v-if="label && label.trim() !== ''" :for="id" class="form-label" :class="labelClass">{{ label }}
     <span v-if="required" class="text-danger">*</span>
   </label>
-  <input :id="id" :type="type" class="form-control" :class="getClasses(size, centered)" :name="name" :value="modelValue"
-    :placeholder="placeholder" :isRequired="isRequired" :disabled="disabled" :readonly="readonly"
+  <input 
+    :id="id"
+    :name="name"
+    :type="type"
+    :isRequired="isRequired"
+    :readonly="readonly"
+    :disabled="disabled"
+    class="form-control"
+    :class="getClasses(size, centered)"
+    :placeholder="placeholder"
+    :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value); inputEvent();"
     v-maska="mask"
+    :style="style"
     />
 </template>
 
@@ -17,6 +27,10 @@ export default {
   name: "MaterialInput",
   directives: { maska: vMaska },
   props: {
+    style: {
+      type: String,
+      default: '',
+    },
     mask: {
       type: String,
       default: null,
