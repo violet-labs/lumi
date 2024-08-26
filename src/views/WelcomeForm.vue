@@ -63,7 +63,8 @@
                                                     class="mt-0 p-0">
                                                     <MaterialInput
                                                         :type="question.tipo === 'phone' ? 'text' : question.tipo"
-                                                        :name="question.id" :id="question.id" :label="question.questao"
+                                                        :name="question.id" :id="question.id" :ref="question.id"
+                                                        :label="question.questao"
                                                         labelClass="font-weight-bolder label-highlight"
                                                         v-model="question.resposta" :required="question.obrigatoria"
                                                         :input="function ($event) { textInputEvent($event, question) }"
@@ -126,7 +127,9 @@
                                                         v-model="question.detalhe" :input="refreshProgress" />
                                                 </div>
 
-                                                <div class="p-horizontal-divider"></div>
+                                                <!-- Exibe o divider, exceto no último elemento -->
+                                                <div v-if="index !== questions.length - 1"
+                                                    class="p-horizontal-divider primary"></div>
 
                                             </div> <!-- v-for / -->
 
@@ -140,12 +143,9 @@
                                                 @click="scrollToNextUnansweredQuestion"
                                                 :disabled="false">Avançar</button>
 
-                                            <button class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="submitForm">Finalizar</button>
-
-                                            <!-- <button v-if="percentageCompleteRequired == 100"
+                                            <button v-if="percentageCompleteRequired == 100"
                                                 class="btn btn-sm btn-primary next-button bg-gradient-secondary"
-                                                @click="submitForm">Finalizar</button> -->
+                                                @click="submitForm">Finalizar</button>
 
                                             <div class="progress progress-striped">
                                                 <div class="progress-bar" style="width: 0% !important">
@@ -371,6 +371,7 @@ const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
 import { isMobile, phoneMask } from "@/utils.js";
 import { sendWelcomeForm } from '@/services/pacientesService'
+import Swal from 'sweetalert2'
 
 const questions = [
     {
@@ -827,7 +828,7 @@ export default {
         },
     },
     methods: {
-        fillRequiredQuestions() {
+        fillAllQuestions() {
             this.questions.forEach((question) => {
                 const radioInput = document.getElementById(`alternativa-${question.id}-0`);
                 if (radioInput && radioInput.type === 'radio')
@@ -860,7 +861,31 @@ export default {
             this.refreshProgress();
         },
         async submitForm() {
+            if (!this.validateForm())
+                return
+
             const response = await sendWelcomeForm(this.questions)
+        },
+        validateForm() {
+            // Verifique se todas as questões obrigatórias estão respondidas
+            for (const question of this.questions) {
+                if (question.obrigatoria && !this.isQuestionAnswered(question)) {
+                    // Exiba uma mensagem de erro ou faça alguma outra ação se a questão obrigatória não estiver respondida
+                    Swal.fire({
+                        title: 'Ops!',
+                        html: `Você ainda não respondeu à questão obrigatória:<br><b>${question.questao.replace(':', '')}</b>`,
+                        icon: 'warning',
+                    }).then(() => {
+                        window.setTimeout(() => {
+                            this.scrollToNextUnansweredQuestion()
+                        }, 300)
+                    });
+                    return false;
+                }
+            }
+
+            // Se chegamos a esse ponto, todas as questões obrigatórias estão respondidas
+            return true;
         },
         phoneMaskWrapper(length) {
             return phoneMask(length);
@@ -873,6 +898,12 @@ export default {
             if (unansweredQuestion) {
                 const questionElement = this.$refs['question' + this.questions.indexOf(unansweredQuestion)][0]
                 questionElement.scrollIntoView({ behavior: 'smooth' })
+                console.log('questionElement:', questionElement)
+
+                if (!isMobile() && ['text', 'date', 'phone', 'email', 'whatsapp'].includes(unansweredQuestion.tipo)) {
+                    const input = this.$refs[unansweredQuestion.id][0].$refs[unansweredQuestion.id]
+                    input.focus()
+                }
             }
         },
         updateSelectedOption(questionName, optionValue) {
@@ -891,7 +922,7 @@ export default {
 
             window.setTimeout(() => {
                 this.refreshProgress()
-                this.fillRequiredQuestions()
+                this.fillAllQuestions()
             }, 50)
         },
         textInputEvent($event, question) {

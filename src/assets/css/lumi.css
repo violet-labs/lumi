@@ -386,6 +386,10 @@ textarea.form-control:active {
     background: linear-gradient(to right, #F0F0F0, #DEDEDE, #F0F0F0);
 }
 
+.p-horizontal-divider.primary {
+    background: linear-gradient(to right, #dbf1ff, #accee7, #dbf1ff);
+}
+
 .p-horizontal-divider.m1 {
     margin: 5px;
 }
@@ -897,3 +901,11 @@ p.text-uppercase, p.font-weight-bold {
 .pt5 {
     padding-top: 5px !important;
 }
+
+/* Swal 2 Customizations */
+
+button.swal2-confirm {
+    color: #FFF;
+	background: linear-gradient(195deg, #7aa3c0 0%, #32668c 100%);
+}
+

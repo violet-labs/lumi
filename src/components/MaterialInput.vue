@@ -16,6 +16,7 @@
     @input="$emit('update:modelValue', $event.target.value); inputEvent();"
     v-maska="mask"
     :style="style"
+    :ref="id"
     />
 </template>
 
