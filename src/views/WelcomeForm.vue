@@ -862,9 +862,44 @@ export default {
         },
         async submitForm() {
             if (!this.validateForm())
-                return
+                return false
 
             const response = await sendWelcomeForm(this.questions)
+
+            let alertOptions = {}
+
+            if (!response || !response.data || !response.data.status) {
+                alertOptions.title = 'Ops!'
+                alertOptions.icon = 'error'
+                alertOptions.html = 'Ocorreu um erro ao enviar as informações. Por favor, tente novamente.'
+            } else if (response.data.status === 'error' && response.data.message !== '') {
+                alertOptions.title = 'Ops!'
+                alertOptions.icon = 'error'
+                alertOptions.html = response.data.message
+            } else if (response.data.status === 'success') {
+                alertOptions.title = `Seja bem-vindo(a),<br>${questions.find(q => q.id === 'nome_completo').resposta.split(' ')[0]}!`
+                alertOptions.icon = 'success'
+                alertOptions.html = `
+                    Seu formulário de boas-vindas foi enviado com sucesso!
+                    <br>
+                    <br>
+                    Estamos ansiosos para conhecê-lo(a) melhor e cuidar da sua saúde bucal!
+                    <br>
+                    <br>
+                    Em breve, nossa equipe entrará em contato para agendar sua primeira consulta.
+                    <br>
+                    <br>
+                    Obrigado por escolher nossa clínica!
+                    <br>
+                    <br>
+                    <span style="font-size: 11pt; color: #666;">Você pode fechar esta página</span>
+                    <br>
+                    `
+                alertOptions.showConfirmButton = false
+                alertOptions.allowOutsideClick = false
+            }
+
+            Swal.fire(alertOptions)
         },
         validateForm() {
             // Verifique se todas as questões obrigatórias estão respondidas

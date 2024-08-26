@@ -909,3 +909,8 @@ button.swal2-confirm {
 	background: linear-gradient(195deg, #7aa3c0 0%, #32668c 100%);
 }
 
+button.swal2-confirm:hover {
+    color: #FFF;
+    background: linear-gradient(195deg, #6495b3 0%, #2c5c7c 100%) !important;
+}
+
