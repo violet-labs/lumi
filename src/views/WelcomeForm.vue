@@ -877,16 +877,16 @@ export default {
                 alertOptions.icon = 'error'
                 alertOptions.html = response.data.message
             } else if (response.data.status === 'success') {
-                alertOptions.title = `Seja bem-vindo(a),<br>${questions.find(q => q.id === 'nome_completo').resposta.split(' ')[0]}!`
-                alertOptions.icon = 'success'
                 alertOptions.html = `
-                    Seu formulário de boas-vindas foi enviado com sucesso!
+                    <br>
+                    <br>
+                    <i class="fa-solid fa-face-smile-beam" style="font-size: 60pt; color: #96d175"></i>
+                    <br>
+                    <br>
+                    <h1>Seja bem-vindo(a),<br>${questions.find(q => q.id === 'nome_completo').resposta.split(' ')[0]}!</h1>
                     <br>
                     <br>
                     Estamos ansiosos para conhecê-lo(a) melhor e cuidar da sua saúde bucal!
-                    <br>
-                    <br>
-                    Em breve, nossa equipe entrará em contato para agendar sua primeira consulta.
                     <br>
                     <br>
                     Obrigado por escolher nossa clínica!
@@ -957,7 +957,7 @@ export default {
 
             window.setTimeout(() => {
                 this.refreshProgress()
-                this.fillAllQuestions()
+                // this.fillAllQuestions()
             }, 50)
         },
         textInputEvent($event, question) {

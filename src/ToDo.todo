@@ -1,34 +1,23 @@
-Formulário de boas-vindas:
-    ✔ Corrigir a contagem da porcentagem @done(24-07-29 21:59)
-    ✔ Trocar o texto "É um prazer recebê-lo!" por algo como "Vamos lá!" @done(24-07-29 21:59)
-    ✔ Colocar propriedade "required": true em todas questões @done(24-07-29 22:00)
-    ✔ Alterar required para false nas questões que não forem obrigatórias @done(24-08-11 19:50)
-    ✔ Fazer estilização das questões obrigatórias @done(24-07-29 22:08)
-    ✔ Fazer comportamento do botão de avançar (scrolling) @done(24-08-11 19:51)
-    ✔ Colocar as propriedades de "detalhamento" nas questões que precisarem @done(24-08-11 19:51)
-    ✔ Colocar os "titulo_detalhe" nas questões que precisarem @done(24-08-11 19:51)
-    ✔ Criar tipo de campo "date" @done(24-08-11 21:03)
-    ✔ Criar tipo de campo "phone" @done(24-08-11 21:03)
-    ✔ Acertar a máscara de telefone @done(24-08-11 21:03)
-    ✔ Acertar placeholder da máscara de telefone @done(24-08-11 21:10)
-    
-    ☐ Ver se o objeto está refletido corretamente
-    ☐ Tentar enviar via request
-    ☐ Receber e conferir o objeto
-    ☐ Iniciar funções da API
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-Front-end:
-    ☐ (30m) checar e finalizar visual e funcionalidades do formulário    
-    ☐ (10m) criar chamada na API para entregar o formulário
-
-☐ Intervalo
-
-Back-end:
-    ☐ (20m) criar model do formulário de bem-vindo    
-    ☐ (10m) criar migration para gerar a tabela do formulário    
-    ☐ (30m) criar rota para receber o formulário e salvá-lo
+Formulário de bem-vindo e tratamento das respostas:
+    ✔ (10m) Fazer novo layout para rolar as perguntas @done(24-08-27 23:10)
+    ✔ (30m) Executar a migração para a nova estrutura: @done(24-08-27 23:10)
+        ✔ Pergunta @done(24-08-27 23:10)
+        ✔ tipo (radio, multiple-choices, open-text), @done(24-08-27 23:10)
+        ✔ condition @done(24-08-27 23:16)
+        ✔ options (para radio e multiple-choices) - array de opções possíveis - options: @done(24-08-27 23:16)
+            ✔ personalDetail @done(24-08-27 23:16)
+            ✔ detailType (good, neutral, attention, bad) @done(24-08-27 23:16)
+            ✔ openText (texto aberto por uma opção do tipo open-text) @done(24-08-27 23:16)
+    ✔ (5m) Criar rota para receber o formulário de boas-vindas @done(24-08-27 23:17)
+    ✔ (7m) Fazer função JavaScript para enviar o formulário @done(24-08-27 23:17)
+    ✔ (7m) Fazer função na API para receber o formulário @done(24-08-27 23:17)
+    ✔ (10m) Fazer funcionar o INSERT do formulário @done(24-08-27 23:17)
+    ✔ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido @done(24-08-27 23:17)
+    ✔ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria @done(24-08-27 23:17)
+    ✔ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais" @done(24-08-27 23:17)
+    ✔ (5m) Inserir flag "tipo_detalhe" @started(24-08-27 22:54) @done(24-08-27 22:55) @lasted(1m2s)
+    ✔ Revisar (5m) @started(24-08-27 22:56) @done(24-08-27 23:06) @lasted(10m28s)
+    ✔ Melhorar mensagem final @started(24-08-27 23:06) @done(24-08-27 23:06) @lasted(1s)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -39,11 +28,22 @@ Back-end:
 Reunião 11/06/2024:
 -- ------------------------------------------ --
 (1h) Perfil do paciente:
+    ☐ Exibir Detalhes pessoais
     Adicionar:
         ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
 -- ------------------------------------------ --
+Consultas:
+    Front-end:
+        ☐ Criar service para as consultas
+        ☐ Criar rota para adicionar consulta
+        ☐ Criar rota para editar consulta
+    API:
+        ☐ Criar model de Consulta
+        ☐ Criar rota para adicionar consulta
+-- ------------------------------------------ --
 Tratamento:
-    ☐ Inicio do tratamento: preencher com a data da primeira consulta
+    ☐ Início do tratamento: preencher com a data da primeira consulta
+    ☐ Exibir Detalhes clínicos
 -- ------------------------------------------ --
 Tela de Diagnóstico/Prognóstico:
     -- NO: Passar o tratamento para cima da explicação da análise
@@ -83,27 +83,9 @@ Meios de contato:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
-Formulário de bem-vindo e tratamento das respostas:
-    ☐ (10m) Fazer novo layout para rolar as perguntas  
-    ☐ (30m) Executar a migração para a nova estrutura:
-        ☐ Pergunta
-        ☐ tipo (radio, multiple-choices, open-text),
-        ☐ condition
-        ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
-            ☐ personalDetail
-            ☐ detailType (good, neutral, attention, bad)
-            ☐ openText (texto aberto por uma opção do tipo open-text)
-    ☐ (5m) Criar rota para receber o formulário de boas-vindas
-    ☐ (7m) Fazer função JavaScript para enviar o formulário
-    ☐ (7m) Fazer função na API para receber o formulário
-    ☐ (10m) Fazer funcionar o INSERT do formulário
-    ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
-    ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
-    ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
-    ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
-    ☐ (10m) Centralizar todos .modal no centro vertical da tela
+☐ (10m) Centralizar todos .modal no centro vertical da tela
 Coisas que preciso ver como será feito:
-    ☐ (1h) Estrutura do formulário de bem-vindo
+    ✔ (1h) Estrutura do formulário de bem-vindo @done(24-08-27 23:18)
     ☐ (1h) Estrutura da análise clínica
 Tela de análise clínica (form):
     ☐ Calcular o tratamento recomendado, através das respostas do formulário
@@ -114,7 +96,7 @@ Consertar layout:
 Later:
     Laravel - aprender:
         ☐ (10m) Como fazer paginação do lado do servidor
-    ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
+    ✔ (30m) Tentar fazer deploy no host1.violetlabs.com.br @done(24-08-27 23:18)
     ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
     ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
     ☐ Verificar o porque de estar lento para abrir a Agenda
@@ -156,10 +138,6 @@ Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
     ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)
     ☐ Dar opção para o paciente consultar o seu plano de tratamento
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-New ideas:
     ☐ No diagnóstico, colocar 3 colunas de <ul>, com os itens apresentados na análise
 -- ------------------------------------------ --
 -- ------------------------------------------ --
