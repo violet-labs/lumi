@@ -10,7 +10,7 @@
                     </div>
                     <div class="custom-card-body p-0 pb-3">
                         <div class="row px-3">
-                            <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
+                            <!-- <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
                                 class="col-md-6 mt-2 px-2 py-1">
                                 <div class="card">
                                     <div class="card-header p-3 pb-0">
@@ -28,7 +28,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -606,9 +606,9 @@ var isEditing = []
 export default {
     name: "Analise",
     props: {
-        personalPerceptions: {
-            type: Object,
-        },
+        // personalPerceptions: {
+        //     type: Object,
+        // },
     },
     data() {
         return {

@@ -239,22 +239,22 @@ div>.selector-tab-item:last-child {
     border-width: 2px;
 }
 
-.info-container.good {
+.info-container.good, .info-container.positivo {
     border-color: rgb(102, 204, 102);
     color: rgb(46, 179, 46);
 }
 
-.info-container.bad {
+.info-container.bad, .info-container.negativo {
     border-color: rgb(202, 114, 114);
     color: rgb(179, 46, 46);
 }
 
-.info-container.neutral {
+.info-container.neutral, .info-container.neutro {
     border-color: rgb(160, 160, 160);
     color: rgb(160, 160, 160);
 }
 
-.info-container.attention {
+.info-container.attention, .info-container.atencao {
     border-color: rgb(226, 178, 88);
     color: rgb(216, 149, 25);
 }

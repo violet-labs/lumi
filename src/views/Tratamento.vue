@@ -88,7 +88,7 @@
     <div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
-      <Analise v-if="tratamentoTab === 'analise'" :personalPerceptions="personalPerceptions" />
+      <Analise v-if="tratamentoTab === 'analise'" />
     </Transition>
 
     <Transition>
@@ -236,9 +236,6 @@ export default {
   name: "tratamento",
   props: {
     paciente: {
-      type: Object,
-    },
-    personalPerceptions: {
       type: Object,
     },
   },

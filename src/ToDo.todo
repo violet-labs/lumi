@@ -18,6 +18,13 @@ Formulário de bem-vindo e tratamento das respostas:
     ✔ (5m) Inserir flag "tipo_detalhe" @started(24-08-27 22:54) @done(24-08-27 22:55) @lasted(1m2s)
     ✔ Revisar (5m) @started(24-08-27 22:56) @done(24-08-27 23:06) @lasted(10m28s)
     ✔ Melhorar mensagem final @started(24-08-27 23:06) @done(24-08-27 23:06) @lasted(1s)
+
+
+✔ Exibir Detalhes Paciente @started(24-08-27 23:20) @done(24-08-27 23:47) @lasted(27m33s)
+
+✔ Filtrar detalhes pessoais @done(24-08-27 23:47)
+
+☐ Retirar total_consultas da linha 87 do PacientesController.php (verificar se é obrigatório no front-end, e se já não existe no banco de dados - se não existir, criar migration)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -25,50 +32,51 @@ Formulário de bem-vindo e tratamento das respostas:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
+
 Reunião 11/06/2024:
--- ------------------------------------------ --
-(1h) Perfil do paciente:
-    ☐ Exibir Detalhes pessoais
-    Adicionar:
-        ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
--- ------------------------------------------ --
-Consultas:
-    Front-end:
-        ☐ Criar service para as consultas
-        ☐ Criar rota para adicionar consulta
-        ☐ Criar rota para editar consulta
-    API:
-        ☐ Criar model de Consulta
-        ☐ Criar rota para adicionar consulta
--- ------------------------------------------ --
-Tratamento:
-    ☐ Início do tratamento: preencher com a data da primeira consulta
-    ☐ Exibir Detalhes clínicos
--- ------------------------------------------ --
-Tela de Diagnóstico/Prognóstico:
-    -- NO: Passar o tratamento para cima da explicação da análise
-    ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
-    Prognóstico:
-        ☐ Deixar opções fixas
-        ☐ Deixar campo aberto para observação
--- ------------------------------------------ --
-Tela de Plano de tratamento:
-    ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
-    ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
-    ☐ Deixar um campo aberto
-    Colocar mais uma opção na meta terapêutica: 
-        ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
-    Seção "Necessidade de encaminhamentos":
-        ☐ Preencher automaticamente a partir da analise
-        ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
--- ------------------------------------------ --
-Formulário de bem-vindo:  
-    ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
--- ------------------------------------------ --
-Analises radiográficas:
-    Adicionar campos:
-        ☐ POEF (aberto)
-        ☐ Observações (aberto)
+    -- ------------------------------------------ --
+    (1h) Perfil do paciente:
+        ☐ Exibir Detalhes pessoais
+        Adicionar:
+            ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
+    -- ------------------------------------------ --
+    Consultas:
+        Front-end:
+            ☐ Criar service para as consultas
+            ☐ Criar rota para adicionar consulta
+            ☐ Criar rota para editar consulta
+        API:
+            ☐ Criar model de Consulta
+            ☐ Criar rota para adicionar consulta
+    -- ------------------------------------------ --
+    Tratamento:
+        ☐ Início do tratamento: preencher com a data da primeira consulta
+        ☐ Exibir Detalhes clínicos
+    -- ------------------------------------------ --
+    Tela de Diagnóstico/Prognóstico:
+        -- NO: Passar o tratamento para cima da explicação da análise
+        ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
+        Prognóstico:
+            ☐ Deixar opções fixas
+            ☐ Deixar campo aberto para observação
+    -- ------------------------------------------ --
+    Tela de Plano de tratamento:
+        ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
+        ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
+        ☐ Deixar um campo aberto
+        Colocar mais uma opção na meta terapêutica: 
+            ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
+        Seção "Necessidade de encaminhamentos":
+            ☐ Preencher automaticamente a partir da analise
+            ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
+    -- ------------------------------------------ --
+    Formulário de bem-vindo:  
+        ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
+    -- ------------------------------------------ --
+    Analises radiográficas:
+        Adicionar campos:
+            ☐ POEF (aberto)
+            ☐ Observações (aberto)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -142,3 +150,6 @@ Ideas:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
+
+
+

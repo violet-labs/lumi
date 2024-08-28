@@ -250,20 +250,18 @@
                     <div class="col-12">
                       <div class="row p-0">
 
-                        <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
-                          class="col-sm-6 col-md-4 mt-2">
+                        <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index" class="col-sm-6 col-md-4 mt-2">
                           <div class="card">
-                            <div class="card-header pb-2">
+                            <!-- <div class="card-header pb-2">
                               <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
-                            </div>
+                            </div> -->
                             <div class="card-body m-0 pt-2">
-                              <div class="info-container" v-for="perception in perceptions" v-bind:key="perception.text"
-                                :class="perception.type">
+                              <div class="info-container" :class="detalhe.nivel">
                                 <div style="width: 30px; text-align: center;">
-                                  <font-awesome-icon :icon="['fas', getInfoIcon(perception.type)]" />
+                                  <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
                                 </div>
                                 <div class="">
-                                  <span>{{ perception.text }}</span>
+                                  <span>{{ detalhe.detalhe }}</span>
                                 </div>
                               </div>
                             </div>
@@ -290,7 +288,7 @@
       </Transition>
 
       <Transition>
-        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" :personalPerceptions="personalPerceptions" />
+        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" />
       </Transition>
 
       <Transition>
@@ -390,45 +388,6 @@ var activeProfileTab = 'perfilPessoal';
 
 var hasPendingChanges = false;
 
-var personalPerceptions = {
-  'Sobre aparelho': [
-    {
-      type: 'good',
-      text: 'Acha legal usar aparelho'
-    },
-  ],
-  'Hábitos': [
-    {
-      type: 'bad',
-      text: 'Roe unhas'
-    },
-    {
-      type: 'bad',
-      text: 'Chupou chupeta'
-    }
-  ],
-  'Histórico': [
-    {
-      type: 'attention',
-      text: 'Já bateu os dentes'
-    },
-    {
-      type: 'neutral',
-      text: 'Já fez outros tratamentos'
-    }
-  ],
-  'Saúde': [
-    {
-      type: 'attention',
-      text: 'Toma medicação controlada'
-    },
-    {
-      type: 'attention',
-      text: 'Possui pressão alta'
-    }
-  ],
-}
-
 var activeTab = 'perfil'
 
 export default {
@@ -447,11 +406,13 @@ export default {
       originalPaciente,
       showTratamento,
       activeTab,
-      activeProfileTab,
-      personalPerceptions
+      activeProfileTab
     };
   },
   computed: {
+    detalhesPessoais() {
+      return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'pessoal') : [];
+    },
     hasPendingChanges() {
       return JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
     }
@@ -467,15 +428,18 @@ export default {
     }
   },
   methods: {
+
     validarCep(cep) {
       return /^\d{8}$/.test(cep.replace(/[^\d]+/g, ""))
     },
+
     zipCodeMask(value) {
       if (!value) return ""
       value = value.replace(/\D/g, '')
       value = value.replace(/(\d{5})(\d)/, '$1-$2')
       return value
     },
+
     async getEndereco(event) {
       var cep = event.target.value
       this.paciente.endereco_cep = this.zipCodeMask(cep)
@@ -492,6 +456,7 @@ export default {
       this.paciente.endereco_cidade = enderecoInfo.city
       this.paciente.endereco_estado = enderecoInfo.state
     },
+
     getContatoIcon(type) {
       var icon = null;
       switch (type) {
@@ -511,31 +476,35 @@ export default {
 
       return icon;
     },
-    getInfoIcon(type) {
+
+    getInfoIcon(nivel) {
       var icon = null
-      switch (type) {
-        case 'good':
+      switch (nivel) {
+        case 'positivo':
           icon = 'thumbs-up'
           break
-        case 'bad':
-          icon = 'thumbs-down'
+        case 'neutro':
+          icon = 'info-circle'
           break
-        case 'attention':
+        case 'atencao':
           icon = 'circle-exclamation'
           break
-        case 'neutral':
-          icon = 'info-circle'
+        case 'negativo':
+          icon = 'thumbs-down'
           break
       }
 
       return icon
     },
+
     setProfileTab(tab) {
       this.activeProfileTab = tab
     },
+
     openTab(tab) {
       this.activeTab = tab;
     },
+
     async getPacienteDetails(id) {
       const paciente = await getPaciente(id)
       if (paciente) {
@@ -543,19 +512,23 @@ export default {
         this.originalPaciente = JSON.parse(JSON.stringify(paciente))
       }
     },
+
     async savePaciente() {
       await updatePaciente(paciente)
     }
   },
+
   async mounted() {
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
     await this.getPacienteDetails(this.$route.params.id);
   },
+
   async beforeMount() {
     this.hasPendingChanges = false;
   },
+
   beforeUnmount() {
   }
 };
