@@ -116,7 +116,7 @@
 
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600"><label
                           for="paciente_observacoes">Observações</label></p>
-                      <textarea class="form-control" id="paciente_observacoes" rows="2" v-model="paciente.observacoes">
+                      <textarea class="form-control" id="paciente_observacoes" rows="5" v-model="paciente.observacoes">
                       </textarea>
                     </div>
                     <div class="col-md-6 ps-4">
@@ -199,6 +199,26 @@
                         </tbody>
                       </v-table>
 
+                      <div class="p-horizontal-divider mb-0"></div>
+
+                      <div class="row">
+                        <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center">
+                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Formulário de boas-vindas</p>
+                          <span v-if="paciente.formulario_respondido"
+                            class="badge badge-sm bg-success">Respondido</span>
+                          <span v-else class="badge badge-sm bg-warning">Não respondido</span>
+                        </div>
+                        <div class="col-sm-6 d-flex align-items-end justify-content-center">
+                          <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
+                            @click="visualizarFormulario">VISUALIZAR</button>
+                          <button :disabled="!possuiWhatsapp" class="btn btn-primary mb-0" @click="enviarFormulario">
+                            <i class="fab fa-whatsapp me-1" style="font-size: 13pt;"></i>
+                            <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'NÃO DISPONÍVEL'
+                              }}</span>
+                          </button>
+                        </div>
+                      </div>
+
                       <div class="p-horizontal-divider"></div>
 
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
@@ -250,7 +270,8 @@
                     <div class="col-12">
                       <div class="row p-0">
 
-                        <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index" class="col-sm-6 col-md-4 mt-2">
+                        <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
+                          class="col-sm-6 col-md-4 mt-2">
                           <div class="card">
                             <!-- <div class="card-header pb-2">
                               <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
@@ -296,8 +317,9 @@
 
           <div class="row">
             <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Total de consultas" readonly centered type="text"
-                v-bind:value="paciente.total_consultas ? paciente.total_consultas : 0" id="paciente_proximaConsulta" />
+              <material-input label="Consultas realizadas" readonly centered type="text"
+                v-bind:value="paciente.consultas_realizadas ? paciente.consultas_realizadas : 0"
+                id="paciente_proximaConsulta" />
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <material-input label="Primeira consulta" readonly centered type="text"
@@ -410,6 +432,17 @@ export default {
     };
   },
   computed: {
+    possuiWhatsapp() {
+      return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
+    },
+    whatsappNumero() {
+      if (this.possuiWhatsapp) {
+        const whatsappContato = this.paciente.contatos.find(contato => contato.tipo === 'whatsapp');
+        return whatsappContato.contato;
+      } else {
+        return null;
+      }
+    },
     detalhesPessoais() {
       return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'pessoal') : [];
     },
@@ -428,6 +461,17 @@ export default {
     }
   },
   methods: {
+    enviarFormulario() {
+      const whatsappNumber = this.whatsappNumero;
+      const phoneNumber = whatsappNumber.replace(/\D+/g, ''); // extract only numbers
+      if (phoneNumber.length !== 11) {
+        // show error message
+        alert('Número de WhatsApp inválido. Por favor, verifique o número.');
+        return;
+      }
+      const link = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
+      window.open(link, '_blank'); // open in new tab
+    },
 
     validarCep(cep) {
       return /^\d{8}$/.test(cep.replace(/[^\d]+/g, ""))

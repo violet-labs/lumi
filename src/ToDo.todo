@@ -16,7 +16,7 @@ Formulário de bem-vindo e tratamento das respostas:
     ✔ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria @done(24-08-27 23:17)
     ✔ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais" @done(24-08-27 23:17)
     ✔ (5m) Inserir flag "tipo_detalhe" @started(24-08-27 22:54) @done(24-08-27 22:55) @lasted(1m2s)
-    ✔ Revisar (5m) @started(24-08-27 22:56) @done(24-08-27 23:06) @lasted(10m28s)
+    ✔ Revisar (5m) @started(24-08-27 22:56)@done(24-08-27 23:06) @lasted(10m28s)
     ✔ Melhorar mensagem final @started(24-08-27 23:06) @done(24-08-27 23:06) @lasted(1s)
 
 
@@ -24,21 +24,25 @@ Formulário de bem-vindo e tratamento das respostas:
 
 ✔ Filtrar detalhes pessoais @done(24-08-27 23:47)
 
-☐ Retirar total_consultas da linha 87 do PacientesController.php (verificar se é obrigatório no front-end, e se já não existe no banco de dados - se não existir, criar migration)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-☐ Gerar tarefas de funcionalidades do outro sistema ("D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual")
+✔ Retirar total_consultas da linha 87 do PacientesController.php (verificar se é obrigatório no front-end, e se já não existe no banco de dados - se não existir, criar migration) @done(24-09-03 22:15)
+✔ Criar coluna "consultas_realizadas" na tabela "pacientes" @done(24-09-03 22:15)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 
+Criar models:
+    ✔ Consultas @done(24-09-03 22:24)
+    ✔ Contas a Receber @done(24-09-03 22:41)
+    ✔ Contas a Pagar @done(24-09-03 22:41)
+
+✔ No formulário de boas-vindas, receber o token e puxar os dados do paciente de acordo, se houver token @done(24-09-04 00:06)
+
 Reunião 11/06/2024:
     -- ------------------------------------------ --
     (1h) Perfil do paciente:
-        ☐ Exibir Detalhes pessoais
+        ✔ Exibir Detalhes pessoais @done(24-09-03 22:42)
         Adicionar:
-            ☐ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
+            ✔ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido) @done(24-09-03 23:29)
     -- ------------------------------------------ --
     Consultas:
         Front-end:
@@ -150,6 +154,4 @@ Ideas:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
-
-
-
+☐ Gerar tarefas de funcionalidades do outro sistema ("D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual")

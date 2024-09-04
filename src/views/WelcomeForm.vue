@@ -66,7 +66,8 @@
                                                         :name="question.id" :id="question.id" :ref="question.id"
                                                         :label="question.questao"
                                                         labelClass="font-weight-bolder label-highlight"
-                                                        v-model="question.resposta" :required="question.obrigatoria"
+                                                        v-model="question.resposta"
+                                                        :required="question.obrigatoria"
                                                         :input="function ($event) { textInputEvent($event, question) }"
                                                         :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
                                                         :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
@@ -370,7 +371,7 @@ import logo from "@/assets/img/lumi/logo-blue.png";
 const body = document.getElementsByTagName("body")[0];
 import MaterialInput from "@/components/MaterialInput.vue";
 import { isMobile, phoneMask } from "@/utils.js";
-import { sendWelcomeForm } from '@/services/pacientesService'
+import { sendWelcomeForm, getPacienteByToken } from '@/services/pacientesService'
 import Swal from 'sweetalert2'
 
 const questions = [
@@ -388,7 +389,7 @@ const questions = [
         questao: 'Sua data de nascimento:',
         tipo: 'date',
         textOptions: ['center'],
-        id: 'idade',
+        id: 'data_nascimento',
         ordem: 20,
         obrigatoria: true,
         resposta: '',
@@ -799,7 +800,8 @@ export default {
     components: {
         MaterialInput,
     },
-    mounted() {
+    async mounted() {
+        await this.checkTokenFromURL();
     },
     computed: {
         percentageComplete() {
@@ -828,6 +830,26 @@ export default {
         },
     },
     methods: {
+        async checkTokenFromURL() {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const tParam = urlParams.get('t');
+
+            if (tParam) {
+                // Fetch the patient using the token and save it in the component's state
+                // You can use axios or fetch API to make the HTTP request
+                // For example, using axios:
+                const paciente = await getPacienteByToken(tParam)
+
+                if (paciente) {
+                    this.paciente = paciente
+                    this.questions.find(question => question.id === 'nome_completo').resposta = paciente.nome;
+                    this.questions.find(question => question.id === 'data_nascimento').resposta = paciente.data_nascimento;
+                    this.questions.find(question => question.id === 'email').resposta = paciente.email;
+                    this.questions.find(question => question.id === 'whatsapp').resposta = paciente.whatsapp;
+                }
+            }
+        },
         fillAllQuestions() {
             this.questions.forEach((question) => {
                 const radioInput = document.getElementById(`alternativa-${question.id}-0`);
@@ -1006,6 +1028,7 @@ export default {
             hasFinished: false,
             isMobile: isMobile(),
             questions,
+            paciente: null
         }
     },
     created() {

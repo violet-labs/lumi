@@ -19,6 +19,22 @@ export async function sendWelcomeForm(questions) {
     return false
 }
 
+export async function getPacienteByToken(token) {
+    try {
+        const response = await axios.get('/pacientes/get-by-token/' + token);
+
+        if (!response || !response.data || !response.data.paciente || response.data.status !== 'success')
+            return false
+
+        return response.data.paciente
+
+    } catch (error) {
+        console.error('Erro ao buscar paciente através do token da URL', error);
+    }
+
+    return false
+}
+
 export async function getEnderecoByCep(cep) {
     const enderecoInfo = await axios.get('https://api.brasilaberto.com/v1/zipcode/' + cep, { withCredentials: false })
 
