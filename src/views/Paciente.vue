@@ -408,8 +408,6 @@ var showTratamento = false;
 
 var activeProfileTab = 'perfilPessoal';
 
-var hasPendingChanges = false;
-
 var activeTab = 'perfil'
 
 export default {
@@ -447,7 +445,8 @@ export default {
       return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'pessoal') : [];
     },
     hasPendingChanges() {
-      return JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
+      return this.originalPaciente && this.paciente
+      && JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
     }
   },
   watch: {
@@ -570,7 +569,6 @@ export default {
   },
 
   async beforeMount() {
-    this.hasPendingChanges = false;
   },
 
   beforeUnmount() {

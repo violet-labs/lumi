@@ -36,6 +36,178 @@ Criar models:
 
 ✔ No formulário de boas-vindas, receber o token e puxar os dados do paciente de acordo, se houver token @done(24-09-04 00:06)
 
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+Paciente > Tratamento > Análise:
+    ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
+    ☐ Avaliar elementos que não estão mostrando o <select>:
+        ☐ Extra-bucal > ATM
+        ☐ Extra-bucal > Hábitos
+        ☐ Intra-bucal > Apinhamentos
+    ☐ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea>
+    Avaliar se está salvando certinho:
+        ☐ Extra-bucal
+        ☐ Intra-bucal
+        ☐ Análises radiográficas
+    API:
+        ☐ Criar "detalhes_clinicos" quando salvar as seções:
+            ☐ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever
+Paciente > Tratamento > Diagnóstico:
+    Diagnóstico:
+        ☐ Verificar se está salvando certinho
+    Prognóstico:
+        ☐ Verificar se está salvando certinho
+    Protocolo de tratamento:
+        ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
+        Criar opção para solicitar mentoria do paciente:
+            ☐ Criar modal com um campo de observação (opcional) e btn Enviar
+            API:
+                Criar model Mentoria:
+                    ☐ id
+                    ☐ id_solicitante
+                    ☐ id_dentista
+                    ☐ observacao
+                    ☐ status
+                    ☐ timestamps
+            Na tela do Daniel, fazer o menu de Mentorias:
+                ☐ Tela simples, de listagem e link para o paciente/tratamento
+
+Paciente > Tratamento > Plano de tratamento:
+    Metas terapêuticas:
+        ☐ Verificar o porque de não estarem aparecendo
+        ☐ Ver uma forma de apresentá-las melhor, antes das outras info
+    Planejamento:
+        ☐ Remover (apenas comentar) tudo relacionado a Fases do Tratamento
+    Necessidade de encaminhamentos:
+        ☐ Verificar se está salvando certinho
+
+Paciente > Tratamento > Imagens:
+    ☐ Verificar se está fazendo upload de radiografias
+    ☐ Verificar se está fazendo upload de fotos
+    ☐ Verificar se está vinculando a imagem com o paciente/doutor/observação/data
+
+Paciente > Tratamento > Histórico:
+    ☐ Criar model HistoricoPaciente
+    ☐ Criar migration HistoricoPaciente
+    ☐ Criar historico nas ações:
+        ☐ Cadastrado
+        ☐ Informações pessoais editadas
+        ☐ Tratamento iniciado
+        ☐ Consulta
+    
+Paciente > Consultas:
+    ☐ Listar corretamente as consultas
+    Exibir informações (com texto por extenso, em baixo):
+        ☐ Consultas realizadas
+        ☐ Data da primeira consulta
+        ☐ Data da última consulta
+        ☐ Data da próxima consulta
+
+Paciente > Perfil:
+    ☐ Verificar se está salvando certinho
+    ☐ Verificar quais campos precisa remover/retirar (do front e do back-end)
+    Funcionalidade de adicionar meio de contato:
+        Criar model MeioContato:
+            ☐ id
+            ☐ dentista_id
+            ☐ paciente_id
+            ☐ ...
+        ☐ Criar função de inserir
+    ☐ Verificar busca do endereço pelo CEP
+    Detalhes pessoais:
+        ☐ Exibir apenas os pessoais (esconder os clínicos)
+        ☐ Verificar por que está aparecendo só 1
+
+Dentistas:
+    ☐ Fazer funcionar botão de Novo Dentista
+    ☐ Fazer funcionar a pesquisa
+    ☐ Remover botão "Imprimir"
+    ☐ Remover botão "Consultas agendadas"
+    ☐ Remover botão "Todos dentistas"
+    ☐ Criar seção "Gerenciar clínicas"
+    ☐ Adicionar botão "Gerenciar clínicas":
+        Criar objeto "Clinica":
+            Criar model:
+                ☐ id
+                ☐ nome
+                ☐ endereco
+            ☐ Criar migration
+        ☐ Criar modal:
+            ☐ Criar listagem de clínicas
+            ☐ Criar opção para adicionar
+            ☐ Criar opção para excluir
+            ☐ Quando clicar na clínica, exibir info dela:
+                ☐ Nome
+                ☐ Data de cadastro
+                ☐ Total de dentistas
+                ☐ Total de pacientes
+                ☐ Listagem de dentistas
+
+Dentista > Detalhes:
+    Remover campos desnecessários:
+        ☐ Ortodontista
+        ☐ Nome do pai
+        ☐ Nome do mãe
+        ☐ RG (duplicado)
+        ☐ CPF (duplicado)
+    Adicionar campos:
+        ☐ Nome da clínica
+    ☐ Fazer funcionar o salvamento dos dados
+    ☐ Fazer funcionar os meios de contato (copiar de "Paciente", pra facilitar)
+    ☐ Remover seção do Formulário de Boas-vindas
+    ☐ Fazer funcionar puxar endereço do CEP (copiar de "Paciente")
+    ☐ Adicionar endereço da clínica
+
+Dentista > Pacientes:
+    ☐ Exibir listagem de pacientes (com busca simples):
+        ☐ Marcar os que estiverem com mentoria solicitada
+        ☐ Ao clicar, envia para a tela do Paciente
+
+Dentista > Consultas:
+    ☐ Exibir listagem de consultas (com filtro simples)
+
+☐ Esconder "Dentista > Financeiro"
+
+Financeiro:
+    ☐ Criar seções principais "À receber" e "À pagar"
+    Opção para adicionar:
+        ☐ Criar modal:
+            Campos:
+                ☐ Tipo de pagador
+                ☐ Tipo de recebedor
+                ☐ Pagador
+                ☐ Recebedor
+                ☐ Parcela
+                ☐ Total de parcelas
+                ☐ Valor
+                ☐ Data de emissão
+                ☐ Data de vencimento
+                ☐ Status
+    ☐ Criar listagem simples
+    ☐ Criar filtro (a seção (Receber/Pagar) selecionada entra como filtro)
+
+Paciente > Financeiro:
+    ☐ Listar corretamente as faturas do paciente
+
+Agenda:
+    ☐ Fazer funcionar botão de nova consulta
+    ☐ Fazer funcionar botão de novo prontuario (apontar para )
+    ☐ Fazer funcionar impressão
+    ☐ Esconder botão de pagamento
+    Exibir as consultas no calendário nos respectivos modos:
+        ☐ Modo dia
+        ☐ Modo semana
+        ☐ Modo mês
+    Fazer funcionar botão de atestado:
+        ☐ Criar modal de Novo Atestado
+        ☐ No modal, exibir as últimas X consultas (em formato de cartão or something like that), para facilitar selecionar o paciente, ou então escolhe pesquisando mesmo...
+        ☐ Gerar atestado em PDF
+
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+
 Reunião 11/06/2024:
     -- ------------------------------------------ --
     (1h) Perfil do paciente:
@@ -49,7 +221,7 @@ Reunião 11/06/2024:
             ☐ Criar rota para adicionar consulta
             ☐ Criar rota para editar consulta
         API:
-            ☐ Criar model de Consulta
+            ✔ Criar model de Consulta @done(24-09-05 20:15)
             ☐ Criar rota para adicionar consulta
     -- ------------------------------------------ --
     Tratamento:
@@ -127,8 +299,8 @@ Later:
 Outro dia:
     Front-end:
         Desenvolver:
-            ☐ Formulário de adicionar dentista
-            ☐ Tela para ver as informações do dentista
+            ✔ Formulário de adicionar dentista @done(24-09-05 18:31)
+            ✔ Tela para ver as informações do dentista @done(24-09-05 18:31)
             Colocar a sidenav nas outras telas também:
                 ☐ Finanças
         ☐ Excluir arquivos que não forem ser usados
@@ -141,7 +313,7 @@ Outro dia:
         Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
             ☐ Formulários
             ☐ Dentistas
-            ☐ Consultas / agenda
+            ✔ Consultas / agenda @done(24-09-05 18:31)
         Tabela pacientes:
             ☐ picture_url
             ☐ status            

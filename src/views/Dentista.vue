@@ -366,15 +366,17 @@ import { getDentista, updateDentista, getEnderecoByCep } from "@/services/dentis
 
 const body = document.getElementsByTagName("body")[0];
 
-var dentista = {}
+var dentista = {
+  clinica: {
+    nome_fantasia: ''
+  }
+}
 
 var originalDentista = {}
 
 var showTratamento = false;
 
 var activeProfileTab = 'perfilPessoal';
-
-var hasPendingChanges = false;
 
 var activeTab = 'perfil'
 
@@ -413,7 +415,7 @@ export default {
       return this.dentista.detalhes_dentista ? this.dentista.detalhes_dentista.filter(detalhe => detalhe.tipo == 'pessoal') : [];
     },
     hasPendingChanges() {
-      return JSON.stringify(this.originalDentista) !== JSON.stringify(this.dentista)
+      return this.originalDentista && this.dentista && JSON.stringify(this.originalDentista) !== JSON.stringify(this.dentista)
     }
   },
   watch: {
@@ -517,6 +519,7 @@ export default {
 
     async getDentistaDetails(id) {
       const dentista = await getDentista(id)
+      console.log('dentista:', dentista)
       if (dentista) {
         this.dentista = JSON.parse(JSON.stringify(dentista))
         this.originalDentista = JSON.parse(JSON.stringify(dentista))
@@ -536,7 +539,6 @@ export default {
   },
 
   async beforeMount() {
-    this.hasPendingChanges = false;
   },
 
   beforeUnmount() {
