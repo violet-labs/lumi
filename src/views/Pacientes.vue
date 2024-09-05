@@ -241,7 +241,7 @@ const cfg = {
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import { addNovoPaciente, getAllPacientes } from "@/services/pacientesService"
+import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -271,7 +271,7 @@ export default {
   },
   methods: {
     async updateList(search = '') {
-      this.pacientes = await getAllPacientes(search)
+      this.pacientes = await searchPacientes(search)
     },
     statusClass(status) {
       const classMap = {

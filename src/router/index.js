@@ -11,6 +11,8 @@ import WelcomeForm from "@/views/WelcomeForm.vue";
 
 import Paciente from "../views/Paciente.vue";
 
+import Dentista from "../views/Dentista.vue";
+
 import { isAuthenticated } from "../api.js";
 
 const routes = [
@@ -87,6 +89,14 @@ const routes = [
     path: "/paciente/:id",
     name: "Paciente",
     component: Paciente,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/dentista/:id",
+    name: "Dentista",
+    component: Dentista,
     meta: {
       requiresAuth: true
     }

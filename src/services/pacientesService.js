@@ -64,7 +64,7 @@ export async function getPaciente(id) {
     return paciente.data
 }
 
-export async function getAllPacientes(search = '') {
+export async function searchPacientes(search = '') {
     const allPacientes = await axios.post('/pacientes/search', {
         search: search
     })
