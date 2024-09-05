@@ -8,7 +8,7 @@
       <div class="col-12">
 
 
-        <div class="w-100 text-center">
+        <div class="w-100 text-center mt-4">
           <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
             v-model="search">
         </div>

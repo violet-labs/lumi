@@ -35,13 +35,13 @@
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person</i></div>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">downloading</i></div>
           <span>Baixa frequência</span>
         </a>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">person</i></div>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">timer</i></div>
           <span>Aguardando retorno</span>
         </a>
       </li>
@@ -49,12 +49,6 @@
         <a href="#" class="nav-btn">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">list</i></div>
           <span>Todos pacientes</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">attach_money</i></div>
-          <span>Pagamentos</span>
         </a>
       </li>
     </ul>
