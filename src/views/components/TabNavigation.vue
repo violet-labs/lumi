@@ -1,10 +1,10 @@
 <template>
     <v-tabs bg-color="deep-purple-darken-4" center-active fixed-tabs v-model="getCurrentTab">
-        <v-tab @click="openPage('inicio')">
+        <!-- <v-tab @click="openPage('inicio')">
             <div class="pb-1">
                 <v-icon>mdi-home</v-icon>
             </div>
-        </v-tab>
+        </v-tab> -->
         <v-tab @click="openPage('agenda')">
             <div class="pb-1">
                 <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
@@ -57,18 +57,31 @@ export default {
         getCurrentTab() {
             let currentPathObject = this.$router.currentRoute.value.path.replace('/', '')
 
+            // var tabsMap = {
+            //     '': 0,
+            //     'inicio': 0,
+
+            //     'agenda': 1,
+
+            //     'paciente': 2,
+            //     'pacientes': 2,
+
+            //     'dentistas': 3,
+                
+            //     'financeiro': 4,
+            // }
+
             var tabsMap = {
                 '': 0,
-                'inicio': 0,
 
-                'agenda': 1,
+                'agenda': 0,
 
-                'paciente': 2,
-                'pacientes': 2,
+                'paciente': 1,
+                'pacientes': 1,
 
-                'dentistas': 3,
+                'dentistas': 2,
                 
-                'financeiro': 4,
+                'financeiro': 3,
             }
 
             return tabsMap[currentPathObject]

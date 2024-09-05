@@ -68,7 +68,7 @@
                             </p>
                             <p class="text-justify my-0 py-1">
                                 Se você tiver dúvidas sobre esta recomendação, <strong>você pode solicitar uma
-                                    mentoria</strong> deste caso.
+                                    mentoria</strong> para este caso.
                             </p>
                             <div class="p-horizontal-divider m-3"></div>
                             <div class="w-100 text-center my-5">

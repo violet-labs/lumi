@@ -212,7 +212,7 @@
                           <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
                             @click="visualizarFormulario">VISUALIZAR</button>
                           <button :disabled="!possuiWhatsapp" class="btn btn-primary mb-0" @click="enviarFormulario">
-                            <i class="fab fa-whatsapp me-1" style="font-size: 13pt;"></i>
+                            <i class="fab fa-whatsapp me-2" style="font-size: 13pt;"></i>
                             <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'NÃO DISPONÍVEL'
                               }}</span>
                           </button>

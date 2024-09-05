@@ -1,12 +1,12 @@
 <template>
     <div class="tratamento-content">
         <div class="row">
-            
+
             <div class="col-12">
                 <div class="custom-card primary">
                     <div class="custom-card-header">
-                        Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']"
-                            class="ml-3 pointer" title="Como funciona?" />
+                        Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']" class="ml-3 pointer"
+                            title="Como funciona?" />
                     </div>
                     <div class="custom-card-body p-0 pb-3">
                         <div class="row px-3">
@@ -34,8 +34,8 @@
                 </div>
             </div>
 
-            <div class="col-12">
-                <div class="custom-card primary h-100 mt-4">
+            <div class="col-6">
+                <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
                         Extra-bucal
                         <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
@@ -59,9 +59,12 @@
                                     </td>
                                     <td>
                                         <span v-if="!isEditing['extraBucal']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['extraBucal'] && analise.type == 'options'" class="form-select select-sm"
-                                            :value="analise.text" style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id" :class="'text-' + option.mood" :selected="option.text == analise.text">{{ option.text }}</option>
+                                        <select v-if="isEditing['extraBucal'] && analise.type == 'options'"
+                                            class="form-select select-sm" :value="analise.text"
+                                            style="min-width: 170px;">
+                                            <option v-for="option in analise.options" v-bind:key="option.id"
+                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
+                                                {{ option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
                                         <input v-if="false" class="form-control input-sm"
@@ -72,45 +75,16 @@
                         </v-table>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-12 mt-4">
-                <div class="custom-card primary h-100">
-                    <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" :class="{ 'active': isEditing['intraBucal'] }"
-                            :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar os parâmetros intra-bucais'"
-                            @click="toggleEditMode('intraBucal')" /></div>
-                    <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
-                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
-                            Salvar
-                        </button>
+                <div class="spacer">
+                    <div class="icon-wrapper">
+                        <font-awesome-icon :icon="['fas', 'search']" style="font-size: 30pt; color: #85A7C1" />
                     </div>
-                    <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table">
-                            <tbody>
-                                <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
-                                    :class="analise.mood">
-                                    <td>
-                                        {{ analise.name }}
-                                    </td>
-                                    <td>
-                                        <span v-if="!isEditing['intraBucal']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['intraBucal'] && analise.type == 'options'" class="form-select select-sm"
-                                            :value="analise.text" style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id" :class="'text-' + option.mood" :selected="option.text == analise.text">{{ option.text }}</option>
-                                            <option>Outro (especificar)...</option>
-                                        </select>
-                                        <input v-if="false" class="form-control input-sm"
-                                            placeholder="Especifique..." />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </v-table>
-                    </div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
                 </div>
-            </div>
-            <div class="col-12">
+
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['analisesRadiograficas'] }"
@@ -132,9 +106,60 @@
                                     </td>
                                     <td>
                                         <span v-if="!isEditing['analisesRadiograficas']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['analisesRadiograficas'] && analise.type == 'options'" class="form-select select-sm"
-                                            :value="analise.text" style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id" :class="'text-' + option.mood" :selected="option.text == analise.text">{{ option.text }}</option>
+                                        <select v-if="isEditing['analisesRadiograficas'] && analise.type == 'options'"
+                                            class="form-select select-sm" :value="analise.text"
+                                            style="min-width: 170px;">
+                                            <option v-for="option in analise.options" v-bind:key="option.id"
+                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
+                                                {{ option.text }}</option>
+                                            <option>Outro (especificar)...</option>
+                                        </select>
+                                        <input v-if="false" class="form-control input-sm"
+                                            placeholder="Especifique..." />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </v-table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 mt-4">
+                <div class="spacer">
+                    <div class="icon-wrapper">
+                        <font-awesome-icon :icon="['fas', 'search']" style="font-size: 30pt; color: #85A7C1" />
+                    </div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="custom-card primary">
+                    <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']"
+                            class="ml-3 pointer" :class="{ 'active': isEditing['intraBucal'] }"
+                            :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar os parâmetros intra-bucais'"
+                            @click="toggleEditMode('intraBucal')" /></div>
+                    <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
+                        <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
+                            title="Salvar as alterações realizadas">
+                            Salvar
+                        </button>
+                    </div>
+                    <div class="custom-card-body p-0 card-top-border">
+                        <v-table density="compact" class="analises-table">
+                            <tbody>
+                                <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
+                                    :class="analise.mood">
+                                    <td>
+                                        {{ analise.name }}
+                                    </td>
+                                    <td>
+                                        <span v-if="!isEditing['intraBucal']">{{ analise.text }}</span>
+                                        <select v-if="isEditing['intraBucal'] && analise.type == 'options'"
+                                            class="form-select select-sm" :value="analise.text"
+                                            style="min-width: 170px;">
+                                            <option v-for="option in analise.options" v-bind:key="option.id"
+                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
+                                                {{ option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
                                         <input v-if="false" class="form-control input-sm"
@@ -151,6 +176,31 @@
 </template>
 
 <style>
+.spacer {
+    margin: 20px 0px;
+    position: relative;
+}
+
+.spacer .icon-wrapper {
+    position: absolute;
+    /* posiciona a div.icon-wrapper absolutamente */
+    left: 50%;
+    /* centraliza horizontalmente */
+    top: 50%;
+    /* centraliza verticalmente */
+    transform: translate(-50%, -50%);
+}
+
+.stripe {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(to right, #F2F2F2, #c0cbe4, #F2F2F2);
+    /* ajuste a cor das listras */
+    border-radius: 2px;
+    /* adiciona um efeito de borda arredondada */
+    margin-top: 12px;
+}
+
 .card {
     border: 1px solid #DDD;
 }
@@ -162,6 +212,7 @@
 </style>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const analises = {
     'Extra-bucal': [
@@ -641,6 +692,7 @@ export default {
         },
     },
     components: {
+        FontAwesomeIcon,
     },
     mounted() {
     },
