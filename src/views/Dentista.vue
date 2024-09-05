@@ -7,33 +7,34 @@
             <div class="row gx-4">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                  <img src="../assets/img/team-2.jpg" alt="profile_image" class="shadow-sm w-100 border-radius-lg" />
+                  <div class="shadow-sm border-radius-lg d-flex align-center justify-content-center px-2 pb-3" style="border: 2px solid #deeaf2; font-size: 25pt;color: #5988A8;">
+                    <v-icon class="d-none d-md-block">mdi-doctor</v-icon>
+                  </div>
                 </div>
               </div>
               <div class="col-auto my-auto">
                 <div class="h-100">
                   <h5 class="mb-1 fs-4">{{ dentista.nome }}</h5>
-                  <p class="mb-0 font-weight-bold">{{ $filters.howMuchTime(dentista.data_nascimento, new Date(), false)
-                    }}</p>
+                  <p class="mb-0 font-weight-bold">{{ dentista.clinica.nome_fantasia }}</p>
                 </div>
               </div>
               <div class="mx-auto mt-3 col-md-6 my-sm-auto ms-sm-auto me-sm-0">
                 <div class="nav-wrapper position-relative end-0">
                   <ul class="p-1 bg-transparent nav nav-pills nav-fill" role="tablist">
-                    <li class="nav-item" @click="openTab('perfil')">
+                    <li class="nav-item" @click="openTab('detalhes')">
                       <a class="px-0 py-1 mb-0 nav-link nav-tab active" data-bs-toggle="tab" href="javascript:;"
                         role="tab" aria-selected="true">
-                        <i class="fas fa-user"></i>
+                        <i class="fas fa-list"></i>
                         <br>
-                        <span class="ms-1">Perfil</span>
+                        <span class="ms-1">Detalhes</span>
                       </a>
                     </li>
-                    <li class="nav-item" @click="openTab('tratamento')">
+                    <li class="nav-item" @click="openTab('pacientes')">
                       <a class="px-0 py-1 mb-0 nav-link nav-tab" data-bs-toggle="tab" href="javascript:;" role="tab"
                         aria-selected="false">
-                        <i class="fas fa-teeth-open"></i>
+                        <i class="fas fa-user"></i>
                         <br>
-                        <span class="ms-1">Tratamento</span>
+                        <span class="ms-1">Pacientes</span>
                       </a>
                     </li>
                     <li class="nav-item" @click="openTab('consultas')">
@@ -260,39 +261,6 @@
                       </div>
                     </div>
                   </Transition>
-                  <div class="row p-0 w-100 mx-auto"
-                    style="border-top: 1px solid #EEE; background: linear-gradient(to bottom, #d7e6ef, #e6eff4,  #e6eff4, #FFF, #FFF);">
-                    <div class="col-12 text-center mb-1 p-3 m-0"
-                      style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1))">
-                      <span class="fs-5" style="">Detalhes do dentista</span>
-                    </div>
-
-                    <div class="col-12">
-                      <div class="row p-0">
-
-                        <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
-                          class="col-sm-6 col-md-4 mt-2">
-                          <div class="card">
-                            <!-- <div class="card-header pb-2">
-                              <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
-                            </div> -->
-                            <div class="card-body m-0 pt-2">
-                              <div class="info-container" :class="detalhe.nivel">
-                                <div style="width: 30px; text-align: center;">
-                                  <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                                </div>
-                                <div class="">
-                                  <span>{{ detalhe.detalhe }}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
 
                 </div>
               </Transition>
