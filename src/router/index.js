@@ -17,7 +17,7 @@ const routes = [
   {
     path: "/",
     name: "/",
-    redirect: "/inicio",
+    redirect: "/agenda",
     meta: {
       requiresAuth: true
     }
