@@ -277,24 +277,6 @@ export default {
       else
         return 'bg-gradient-success'
     },
-    getTextClass(type) {
-      var textClass = null
-      switch (type) {
-        case 'neutral':
-          textClass = 'text-dark'
-          break
-        case 'good':
-          textClass = 'text-success'
-          break
-        case 'attention':
-          textClass = 'text-warning'
-          break
-        case 'bad':
-          textClass = 'text-danger'
-          break
-      }
-      return textClass
-    },
   },
   components: {
     Analise,

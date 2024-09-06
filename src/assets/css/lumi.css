@@ -614,19 +614,19 @@ div[class*="col-"].border-end {
     text-transform: none;
 }
 
-tr.good td, .text-good {
+tr.positivo td, .text-positivo {
     color: rgb(46, 179, 46) !important;
 }
 
-tr.bad td, .text-bad {
+tr.negativo td, .text-negativo {
     color: rgb(219, 82, 82) !important;
 }
 
-tr.attention, .text-attention {
+tr.atencao td, .text-atencao {
     color: rgb(238, 155, 0) !important;
 }
 
-tr.neutral td, .text-neutral {
+tr.neutro td, .text-neutro {
     color: #666 !important;
 }
 

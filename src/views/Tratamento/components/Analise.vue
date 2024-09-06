@@ -54,37 +54,48 @@
                             style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id"
-                                    :class="analise.mood">
+                                    :class="analise.nivel">
                                     <td>
-                                        {{ analise.name }}
+                                        {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['extraBucal']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['extraBucal'] && analise.type == 'options'"
-                                            class="form-select select-sm" v-model="analise.text"
+                                        <span v-if="!isEditing['extraBucal']">{{ analise.resposta ? analise.resposta :
+                                            '-' }}</span>
+
+                                        <select v-if="isEditing['extraBucal'] && analise.tipo == 'unica_escolha'"
+                                            class="form-select select-sm" v-model="analise.resposta" @change="updateNivel"
                                             style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id"
-                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}
+                                            <option hidden value="">Selecione...</option>
+                                            <option v-for="alternativa in analise.alternativas"
+                                                v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
+                                                :selected="alternativa.resposta == analise.resposta">
+                                                {{ alternativa.resposta }}
                                             </option>
-                                            <option value="outro">Outro (especificar)...</option>
+                                            <option value="detalhe">{{ analise.titulo_detalhe ? analise.titulo_detalhe :
+                                                'Especificar...' }}</option>
                                         </select>
 
-                                        <template v-if="analise.type == 'multiple' && isEditing['extraBucal']">
-                                            <div v-for="option in analise.options" :key="option.id">
-                                                <input type="checkbox" :id="option.id" :value="option.text" :name="analise.id"
-                                                    v-model="analise[option.id]" />
-                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
+                                        <template v-if="analise.tipo == 'multipla_escolha' && isEditing['extraBucal']">
+                                            <div v-for="alternativa in analise.alternativas"
+                                                :key="alternativa.resposta">
+                                                <input type="checkbox" :id="alternativa.resposta"
+                                                    :value="alternativa.resposta" :name="analise.id"
+                                                    v-model="alternativa.selecionada" @click="updateNivel" />
+                                                <label :for="alternativa.resposta"
+                                                    :class="'text-' + alternativa.nivel">{{ alternativa.resposta
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" :id="analise.id + 'outro'" value="outro" :name="analise.id"
-                                                    v-model="analise.outro" />
-                                                <label :for="analise.id + 'outro'">Outro (especificar)...</label>
+                                                <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
+                                                    :name="analise.id" v-model="analise.detalhar" />
+                                                <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
+                                                    analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
                                         </template>
 
-                                        <MaterialInput v-if="isEditing['extraBucal'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
+                                        <MaterialInput
+                                            v-if="isEditing['extraBucal'] && (analise.detalhar || analise.resposta == 'detalhe')"
+                                            type="text" class="input-sm" v-model="analise.detalhe" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -116,37 +127,44 @@
                         <v-table density="compact" class="analises-table radiograficas">
                             <tbody>
                                 <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id"
-                                    :class="analise.mood">
+                                    :class="analise.nivel">
                                     <td>
                                         {{ analise.name }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['analisesRadiograficas'] && analise.type == 'options'"
-                                            class="form-select select-sm" v-model="analise.text"
+                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.resposta }}</span>
+                                        <select
+                                            v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
+                                            class="form-select select-sm" v-model="analise.resposta"
                                             style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id"
-                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}
+                                            <option v-for="alternativa in analise.alternativas"
+                                                v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
+                                                :selected="alternativa.resposta == analise.resposta">
+                                                {{ alternativa.resposta }}
                                             </option>
                                             <option value="outro">Outro (especificar)...</option>
                                         </select>
 
-                                        <template v-if="analise.type == 'multiple' && isEditing['analisesRadiograficas']">
-                                            <div v-for="option in analise.options" :key="option.id">
-                                                <input type="checkbox" :id="option.id" :value="option.text"
-                                                    v-model="analise[option.id]" />
-                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
-                                                    }}</label>
+                                        <template
+                                            v-if="analise.tipo == 'multipla_escolha' && isEditing['analisesRadiograficas']">
+                                            <div v-for="alternativa in analise.alternativas"
+                                                :key="alternativa.resposta">
+                                                <input type="checkbox" :id="alternativa.resposta"
+                                                    :value="alternativa.resposta" v-model="analise[option.id]" />
+                                                <label :for="option.id" :class="'text-' + alternativa.nivel">{{
+                                                    alternativa.resposta
+                                                }}</label>
                                             </div>
                                             <div>
                                                 <input type="checkbox" id="outro" value="Outro (especificar)..."
-                                                    v-model="analise.outro" />
+                                                    v-model="analise.detalhe" />
                                                 <label for="outro">Outro (especificar)...</label>
                                             </div>
                                         </template>
 
-                                        <MaterialInput v-if="isEditing['analisesRadiograficas'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
+                                        <MaterialInput
+                                            v-if="isEditing['analisesRadiograficas'] && (analise.detalhe || analise.resposta == 'outro')"
+                                            type="text" class="input-sm" v-model="analise.detalheText" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -179,37 +197,42 @@
                         <v-table density="compact" class="analises-table intra-bucal">
                             <tbody>
                                 <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
-                                    :class="analise.mood">
+                                    :class="analise.nivel">
                                     <td>
                                         {{ analise.name }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['intraBucal']">{{ analise.text }}</span>
-                                        <select v-if="isEditing['intraBucal'] && analise.type == 'options'"
-                                            class="form-select select-sm" v-model="analise.text"
+                                        <span v-if="!isEditing['intraBucal']">{{ analise.resposta }}</span>
+                                        <select v-if="isEditing['intraBucal'] && analise.tipo == 'unica_escolha'"
+                                            class="form-select select-sm" v-model="analise.resposta"
                                             style="min-width: 170px;">
-                                            <option v-for="option in analise.options" v-bind:key="option.id"
-                                                :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}
+                                            <option v-for="alternativa in analise.alternativas"
+                                                v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
+                                                :selected="alternativa.resposta == analise.resposta">
+                                                {{ alternativa.resposta }}
                                             </option>
                                             <option value="outro">Outro (especificar)...</option>
                                         </select>
 
-                                        <template v-if="analise.type == 'multiple' && isEditing['intraBucal']">
-                                            <div v-for="option in analise.options" :key="option.id">
-                                                <input type="checkbox" :id="option.id" :value="option.text"
-                                                    v-model="analise[option.id]" />
-                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
-                                                    }}</label>
+                                        <template v-if="analise.tipo == 'multipla_escolha' && isEditing['intraBucal']">
+                                            <div v-for="alternativa in analise.alternativas"
+                                                :key="alternativa.resposta">
+                                                <input type="checkbox" :id="alternativa.resposta"
+                                                    :value="alternativa.resposta" v-model="analise[option.id]" />
+                                                <label :for="option.id" :class="'text-' + alternativa.nivel">{{
+                                                    alternativa.resposta
+                                                }}</label>
                                             </div>
                                             <div>
                                                 <input type="checkbox" id="outro" value="Outro (especificar)..."
-                                                    v-model="analise.outro" />
+                                                    v-model="analise.detalhe" />
                                                 <label for="outro">Outro (especificar)...</label>
                                             </div>
                                         </template>
 
-                                        <MaterialInput v-if="isEditing['intraBucal'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
+                                        <MaterialInput
+                                            v-if="isEditing['intraBucal'] && (analise.detalhe || analise.resposta == 'outro')"
+                                            type="text" class="input-sm" v-model="analise.detalheText" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -261,7 +284,7 @@
 }
 
 .spacer .icon-wrapper {
-    
+
     position: absolute;
     /* posiciona a div.icon-wrapper absolutamente */
     left: 50%;
@@ -308,172 +331,199 @@
 
 <script>
 import MaterialInput from '@/components/MaterialInput.vue'
-import { salvarAnalises } from '@/services/pacientesService'
+import { salvarAnalises } from '@/services/tratamentosService'
 
 const analises = {
     'Extra-bucal': [
         {
             id: 10,
-            mood: 'good',
-            name: 'Agradabilidade facial',
-            text: 'aceitável',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 10, mood: 'good', text: 'agradável' },
-                { id: 20, mood: 'good', text: 'aceitável' },
-                { id: 30, mood: 'attention', text: 'desagradável' },
+            nivel: 'neutro',
+            analise: 'Agradabilidade facial',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'agradável', selecionada: false },
+                { nivel: 'positivo', resposta: 'aceitável', selecionada: false },
+                { nivel: 'atencao', resposta: 'desagradável', selecionada: false },
             ],
         },
         {
             id: 20,
-            mood: 'neutral',
-            name: 'Biotipo facial',
-            text: 'dolicocefálico',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 40, mood: 'neutral', text: 'braquicefálico' },
-                { id: 50, mood: 'neutral', text: 'mesocefálico' },
-                { id: 60, mood: 'neutral', text: 'dolicocefálico' },
-                { id: 70, mood: 'neutral', text: 'face curta' },
-                { id: 80, mood: 'neutral', text: 'face longa' },
+            nivel: 'neutro',
+            analise: 'Biotipo facial',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'neutro', resposta: 'braquicefálico', selecionada: false },
+                { nivel: 'neutro', resposta: 'mesocefálico', selecionada: false },
+                { nivel: 'neutro', resposta: 'dolicocefálico', selecionada: false },
+                { nivel: 'neutro', resposta: 'face curta', selecionada: false },
+                { nivel: 'neutro', resposta: 'face longa', selecionada: false },
             ],
         },
         {
             id: 30,
-            mood: 'good',
-            name: 'Simetria facial',
-            text: 'simétrico (leve assimetria)',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 90, mood: 'good', text: 'simétrico (leve assimetria)' },
-                { id: 100, mood: 'attention', text: 'assimétrico (assimetria importante)' },
+            nivel: 'neutro',
+            analise: 'Simetria facial',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'simétrico (ou leve assimetria)', selecionada: false },
+                { nivel: 'atencao', resposta: 'assimétrico (assimetria importante)', selecionada: false },
             ],
         },
         {
             id: 40,
-            mood: 'neutral',
-            name: 'Perfil facial',
-            text: 'convexo',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 110, mood: 'neutral', text: 'convexo' },
-                { id: 120, mood: 'neutral', text: 'reto' },
-                { id: 130, mood: 'neutral', text: 'côncavo' },
+            nivel: 'neutro',
+            analise: 'Perfil facial',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'neutro', resposta: 'convexo', selecionada: false },
+                { nivel: 'neutro', resposta: 'reto', selecionada: false },
+                { nivel: 'neutro', resposta: 'côncavo', selecionada: false },
             ],
         },
         {
             id: 50,
-            mood: 'good',
-            name: 'Selamento labial',
-            text: 'selamento passivo',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 140, mood: 'good', text: 'selamento passivo' },
-                { id: 150, mood: 'attention', text: 'selamento forçado' },
-                { id: 160, mood: 'bad', text: 'sem selamento' },
+            nivel: 'neutro',
+            analise: 'Selamento labial',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'selamento passivo', selecionada: false },
+                { nivel: 'atencao', resposta: 'selamento forçado', selecionada: false },
+                { nivel: 'negativo', resposta: 'sem selamento', selecionada: false },
             ],
         },
         {
             id: 60,
-            mood: 'good',
-            name: 'Exposição dos dentes no sorriso',
-            text: 'normal',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 170, mood: 'good', text: 'normal' },
-                { id: 180, mood: 'neutral', text: 'pouca exposição' },
-                { id: 190, mood: 'neutral', text: 'muita exposição' },
+            nivel: 'neutro',
+            analise: 'Exposição dos dentes no sorriso',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'neutro', resposta: 'pouca exposição', selecionada: false },
+                { nivel: 'neutro', resposta: 'muita exposição', selecionada: false },
             ],
         },
         {
             id: 70,
-            mood: 'neutral',
-            name: 'Exposição gengival ao sorrir',
-            text: 'pouca exposição',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 200, mood: 'good', text: 'normal' },
-                { id: 210, mood: 'neutral', text: 'pouca exposição' },
-                { id: 220, mood: 'attention', text: 'muita exposição' },
+            nivel: 'neutro',
+            analise: 'Exposição gengival ao sorrir',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'neutro', resposta: 'pouca exposição', selecionada: false },
+                { nivel: 'atencao', resposta: 'muita exposição', selecionada: false },
             ],
         },
         {
             id: 80,
-            mood: 'bad',
-            name: 'ATM',
-            text: 'dor e estalido',
-            observation: '',
-            type: 'multiple',
-            options: [
-                { id: 230, mood: 'neutral', text: 'normal' },
-                { id: 240, mood: 'neutral', text: 'dor' },
-                { id: 250, mood: 'neutral', text: 'estalido' },
-                { id: 260, mood: 'neutral', text: 'abertura limitada' },
-                { id: 270, mood: 'neutral', text: 'desvio na abertura/fechamento' },
+            nivel: 'negativo',
+            analise: 'ATM',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Outro(s)...',
+            tipo: 'multipla_escolha',
+            alternativas: [
+                { nivel: 'neutro', resposta: 'normal', selecionada: false },
+                { nivel: 'neutro', resposta: 'dor', selecionada: false },
+                { nivel: 'neutro', resposta: 'estalido', selecionada: false },
+                { nivel: 'neutro', resposta: 'abertura limitada', selecionada: false },
+                { nivel: 'neutro', resposta: 'desvio na abertura/fechamento', selecionada: false },
             ],
         },
         {
             id: 90,
-            mood: 'bad',
-            name: 'Respiração',
-            text: 'bucal',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 290, mood: 'good', text: 'normal' },
-                { id: 300, mood: 'bad', text: 'bucal' },
-                { id: 310, mood: 'neutral', text: 'mista' },
-                { id: 320, mood: 'attention', text: 'problema alérgico' },
+            nivel: 'negativo',
+            analise: 'Respiração',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'negativo', resposta: 'bucal', selecionada: false },
+                { nivel: 'neutro', resposta: 'mista', selecionada: false },
+                { nivel: 'atencao', resposta: 'problema alérgico', selecionada: false },
             ]
         },
         {
             id: 100,
-            mood: 'bad',
-            name: 'Deglutição',
-            text: 'adaptada',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 330, mood: 'good', text: 'normal' },
-                { id: 340, mood: 'attention', text: 'atípica' },
-                { id: 350, mood: 'attention', text: 'adaptada' },
+            nivel: 'negativo',
+            analise: 'Deglutição',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'atípica', selecionada: false },
+                { nivel: 'atencao', resposta: 'adaptada', selecionada: false },
             ]
         },
         {
             id: 110,
-            mood: 'bad',
-            name: 'Hábitos',
-            text: 'dedo e chupeta',
-            observation: '',
-            type: 'multiple',
-            options: [
-                { id: 360, mood: 'good', text: 'nenhum' },
-                { id: 370, mood: 'bad', text: 'chupeta' },
-                { id: 380, mood: 'bad', text: 'dedo' },
-                { id: 390, mood: 'attention', text: 'succção de lábio' },
-                { id: 400, mood: 'attention', text: 'onicofagia' },
-                { id: 410, mood: 'bad', text: 'bruxismo' },
+            nivel: 'negativo',
+            analise: 'Hábitos',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Outro(s)...',
+            tipo: 'multipla_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'nenhum', selecionada: false },
+                { nivel: 'negativo', resposta: 'chupeta', selecionada: false },
+                { nivel: 'negativo', resposta: 'dedo', selecionada: false },
+                { nivel: 'atencao', resposta: 'succção de lábio', selecionada: false },
+                { nivel: 'atencao', resposta: 'onicofagia', selecionada: false },
+                { nivel: 'negativo', resposta: 'bruxismo', selecionada: false },
             ]
         },
         {
             id: 120,
-            mood: 'bad',
-            name: 'Posição da língua',
-            text: 'posteriorizada',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 420, mood: 'good', text: 'normal' },
-                { id: 430, mood: 'attention', text: 'interposição' },
-                { id: 440, mood: 'attention', text: 'anteriorizizada' },
-                { id: 450, mood: 'attention', text: 'posteriorizada' },
+            nivel: 'negativo',
+            analise: 'Posição da língua',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'interposição', selecionada: false },
+                { nivel: 'atencao', resposta: 'anteriorizizada', selecionada: false },
+                { nivel: 'atencao', resposta: 'posteriorizada', selecionada: false },
+            ]
+        },
+        {
+            id: 126,
+            nivel: 'negativo',
+            analise: 'Observações',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'interposição', selecionada: false },
+                { nivel: 'atencao', resposta: 'anteriorizizada', selecionada: false },
+                { nivel: 'atencao', resposta: 'posteriorizada', selecionada: false },
             ]
         },
     ],
@@ -481,190 +531,203 @@ const analises = {
     'Intra-bucal': [
         {
             id: 130,
-            mood: 'neutral',
-            name: 'Dentição',
-            text: 'permanente',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 460, mood: 'good', text: 'permanente' },
-                { id: 470, mood: 'neutral', text: 'mista' },
-                { id: 480, mood: 'neutral', text: 'decídua' },
+            nivel: 'neutro',
+            analise: 'Dentição',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'permanente', selecionada: false },
+                { nivel: 'neutro', resposta: 'mista', selecionada: false },
+                { nivel: 'neutro', resposta: 'decídua', selecionada: false },
             ]
         },
         {
             id: 140,
-            mood: 'attention',
-            name: 'Diferença entre RC e MIH',
-            text: 'diferença relevante - sem sintomas DTM',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 490, mood: 'good', text: 'RC = MIH' },
-                { id: 500, mood: 'neutral', text: 'diferença leve (irrelevante)' },
-                { id: 510, mood: 'attention', text: 'diferença relevante - sem sintomas DTM' },
-                { id: 520, mood: 'bad', text: 'diferença relevante - com sintomas DTM' },
+            nivel: 'atencao',
+            analise: 'Diferença entre RC e MIH',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'RC = MIH', selecionada: false },
+                { nivel: 'neutro', resposta: 'diferença leve (irrelevante)', selecionada: false },
+                { nivel: 'atencao', resposta: 'diferença relevante - sem sintomas DTM', selecionada: false },
+                { nivel: 'negativo', resposta: 'diferença relevante - com sintomas DTM', selecionada: false },
             ]
         },
         {
             id: 150,
-            mood: 'bad',
-            name: 'Relação molar',
-            text: 'classe II bilateral',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 530, mood: 'good', text: 'classe I' },
-                { id: 540, mood: 'attention', text: 'classe II bilateral' },
-                { id: 550, mood: 'attention', text: 'classe II unilateral - desvio superior' },
-                { id: 560, mood: 'attention', text: 'classe II unilateral - desvio inferior' },
-                { id: 570, mood: 'attention', text: 'classe III' },
+            nivel: 'negativo',
+            analise: 'Relação molar',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'classe I', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II bilateral', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio superior', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio inferior', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe III', selecionada: false },
             ]
         },
         {
             id: 160,
-            mood: 'bad',
-            name: 'Relação canina - lado DIREITO',
-            text: 'relação Classe II',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 580, mood: 'neutral', text: 'em chave' },
-                { id: 590, mood: 'attention', text: 'relação Classe II' },
-                { id: 600, mood: 'attention', text: 'relação Classe III' },
-                { id: 610, mood: 'neutral', text: 'ectópico' },
+            nivel: 'negativo',
+            analise: 'Relação canina - lado DIREITO',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'neutro', resposta: 'em chave', selecionada: false },
+                { nivel: 'atencao', resposta: 'relação Classe II', selecionada: false },
+                { nivel: 'atencao', resposta: 'relação Classe III', selecionada: false },
+                { nivel: 'neutro', resposta: 'ectópico', selecionada: false },
             ]
         },
         {
             id: 170,
-            mood: 'bad',
-            name: 'Relação canina - lado ESQUERDO',
-            text: 'relação Classe II',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 620, mood: 'neutral', text: 'em chave' },
-                { id: 630, mood: 'attention', text: 'relação Classe II' },
-                { id: 640, mood: 'attention', text: 'relação Classe III' },
-                { id: 650, mood: 'neutral', text: 'ectópico' },
+            nivel: 'negativo',
+            analise: 'Relação canina - lado ESQUERDO',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'neutro', resposta: 'em chave', selecionada: false },
+                { nivel: 'atencao', resposta: 'relação Classe II', selecionada: false },
+                { nivel: 'atencao', resposta: 'relação Classe III', selecionada: false },
+                { nivel: 'neutro', resposta: 'ectópico', selecionada: false },
             ]
         },
         {
             id: 180,
-            mood: 'attention',
-            name: 'Análise transversal',
-            text: 'deficiência dentária: cruzada unilateral funcional',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 660, mood: 'good', text: 'normal' },
-                { id: 670, mood: 'attention', text: 'deficiência dentária: cruzada unilateral verdadeira' },
-                { id: 680, mood: 'attention', text: 'deficiência dentária: cruzada unilateral funcional' },
-                { id: 690, mood: 'attention', text: 'deficiência esquelética' },
+            nivel: 'atencao',
+            analise: 'Análise transversal',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'deficiência dentária: cruzada unilateral verdadeira', selecionada: false },
+                { nivel: 'atencao', resposta: 'deficiência dentária: cruzada unilateral funcional', selecionada: false },
+                { nivel: 'atencao', resposta: 'deficiência esquelética', selecionada: false },
             ]
         },
         {
             id: 190,
-            mood: 'attention',
-            name: 'Análise vertical',
-            text: 'mordida aberta - esquelética',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 700, mood: 'good', text: 'Normal' },
-                { id: 710, mood: 'attention', text: 'mordida aberta - dentária' },
-                { id: 720, mood: 'attention', text: 'mordida aberta - esquelética' },
-                { id: 730, mood: 'attention', text: 'mordida profunda - dentária' },
-                { id: 740, mood: 'attention', text: 'mordida profunda - esquelética' },
+            nivel: 'atencao',
+            analise: 'Análise vertical',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'Normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'mordida aberta - dentária', selecionada: false },
+                { nivel: 'atencao', resposta: 'mordida aberta - esquelética', selecionada: false },
+                { nivel: 'atencao', resposta: 'mordida profunda - dentária', selecionada: false },
+                { nivel: 'atencao', resposta: 'mordida profunda - esquelética', selecionada: false },
             ]
         },
         {
             id: 200,
-            mood: 'attention',
-            name: 'Curva de Spee',
-            text: 'pouco aumentada',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 750, mood: 'good', text: 'normal' },
-                { id: 760, mood: 'attention', text: 'pouco aumentada' },
-                { id: 770, mood: 'bad', text: 'muito aumentada' },
-                { id: 780, mood: 'attention', text: 'invertida' },
+            nivel: 'atencao',
+            analise: 'Curva de Spee',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'pouco aumentada', selecionada: false },
+                { nivel: 'negativo', resposta: 'muito aumentada', selecionada: false },
+                { nivel: 'atencao', resposta: 'invertida', selecionada: false },
             ]
         },
         {
             id: 210,
-            mood: 'attention',
-            name: 'Linha média',
-            text: 'desvio superior para a direita',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 800, mood: 'good', text: 'Normal' },
-                { id: 810, mood: 'attention', text: 'desvio superior para a direita' },
-                { id: 820, mood: 'attention', text: 'desvio superior para a esquerda' },
-                { id: 830, mood: 'attention', text: 'desvio inferior para a direita' },
-                { id: 840, mood: 'attention', text: 'desvio inferior para a esquerda' },
+            nivel: 'atencao',
+            analise: 'Linha média',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'Normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'desvio superior para a direita', selecionada: false },
+                { nivel: 'atencao', resposta: 'desvio superior para a esquerda', selecionada: false },
+                { nivel: 'atencao', resposta: 'desvio inferior para a direita', selecionada: false },
+                { nivel: 'atencao', resposta: 'desvio inferior para a esquerda', selecionada: false },
             ]
         },
         {
             id: 220,
-            mood: 'neutral',
-            name: 'Formato do arco superior',
-            text: 'triangular',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 850, mood: 'good', text: 'normal' },
-                { id: 860, mood: 'attention', text: 'atrésico' },
-                { id: 870, mood: 'attention', text: 'hiper-expandido' },
-                { id: 880, mood: 'attention', text: 'triangular' },
-                { id: 890, mood: 'attention', text: 'quadrado' },
+            nivel: 'neutro',
+            analise: 'Formato do arco superior',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'atrésico', selecionada: false },
+                { nivel: 'atencao', resposta: 'hiper-expandido', selecionada: false },
+                { nivel: 'atencao', resposta: 'triangular', selecionada: false },
+                { nivel: 'atencao', resposta: 'quadrado', selecionada: false },
             ]
         },
         {
             id: 230,
-            mood: 'good',
-            name: 'Formato do arco inferior',
-            text: 'normal',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 900, mood: 'good', text: 'normal' },
-                { id: 910, mood: 'attention', text: 'atrésico' },
-                { id: 920, mood: 'attention', text: 'hiper-expandido' },
-                { id: 930, mood: 'attention', text: 'triangular' },
-                { id: 940, mood: 'attention', text: 'quadrado' },
+            nivel: 'neutro',
+            analise: 'Formato do arco inferior',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'atencao', resposta: 'atrésico', selecionada: false },
+                { nivel: 'atencao', resposta: 'hiper-expandido', selecionada: false },
+                { nivel: 'atencao', resposta: 'triangular', selecionada: false },
+                { nivel: 'atencao', resposta: 'quadrado', selecionada: false },
             ]
         },
         {
             id: 240,
-            mood: 'bad',
-            name: 'Apinhamentos',
-            text: 'superior - severo',
-            observation: '',
-            type: 'multiple',
-            options: [
-                { id: 900, mood: 'good', text: 'normal' },
-                { id: 910, mood: 'neutral', text: 'superior - leve' },
-                { id: 920, mood: 'attention', text: 'superior - moderado' },
-                { id: 930, mood: 'bad', text: 'superior - severo' },
-                { id: 940, mood: 'neutral', text: 'inferior - leve' },
-                { id: 950, mood: 'attention', text: 'inferior - moderado' },
-                { id: 960, mood: 'bad', text: 'inferior - severo' },
+            nivel: 'negativo',
+            analise: 'Apinhamentos',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Outro(s)...',
+            tipo: 'multipla_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'neutro', resposta: 'superior - leve', selecionada: false },
+                { nivel: 'atencao', resposta: 'superior - moderado', selecionada: false },
+                { nivel: 'negativo', resposta: 'superior - severo', selecionada: false },
+                { nivel: 'neutro', resposta: 'inferior - leve', selecionada: false },
+                { nivel: 'atencao', resposta: 'inferior - moderado', selecionada: false },
+                { nivel: 'negativo', resposta: 'inferior - severo', selecionada: false },
             ]
         },
         {
             id: 250,
-            mood: 'bad',
-            name: 'Diastemas',
-            text: 'superior',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 900, mood: 'good', text: 'ausente' },
-                { id: 910, mood: 'attention', text: 'superior' },
-                { id: 920, mood: 'attention', text: 'inferior' },
+            nivel: 'negativo',
+            analise: 'Diastemas',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'ausente', selecionada: false },
+                { nivel: 'atencao', resposta: 'superior', selecionada: false },
+                { nivel: 'atencao', resposta: 'inferior', selecionada: false },
             ]
         },
     ],
@@ -672,68 +735,73 @@ const analises = {
     'Radiográficas': [
         {
             id: 260,
-            mood: 'bad',
-            name: 'Ausência de dentes',
-            text: 'existem dentes ausentes',
-            observation: '',
-            type: 'multiple',
-            options: [
-                { id: 930, mood: 'good', text: 'todos presentes' },
-                { id: 940, mood: 'attention', text: 'ausnetes' },
-                { id: 950, mood: 'attention', text: 'retidos' },
-                { id: 960, mood: 'attention', text: 'supranumerários' },
+            nivel: 'negativo',
+            analise: 'Ausência de dentes',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Outro(s)...',
+            tipo: 'multipla_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'todos presentes', selecionada: false },
+                { nivel: 'atencao', resposta: 'ausnetes', selecionada: false },
+                { nivel: 'atencao', resposta: 'retidos', selecionada: false },
+                { nivel: 'atencao', resposta: 'supranumerários', selecionada: false },
             ]
         },
         {
             id: 270,
-            mood: 'attention',
-            name: 'Inclinação dos incisivos superiores',
-            text: 'vestibularizados',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 970, mood: 'good', text: 'bem posicionados' },
-                { id: 980, mood: 'attention', text: 'vestibularizados' },
-                { id: 990, mood: 'attention', text: 'lingualizados' },
+            nivel: 'atencao',
+            analise: 'Inclinação dos incisivos superiores',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'bem posicionados', selecionada: false },
+                { nivel: 'atencao', resposta: 'vestibularizados', selecionada: false },
+                { nivel: 'atencao', resposta: 'lingualizados', selecionada: false },
             ]
         },
         {
             id: 280,
-            mood: 'bad',
-            name: 'Posição dos incisivos superiores',
-            text: 'protruídos',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 1000, mood: 'good', text: 'bem posicionados' },
-                { id: 1010, mood: 'attention', text: 'protruídos' },
-                { id: 1020, mood: 'attention', text: 'retraídos' },
+            nivel: 'negativo',
+            analise: 'Posição dos incisivos superiores',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'bem posicionados', selecionada: false },
+                { nivel: 'atencao', resposta: 'protruídos', selecionada: false },
+                { nivel: 'atencao', resposta: 'retraídos', selecionada: false },
             ]
         },
         {
             id: 290,
-            mood: 'good',
-            name: 'Inclinação dos incisivos inferiores',
-            text: 'bem posicionados',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 1030, mood: 'good', text: 'bem posicionados' },
-                { id: 1040, mood: 'attention', text: 'vestibularizados' },
-                { id: 1050, mood: 'attention', text: 'lingualizados' },
+            nivel: 'neutro',
+            analise: 'Inclinação dos incisivos inferiores',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'bem posicionados', selecionada: false },
+                { nivel: 'atencao', resposta: 'vestibularizados', selecionada: false },
+                { nivel: 'atencao', resposta: 'lingualizados', selecionada: false },
             ]
         },
         {
             id: 300,
-            mood: 'good',
-            name: 'Posição dos incisivos inferiores',
-            text: 'bem posicionados',
-            observation: '',
-            type: 'options',
-            options: [
-                { id: 1060, mood: 'good', text: 'bem posicionados' },
-                { id: 1070, mood: 'attention', text: 'protruídos' },
-                { id: 1080, mood: 'attention', text: 'retraídos' },
+            nivel: 'neutro',
+            analise: 'Posição dos incisivos inferiores',
+            resposta: '',
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'bem posicionados', selecionada: false },
+                { nivel: 'atencao', resposta: 'protruídos', selecionada: false },
+                { nivel: 'atencao', resposta: 'retraídos', selecionada: false },
             ]
         },
     ],
@@ -762,19 +830,34 @@ export default {
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },
+        updateNivel() {
+            Object.values(this.analises).forEach((categoria) => {
+                categoria.forEach((analise) => {
+                    if (analise.resposta) {
+                        const selectedAlternativa = analise.alternativas.find((alternativa) => alternativa.resposta === analise.resposta);
+                        if (selectedAlternativa) {
+                            analise.nivel = selectedAlternativa.nivel;
+                        }
+                        else {
+                            analise.nivel = 'neutro'
+                        }
+                    }
+                });
+            });
+        },
         getInfoIcon(type) {
             var icon = null
             switch (type) {
-                case 'good':
+                case 'positivo':
                     icon = 'thumbs-up'
                     break
-                case 'bad':
+                case 'negativo':
                     icon = 'thumbs-down'
                     break
-                case 'attention':
+                case 'atencao':
                     icon = 'circle-exclamation'
                     break
-                case 'neutral':
+                case 'neutro':
                     icon = 'info-circle'
                     break
             }
