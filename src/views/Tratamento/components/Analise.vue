@@ -50,7 +50,8 @@
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table extra-bucal" style="border-bottom: 1px solid #DDD;">
+                        <v-table density="compact" class="analises-table extra-bucal"
+                            style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id"
                                     :class="analise.mood">
@@ -60,13 +61,16 @@
                                     <td>
                                         <span v-if="!isEditing['extraBucal']">{{ analise.text }}</span>
                                         <select v-if="isEditing['extraBucal'] && analise.type == 'options'"
-                                            class="form-select select-sm" :value="analise.text"
+                                            class="form-select select-sm" v-model="analise.text"
                                             style="min-width: 170px;">
                                             <option v-for="option in analise.options" v-bind:key="option.id"
                                                 :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}</option>
-                                            <option>Outro (especificar)...</option>
+                                                {{ option.text }}
+                                            </option>
+                                            <option value="outro">Outro (especificar)...</option>
                                         </select>
+                                        <MaterialInput v-if="analise.text === 'outro'" type="text"
+                                            class="input-sm" v-model="analise.outroText" />
 
                                         <template v-if="analise.type == 'multiple' && isEditing['extraBucal']">
                                             <div v-for="option in analise.options" :key="option.id">
@@ -76,16 +80,13 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="other" value="Outro (especificar)..."
-                                                    v-model="analise.other" />
-                                                <label for="other">Outro (especificar)...</label>
-                                                <MaterialInput type="text" 
-                                                class="input-sm" v-if="analise.other" v-model="analise.otherText" />
+                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
+                                                    v-model="analise.outro" />
+                                                <label for="outro">Outro (especificar)...</label>
+                                                <MaterialInput v-if="analise.outro" type="text" class="input-sm"
+                                                    v-model="analise.outroText" />
                                             </div>
                                         </template>
-
-                                        <input v-if="false" class="form-control input-sm"
-                                            placeholder="Especifique..." />
                                     </td>
                                 </tr>
                             </tbody>
