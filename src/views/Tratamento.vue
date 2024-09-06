@@ -211,26 +211,26 @@ var tratamentoTab = 'analise'
 const items = []
 
 const carouselImages = [
-  {
-    id: 2,
-    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr2.jpg'
-  },
-  {
-    id: 3,
-    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr3.jpg'
-  },
-  {
-    id: 4,
-    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i1.png'
-  },
-  {
-    id: 5,
-    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i2.jpg'
-  },
-  {
-    id: 6,
-    src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i3.jpg'
-  },
+  // {
+  //   id: 2,
+  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr2.jpg'
+  // },
+  // {
+  //   id: 3,
+  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr3.jpg'
+  // },
+  // {
+  //   id: 4,
+  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i1.png'
+  // },
+  // {
+  //   id: 5,
+  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i2.jpg'
+  // },
+  // {
+  //   id: 6,
+  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i3.jpg'
+  // },
 ]
 
 var emptyPhotos = 10;

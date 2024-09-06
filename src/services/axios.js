@@ -24,6 +24,9 @@ axios.refreshToken = (token = null) => {
 	axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')
 }
 
+if (!axios.defaults.headers.common['Authorization'])
+    axios.refreshToken()
+
 // axios.generateTempToken = async () => {
 // 	const now = parseInt(new Date().getTime() / 1000);
 
