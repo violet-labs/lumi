@@ -101,7 +101,7 @@ export default {
   },
   mounted() {
     if (isAuthenticated()) {
-      router.push({ path: 'inicio' })
+      router.push({ path: 'agenda' })
     }
   },
   methods: {
@@ -110,7 +110,7 @@ export default {
       const auth = await authLogin(this.credentials)
 
       if (auth) {
-        this.$router.go('/inicio')
+        this.$router.go('/agenda')
       }
       else {
         cSwal.cError('Usuário ou senha incorretos.')

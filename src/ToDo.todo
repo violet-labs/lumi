@@ -40,6 +40,8 @@ Criar models:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 ✔ Corrigir warnings na tela do Paciente @done(24-09-05 22:44)
+✔ Fazer funcionar corretamente sistema de login e token @done(24-09-06 19:05)
+✔ Ao logar, redirecionar para /agenda em vez de /inicio @done(24-09-06 19:06)
 
 Paciente > Tratamento > Análise:
     ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
