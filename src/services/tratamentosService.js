@@ -1,8 +1,9 @@
 import axios from '@/services/axios'
 
-export async function salvarAnalises(analises) {
+export async function salvarAnalises(analises, pacienteId) {
     try {
         const response = await axios.post('/tratamentos/salvar-analises', {
+            paciente_id: pacienteId,
             analises,
         });
 

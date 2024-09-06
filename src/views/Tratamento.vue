@@ -88,7 +88,10 @@
     <div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
-      <Analise v-if="tratamentoTab === 'analise'" />
+      <Analise
+        v-if="tratamentoTab === 'analise'"
+        :pacienteId="paciente.id"
+        />
     </Transition>
 
     <Transition>

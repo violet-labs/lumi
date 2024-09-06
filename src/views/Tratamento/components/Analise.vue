@@ -812,6 +812,10 @@ var isEditing = []
 export default {
     name: "Analise",
     props: {
+        pacienteId: {
+            type: Number,
+            default: null,
+        }
         // personalPerceptions: {
         //     type: Object,
         // },
@@ -824,7 +828,7 @@ export default {
     },
     methods: {
         async _salvarAnalises() {
-            const response = await salvarAnalises(this.analises)
+            const response = await salvarAnalises(this.analises, this.pacienteId)
             console.log('response:', response)
         },
         toggleEditMode(section) {
