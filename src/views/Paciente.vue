@@ -89,35 +89,38 @@
                           <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="Como conheceu a clínica" type="text"
-                            v-model="paciente.como_conheceu" id="paciente_como_conheceu" />
+                          <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
+                            id="paciente_nome_mae" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
                             id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome do mãe" type="text" v-model="paciente.nome_mae"
-                            id="paciente_nome_mae" />
+                          <MaterialInput label="Como conheceu a clínica" type="text" v-model="paciente.como_conheceu"
+                            id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome do responsável" type="text" v-model="paciente.responsavel_nome"
+                          <label for="paciente_observacoes" class="text-uppercase text-sm" style="font-weight: 500">Observações</label>
+                          <textarea class="form-control" id="paciente_observacoes" rows="3"
+                            v-model="paciente.observacoes">
+                      </textarea>
+                        </div>
+                        <div class="col-12">
+                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Informações do responsável</p>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <MaterialInput label="Nome" type="text" v-model="paciente.responsavel_nome"
                             id="responsavel_nome" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg"
-                            id="responsavel_rg" />
+                          <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg" id="responsavel_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf"
                             id="responsavel_cpf" />
                         </div>
                       </div>
-
-                      <p class="text-uppercase text-sm mt-3" style="font-weight: 600"><label
-                          for="paciente_observacoes">Observações</label></p>
-                      <textarea class="form-control" id="paciente_observacoes" rows="5" v-model="paciente.observacoes">
-                      </textarea>
                     </div>
                     <div class="col-md-6 ps-4">
 
@@ -224,8 +227,8 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep"
-                            :input="getEndereco" id="paciente_enderecoCep" />
+                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep" :input="getEndereco"
+                            id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Logradouro" type="text" v-model="paciente.endereco_logradouro"
@@ -441,7 +444,7 @@ export default {
     },
     hasPendingChanges() {
       return this.originalPaciente && this.paciente
-      && JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
+        && JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
     }
   },
   watch: {
