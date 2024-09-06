@@ -43,6 +43,9 @@ Criar models:
 
 Paciente > Tratamento > Análise:
     ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
+    ✔ Padronizar modelo das análises @done(24-09-06 17:35)
+    ✔ Criar model das Análises na API @done(24-09-06 17:35)
+    ✔ Armazenar corretamente as análises no banco @done(24-09-06 17:35)
     Avaliar se está salvando certinho:
         ☐ Extra-bucal
         ☐ Intra-bucal

@@ -40,7 +40,7 @@
                         Extra-bucal
                         <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                             :class="{ 'active': isEditing['extraBucal'] }"
-                            :title="isEditing['extraBucal'] ? 'Sair do modo de edição' : 'Editar os parâmetros extra-bucais'"
+                            :title="isEditing['extraBucal'] ? 'Sair do modo de edição' : 'Editar as análises extra-bucais'"
                             @click="toggleEditMode('extraBucal')" />
                     </div>
                     <div v-if="isEditing['extraBucal']" class="w-100 text-center mb-3 mt-0">
@@ -59,16 +59,16 @@
                                         {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['extraBucal']">{{ analise.resposta ? analise.resposta :
+                                        <span v-if="!isEditing['extraBucal']">{{ analise.respostas ? analise.respostas :
                                             '-' }}</span>
 
                                         <select v-if="isEditing['extraBucal'] && analise.tipo == 'unica_escolha'"
-                                            class="form-select select-sm" v-model="analise.resposta"
-                                            @change="updateNivel" style="min-width: 170px;">
-                                            <option hidden value="">Selecione...</option>
+                                            class="form-select select-sm" v-model="analise.selectedResposta"
+                                            @change="handleAnalisesUpdate" style="min-width: 170px;">
+                                            <option hidden :value="undefined">Selecione...</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
-                                                :selected="alternativa.resposta == analise.resposta">
+                                                :selected="alternativa.resposta == analise.respostas">
                                                 {{ alternativa.resposta }}
                                             </option>
                                             <option value="detalhe">{{ analise.titulo_detalhe ? analise.titulo_detalhe :
@@ -80,22 +80,23 @@
                                                 :key="alternativa.resposta">
                                                 <input type="checkbox" :id="alternativa.resposta"
                                                     :value="alternativa.resposta" :name="analise.id"
-                                                    v-model="alternativa.selecionada" @change="updateNivel" />
+                                                    v-model="alternativa.selecionada" @change="handleAnalisesUpdate" />
                                                 <label :for="alternativa.resposta"
                                                     :class="'text-' + alternativa.nivel">{{ alternativa.resposta
                                                     }}</label>
                                             </div>
                                             <div>
                                                 <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar" />
+                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
                                         </template>
 
                                         <MaterialInput
-                                            v-if="isEditing['extraBucal'] && (analise.detalhar || analise.resposta == 'detalhe')"
-                                            type="text" class="input-sm" v-model="analise.detalhe" />
+                                            v-if="isEditing['extraBucal'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
+                                            type="text" class="input-sm" v-model="analise.detalhe"
+                                            :input="handleAnalisesUpdate" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -112,59 +113,68 @@
                     <div class="stripe"></div>
                 </div>
 
-                <div class="custom-card primary mt-4">
-                    <div class="custom-card-header">Análises radiográficas<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" :class="{ 'active': isEditing['analisesRadiograficas'] }"
+                <div class="custom-card primary">
+                    <div class="custom-card-header">
+                        Análises Radiográficas
+                        <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                            :class="{ 'active': isEditing['analisesRadiograficas'] }"
                             :title="isEditing['analisesRadiograficas'] ? 'Sair do modo de edição' : 'Editar as análises radiográficas'"
-                            @click="toggleEditMode('analisesRadiograficas')" /></div>
+                            @click="toggleEditMode('analisesRadiograficas')" />
+                    </div>
                     <div v-if="isEditing['analisesRadiograficas']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas" @click="salvarAnalises()">
+                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
                             Salvar
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table radiograficas">
+                        <v-table density="compact" class="analises-table analises-bucal"
+                            style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id"
                                     :class="analise.nivel">
                                     <td>
-                                        {{ analise.name }}
+                                        {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.resposta }}</span>
-                                        <select
-                                            v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
-                                            class="form-select select-sm" v-model="analise.resposta"
-                                            style="min-width: 170px;">
+                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.respostas ? analise.respostas :
+                                            '-' }}</span>
+
+                                        <select v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
+                                            class="form-select select-sm" v-model="analise.selectedResposta"
+                                            @change="handleAnalisesUpdate" style="min-width: 170px;">
+                                            <option hidden :value="undefined">Selecione...</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
-                                                :selected="alternativa.resposta == analise.resposta">
+                                                :selected="alternativa.resposta == analise.respostas">
                                                 {{ alternativa.resposta }}
                                             </option>
-                                            <option value="outro">Outro (especificar)...</option>
+                                            <option value="detalhe">{{ analise.titulo_detalhe ? analise.titulo_detalhe :
+                                                'Especificar...' }}</option>
                                         </select>
 
-                                        <template
-                                            v-if="analise.tipo == 'multipla_escolha' && isEditing['analisesRadiograficas']">
+                                        <template v-if="analise.tipo == 'multipla_escolha' && isEditing['analisesRadiograficas']">
                                             <div v-for="alternativa in analise.alternativas"
                                                 :key="alternativa.resposta">
                                                 <input type="checkbox" :id="alternativa.resposta"
-                                                    :value="alternativa.resposta" v-model="analise[option.id]" />
-                                                <label :for="option.id" :class="'text-' + alternativa.nivel">{{
-                                                    alternativa.resposta
-                                                }}</label>
+                                                    :value="alternativa.resposta" :name="analise.id"
+                                                    v-model="alternativa.selecionada" @change="handleAnalisesUpdate" />
+                                                <label :for="alternativa.resposta"
+                                                    :class="'text-' + alternativa.nivel">{{ alternativa.resposta
+                                                    }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
-                                                    v-model="analise.detalhe" />
-                                                <label for="outro">Outro (especificar)...</label>
+                                                <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
+                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
+                                                <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
+                                                    analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
                                         </template>
 
                                         <MaterialInput
-                                            v-if="isEditing['analisesRadiograficas'] && (analise.detalhe || analise.resposta == 'outro')"
-                                            type="text" class="input-sm" v-model="analise.detalheText" />
+                                            v-if="isEditing['analisesRadiograficas'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
+                                            type="text" class="input-sm" v-model="analise.detalhe"
+                                            :input="handleAnalisesUpdate" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -182,63 +192,76 @@
                     <div class="stripe"></div>
                     <div class="stripe"></div>
                 </div>
-                <div class="custom-card primary">
-                    <div class="custom-card-header">Intra-bucal<font-awesome-icon :icon="['fas', 'edit']"
-                            class="ml-3 pointer" :class="{ 'active': isEditing['intraBucal'] }"
-                            :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar os parâmetros intra-bucais'"
-                            @click="toggleEditMode('intraBucal')" /></div>
+                
+                <div class="custom-card primary mt-4">
+                    <div class="custom-card-header">
+                        Intra-bucal
+                        <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
+                            :class="{ 'active': isEditing['intraBucal'] }"
+                            :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar as análises intra-bucais'"
+                            @click="toggleEditMode('intraBucal')" />
+                    </div>
                     <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas" @click="salvarAnalises()">
+                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
                             Salvar
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table intra-bucal">
+                        <v-table density="compact" class="analises-table intra-bucal"
+                            style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
                                     :class="analise.nivel">
                                     <td>
-                                        {{ analise.name }}
+                                        {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['intraBucal']">{{ analise.resposta }}</span>
+                                        <span v-if="!isEditing['intraBucal']">{{ analise.respostas ? analise.respostas :
+                                            '-' }}</span>
+
                                         <select v-if="isEditing['intraBucal'] && analise.tipo == 'unica_escolha'"
-                                            class="form-select select-sm" v-model="analise.resposta"
-                                            style="min-width: 170px;">
+                                            class="form-select select-sm" v-model="analise.selectedResposta"
+                                            @change="handleAnalisesUpdate" style="min-width: 170px;">
+                                            <option hidden :value="undefined">Selecione...</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
-                                                :selected="alternativa.resposta == analise.resposta">
+                                                :selected="alternativa.resposta == analise.respostas">
                                                 {{ alternativa.resposta }}
                                             </option>
-                                            <option value="outro">Outro (especificar)...</option>
+                                            <option value="detalhe">{{ analise.titulo_detalhe ? analise.titulo_detalhe :
+                                                'Especificar...' }}</option>
                                         </select>
 
                                         <template v-if="analise.tipo == 'multipla_escolha' && isEditing['intraBucal']">
                                             <div v-for="alternativa in analise.alternativas"
                                                 :key="alternativa.resposta">
                                                 <input type="checkbox" :id="alternativa.resposta"
-                                                    :value="alternativa.resposta" v-model="analise[option.id]" />
-                                                <label :for="option.id" :class="'text-' + alternativa.nivel">{{
-                                                    alternativa.resposta
-                                                }}</label>
+                                                    :value="alternativa.resposta" :name="analise.id"
+                                                    v-model="alternativa.selecionada" @change="handleAnalisesUpdate" />
+                                                <label :for="alternativa.resposta"
+                                                    :class="'text-' + alternativa.nivel">{{ alternativa.resposta
+                                                    }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
-                                                    v-model="analise.detalhe" />
-                                                <label for="outro">Outro (especificar)...</label>
+                                                <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
+                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
+                                                <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
+                                                    analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
                                         </template>
 
                                         <MaterialInput
-                                            v-if="isEditing['intraBucal'] && (analise.detalhe || analise.resposta == 'outro')"
-                                            type="text" class="input-sm" v-model="analise.detalheText" />
+                                            v-if="isEditing['intraBucal'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
+                                            type="text" class="input-sm" v-model="analise.detalhe"
+                                            :input="handleAnalisesUpdate" />
                                     </td>
                                 </tr>
                             </tbody>
                         </v-table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -339,7 +362,7 @@ const analises = {
             id: 10,
             nivel: 'neutro',
             analise: 'Agradabilidade facial',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -353,7 +376,7 @@ const analises = {
             id: 20,
             nivel: 'neutro',
             analise: 'Biotipo facial',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -369,7 +392,7 @@ const analises = {
             id: 30,
             nivel: 'neutro',
             analise: 'Simetria facial',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -382,7 +405,7 @@ const analises = {
             id: 40,
             nivel: 'neutro',
             analise: 'Perfil facial',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -396,7 +419,7 @@ const analises = {
             id: 50,
             nivel: 'neutro',
             analise: 'Selamento labial',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -410,7 +433,7 @@ const analises = {
             id: 60,
             nivel: 'neutro',
             analise: 'Exposição dos dentes no sorriso',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -424,7 +447,7 @@ const analises = {
             id: 70,
             nivel: 'neutro',
             analise: 'Exposição gengival ao sorrir',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -438,7 +461,7 @@ const analises = {
             id: 80,
             nivel: 'neutro',
             analise: 'ATM',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -454,7 +477,7 @@ const analises = {
             id: 90,
             nivel: 'neutro',
             analise: 'Respiração',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -469,7 +492,7 @@ const analises = {
             id: 100,
             nivel: 'neutro',
             analise: 'Deglutição',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -483,7 +506,7 @@ const analises = {
             id: 110,
             nivel: 'neutro',
             analise: 'Hábitos',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -500,7 +523,7 @@ const analises = {
             id: 120,
             nivel: 'neutro',
             analise: 'Posição da língua',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -515,7 +538,7 @@ const analises = {
             id: 126,
             nivel: 'neutro',
             analise: 'Observações',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -533,7 +556,7 @@ const analises = {
             id: 130,
             nivel: 'neutro',
             analise: 'Dentição',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -545,9 +568,9 @@ const analises = {
         },
         {
             id: 140,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Diferença entre RC e MIH',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -562,7 +585,7 @@ const analises = {
             id: 150,
             nivel: 'neutro',
             analise: 'Relação molar',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -578,7 +601,7 @@ const analises = {
             id: 160,
             nivel: 'neutro',
             analise: 'Relação canina - lado DIREITO',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -593,7 +616,7 @@ const analises = {
             id: 170,
             nivel: 'neutro',
             analise: 'Relação canina - lado ESQUERDO',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -606,9 +629,9 @@ const analises = {
         },
         {
             id: 180,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Análise transversal',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -621,9 +644,9 @@ const analises = {
         },
         {
             id: 190,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Análise vertical',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -637,9 +660,9 @@ const analises = {
         },
         {
             id: 200,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Curva de Spee',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -652,9 +675,9 @@ const analises = {
         },
         {
             id: 210,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Linha média',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -670,7 +693,7 @@ const analises = {
             id: 220,
             nivel: 'neutro',
             analise: 'Formato do arco superior',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -686,7 +709,7 @@ const analises = {
             id: 230,
             nivel: 'neutro',
             analise: 'Formato do arco inferior',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -702,7 +725,7 @@ const analises = {
             id: 240,
             nivel: 'neutro',
             analise: 'Apinhamentos',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -720,7 +743,7 @@ const analises = {
             id: 250,
             nivel: 'neutro',
             analise: 'Diastemas',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -737,7 +760,7 @@ const analises = {
             id: 260,
             nivel: 'neutro',
             analise: 'Ausência de dentes',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -750,9 +773,9 @@ const analises = {
         },
         {
             id: 270,
-            nivel: 'atencao',
+            nivel: 'neutro',
             analise: 'Inclinação dos incisivos superiores',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -766,7 +789,7 @@ const analises = {
             id: 280,
             nivel: 'neutro',
             analise: 'Posição dos incisivos superiores',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -780,7 +803,7 @@ const analises = {
             id: 290,
             nivel: 'neutro',
             analise: 'Inclinação dos incisivos inferiores',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -794,7 +817,7 @@ const analises = {
             id: 300,
             nivel: 'neutro',
             analise: 'Posição dos incisivos inferiores',
-            resposta: '',
+            respostas: '',
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -834,11 +857,42 @@ export default {
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },
+        handleAnalisesUpdate() {
+            this.updateRespostas()
+            this.updateNivel()
+        },
+        updateRespostas() {
+            Object.values(this.analises).forEach((categoria) => {
+                categoria.forEach((analise) => {
+                    let resposta = '';
+
+                    if (analise.tipo === 'unica_escolha') {
+                        if (analise.selectedResposta && analise.selectedResposta != 'detalhe') {
+                            resposta = analise.selectedResposta.trim()
+                        }
+                        else if (analise.selectedResposta && analise.selectedResposta == 'detalhe') {
+                            resposta = analise.detalhe.trim()
+                        }
+                    }
+                    
+                    else if (analise.tipo === 'multipla_escolha') {
+                        const selectedAlternativas = analise.alternativas.filter((alternativa) => alternativa.selecionada);
+                        if (selectedAlternativas.length > 0)
+                            resposta = selectedAlternativas.map((alternativa) => alternativa.resposta.trim()).join(', ').trim()
+
+                        if (analise.detalhar && analise.detalhe.trim())
+                            resposta += resposta ? `, ${analise.detalhe.trim()}` : analise.detalhe.trim()
+                    }
+
+                    analise.respostas = resposta;
+                });
+            });
+        },
         updateNivel() {
             Object.values(this.analises).forEach((categoria) => {
                 categoria.forEach((analise) => {
-                    if (analise.resposta) {
-                        const selectedAlternativa = analise.alternativas.find((alternativa) => alternativa.resposta === analise.resposta);
+                    if (analise.respostas) {
+                        const selectedAlternativa = analise.alternativas.find((alternativa) => alternativa.resposta === analise.respostas);
                         if (selectedAlternativa) {
                             analise.nivel = selectedAlternativa.nivel;
                         } else {
