@@ -13,10 +13,10 @@
             <div class="card-body">
               <form role="form" class="text-start mt-3">
                 <div class="mb-3">
-                  <material-input id="email" type="email" label="Email" name="email" />
+                  <MaterialInput id="email" type="email" label="Email" name="email" />
                 </div>
                 <div class="mb-3">
-                  <material-input id="senha" type="password" label="Senha" name="senha" />
+                  <MaterialInput id="senha" type="password" label="Senha" name="senha" />
                 </div>
                 <material-switch id="rememberMe" name="rememberMe">Manter este dispositivo conectado</material-switch>
                 <div class="text-center">

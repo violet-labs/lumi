@@ -3,14 +3,14 @@
     <div class="row py-3 py-md-0 px-3">
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <material-input label="Início do tratamento" readonly type="text" centered
-          v-bind:value="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
+        <MaterialInput label="Início do tratamento" readonly type="text" centered
+          :modelValue="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
           label-class="me-3" />
         <span class="text-sm">{{$filters.howMuchTime(paciente.data_inicio_tratamento, new Date())}}</span>
       </div>
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <material-input label="Término previsto" readonly type="text" centered v-bind:value="$filters.dateDmy(paciente.data_final_previsa)"
+        <MaterialInput label="Término previsto" readonly type="text" centered :modelValue="$filters.dateDmy(paciente.data_final_previsa)"
           id="paciente_fim_tratamento" label-class="me-3" />
         <span class="text-sm text-success">{{$filters.howMuchTime(paciente.data_final_previsa, new Date())}}</span>
       </div>
