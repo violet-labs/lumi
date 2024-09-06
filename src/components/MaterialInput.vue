@@ -4,7 +4,7 @@
   </label>
   <input :id="id" :name="name" :type="type" :isRequired="isRequired" :readonly="readonly" :disabled="disabled"
     class="form-control" :class="getClasses(size, centered)" :placeholder="placeholder" :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value); inputEvent();" v-maska="mask" :style="style" :ref="id" />
+    @input="($event) => { $emit('update:modelValue', $event.target.value); inputEvent($event); }" v-maska="mask" :style="style" :ref="id" />
 </template>
 
 <script>
@@ -101,9 +101,9 @@ export default {
     setMaterialInput();
   },
   methods: {
-    inputEvent() {
+    inputEvent($event) {
       if (this.input)
-        this.input()
+        this.input($event)
     },
 
     getClasses: function (size, centered) {

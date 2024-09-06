@@ -117,7 +117,7 @@ Paciente > Perfil:
             ☐ paciente_id
             ☐ ...
         ☐ Criar função de inserir
-    ☐ Verificar busca do endereço pelo CEP
+    ✔ Verificar busca do endereço pelo CEP @done(24-09-06 00:09)
     Detalhes pessoais:
         ☐ Exibir apenas os pessoais (esconder os clínicos)
         ☐ Verificar por que está aparecendo só 1
