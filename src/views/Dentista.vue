@@ -353,8 +353,6 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
 // import ProfileCard from "./components/ProfileCard.vue";
@@ -387,7 +385,6 @@ export default {
     MaterialInput,
     MaterialButton,
     Tratamento,
-    FontAwesomeIcon,
   },
   data() {
     return {

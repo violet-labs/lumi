@@ -8,14 +8,8 @@
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">add</i></div>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'plus']" /></div>
           <span>Novo dentista</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">print</i></div>
-          <span>Imprimir</span>
         </a>
       </li>
       <div class="mt-2"
@@ -23,19 +17,13 @@
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          RELATÓRIOS
+          CLÍNICAS
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">list</i></div>
-          <span>Todos dentistas</span>
-        </a>
-      </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">calendar_month</i></div>
-          <span>Consultas agendadas</span>
+        <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'cog']" /></div>
+          <span>Gerenciar clínicas</span>
         </a>
       </li>
     </ul>

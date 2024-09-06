@@ -212,7 +212,6 @@
 </style>
 
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 const analises = {
     'Extra-bucal': [
@@ -692,7 +691,6 @@ export default {
         },
     },
     components: {
-        FontAwesomeIcon,
     },
     mounted() {
     },

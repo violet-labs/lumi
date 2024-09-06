@@ -122,11 +122,11 @@ Paciente > Perfil:
 Dentistas:
     ☐ Fazer funcionar botão de Novo Dentista
     ☐ Fazer funcionar a pesquisa
-    ☐ Remover botão "Imprimir"
-    ☐ Remover botão "Consultas agendadas"
-    ☐ Remover botão "Todos dentistas"
-    ☐ Criar seção "Gerenciar clínicas"
-    ☐ Adicionar botão "Gerenciar clínicas":
+    ✔ Remover botão "Imprimir" @done(24-09-05 22:06)
+    ✔ Remover botão "Consultas agendadas" @done(24-09-05 22:06)
+    ✔ Remover botão "Todos dentistas" @done(24-09-05 22:06)
+    ✔ Criar seção "Clínicas" @done(24-09-05 22:06)
+    ✔ Adicionar botão "Gerenciar clínicas": @done(24-09-05 22:07)
         Criar objeto "Clinica":
             Criar model:
                 ☐ id
