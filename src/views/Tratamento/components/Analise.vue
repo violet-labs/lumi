@@ -50,7 +50,7 @@
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table" style="border-bottom: 1px solid #DDD;">
+                        <v-table density="compact" class="analises-table extra-bucal" style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Extra-bucal']" v-bind:key="analise.id"
                                     :class="analise.mood">
@@ -67,6 +67,23 @@
                                                 {{ option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
+
+                                        <template v-if="analise.type == 'multiple' && isEditing['extraBucal']">
+                                            <div v-for="option in analise.options" :key="option.id">
+                                                <input type="checkbox" :id="option.id" :value="option.text"
+                                                    v-model="analise[option.id]" />
+                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
+                                                    }}</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="other" value="Outro (especificar)..."
+                                                    v-model="analise.other" />
+                                                <label for="other">Outro (especificar)...</label>
+                                                <MaterialInput type="text" 
+                                                class="input-sm" v-if="analise.other" v-model="analise.otherText" />
+                                            </div>
+                                        </template>
+
                                         <input v-if="false" class="form-control input-sm"
                                             placeholder="Especifique..." />
                                     </td>
@@ -97,7 +114,7 @@
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table">
+                        <v-table density="compact" class="analises-table radiograficas">
                             <tbody>
                                 <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id"
                                     :class="analise.mood">
@@ -145,7 +162,7 @@
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table">
+                        <v-table density="compact" class="analises-table intra-bucal">
                             <tbody>
                                 <tr v-for="analise in analises['Intra-bucal']" v-bind:key="analise.id"
                                     :class="analise.mood">
@@ -176,6 +193,33 @@
 </template>
 
 <style>
+.analises-table td {
+    padding: 2px 1.5rem !important;
+    font-size: 11pt;
+    color: #555 !important;
+    text-align: left;
+}
+
+.analises-table tr>td:first-child {
+    border-right: 1px solid #EEE;
+    font-weight: 500 !important;
+}
+
+.analises-table tr>td:last-child {
+    border-right: 1px solid #EEE;
+    font-weight: 400 !important;
+}
+
+.analises-table tr:nth-of-type(odd)>* {
+    background: #F8F8F8;
+}
+
+
+.analises-table.extra-bucal tr>td:first-child {
+    width: 50%;
+}
+
+
 .spacer {
     margin: 20px 0px;
     position: relative;
@@ -212,6 +256,7 @@
 </style>
 
 <script>
+import MaterialInput from '@/components/MaterialInput.vue'
 
 const analises = {
     'Extra-bucal': [
@@ -320,7 +365,6 @@ const analises = {
                 { id: 250, mood: 'neutral', text: 'estalido' },
                 { id: 260, mood: 'neutral', text: 'abertura limitada' },
                 { id: 270, mood: 'neutral', text: 'desvio na abertura/fechamento' },
-                { id: 280, mood: 'bold', text: 'outro...' },
             ],
         },
         {
@@ -691,6 +735,7 @@ export default {
         },
     },
     components: {
+        MaterialInput,
     },
     mounted() {
     },

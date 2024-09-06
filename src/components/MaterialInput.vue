@@ -2,22 +2,9 @@
   <label v-if="label && label.trim() !== ''" :for="id" class="form-label" :class="labelClass">{{ label }}
     <span v-if="required" class="text-danger">*</span>
   </label>
-  <input 
-    :id="id"
-    :name="name"
-    :type="type"
-    :isRequired="isRequired"
-    :readonly="readonly"
-    :disabled="disabled"
-    class="form-control"
-    :class="getClasses(size, centered)"
-    :placeholder="placeholder"
-    :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value); inputEvent();"
-    v-maska="mask"
-    :style="style"
-    :ref="id"
-    />
+  <input :id="id" :name="name" :type="type" :isRequired="isRequired" :readonly="readonly" :disabled="disabled"
+    class="form-control" :class="getClasses(size, centered)" :placeholder="placeholder" :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value); inputEvent();" v-maska="mask" :style="style" :ref="id" />
 </template>
 
 <script>
@@ -28,6 +15,10 @@ export default {
   name: "MaterialInput",
   directives: { maska: vMaska },
   props: {
+    class: {
+      type: String,
+      default: '',
+    },
     style: {
       type: String,
       default: '',
@@ -115,15 +106,18 @@ export default {
         this.input()
     },
 
-    getClasses: (size, centered) => {
-      let sizeValue;
+    getClasses: function (size, centered) {
+      let classes;
 
-      sizeValue = size ? `form-control-${size}` : '';
+      classes = size ? `form-control-${size}` : '';
 
       if (centered)
-        sizeValue += ' text-center'
+        classes += ' text-center'
 
-      return sizeValue;
+      if (this.class)
+        classes += ' ' + this.class
+
+      return classes;
     },
     getStatus: (error, success) => {
       let isValidValue;
