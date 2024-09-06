@@ -69,8 +69,6 @@
                                             </option>
                                             <option value="outro">Outro (especificar)...</option>
                                         </select>
-                                        <MaterialInput v-if="analise.text === 'outro'" type="text"
-                                            class="input-sm" v-model="analise.outroText" />
 
                                         <template v-if="analise.type == 'multiple' && isEditing['extraBucal']">
                                             <div v-for="option in analise.options" :key="option.id">
@@ -80,13 +78,13 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
+                                                <input type="checkbox" id="outro" value="outro"
                                                     v-model="analise.outro" />
                                                 <label for="outro">Outro (especificar)...</label>
-                                                <MaterialInput v-if="analise.outro" type="text" class="input-sm"
-                                                    v-model="analise.outroText" />
                                             </div>
                                         </template>
+
+                                        <MaterialInput v-if="isEditing['extraBucal'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -125,15 +123,30 @@
                                     <td>
                                         <span v-if="!isEditing['analisesRadiograficas']">{{ analise.text }}</span>
                                         <select v-if="isEditing['analisesRadiograficas'] && analise.type == 'options'"
-                                            class="form-select select-sm" :value="analise.text"
+                                            class="form-select select-sm" v-model="analise.text"
                                             style="min-width: 170px;">
                                             <option v-for="option in analise.options" v-bind:key="option.id"
                                                 :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}</option>
-                                            <option>Outro (especificar)...</option>
+                                                {{ option.text }}
+                                            </option>
+                                            <option value="outro">Outro (especificar)...</option>
                                         </select>
-                                        <input v-if="false" class="form-control input-sm"
-                                            placeholder="Especifique..." />
+
+                                        <template v-if="analise.type == 'multiple' && isEditing['analisesRadiograficas']">
+                                            <div v-for="option in analise.options" :key="option.id">
+                                                <input type="checkbox" :id="option.id" :value="option.text"
+                                                    v-model="analise[option.id]" />
+                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
+                                                    }}</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
+                                                    v-model="analise.outro" />
+                                                <label for="outro">Outro (especificar)...</label>
+                                            </div>
+                                        </template>
+
+                                        <MaterialInput v-if="isEditing['analisesRadiograficas'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -173,15 +186,30 @@
                                     <td>
                                         <span v-if="!isEditing['intraBucal']">{{ analise.text }}</span>
                                         <select v-if="isEditing['intraBucal'] && analise.type == 'options'"
-                                            class="form-select select-sm" :value="analise.text"
+                                            class="form-select select-sm" v-model="analise.text"
                                             style="min-width: 170px;">
                                             <option v-for="option in analise.options" v-bind:key="option.id"
                                                 :class="'text-' + option.mood" :selected="option.text == analise.text">
-                                                {{ option.text }}</option>
-                                            <option>Outro (especificar)...</option>
+                                                {{ option.text }}
+                                            </option>
+                                            <option value="outro">Outro (especificar)...</option>
                                         </select>
-                                        <input v-if="false" class="form-control input-sm"
-                                            placeholder="Especifique..." />
+
+                                        <template v-if="analise.type == 'multiple' && isEditing['intraBucal']">
+                                            <div v-for="option in analise.options" :key="option.id">
+                                                <input type="checkbox" :id="option.id" :value="option.text"
+                                                    v-model="analise[option.id]" />
+                                                <label :for="option.id" :class="'text-' + option.mood">{{ option.text
+                                                    }}</label>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" id="outro" value="Outro (especificar)..."
+                                                    v-model="analise.outro" />
+                                                <label for="outro">Outro (especificar)...</label>
+                                            </div>
+                                        </template>
+
+                                        <MaterialInput v-if="isEditing['intraBucal'] && (analise.outro || analise.text == 'outro')" type="text" class="input-sm" v-model="analise.outroText" />
                                     </td>
                                 </tr>
                             </tbody>
