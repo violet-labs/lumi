@@ -43,11 +43,11 @@ Criar models:
 
 Paciente > Tratamento > Análise:
     ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
-    ☐ Avaliar elementos que não estão mostrando o <select>:
-        ☐ Extra-bucal > ATM
-        ☐ Extra-bucal > Hábitos
-        ☐ Intra-bucal > Apinhamentos
-    ☐ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea>
+    ✔ Avaliar elementos que não estão mostrando o <select>: @done(24-09-05 23:14)
+        ✔ Extra-bucal > ATM @done(24-09-05 23:14)
+        ✔ Extra-bucal > Hábitos @done(24-09-05 23:14)
+        ✔ Intra-bucal > Apinhamentos @done(24-09-05 23:14)
+    ✔ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea> @done(24-09-05 23:15)
     Avaliar se está salvando certinho:
         ☐ Extra-bucal
         ☐ Intra-bucal

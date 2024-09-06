@@ -72,15 +72,15 @@
 
                                         <template v-if="analise.type == 'multiple' && isEditing['extraBucal']">
                                             <div v-for="option in analise.options" :key="option.id">
-                                                <input type="checkbox" :id="option.id" :value="option.text"
+                                                <input type="checkbox" :id="option.id" :value="option.text" :name="analise.id"
                                                     v-model="analise[option.id]" />
                                                 <label :for="option.id" :class="'text-' + option.mood">{{ option.text
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" id="outro" value="outro"
+                                                <input type="checkbox" :id="analise.id + 'outro'" value="outro" :name="analise.id"
                                                     v-model="analise.outro" />
-                                                <label for="outro">Outro (especificar)...</label>
+                                                <label :for="analise.id + 'outro'">Outro (especificar)...</label>
                                             </div>
                                         </template>
 
@@ -94,7 +94,7 @@
 
                 <div class="spacer">
                     <div class="icon-wrapper">
-                        <font-awesome-icon :icon="['fas', 'search']" style="font-size: 30pt; color: #85A7C1" />
+                        <font-awesome-icon :icon="['fas', 'search']" />
                     </div>
                     <div class="stripe"></div>
                     <div class="stripe"></div>
@@ -158,7 +158,7 @@
             <div class="col-6 mt-4">
                 <div class="spacer">
                     <div class="icon-wrapper">
-                        <font-awesome-icon :icon="['fas', 'search']" style="font-size: 30pt; color: #85A7C1" />
+                        <font-awesome-icon :icon="['fas', 'search']" />
                     </div>
                     <div class="stripe"></div>
                     <div class="stripe"></div>
@@ -222,6 +222,10 @@
 </template>
 
 <style>
+.input-sm {
+    background: #F2F2F2;
+}
+
 .analises-table td {
     padding: 2px 1.5rem !important;
     font-size: 11pt;
@@ -250,11 +254,14 @@
 
 
 .spacer {
-    margin: 20px 0px;
+    margin: 35px 0px;
     position: relative;
+    font-size: 35pt;
+    color: #85A7C1
 }
 
 .spacer .icon-wrapper {
+    
     position: absolute;
     /* posiciona a div.icon-wrapper absolutamente */
     left: 50%;
@@ -264,14 +271,29 @@
     transform: translate(-50%, -50%);
 }
 
+.spacer .icon-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+    z-index: 1000;
+}
+
 .stripe {
     height: 1px;
     width: 100%;
-    background: linear-gradient(to right, #F2F2F2, #c0cbe4, #F2F2F2);
+    background: linear-gradient(to right, #F2F2F2, #F2F2F2, #c0cbe4, #F2F2F2, #F2F2F2);
     /* ajuste a cor das listras */
     border-radius: 2px;
     /* adiciona um efeito de borda arredondada */
     margin-top: 12px;
+}
+
+.spacer .stripe:nth-child(3) {
+    background: linear-gradient(to right, #F2F2F2, #c0cbe4, #F2F2F2);
 }
 
 .card {
@@ -712,14 +734,6 @@ const analises = {
                 { id: 1070, mood: 'attention', text: 'protruídos' },
                 { id: 1080, mood: 'attention', text: 'retraídos' },
             ]
-        },
-        {
-            id: 310,
-            mood: 'neutral',
-            name: 'Outras observações',
-            text: '',
-            observation: '',
-            type: 'text',
         },
     ],
 }
