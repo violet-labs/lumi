@@ -63,8 +63,8 @@
                                             '-' }}</span>
 
                                         <select v-if="isEditing['extraBucal'] && analise.tipo == 'unica_escolha'"
-                                            class="form-select select-sm" v-model="analise.resposta" @change="updateNivel"
-                                            style="min-width: 170px;">
+                                            class="form-select select-sm" v-model="analise.resposta"
+                                            @change="updateNivel" style="min-width: 170px;">
                                             <option hidden value="">Selecione...</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
@@ -80,7 +80,7 @@
                                                 :key="alternativa.resposta">
                                                 <input type="checkbox" :id="alternativa.resposta"
                                                     :value="alternativa.resposta" :name="analise.id"
-                                                    v-model="alternativa.selecionada" @click="updateNivel" />
+                                                    v-model="alternativa.selecionada" @change="updateNivel" />
                                                 <label :for="alternativa.resposta"
                                                     :class="'text-' + alternativa.nivel">{{ alternativa.resposta
                                                     }}</label>
@@ -436,23 +436,23 @@ const analises = {
         },
         {
             id: 80,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'ATM',
             resposta: '',
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
             alternativas: [
-                { nivel: 'neutro', resposta: 'normal', selecionada: false },
-                { nivel: 'neutro', resposta: 'dor', selecionada: false },
-                { nivel: 'neutro', resposta: 'estalido', selecionada: false },
-                { nivel: 'neutro', resposta: 'abertura limitada', selecionada: false },
-                { nivel: 'neutro', resposta: 'desvio na abertura/fechamento', selecionada: false },
+                { nivel: 'positivo', resposta: 'normal', selecionada: false },
+                { nivel: 'negativo', resposta: 'dor', selecionada: false },
+                { nivel: 'atencao', resposta: 'estalido', selecionada: false },
+                { nivel: 'atencao', resposta: 'abertura limitada', selecionada: false },
+                { nivel: 'negativo', resposta: 'desvio na abertura/fechamento', selecionada: false },
             ],
         },
         {
             id: 90,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Respiração',
             resposta: '',
             detalhe: '',
@@ -467,7 +467,7 @@ const analises = {
         },
         {
             id: 100,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Deglutição',
             resposta: '',
             detalhe: '',
@@ -481,7 +481,7 @@ const analises = {
         },
         {
             id: 110,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Hábitos',
             resposta: '',
             detalhe: '',
@@ -498,7 +498,7 @@ const analises = {
         },
         {
             id: 120,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Posição da língua',
             resposta: '',
             detalhe: '',
@@ -513,7 +513,7 @@ const analises = {
         },
         {
             id: 126,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Observações',
             resposta: '',
             detalhe: '',
@@ -560,7 +560,7 @@ const analises = {
         },
         {
             id: 150,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Relação molar',
             resposta: '',
             detalhe: '',
@@ -576,7 +576,7 @@ const analises = {
         },
         {
             id: 160,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Relação canina - lado DIREITO',
             resposta: '',
             detalhe: '',
@@ -591,7 +591,7 @@ const analises = {
         },
         {
             id: 170,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Relação canina - lado ESQUERDO',
             resposta: '',
             detalhe: '',
@@ -700,7 +700,7 @@ const analises = {
         },
         {
             id: 240,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Apinhamentos',
             resposta: '',
             detalhe: '',
@@ -718,7 +718,7 @@ const analises = {
         },
         {
             id: 250,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Diastemas',
             resposta: '',
             detalhe: '',
@@ -735,7 +735,7 @@ const analises = {
     'Radiográficas': [
         {
             id: 260,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Ausência de dentes',
             resposta: '',
             detalhe: '',
@@ -764,7 +764,7 @@ const analises = {
         },
         {
             id: 280,
-            nivel: 'negativo',
+            nivel: 'neutro',
             analise: 'Posição dos incisivos superiores',
             resposta: '',
             detalhe: '',
@@ -837,9 +837,22 @@ export default {
                         const selectedAlternativa = analise.alternativas.find((alternativa) => alternativa.resposta === analise.resposta);
                         if (selectedAlternativa) {
                             analise.nivel = selectedAlternativa.nivel;
+                        } else {
+                            analise.nivel = 'neutro';
                         }
-                        else {
+                    }
+
+                    if (analise.tipo === 'multipla_escolha') {
+                        const selectedAlternativas = analise.alternativas.filter((alternativa) => alternativa.selecionada);
+
+                        if (selectedAlternativas.length == 0)
                             analise.nivel = 'neutro'
+                        else {
+                            const piorNivel = selectedAlternativas.reduce((pior, atual) => {
+                                const niveis = ['negativo', 'atencao', 'neutro', 'positivo'];
+                                return niveis.indexOf(atual.nivel) < niveis.indexOf(pior) ? atual.nivel : pior;
+                            }, 'positivo'); // inicializa com o melhor nível possível
+                            analise.nivel = piorNivel;
                         }
                     }
                 });
