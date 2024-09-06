@@ -79,37 +79,37 @@
                           </select>
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nascimento" type="date" v-model:value="paciente.data_nascimento"
+                          <MaterialInput label="Nascimento" type="date" v-model="paciente.data_nascimento"
                             id="paciente_dataNascimento" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input type="text" label="RG" v-model:value="paciente.rg" id="paciente_rg" />
+                          <MaterialInput type="text" label="RG" v-model="paciente.rg" id="paciente_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="CPF" type="text" v-model:value="paciente.cpf" id="paciente_cpf" />
+                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Como conheceu a clínica" type="text"
-                            v-model:value="paciente.como_conheceu" id="paciente_como_conheceu" />
+                          <MaterialInput label="Como conheceu a clínica" type="text"
+                            v-model="paciente.como_conheceu" id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome do pai" type="text" v-model:value="paciente.nome_pai"
+                          <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
                             id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome do mãe" type="text" v-model:value="paciente.nome_mae"
+                          <MaterialInput label="Nome do mãe" type="text" v-model="paciente.nome_mae"
                             id="paciente_nome_mae" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Nome" type="text" v-model:value="paciente.responsavel_nome"
+                          <MaterialInput label="Nome do responsável" type="text" v-model="paciente.responsavel_nome"
                             id="responsavel_nome" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="RG" type="text" v-model:value="paciente.responsavel_rg"
+                          <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg"
                             id="responsavel_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="CPF" type="text" v-model:value="paciente.responsavel_cpf"
+                          <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf"
                             id="responsavel_cpf" />
                         </div>
                       </div>
@@ -224,27 +224,27 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <material-input label="CEP" type="text" v-bind:value="paciente.endereco_cep"
+                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep"
                             :input="getEndereco" id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <material-input label="Logradouro" type="text" v-bind:value="paciente.endereco_logradouro"
+                          <MaterialInput label="Logradouro" type="text" v-model="paciente.endereco_logradouro"
                             id="paciente_enderecoLogradouro" />
                         </div>
                         <div class="col-md-2 mb-2">
-                          <material-input label="Nº" type="text" v-bind:value="paciente.endereco_numero"
+                          <MaterialInput label="Nº" type="text" v-model="paciente.endereco_numero"
                             id="paciente_enderecoNumero" />
                         </div>
                         <div class="col-md-4">
-                          <material-input label="Complemento" type="text" v-bind:value="paciente.endereco_complemento"
+                          <MaterialInput label="Complemento" type="text" v-model="paciente.endereco_complemento"
                             id="paciente_enderecoComplemento" />
                         </div>
                         <div class="col-md-4">
-                          <material-input label="Cidade" type="text" v-bind:value="paciente.endereco_cidade"
+                          <MaterialInput label="Cidade" type="text" v-model="paciente.endereco_cidade"
                             id="paciente_enderecoCidade" />
                         </div>
                         <div class="col-md-4">
-                          <material-input label="Estado" type="text" v-bind:value="paciente.endereco_estado"
+                          <MaterialInput label="Estado" type="text" v-model="paciente.endereco_estado"
                             id="paciente_enderecoEstado" />
                         </div>
                       </div>
@@ -317,23 +317,23 @@
 
           <div class="row">
             <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Consultas realizadas" readonly centered type="text"
-                v-bind:value="paciente.consultas_realizadas ? paciente.consultas_realizadas : 0"
+              <MaterialInput label="Consultas realizadas" readonly centered type="text"
+                :value="paciente.consultas_realizadas ? paciente.consultas_realizadas : 0"
                 id="paciente_proximaConsulta" />
             </div>
             <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Primeira consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
+              <MaterialInput label="Primeira consulta" readonly centered type="text"
+                :value="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
               <span>há 4 anos</span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Última consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(paciente.ultima_consulta)" id="paciente_ultimaConsulta" />
+              <MaterialInput label="Última consulta" readonly centered type="text"
+                :value="$filters.dateDmy(paciente.ultima_consulta)" id="paciente_ultimaConsulta" />
               <span>há 1 mês</span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
-              <material-input label="Próxima consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
+              <MaterialInput label="Próxima consulta" readonly centered type="text"
+                :value="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
               <span class="text-success" style="font-weight: 500;">Hoje!</span>
             </div>
           </div>
@@ -398,7 +398,6 @@ import { getPaciente, updatePaciente, getEnderecoByCep } from "@/services/pacien
 const body = document.getElementsByTagName("body")[0];
 
 var paciente = {}
-
 var originalPaciente = {}
 
 var showTratamento = false;
@@ -557,14 +556,14 @@ export default {
     }
   },
 
+  async beforeMount() {
+    await this.getPacienteDetails(this.$route.params.id);
+  },
+
   async mounted() {
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
-    await this.getPacienteDetails(this.$route.params.id);
-  },
-
-  async beforeMount() {
   },
 
   beforeUnmount() {
