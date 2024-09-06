@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-sm-6">
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
                         Extra-bucal
@@ -45,7 +45,7 @@
                     </div>
                     <div v-if="isEditing['extraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
+                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -108,7 +108,7 @@
                             @click="toggleEditMode('analisesRadiograficas')" /></div>
                     <div v-if="isEditing['analisesRadiograficas']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
+                            title="Salvar as alterações realizadas" @click="salvarAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            <div class="col-6 mt-4">
+            <div class="col-sm-6 mt-sm-4">
                 <div class="spacer">
                     <div class="icon-wrapper">
                         <font-awesome-icon :icon="['fas', 'search']" />
@@ -171,7 +171,7 @@
                             @click="toggleEditMode('intraBucal')" /></div>
                     <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
+                            title="Salvar as alterações realizadas" @click="salvarAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -308,6 +308,7 @@
 
 <script>
 import MaterialInput from '@/components/MaterialInput.vue'
+import { salvarAnalises } from '@/services/pacientesService'
 
 const analises = {
     'Extra-bucal': [
@@ -754,6 +755,10 @@ export default {
         }
     },
     methods: {
+        async _salvarAnalises() {
+            const response = await salvarAnalises(this.analises)
+            console.log('response:', response)
+        },
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
         },

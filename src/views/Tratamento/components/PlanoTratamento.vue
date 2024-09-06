@@ -30,7 +30,7 @@
                             <i class="fas fa-trash ms-1 text-danger-dark pointer" v-if="isEditing['metasTerapeuticas']"
                                 title="Excluir esta meta terapêutica"></i>
                             <div class="col" :style="meta.concluida ? { 'padding-left': '30px' } : {}">
-                                <strong>{{ meta.alvo }}</strong>
+                                <strong>{{ meta.descricao }}</strong>
                             </div>
                             <div class="col-auto">
                                 <button v-if="!meta.concluida" class="btn btn-vsm btn-outline-success mr-1"
