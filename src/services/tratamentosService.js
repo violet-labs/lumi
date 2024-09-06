@@ -1,8 +1,24 @@
 import axios from '@/services/axios'
 
+export async function getAnalises(pacienteId) {
+    try {
+        const response = await axios.get('/tratamentos/analises/' + pacienteId);
+
+        if (!response || !response.data || !response.data.data || response.data.status !== 'success' || response.data.data.length == 0)
+            return false
+
+        return response.data.data
+
+    } catch (error) {
+        console.error('Erro ao consultar as análises:', error);
+    }
+
+    return false
+}
+
 export async function salvarAnalises(analises, pacienteId) {
     try {
-        const response = await axios.post('/tratamentos/salvar-analises', {
+        const response = await axios.post('/tratamentos/analises', {
             paciente_id: pacienteId,
             analises,
         });
@@ -10,10 +26,10 @@ export async function salvarAnalises(analises, pacienteId) {
         if (!response || !response.data || response.data.status !== 'success')
             return false
 
-        return response
+        return response.data
 
     } catch (error) {
-        console.error('Erro ao enviar formulário de boas-vindas:', error);
+        console.error('Erro ao salvar as análises:', error);
     }
 
     return false

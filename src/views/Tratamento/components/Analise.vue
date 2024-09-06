@@ -45,7 +45,7 @@
                     </div>
                     <div v-if="isEditing['extraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
+                            title="Salvar as alterações realizadas" @click="confirmSaveAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -87,7 +87,8 @@
                                             </div>
                                             <div>
                                                 <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
+                                                    :name="analise.id" v-model="analise.detalhar"
+                                                    @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
@@ -123,7 +124,7 @@
                     </div>
                     <div v-if="isEditing['analisesRadiograficas']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
+                            title="Salvar as alterações realizadas" @click="confirmSaveAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -137,10 +138,12 @@
                                         {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.respostas ? analise.respostas :
+                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.respostas ?
+                                            analise.respostas :
                                             '-' }}</span>
 
-                                        <select v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
+                                        <select
+                                            v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
                                             <option hidden :value="undefined">Selecione...</option>
@@ -153,7 +156,8 @@
                                                 'Especificar...' }}</option>
                                         </select>
 
-                                        <template v-if="analise.tipo == 'multipla_escolha' && isEditing['analisesRadiograficas']">
+                                        <template
+                                            v-if="analise.tipo == 'multipla_escolha' && isEditing['analisesRadiograficas']">
                                             <div v-for="alternativa in analise.alternativas"
                                                 :key="alternativa.resposta">
                                                 <input type="checkbox" :id="alternativa.resposta"
@@ -165,7 +169,8 @@
                                             </div>
                                             <div>
                                                 <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
+                                                    :name="analise.id" v-model="analise.detalhar"
+                                                    @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
@@ -192,7 +197,7 @@
                     <div class="stripe"></div>
                     <div class="stripe"></div>
                 </div>
-                
+
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
                         Intra-bucal
@@ -203,7 +208,7 @@
                     </div>
                     <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas" @click="_salvarAnalises()">
+                            title="Salvar as alterações realizadas" @click="confirmSaveAnalises()">
                             Salvar
                         </button>
                     </div>
@@ -245,7 +250,8 @@
                                             </div>
                                             <div>
                                                 <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar" @change="handleAnalisesUpdate" />
+                                                    :name="analise.id" v-model="analise.detalhar"
+                                                    @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
                                             </div>
@@ -354,7 +360,8 @@
 
 <script>
 import MaterialInput from '@/components/MaterialInput.vue'
-import { salvarAnalises } from '@/services/tratamentosService'
+import { getAnalises, salvarAnalises } from '@/services/tratamentosService'
+import cSwal from "@/utils/cSwal.js"
 
 const analises = {
     'Extra-bucal': [
@@ -766,7 +773,7 @@ const analises = {
             tipo: 'multipla_escolha',
             alternativas: [
                 { nivel: 'positivo', resposta: 'todos presentes', selecionada: false },
-                { nivel: 'atencao', resposta: 'ausnetes', selecionada: false },
+                { nivel: 'atencao', resposta: 'ausentes', selecionada: false },
                 { nivel: 'atencao', resposta: 'retidos', selecionada: false },
                 { nivel: 'atencao', resposta: 'supranumerários', selecionada: false },
             ]
@@ -850,9 +857,31 @@ export default {
         }
     },
     methods: {
+        async confirmSaveAnalises() {
+            const confirmSaveChanges = confirm("Tem certeza que deseja salvar as alterações?");
+            if (confirmSaveChanges) {
+                await this._salvarAnalises();
+            }
+        },
+        async _getAnalises() {
+            const analises = await getAnalises(this.pacienteId)
+
+            if (analises)
+                this.analises = analises
+        },
         async _salvarAnalises() {
-            const response = await salvarAnalises(this.analises, this.pacienteId)
-            console.log('response:', response)
+            const save = await salvarAnalises(this.analises, this.pacienteId)
+            
+            if (save) {
+                cSwal.cSuccess('As alterações foram salvas.')
+            }
+            else {
+                cSwal.cError('Ocorreu um erro ao salvar as alterações.')
+            }
+
+            this.isEditing['extraBucal'] = false
+            this.isEditing['intraBucal'] = false
+            this.isEditing['radiograficas'] = false
         },
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
@@ -874,7 +903,7 @@ export default {
                             resposta = analise.detalhe.trim()
                         }
                     }
-                    
+
                     else if (analise.tipo === 'multipla_escolha') {
                         const selectedAlternativas = analise.alternativas.filter((alternativa) => alternativa.selecionada);
                         if (selectedAlternativas.length > 0)
@@ -939,7 +968,8 @@ export default {
     components: {
         MaterialInput,
     },
-    mounted() {
+    async mounted() {
+        await this._getAnalises();
     },
     beforeMount() {
     },

@@ -17,9 +17,9 @@ export async function authLogin(credentials) {
         localStorage.setItem('isAuthenticated', 'true');
 
         return true
-        
+
     } catch (error) {
-        console.error('Erro ao enviar formulário de boas-vindas:', error);
+        console.error('Erro ao realizar login:', error);
     }
 
     return false

@@ -69,17 +69,12 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialSwitch from "@/components/MaterialSwitch.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { mapMutations } from "vuex";
-
 import whiteConsultory from '@/assets/img/lumi/whiteConsultory.png';
 import LumiBlueLogo from "@/assets/img/lumi/logo-blue.png"
-
 import { authLogin } from "@/services/usuariosService.js"
-
 import { isAuthenticated } from "../api.js";
 import router from "../router/index.js";
-
 import cSwal from "@/utils/cSwal.js"
-
 
 const credentials = {
   email: '',
