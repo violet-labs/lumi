@@ -4,7 +4,8 @@
   </label>
   <input :id="id" :name="name" :type="type" :isRequired="isRequired" :readonly="readonly" :disabled="disabled"
     class="form-control" :class="getClasses(size, centered)" :placeholder="placeholder" :value="modelValue"
-    @input="($event) => { $emit('update:modelValue', $event.target.value); inputEvent($event); }" v-maska="mask" :style="style" :ref="id" />
+    @input="($event) => { $emit('update:modelValue', $event.target.value); inputEvent($event); }" v-maska="mask"
+    :style="style" :ref="id" :autocomplete="getAutocomplete" />
 </template>
 
 <script>
@@ -101,6 +102,15 @@ export default {
     setMaterialInput();
   },
   methods: {
+    getAutocomplete() {
+      switch (this.type) {
+        case 'password':
+          return 'current-password'
+        case 'email':
+          return 'username'
+      }
+      return null
+    },
     inputEvent($event) {
       if (this.input)
         this.input($event)

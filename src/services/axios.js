@@ -17,12 +17,12 @@ axios.defaults.withCredentials = true;
 axios.defaults.baseURL = API_URL;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
+axios.refreshToken = (token = null) => {
+    if (token)
+        localStorage.setItem('token', token)
 
-axios.defaults.headers.common['Authorization'] = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2LmFwaS5sdW1pL2F1dGgvbG9naW4iLCJpYXQiOjE3MjU2NTUxMTQsImV4cCI6MTcyNTY1ODcxNCwibmJmIjoxNzI1NjU1MTE0LCJqdGkiOiJ6U3hEUjlsQlc2WUtQbGs4Iiwic3ViIjoiMTAiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.MvCilnUxrIO8TFkQD5EbXmk6LPWurbVCNyP-HXo6JvU'
-
-// axios.refreshToken = () => {
-// 	axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')
-// }
+	axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')
+}
 
 // axios.generateTempToken = async () => {
 // 	const now = parseInt(new Date().getTime() / 1000);
