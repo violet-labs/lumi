@@ -101,7 +101,8 @@
                             id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <label for="paciente_observacoes" class="text-uppercase text-sm" style="font-weight: 500">Observações</label>
+                          <label for="paciente_observacoes" class="text-uppercase text-sm"
+                            style="font-weight: 500">Observações</label>
                           <textarea class="form-control" id="paciente_observacoes" rows="3"
                             v-model="paciente.observacoes">
                       </textarea>
@@ -482,20 +483,23 @@ export default {
     },
 
     async getEndereco(event) {
-      var cep = event.target.value
-      this.paciente.endereco_cep = this.zipCodeMask(cep)
-      cep = this.paciente.endereco_cep
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(async () => {
+        var cep = event.target.value
+        this.paciente.endereco_cep = this.zipCodeMask(cep)
+        cep = this.paciente.endereco_cep
 
-      if (!this.validarCep(cep))
-        return false
+        if (!this.validarCep(cep))
+          return false
 
-      const enderecoInfo = await getEnderecoByCep(cep)
-      if (!enderecoInfo)
-        return false
+        const enderecoInfo = await getEnderecoByCep(cep)
+        if (!enderecoInfo)
+          return false
 
-      this.paciente.endereco_logradouro = enderecoInfo.street
-      this.paciente.endereco_cidade = enderecoInfo.city
-      this.paciente.endereco_estado = enderecoInfo.state
+        this.paciente.endereco_logradouro = enderecoInfo.street
+        this.paciente.endereco_cidade = enderecoInfo.city
+        this.paciente.endereco_estado = enderecoInfo.state
+      }, 50);
     },
 
     getContatoIcon(type) {

@@ -72,7 +72,7 @@
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
                           <label for="dentista_ortodontista" class="form-control-label">Ortodontista</label>
-                          <select class="form-select" id="dentista_ortodontista" v-model="dentista.id_dentista">
+                          <select class="form-select" id="dentista_ortodontista">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -225,27 +225,27 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <MaterialInput label="CEP" type="text" v-bind:value="dentista.endereco_cep"
+                          <MaterialInput label="CEP" type="text" v-model="dentista.endereco_cep"
                             :input="getEndereco" id="dentista_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="Logradouro" type="text" v-bind:value="dentista.endereco_logradouro"
+                          <MaterialInput label="Logradouro" type="text" v-model="dentista.endereco_logradouro"
                             id="dentista_enderecoLogradouro" />
                         </div>
                         <div class="col-md-2 mb-2">
-                          <MaterialInput label="Nº" type="text" v-bind:value="dentista.endereco_numero"
+                          <MaterialInput label="Nº" type="text" v-model="dentista.endereco_numero"
                             id="dentista_enderecoNumero" />
                         </div>
                         <div class="col-md-4">
-                          <MaterialInput label="Complemento" type="text" v-bind:value="dentista.endereco_complemento"
+                          <MaterialInput label="Complemento" type="text" v-model="dentista.endereco_complemento"
                             id="dentista_enderecoComplemento" />
                         </div>
                         <div class="col-md-4">
-                          <MaterialInput label="Cidade" type="text" v-bind:value="dentista.endereco_cidade"
+                          <MaterialInput label="Cidade" type="text" v-model="dentista.endereco_cidade"
                             id="dentista_enderecoCidade" />
                         </div>
                         <div class="col-md-4">
-                          <MaterialInput label="Estado" type="text" v-bind:value="dentista.endereco_estado"
+                          <MaterialInput label="Estado" type="text" v-model="dentista.endereco_estado"
                             id="dentista_enderecoEstado" />
                         </div>
                       </div>
@@ -286,22 +286,22 @@
           <div class="row">
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Consultas realizadas" readonly centered type="text"
-                v-bind:value="dentista.consultas_realizadas ? dentista.consultas_realizadas : 0"
+                :modelValue="dentista.consultas_realizadas ? dentista.consultas_realizadas : 0"
                 id="dentista_proximaConsulta" />
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Primeira consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(dentista.primeira_consulta)" id="dentista_primeiraConsulta" />
+                :modelValue="$filters.dateDmy(dentista.primeira_consulta)" id="dentista_primeiraConsulta" />
               <span>há 4 anos</span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Última consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(dentista.ultima_consulta)" id="dentista_ultimaConsulta" />
+                :modelValue="$filters.dateDmy(dentista.ultima_consulta)" id="dentista_ultimaConsulta" />
               <span>há 1 mês</span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Próxima consulta" readonly centered type="text"
-                v-bind:value="$filters.dateDmy(dentista.proxima_consulta)" id="dentista_proximaConsulta" />
+                :modelValue="$filters.dateDmy(dentista.proxima_consulta)" id="dentista_proximaConsulta" />
               <span class="text-success" style="font-weight: 500;">Hoje!</span>
             </div>
           </div>

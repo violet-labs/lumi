@@ -43,16 +43,16 @@ Criar models:
 
 Paciente > Tratamento > Análise:
     ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
+    Avaliar se está salvando certinho:
+        ☐ Extra-bucal
+        ☐ Intra-bucal
+        ☐ Análises radiográficas
     ✔ Avaliar elementos que não estão mostrando o <select>: @done(24-09-05 23:14)
         ✔ Extra-bucal > ATM @done(24-09-05 23:14)
         ✔ Extra-bucal > Hábitos @done(24-09-05 23:14)
         ✔ Intra-bucal > Apinhamentos @done(24-09-05 23:14)
     ✔ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea> @done(24-09-05 23:15)
     ✔ Corrigir colunas dos cards principais @done(24-09-05 23:45)
-    Avaliar se está salvando certinho:
-        ☐ Extra-bucal
-        ☐ Intra-bucal
-        ☐ Análises radiográficas
     API:
         ☐ Criar "detalhes_clinicos" quando salvar as seções:
             ☐ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever
