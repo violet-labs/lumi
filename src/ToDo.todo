@@ -1,107 +1,11 @@
-Formulário de bem-vindo e tratamento das respostas:
-    ✔ (10m) Fazer novo layout para rolar as perguntas @done(24-08-27 23:10)
-    ✔ (30m) Executar a migração para a nova estrutura: @done(24-08-27 23:10)
-        ✔ Pergunta @done(24-08-27 23:10)
-        ✔ tipo (radio, multiple-choices, open-text), @done(24-08-27 23:10)
-        ✔ condition @done(24-08-27 23:16)
-        ✔ options (para radio e multiple-choices) - array de opções possíveis - options: @done(24-08-27 23:16)
-            ✔ personalDetail @done(24-08-27 23:16)
-            ✔ detailType (good, neutral, attention, bad) @done(24-08-27 23:16)
-            ✔ openText (texto aberto por uma opção do tipo open-text) @done(24-08-27 23:16)
-    ✔ (5m) Criar rota para receber o formulário de boas-vindas @done(24-08-27 23:17)
-    ✔ (7m) Fazer função JavaScript para enviar o formulário @done(24-08-27 23:17)
-    ✔ (7m) Fazer função na API para receber o formulário @done(24-08-27 23:17)
-    ✔ (10m) Fazer funcionar o INSERT do formulário @done(24-08-27 23:17)
-    ✔ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido @done(24-08-27 23:17)
-    ✔ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria @done(24-08-27 23:17)
-    ✔ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais" @done(24-08-27 23:17)
-    ✔ (5m) Inserir flag "tipo_detalhe" @started(24-08-27 22:54) @done(24-08-27 22:55) @lasted(1m2s)
-    ✔ Revisar (5m) @started(24-08-27 22:56)@done(24-08-27 23:06) @lasted(10m28s)
-    ✔ Melhorar mensagem final @started(24-08-27 23:06) @done(24-08-27 23:06) @lasted(1s)
-
-✔ Exibir Detalhes Paciente @started(24-08-27 23:20) @done(24-08-27 23:47) @lasted(27m33s)
-
-✔ Filtrar detalhes pessoais @done(24-08-27 23:47)
-
-✔ Retirar total_consultas da linha 87 do PacientesController.php (verificar se é obrigatório no front-end, e se já não existe no banco de dados - se não existir, criar migration) @done(24-09-03 22:15)
-✔ Criar coluna "consultas_realizadas" na tabela "pacientes" @done(24-09-03 22:15)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-
-Criar models:
-    ✔ Consultas @done(24-09-03 22:24)
-    ✔ Contas a Receber @done(24-09-03 22:41)
-    ✔ Contas a Pagar @done(24-09-03 22:41)
-
-✔ No formulário de boas-vindas, receber o token e puxar os dados do paciente de acordo, se houver token @done(24-09-04 00:06)
-
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-✔ Corrigir warnings na tela do Paciente @done(24-09-05 22:44)
-✔ Fazer funcionar corretamente sistema de login e token @done(24-09-06 19:05)
-✔ Ao logar, redirecionar para /agenda em vez de /inicio @done(24-09-06 19:06)
-✔ Fazer logout automático quando o axios receber 401 Unauthorized @done(24-09-06 22:22)
-
-Paciente > Tratamento > Análise:
-    ✔ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico') @done(24-09-06 19:56)
-    ✔ Padronizar modelo das análises @done(24-09-06 17:35)
-    ✔ Criar model das Análises na API @done(24-09-06 17:35)
-    ✔ Armazenar corretamente as análises no banco @done(24-09-06 17:35)
-    Avaliar se está salvando certinho:
-        ✔ Extra-bucal @done(24-09-06 19:51)
-        ✔ Intra-bucal @done(24-09-06 19:51)
-        ✔ Análises radiográficas @done(24-09-06 19:51)
-    ✔ Avaliar elementos que não estão mostrando o <select>: @done(24-09-05 23:14)
-        ✔ Extra-bucal > ATM @done(24-09-05 23:14)
-        ✔ Extra-bucal > Hábitos @done(24-09-05 23:14)
-        ✔ Intra-bucal > Apinhamentos @done(24-09-05 23:14)
-    ✔ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea> @done(24-09-05 23:15)
-    ✔ Corrigir colunas dos cards principais @done(24-09-05 23:45)
-    API:
-        ✔ Criar "detalhes_clinicos" quando salvar as seções: @done(24-09-06 19:56)
-            ✔ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever @done(24-09-06 19:56)
-    ✔ Verificar o porque de as análises com multipla_escolha estão bugando quando salva @done(24-09-06 22:35)
-    ✔ Verificar o porque de as análises com multipla_escolha estão bugando o detalhamento @done(24-09-06 22:35)
-    ✔ Melhorar apresentação dos relatos do paciente, a fim de ocupar menos espaço @done(24-09-06 22:38)
-    ✔ Verificar pontuações sobre Tirada de fotos, pra passar pra tipo "pessoal" em vez de "clinico" @done(24-09-07 00:37)
-    ✔ Verificar quais outros pontos pessoais podem ser adicionados @done(24-09-07 00:37)
-    ✔ Atualizar o valor de pacientes.formulario_preenchido @done(24-09-07 00:57)
-    ✔ Caso não tiver preenchido o formulário de boas-vindas ainda, exibir uma mensagem no Relatos do Paciente, informando que o mesmo precisa preencher @done(24-09-07 01:04)
-    ✔ Verificar: não está aparecendo os detalhes das questões do Formulário @done(24-09-07 00:54)
-    ☐ Verificar o footer que não tá aparecendo o texto
-    ✔ Trocar botão "Enviar link" para "Copiar link", quando não possuir WhatsApp @done(24-09-07 14:24)
-    ✔ Corrigir login que tá expirando em 1h @done(24-09-07 14:40)
-    ✔ Remover "Diagnóstico/Tratamento" da listagem de pacientes @done(24-09-07 15:43)
+☐ Verificar o footer que não tá aparecendo o texto
 
 Paciente > Tratamento > Diagnóstico:
-    Diagnóstico:
-        ✔ Verificar se está salvando certinho @done(24-09-07 14:11)
-    Prognóstico:
-        ✔ Verificar se está salvando certinho @done(24-09-07 14:11)
-    Protocolo de tratamento:
-        Criar opção para solicitar mentoria do paciente:
-            ✔ Criar modal com um campo de observação (opcional) e btn Enviar @done(24-09-07 15:03)
-            API:
-                Criar model Mentoria:
-                    ✔ id @done(24-09-07 14:30)
-                    ✔ solicitante_id @done(24-09-07 14:30)
-                    ✔ mentor_id @done(24-09-07 14:30)
-                    ✔ paciente_id @done(24-09-07 14:32)
-                    ✔ observacao @done(24-09-07 14:30)
-                    ✔ status @done(24-09-07 14:30)
-                    ✔ timestamps @done(24-09-07 14:30)
-            Na tela do Daniel, fazer o menu de Mentorias:
-                ✔ Tela simples, de listagem e link para o paciente/tratamento @done(24-09-07 16:21)
-        ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
+    ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
-        ✔ Verificar o porque de não estarem aparecendo @done(24-09-05 23:43)
-        ✔ Ver uma forma de apresentá-las melhor, antes das outras info @done(24-09-07 15:23)
-    Planejamento:
-        ✔ Remover (apenas comentar) tudo relacionado a Fases do Tratamento @done(24-09-07 15:23)
+        ☐ Criar com base no array retornado da IA
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
 
@@ -116,7 +20,6 @@ Paciente > Perfil:
             ☐ tipo
             ☐ contato
         ☐ Criar função de inserir
-    ✔ Verificar busca do endereço pelo CEP @done(24-09-06 00:09)
     Detalhes pessoais:
         ☐ Exibir apenas os pessoais (esconder os clínicos)
         ☐ Verificar por que está aparecendo só 1
@@ -124,11 +27,6 @@ Paciente > Perfil:
 Dentistas:
     ☐ Fazer funcionar botão de Novo Dentista
     ☐ Fazer funcionar a pesquisa
-    ✔ Remover botão "Imprimir" @done(24-09-05 22:06)
-    ✔ Remover botão "Consultas agendadas" @done(24-09-05 22:06)
-    ✔ Remover botão "Todos dentistas" @done(24-09-05 22:06)
-    ✔ Criar seção "Clínicas" @done(24-09-05 22:06)
-    ✔ Adicionar botão "Gerenciar clínicas": @done(24-09-05 22:07)
         Criar objeto "Clinica":
             Criar model:
                 ☐ id
@@ -147,14 +45,6 @@ Dentistas:
                 ☐ Listagem de dentistas
 
 Dentista > Detalhes:
-    Remover campos desnecessários:
-        ✔ Ortodontista @done(24-09-07 15:31)
-        ✔ Nome do pai @done(24-09-07 15:31)
-        ✔ Nome do mãe @done(24-09-07 15:31)
-        ✔ RG (duplicado) @done(24-09-07 15:31)
-        ✔ CPF (duplicado) @done(24-09-07 15:31)
-    Adicionar campos:
-        ✔ Clínica @done(24-09-07 15:31)
     ☐ Fazer funcionar o salvamento dos dados
     ☐ Fazer funcionar os meios de contato (copiar de "Paciente", pra facilitar)
     ☐ Remover seção do Formulário de Boas-vindas
@@ -165,21 +55,6 @@ Dentista > Pacientes:
     ☐ Exibir listagem de pacientes (com busca simples):
         ☐ Marcar os que estiverem com mentoria solicitada
         ☐ Ao clicar, envia para a tela do Paciente
-
-✔ Esconder "Dentista > Financeiro" @done(24-09-07 15:32)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -253,10 +128,6 @@ Paciente > Tratamento > Histórico:
 
 Reunião 11/06/2024:
     -- ------------------------------------------ --
-    (1h) Perfil do paciente:
-        ✔ Exibir Detalhes pessoais @done(24-09-03 22:42)
-        Adicionar:
-            ✔ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido) @done(24-09-03 23:29)
     -- ------------------------------------------ --
     Consultas:
         Front-end:
@@ -264,7 +135,6 @@ Reunião 11/06/2024:
             ☐ Criar rota para adicionar consulta
             ☐ Criar rota para editar consulta
         API:
-            ✔ Criar model de Consulta @done(24-09-05 20:15)
             ☐ Criar rota para adicionar consulta
     -- ------------------------------------------ --
     Tratamento:
@@ -310,19 +180,12 @@ Meios de contato:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 ☐ (10m) Centralizar todos .modal no centro vertical da tela
-Coisas que preciso ver como será feito:
-    ✔ (1h) Estrutura do formulário de bem-vindo @done(24-08-27 23:18)
-    ☐ (1h) Estrutura da análise clínica
-Tela de análise clínica (form):
-    ☐ Calcular o tratamento recomendado, através das respostas do formulário
-    ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
 Consertar layout:
     ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
     ☐ (20m) A sidenav não está chegando até o final da tela
 Later:
     Laravel - aprender:
         ☐ (10m) Como fazer paginação do lado do servidor
-    ✔ (30m) Tentar fazer deploy no host1.violetlabs.com.br @done(24-08-27 23:18)
     ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
     ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
     ☐ Verificar o porque de estar lento para abrir a Agenda
@@ -342,8 +205,6 @@ Later:
 Outro dia:
     Front-end:
         Desenvolver:
-            ✔ Formulário de adicionar dentista @done(24-09-05 18:31)
-            ✔ Tela para ver as informações do dentista @done(24-09-05 18:31)
             Colocar a sidenav nas outras telas também:
                 ☐ Finanças
         ☐ Excluir arquivos que não forem ser usados
@@ -356,7 +217,6 @@ Outro dia:
         Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
             ☐ Formulários
             ☐ Dentistas
-            ✔ Consultas / agenda @done(24-09-05 18:31)
         Tabela pacientes:
             ☐ picture_url
             ☐ status            

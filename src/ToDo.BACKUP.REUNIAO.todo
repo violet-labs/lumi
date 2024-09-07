@@ -1,13 +1,3 @@
-☐ Gerar tarefas de funcionalidades do outro sistema ("D:\Google Drive\Pessoal\Documentos\Projetos\Lumi - Documentos\Sistema atual")
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
 Reunião 11/06/2024:
 -- ------------------------------------------ --
 (1h) Perfil do paciente:
@@ -79,101 +69,14 @@ Analises radiográficas:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
 Plano de tratamento:
-    ☐ Excluir tudo de "fases de tratamento" (Backend e Front-end)
+    ✔ Excluir tudo de "fases de tratamento" (commentar no Front-end) @done(24-09-07 17:29)
 Seção "aparatologia":
     ☐ Incluir observações na Aparatologia
 Análise do perfil clínico:
     ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
 Meios de contato:
     ☐ (10m) Fazer função para cadastrar novo meio de contato
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-Formulário de bem-vindo e tratamento das respostas:
-    ☐ (10m) Fazer novo layout para rolar as perguntas  
-    ☐ (30m) Executar a migração para a nova estrutura:
-        ☐ Pergunta
-        ☐ tipo (radio, multiple-choices, open-text),
-        ☐ condition
-        ☐ options (para radio e multiple-choices) - array de opções possíveis - options:
-            ☐ personalDetail
-            ☐ detailType (good, neutral, attention, bad)
-            ☐ openText (texto aberto por uma opção do tipo open-text)
-    ☐ (5m) Criar rota para receber o formulário de boas-vindas
-    ☐ (7m) Fazer função JavaScript para enviar o formulário
-    ☐ (7m) Fazer função na API para receber o formulário
-    ☐ (10m) Fazer funcionar o INSERT do formulário
-    ☐ (10m) Tela do formulário de boas-vindas: verificar se o status do formulário já é preenchido
-    ☐ (30m) Escrever "consequencia" para cada resposta de cada pergunta, colocando cada pergunta dentro de uma categoria
-    ☐ (15m) Fazer o back-end receber os valores do formulário e criar os "detalhes_pessoais"
-    ☐ (20m) Exibir detalhes_pessoais na tela do paciente (Detalhes do paciente)
-    ☐ (10m) Centralizar todos .modal no centro vertical da tela
-Coisas que preciso ver como será feito:
-    ☐ (1h) Estrutura do formulário de bem-vindo
-    ☐ (1h) Estrutura da análise clínica
-Tela de análise clínica (form):
-    ☐ Calcular o tratamento recomendado, através das respostas do formulário
-    ☐ Pegar as imagens dos tratamentos já prontos e exibir como "motivos deste tratamento ser recomendado"
-Consertar layout:
-    ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
-    ☐ (20m) A sidenav não está chegando até o final da tela
-Later:
-    Laravel - aprender:
-        ☐ (10m) Como fazer paginação do lado do servidor
-    ☐ (30m) Tentar fazer deploy no host1.violetlabs.com.br
-    ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
-    ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
-    ☐ Verificar o porque de estar lento para abrir a Agenda
-    ☐ Colocar campo de indicação no cadastro do paciente
-    ☐ (15m) Traduzir o DataTables
-    Financeiro:
-        Tela do Financeiro:
-            ☐ Criar tabela de contas
-            ☐ Criar sidenav com opções pertinentes ao financeiro
-        Tela do Paciente:
-            ☐ Criar tabela de contas
-            ☐ Criar sidenav com opções pertinentes ao financeiro
-    ☐ Backend: verificar os models e migrations dos pacientes (comparar com o da CECLOP e verificar se tá faltando algum campo)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-Outro dia:
-    Front-end:
-        Desenvolver:
-            ☐ Formulário de adicionar dentista
-            ☐ Tela para ver as informações do dentista
-            Colocar a sidenav nas outras telas também:
-                ☐ Finanças
-        ☐ Excluir arquivos que não forem ser usados
-    Backend:
-        Verificar os models e migrations:
-            ☐ Formulários
-            ☐ Dentistas
-            ☐ Consultas
-            ☐ Agenda
-        Verificar as tabelas do banco de dados (comparar com tabelas da CECLOP):
-            ☐ Formulários
-            ☐ Dentistas
-            ☐ Consultas / agenda
-        Tabela pacientes:
-            ☐ picture_url
-            ☐ status            
-Ideas:
-    ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
-    ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)
-    ☐ Dar opção para o paciente consultar o seu plano de tratamento
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-New ideas:
-    ☐ No diagnóstico, colocar 3 colunas de <ul>, com os itens apresentados na análise
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --

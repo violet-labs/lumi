@@ -31,7 +31,7 @@
         </v-tab>
         <v-tab @click="openPage('configuracoes')">
             <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
-            <i class="fas fa-cog pt-1"></i>
+            <i class="fas fa-cog pt-1" style="font-size: 12pt"></i>
         </v-tab>
     </v-tabs>
 </template>
