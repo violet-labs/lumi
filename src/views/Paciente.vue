@@ -272,21 +272,28 @@
                     </div>
 
                     <div class="col-12">
-                      <div class="row p-0">
+                      <div class="row p-0">                        
 
-                        <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
-                                class="col-sm-6 col-md-4">
-                                <div class="info-container mt-2" :class="detalhe.nivel">
-                                    <div style="width: 30px; text-align: center;">
-                                        <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                                    </div>
-                                    <div class="">
-                                        <span>{{ detalhe.detalhe }}</span>
-                                    </div>
-                                </div>
+                        <div v-if="!formularioRespondido || detalhesPessoais.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center py-3">
+                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
+                                class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" acima.
                             </div>
 
-                      </div>
+                        <div v-if="paciente.formularioRespondido">
+                          <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
+                                  class="col-sm-6 col-md-4">
+                                  <div class="info-container mt-2" :class="detalhe.nivel">
+                                      <div style="width: 30px; text-align: center;">
+                                          <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                      </div>
+                                      <div class="">
+                                          <span>{{ detalhe.detalhe }}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          
+                                                </div>
+                        </div>
                     </div>
 
                   </div>

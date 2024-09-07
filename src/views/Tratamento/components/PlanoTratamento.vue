@@ -23,27 +23,29 @@
                         </button>
                     </div>
 
-
-                    <div v-for="meta in paciente.metas_terapeuticas" v-bind:key="meta.id" class="card m-3"
-                        :class="meta.concluida ? 'border-success' : ''">
-                        <div class="fase-header d-flex flex-row">
-                            <i class="fas fa-trash ms-1 text-danger-dark pointer" v-if="isEditing['metasTerapeuticas']"
-                                title="Excluir esta meta terapêutica"></i>
-                            <div class="col" :style="meta.concluida ? { 'padding-left': '30px' } : {}">
-                                <strong>{{ meta.descricao }}</strong>
-                            </div>
-                            <div class="col-auto">
-                                <button v-if="!meta.concluida" class="btn btn-vsm btn-outline-success mr-1"
-                                    title="Marcar como concluída"><font-awesome-icon
-                                        :icon="['fas', 'check']" /></button>
-                                <button v-if="meta.concluida && isEditing['metasTerapeuticas']"
-                                    class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
-                                    title="Marcar como não concluída"><font-awesome-icon
-                                        :icon="['fas', 'check']" /></button>
-                                <span v-if="meta.concluida && !isEditing['metasTerapeuticas']"
-                                    class="text-success px-2 text-sm font-weight-bold">
-                                    CONCLUÍDA
-                                </span>
+                    <div class="row px-3 pt-0 pb-1">
+                        <div v-for="meta in paciente.metas_terapeuticas" v-bind:key="meta.id" class="col-sm-6 col-md-4">
+                            <div class="card m-2 mx-0" :class="meta.concluida ? 'border-success' : ''">
+                                <div class="fase-header d-flex flex-row">
+                                    <i class="fas fa-trash ms-1 text-danger-dark pointer"
+                                        v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"></i>
+                                    <div class="col" :style="meta.concluida ? { 'padding-left': '30px' } : {}">
+                                        <strong>{{ meta.descricao }}</strong>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button v-if="!meta.concluida" class="btn btn-vsm btn-outline-success mr-1"
+                                            title="Marcar como concluída"><font-awesome-icon
+                                                :icon="['fas', 'check']" /></button>
+                                        <button v-if="meta.concluida && isEditing['metasTerapeuticas']"
+                                            class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
+                                            title="Marcar como não concluída"><font-awesome-icon
+                                                :icon="['fas', 'check']" /></button>
+                                        <span v-if="meta.concluida && !isEditing['metasTerapeuticas']"
+                                            class="text-success px-2 text-sm font-weight-bold">
+                                            CONCLUÍDA
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -78,7 +80,7 @@
                                             class="form-select select-sm" :value="item.text" style="min-width: 170px;">
                                             <option v-for="option in item.options" v-bind:key="option.id"
                                                 :class="'text-' + option.mood" :selected="option.text == item.text">{{
-                                                option.text }}</option>
+                                                    option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
                                         <input v-if="false" class="form-control input-sm"
@@ -119,7 +121,7 @@
                                             class="form-select select-sm" :value="item.text" style="min-width: 170px;">
                                             <option v-for="option in item.options" v-bind:key="option.id"
                                                 :class="'text-' + option.mood" :selected="option.text == item.text">{{
-                                                option.text }}</option>
+                                                    option.text }}</option>
                                             <option>Outro (especificar)...</option>
                                         </select>
                                         <input v-if="false" class="form-control input-sm"
@@ -133,7 +135,7 @@
             </div>
 
             <div class="col-12">
-                <div class="box primary mt-4 pb-2">
+                <!-- <div class="box primary mt-4 pb-2">
                     <p class="custom-card-header mb-3">Planejamento<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['planoTratamento'] }"
                             :title="isEditing['planoTratamento'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
@@ -225,8 +227,8 @@
                         <font-awesome-icon v-if="index < paciente.fases_tratamento.length - 1"
                             :icon="['fas', 'arrow-down']" />
                     </div>
-                </div>
-
+                </div> -->
+                
                 <div class="custom-card primary mt-4">
                     <p class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon
                             :icon="['fas', 'edit']" class="ml-3 pointer"

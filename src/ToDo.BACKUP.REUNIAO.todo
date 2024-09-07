@@ -42,11 +42,11 @@ Tela de Diagnóstico/Prognóstico:
     ✔ Alterar o texto para "Solicitar uma mentoria deste caso" (sem especialista) @done(24-06-11 22:11)
     ✔ Colocar botão de "solicitar análise", grande, no final @done(24-06-11 22:35)
     -- NO: Passar o tratamento para cima da explicação da análise
-    ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
+    ✔ Montar o texto do diagnóstico, de acordo com os dados da Análise @done(24-09-07 10:37)
     Prognóstico:
         ✔ Passar para o final da tela @done(24-06-11 22:44)
         ☐ Deixar opções fixas
-        ☐ Deixar campo aberto para observação
+        ✔ Deixar campo aberto para observação @done(24-09-07 10:37)
 -- ------------------------------------------ --
 Tela de Plano de tratamento:
     ✔ Passar tela para a orientação vertical @done(24-06-11 23:01)

@@ -31,7 +31,7 @@
                     <p class="custom-card-header">Protocolo de tratamento</p>
                     <div class="row border-between py-3">
 
-                        <div class="col-6 pb-1 px-4 border-end text-center justify-content-center">
+                        <div class="col-sm-6 pb-1 px-4 border-end text-center justify-content-center">
                             <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento
                                 recomendado:
                             </p>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-sm-6">
                             <div class="p-horizontal-divider mb-4"></div>
                             <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Análise realizada:
                             </p>

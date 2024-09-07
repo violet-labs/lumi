@@ -30,8 +30,10 @@
                                 </div>
                             </div> -->
 
-                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-warning">
-                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar o link, utilize o botão na aba "Perfil"
+                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center">
+                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
+                                class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" na aba "<font-awesome-icon :icon="['fas', 'fa-user']"
+                                    class="me-1 text-sm" />Perfil".
                             </div>
 
                             <div v-if="formularioRespondido">
@@ -333,7 +335,7 @@
 .spacer {
     margin: 35px 0px;
     position: relative;
-    font-size: 35pt;
+    font-size: 40pt;
     color: #85A7C1
 }
 
@@ -366,7 +368,7 @@
     /* ajuste a cor das listras */
     border-radius: 2px;
     /* adiciona um efeito de borda arredondada */
-    margin-top: 12px;
+    margin-top: 15px;
 }
 
 .spacer .stripe:nth-child(3) {

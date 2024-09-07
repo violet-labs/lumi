@@ -49,7 +49,7 @@
 
           <template #item-status="{ status }">
             <div class="align-middle text-center text-sm">
-              <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status)">
+              <span class="badge badge-sm w-100 w-md-70" :class="statusClass(status)">
                 {{ statusText(status) }}
               </span>
             </div>
