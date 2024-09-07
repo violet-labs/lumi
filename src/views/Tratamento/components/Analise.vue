@@ -145,7 +145,7 @@
                         </button>
                     </div>
                     <div class="custom-card-body p-0 card-top-border">
-                        <v-table density="compact" class="analises-table analises-bucal"
+                        <v-table density="compact" class="analises-table analises-radiograficas"
                             style="border-bottom: 1px solid #DDD;">
                             <tbody>
                                 <tr v-for="analise in analises['Radiográficas']" v-bind:key="analise.id"
@@ -319,6 +319,12 @@
 .analises-table.extra-bucal tr>td:first-child {
     width: 50%;
 }
+.analises-table.intra-bucal tr>td:first-child {
+    width: 60%;
+}
+.analises-table.analises-radiograficas tr>td:first-child {
+    width: 60%;
+}
 
 
 .spacer {
@@ -378,6 +384,8 @@
 import MaterialInput from '@/components/MaterialInput.vue'
 import { getAnalises, salvarAnalises } from '@/services/tratamentosService'
 import cSwal from "@/utils/cSwal.js"
+
+let originalAnalises = null
 
 const analises = {
     'Extra-bucal': [
@@ -909,7 +917,7 @@ export default {
     },
     methods: {
         async confirmSaveAnalises() {
-            cSwal.cConfirm('Deseja realmente salvar as alterações? As informações anteriores serão sobrescritas.', async () => {
+            cSwal.cConfirm('Deseja realmente <b>salvar as alterações</b>? As informações anteriores serão sobrescritas.', async () => {
                 await this._salvarAnalises();
             })
         },
@@ -917,7 +925,8 @@ export default {
             const analises = await getAnalises(this.pacienteId)
 
             if (analises) {
-                this.analises = analises
+                this.originalAnalises = JSON.parse(JSON.stringify(analises));
+                this.analises = JSON.parse(JSON.stringify(analises));
                 this.handleAnalisesUpdate()
             }
         },
@@ -928,7 +937,7 @@ export default {
                 cSwal.cSuccess('As alterações foram salvas.')
                 this.isEditing['extraBucal'] = false
                 this.isEditing['intraBucal'] = false
-                this.isEditing['radiograficas'] = false
+                this.isEditing['analisesRadiograficas'] = false
             }
             else {
                 cSwal.cError('Ocorreu um erro ao salvar as alterações.')
@@ -952,8 +961,9 @@ export default {
             }
 
             if (this.isEditing[section]) {
-                cSwal.cConfirm(`Deseja realmente cancelar a edição da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
+                cSwal.cConfirm(`Deseja realmente <b>cancelar a edição</b> da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
                     this.isEditing[section] = false
+                    this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
                 })
                 return
             }
@@ -964,6 +974,10 @@ export default {
             }
 
             this.isEditing[section] = !this.isEditing[section];
+
+            if (!this.isEditing[section]) {
+                this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
+            }
         },
         handleAnalisesUpdate() {
             this.updateRespostas()
@@ -998,12 +1012,15 @@ export default {
                             if (analise.selectedResposta == alternativa.resposta) {
                                 alternativa.selecionada = true
                             }
+                            else {
+                                alternativa.selecionada = false
+                            }
                         });
                     }
 
                     else if (analise.tipo === 'multipla_escolha') {
                         const selectedAlternativas = analise.alternativas.filter((alternativa) => alternativa.selecionada);
-                        console.log('selectedAlternativas:', selectedAlternativas)
+
                         if (selectedAlternativas.length > 0)
                             resposta = selectedAlternativas.map((alternativa) => alternativa.resposta.trim()).join(', ').trim()
 
@@ -1014,8 +1031,6 @@ export default {
                     analise.respostas = resposta;
                 });
             });
-
-            console.log('this.analises:', this.analises)
         },
         updateNivel() {
             Object.values(this.analises).forEach((categoria) => {

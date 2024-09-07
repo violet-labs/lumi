@@ -62,7 +62,13 @@
     </footer>
   </div>
 </template>
-<style></style>
+<style scoped>
+@media (min-width: 960px) {
+  .card {
+    min-width: 370px;
+  }
+}
+</style>
 
 <script>
 import MaterialInput from "@/components/MaterialInput.vue";
