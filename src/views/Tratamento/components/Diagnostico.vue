@@ -71,7 +71,12 @@
                             </p>
                             <div class="p-horizontal-divider m-3"></div>
                             <div class="w-100 text-center my-5">
-                                <button class="btn btn-primary">Solicitar mentoria</button>
+                                <button v-if="!mentoriaSolicitada" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalSolicitarMentoria">
+                                    Solicitar mentoria
+                                </button>
+                                <button v-if="mentoriaSolicitada" class="btn btn-success">
+                                    Mentoria solicitada
+                                </button>
                             </div>
                         </div>
 
@@ -196,6 +201,27 @@
 
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" id="modalSolicitarMentoria">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Solicitar mentoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="mt-3">Mentoria para o caso do paciente <b>{{ paciente.nome }}</b></p>
+                    <p class="mt-3">O pedido de mentoria chegará para nosso especialista, e então ele avaliará o caso juntamente com você.</p>
+                    <p class="mt-3">Escreva algumas observações sobre o caso, se julgar necessário:</p>
+                    <textarea class="form-control" rows="3" v-model="observacoesMentoria"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmSolicitarMentoria">Solicitar mentoria</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style>
@@ -255,6 +281,7 @@ import imgLinhaMediaSemDesvio from "@/assets/img/protocolos/linhamedia-sem-desvi
 import imgDefault from "@/assets/img/protocolos/default.png";
 import imgMesoBraqui from "@/assets/img/protocolos/biotipo-meso-braqui.png"
 import { salvarDiagnostico, salvarPrognostico } from "@/services/pacientesService"
+import { solicitarMentoria } from "@/services/mentoriasService"
 import cSwal from "@/utils/cSwal.js"
 
 var isEditing = []
@@ -270,13 +297,14 @@ export default {
             type: String,
             default: ''
         },
-        paciente_id: {
-            type: Number,
-            default: null,
+        paciente: {
+            type: Object,
+            default: () => {return {}},
         },
     },
     data() {
         return {
+            observacoesMentoria: '',
             diagnostico_: '',
             prognostico_: '',
             imgCirurgiaOrtognatica,
@@ -285,12 +313,26 @@ export default {
             imgDefault,
             imgMesoBraqui,
             isEditing,
+            mentoriaSolicitada: false,
         }
     },
     methods: {
+        confirmSolicitarMentoria() {
+            cSwal.cConfirm('Deseja realmente solicitar mentoria para este paciente?', async () => {
+                const save = await solicitarMentoria(this.paciente.id, this.observacoesMentoria)
+
+                if (save) {
+                    cSwal.cSuccess('As alterações foram salvas com sucesso.')
+                    this.isEditing['diagnostico'] = false
+                    this.mentoriaSolicitada = true
+                }
+                else
+                    cSwal.cError('Ocorreu um erro ao salvar as alterações')
+            })
+        },
         confirmSalvarDiagnostico() {
-            cSwal.cConfirm('Deseja realmente salvar as alterações no diagnóstico?', () => {
-                const save = salvarDiagnostico(this.paciente_id, this.diagnostico_)
+            cSwal.cConfirm('Deseja realmente salvar as alterações no diagnóstico?', async () => {
+                const save = await salvarDiagnostico(this.paciente.id, this.diagnostico_)
 
                 if (save) {
                     cSwal.cSuccess('As alterações foram salvas com sucesso.')
@@ -302,7 +344,7 @@ export default {
         },
         confirmSalvarPrognostico() {
             cSwal.cConfirm('Deseja realmente salvar as alterações no prognóstico?', () => {
-                const save = salvarPrognostico(this.paciente_id, this.prognostico_)
+                const save = salvarPrognostico(this.paciente.id, this.prognostico_)
 
                 if (save) {
                     cSwal.cSuccess('As alterações foram salvas com sucesso.')
@@ -336,7 +378,7 @@ export default {
         this.getPropsModels()
     },
     mounted() {
-
+        this.mentoriaSolicitada = this.paciente.mentoria
     },
     beforeMount() {
     },

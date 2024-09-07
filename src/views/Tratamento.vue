@@ -97,7 +97,7 @@
 
     <Transition>
       <Diagnostico v-if="tratamentoTab === 'diagnostico'" 
-      :paciente_id="paciente.id"
+      :paciente="paciente"
       :diagnostico="paciente.diagnostico"
       :prognostico="paciente.prognostico" />
     </Transition>

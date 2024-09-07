@@ -72,6 +72,7 @@ Paciente > Tratamento > Análise:
     ✔ Verificar: não está aparecendo os detalhes das questões do Formulário @done(24-09-07 00:54)
     ☐ Verificar o footer que não tá aparecendo o texto
     ✔ Trocar botão "Enviar link" para "Copiar link", quando não possuir WhatsApp @done(24-09-07 14:24)
+    ✔ Corrigir login que tá expirando em 1h @done(24-09-07 14:40)
 
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:
@@ -83,12 +84,13 @@ Paciente > Tratamento > Diagnóstico:
             ☐ Criar modal com um campo de observação (opcional) e btn Enviar
             API:
                 Criar model Mentoria:
-                    ☐ id
-                    ☐ id_solicitante
-                    ☐ id_dentista
-                    ☐ observacao
-                    ☐ status
-                    ☐ timestamps
+                    ✔ id @done(24-09-07 14:30)
+                    ✔ solicitante_id @done(24-09-07 14:30)
+                    ✔ mentor_id @done(24-09-07 14:30)
+                    ✔ paciente_id @done(24-09-07 14:32)
+                    ✔ observacao @done(24-09-07 14:30)
+                    ✔ status @done(24-09-07 14:30)
+                    ✔ timestamps @done(24-09-07 14:30)
             Na tela do Daniel, fazer o menu de Mentorias:
                 ☐ Tela simples, de listagem e link para o paciente/tratamento
         ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
