@@ -25,22 +25,22 @@
 
                     <div class="row px-3 pt-0 pb-1">
                         <div v-for="meta in paciente.metas_terapeuticas" v-bind:key="meta.id" class="col-sm-6 col-md-4">
-                            <div class="card m-2 mx-0" :class="meta.concluida ? 'border-success' : ''">
+                            <div class="card m-2 mx-0" :class="meta.status == 'CONCLUIDA' ? 'border-success' : ''">
                                 <div class="fase-header d-flex flex-row">
                                     <i class="fas fa-trash ms-1 text-danger-dark pointer"
                                         v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"></i>
-                                    <div class="col" :style="meta.concluida ? { 'padding-left': '30px' } : {}">
+                                    <div class="col" :style="meta.status == 'CONCLUIDA' ? { 'padding-left': '30px' } : {}">
                                         <strong>{{ meta.descricao }}</strong>
                                     </div>
                                     <div class="col-auto">
-                                        <button v-if="!meta.concluida" class="btn btn-vsm btn-outline-success mr-1"
+                                        <button v-if="meta.status != 'CONCLUIDA'" class="btn btn-vsm btn-outline-success mr-1"
                                             title="Marcar como concluída"><font-awesome-icon
                                                 :icon="['fas', 'check']" /></button>
-                                        <button v-if="meta.concluida && isEditing['metasTerapeuticas']"
+                                        <button v-if="meta.status == 'CONCLUIDA' && isEditing['metasTerapeuticas']"
                                             class="btn btn-vsm btn-desmarcar-meta btn-success mr-1"
                                             title="Marcar como não concluída"><font-awesome-icon
                                                 :icon="['fas', 'check']" /></button>
-                                        <span v-if="meta.concluida && !isEditing['metasTerapeuticas']"
+                                        <span v-if="meta.status == 'CONCLUIDA' && !isEditing['metasTerapeuticas']"
                                             class="text-success px-2 text-sm font-weight-bold">
                                             CONCLUÍDA
                                         </span>

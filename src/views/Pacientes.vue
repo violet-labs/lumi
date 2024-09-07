@@ -85,7 +85,7 @@
       </template>
       <template #header-city="header">
         <div class="text-center w-100 p-0">
-          DENTISTA
+          ORTODONTISTA
         </div>
       </template>
 
@@ -113,7 +113,7 @@
             }}</span>
 
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
-            <div class="progress progress-md w-100 w-md-40">
+            <div class="progress progress-md w-100 w-md-70">
               <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_previsa) + '%' }">
                 <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
