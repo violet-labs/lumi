@@ -12,17 +12,16 @@
                     <div v-if="isEditing['diagnostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
+                            title="Salvar as alterações realizadas" @click="confirmSalvarDiagnostico">
                             Salvar
                         </button>
                     </div>
 
                     <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4">
-                        Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta
-                        anterior leve.
+                        {{ diagnostico_ }}
                     </p>
-                    <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control"
-                        rows="4">Apinhamentos dentários severos com má oclusão Classe II, divisão 1 de Angle e mordida aberta anterior leve.</textarea>
+                    <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control" rows="4"
+                        v-model="diagnostico_"></textarea>
                 </div>
             </div>
 
@@ -182,17 +181,16 @@
                     <div v-if="isEditing['prognostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Salvar as alterações realizadas">
+                            title="Salvar as alterações realizadas" @click="confirmSalvarPrognostico">
                             Salvar
                         </button>
                     </div>
 
                     <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4">
-                        Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão,
-                        proporcionando ao paciente um sorriso esteticamente agradável e funcional.
+                        {{ prognostico_ }}
                     </p>
-                    <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control"
-                        rows="4">Favorável, com a expectativa de correção dos apinhamentos dentários e da má oclusão, proporcionando ao paciente um sorriso esteticamente agradável e funcional.</textarea>
+                    <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control" rows="4"
+                        v-model="prognostico_"></textarea>
                 </div>
             </div>
 
@@ -256,13 +254,31 @@ import imgClasseII from "@/assets/img/protocolos/classe2.png";
 import imgLinhaMediaSemDesvio from "@/assets/img/protocolos/linhamedia-sem-desvio.png"
 import imgDefault from "@/assets/img/protocolos/default.png";
 import imgMesoBraqui from "@/assets/img/protocolos/biotipo-meso-braqui.png"
+import { salvarDiagnostico, salvarPrognostico } from "@/services/pacientesService"
+import cSwal from "@/utils/cSwal.js"
 
 var isEditing = []
 
 export default {
     name: "Diagnostico",
+    props: {
+        diagnostico: {
+            type: String,
+            default: ''
+        },
+        prognostico: {
+            type: String,
+            default: ''
+        },
+        paciente_id: {
+            type: Number,
+            default: null,
+        },
+    },
     data() {
         return {
+            diagnostico_: '',
+            prognostico_: '',
             imgCirurgiaOrtognatica,
             imgClasseII,
             imgLinhaMediaSemDesvio,
@@ -272,13 +288,55 @@ export default {
         }
     },
     methods: {
+        confirmSalvarDiagnostico() {
+            cSwal.cConfirm('Deseja realmente salvar as alterações no diagnóstico?', () => {
+                const save = salvarDiagnostico(this.paciente_id, this.diagnostico_)
+
+                if (save) {
+                    cSwal.cSuccess('As alterações foram salvas com sucesso.')
+                    this.isEditing['diagnostico'] = false
+                }
+                else
+                    cSwal.cError('Ocorreu um erro ao salvar as alterações')
+            })
+        },
+        confirmSalvarPrognostico() {
+            cSwal.cConfirm('Deseja realmente salvar as alterações no prognóstico?', () => {
+                const save = salvarPrognostico(this.paciente_id, this.prognostico_)
+
+                if (save) {
+                    cSwal.cSuccess('As alterações foram salvas com sucesso.')
+                    this.isEditing['prognostico'] = false
+                }
+                else
+                    cSwal.cError('Ocorreu um erro ao salvar as alterações')
+            })
+        },
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
+        },
+        getPropsModels() {
+            this.diagnostico_ = this.diagnostico
+            this.prognostico_ = this.prognostico
         },
     },
     components: {
     },
+    computed: {
+        diagnosticoModel: {
+            get() { return this.diagnostico },
+            set(value) { this.$emit('update:diagnostico', value) },
+        },
+        prognosticoModel: {
+            get() { return this.prognostico },
+            set(value) { this.$emit('update:prognostico', value) },
+        },
+    },
+    created() {
+        this.getPropsModels()
+    },
     mounted() {
+
     },
     beforeMount() {
     },

@@ -96,7 +96,10 @@
     </Transition>
 
     <Transition>
-      <Diagnostico v-if="tratamentoTab === 'diagnostico'" />
+      <Diagnostico v-if="tratamentoTab === 'diagnostico'" 
+      :paciente_id="paciente.id"
+      :diagnostico="paciente.diagnostico"
+      :prognostico="paciente.prognostico" />
     </Transition>
 
     <Transition>

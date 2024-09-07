@@ -1,5 +1,43 @@
 import axios from '@/services/axios'
 
+export async function salvarDiagnostico(paciente_id, diagnostico) {
+    try {
+        const response = await axios.post('/pacientes/salvar-diagnostico', {
+            paciente_id,
+            diagnostico,
+        });
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao salvar diagnóstico:', error);
+    }
+
+    return false;
+}
+
+export async function salvarPrognostico(paciente_id, prognostico) {
+    try {
+        const response = await axios.post('/pacientes/salvar-prognostico', {
+            paciente_id,
+            prognostico,
+        });
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao salvar diagnóstico:', error);
+    }
+
+    return false;
+}
+
 export async function sendWelcomeForm(questions) {
     try {
         const response = await axios.post('/pacientes/welcome-form', {

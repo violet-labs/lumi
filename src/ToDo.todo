@@ -75,9 +75,9 @@ Paciente > Tratamento > Análise:
 
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:
-        ☐ Verificar se está salvando certinho
+        ✔ Verificar se está salvando certinho @done(24-09-07 14:11)
     Prognóstico:
-        ☐ Verificar se está salvando certinho
+        ✔ Verificar se está salvando certinho @done(24-09-07 14:11)
     Protocolo de tratamento:
         ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
         Criar opção para solicitar mentoria do paciente:
@@ -101,20 +101,6 @@ Paciente > Tratamento > Plano de tratamento:
         ☐ Remover (apenas comentar) tudo relacionado a Fases do Tratamento
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
-
-Paciente > Tratamento > Imagens:
-    ☐ Verificar se está fazendo upload de radiografias
-    ☐ Verificar se está fazendo upload de fotos
-    ☐ Verificar se está vinculando a imagem com o paciente/doutor/observação/data
-
-Paciente > Tratamento > Histórico:
-    ☐ Criar model HistoricoPaciente
-    ☐ Criar migration HistoricoPaciente
-    ☐ Criar historico nas ações:
-        ☐ Cadastrado
-        ☐ Informações pessoais editadas
-        ☐ Tratamento iniciado
-        ☐ Consulta
     
 Paciente > Consultas:
     ☐ Listar corretamente as consultas
@@ -184,10 +170,12 @@ Dentista > Pacientes:
         ☐ Marcar os que estiverem com mentoria solicitada
         ☐ Ao clicar, envia para a tela do Paciente
 
+☐ Esconder "Dentista > Financeiro"
+
+-- ----------- DEPOIS ------------------:
+
 Dentista > Consultas:
     ☐ Exibir listagem de consultas (com filtro simples)
-
-☐ Esconder "Dentista > Financeiro"
 
 Financeiro:
     ☐ Criar seções principais "À receber" e "À pagar"
@@ -223,6 +211,20 @@ Agenda:
         ☐ Criar modal de Novo Atestado
         ☐ No modal, exibir as últimas X consultas (em formato de cartão or something like that), para facilitar selecionar o paciente, ou então escolhe pesquisando mesmo...
         ☐ Gerar atestado em PDF
+
+Paciente > Tratamento > Imagens:
+    ☐ Verificar se está fazendo upload de radiografias
+    ☐ Verificar se está fazendo upload de fotos
+    ☐ Verificar se está vinculando a imagem com o paciente/doutor/observação/data
+
+Paciente > Tratamento > Histórico:
+    ☐ Criar model HistoricoPaciente
+    ☐ Criar migration HistoricoPaciente
+    ☐ Criar historico nas ações:
+        ☐ Cadastrado
+        ☐ Informações pessoais editadas
+        ☐ Tratamento iniciado
+        ☐ Consulta
 
 -- ------------------------------------------ --
 -- ------------------------------------------ --
