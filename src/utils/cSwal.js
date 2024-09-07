@@ -10,6 +10,17 @@ Swal.cAlert = function(html, options = {}) {
     Swal.fire(options)
 }
 
+Swal.cInfo = function(html, options = {}) {
+    const defaultOptions = {
+        html,
+        icon: 'info',
+    }
+
+    options = { ...defaultOptions, ...options }
+
+    Swal.fire(options)
+}
+
 Swal.cConfirm = function(html, callback, options = {}) {
     const defaultOptions = {
         html,

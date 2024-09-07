@@ -126,7 +126,8 @@
                     <div class="col-md-6 ps-4">
 
                       <hr class="horizontal dark" />
-                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
+                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
+                        contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
                       <v-table style="font-size: 12pt;">
                         <thead>
@@ -214,9 +215,9 @@
                         <div class="col-sm-6 d-flex align-items-end justify-content-center">
                           <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
                             @click="visualizarFormulario">VISUALIZAR</button>
-                          <button :disabled="!possuiWhatsapp" class="btn btn-primary mb-0" @click="enviarFormulario">
+                          <button class="btn btn-primary mb-0" @click="handleFormLinkBtn">
                             <i class="fab fa-whatsapp me-2" style="font-size: 13pt;"></i>
-                            <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'NÃO DISPONÍVEL'
+                            <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK'
                               }}</span>
                           </button>
                         </div>
@@ -271,28 +272,30 @@
                     </div>
 
                     <div class="col-12">
-                      <div class="row p-0">                        
+                      <div class="row p-0">
 
-                        <div v-if="!formularioRespondido || detalhesPessoais.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center py-3">
-                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
-                                class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" acima.
-                            </div>
+                        <div v-if="!formularioRespondido || detalhesPessoais.length == 0"
+                          style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center py-3">
+                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o
+                          botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']" class="me-1 text-sm" /><span
+                            class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" acima.
+                        </div>
 
                         <div v-if="paciente.formularioRespondido">
                           <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
-                                  class="col-sm-6 col-md-4">
-                                  <div class="info-container mt-2" :class="detalhe.nivel">
-                                      <div style="width: 30px; text-align: center;">
-                                          <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                                      </div>
-                                      <div class="">
-                                          <span>{{ detalhe.detalhe }}</span>
-                                      </div>
-                                  </div>
+                            class="col-sm-6 col-md-4">
+                            <div class="info-container mt-2" :class="detalhe.nivel">
+                              <div style="width: 30px; text-align: center;">
+                                <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
                               </div>
-                          
-                                                </div>
+                              <div class="">
+                                <span>{{ detalhe.detalhe }}</span>
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
+                      </div>
                     </div>
 
                   </div>
@@ -344,7 +347,8 @@
           <div class="p-horizontal-divider"></div>
 
           <div class="w-100 text-center">
-            <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'fa-plus']" class="me-2" /> Nova consulta</button>
+            <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'fa-plus']" class="me-2" /> Nova
+              consulta</button>
           </div>
 
           <div class="row">
@@ -401,6 +405,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getPaciente, updatePaciente, getEnderecoByCep } from "@/services/pacientesService"
+import cSwal from "@/utils/cSwal.js"
 
 const body = document.getElementsByTagName("body")[0];
 
@@ -433,7 +438,8 @@ export default {
   },
   computed: {
     possuiWhatsapp() {
-      return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
+      return false
+      // return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
     },
     whatsappNumero() {
       if (this.possuiWhatsapp) {
@@ -462,6 +468,29 @@ export default {
     }
   },
   methods: {
+    async handleFormLinkBtn() {
+      if (this.possuiWhatsapp)
+        this.enviarFormulario()
+      else
+        await this.copiarLink()
+    },
+    async copiarLink() {
+      const link = `https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
+
+      if (!navigator.clipboard) {
+        cSwal.cInfo('Link do formulário de boas-vindas para <b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
+        return false;
+      }
+
+      // Copy link to clipboard
+      await navigator.clipboard.writeText(link).then(() => {
+        console.log('Link copied to clipboard!');
+      }).catch((error) => {
+        console.error('Error copying link:', error);
+      });
+
+      cSwal.cAlert('O link do formulário foi copiado.')
+    },
     enviarFormulario() {
       const whatsappNumber = this.whatsappNumero;
       const phoneNumber = whatsappNumber.replace(/\D+/g, ''); // extract only numbers
@@ -570,7 +599,7 @@ export default {
     await this.getPacienteDetails(this.$route.params.id);
   },
 
-  async mounted() {
+  mounted() {
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
