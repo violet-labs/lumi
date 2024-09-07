@@ -267,8 +267,6 @@
     background-color: #EEE;
 }
 
-.card-footer {}
-
 .form-checkbox {
     min-width: 18px;
     min-height: 18px;

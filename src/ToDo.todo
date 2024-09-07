@@ -71,6 +71,7 @@ Paciente > Tratamento > Análise:
     ✔ Caso não tiver preenchido o formulário de boas-vindas ainda, exibir uma mensagem no Relatos do Paciente, informando que o mesmo precisa preencher @done(24-09-07 01:04)
     ✔ Verificar: não está aparecendo os detalhes das questões do Formulário @done(24-09-07 00:54)
     ☐ Verificar o footer que não tá aparecendo o texto
+    ☐ Trocar botão "Enviar link" para "Copiar link", quando não possuir WhatsApp
 
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:
