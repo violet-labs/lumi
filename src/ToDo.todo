@@ -68,6 +68,7 @@ Paciente > Tratamento > Análise:
     ☐ Verificar pontuações sobre Tirada de fotos, pra passar pra tipo "pessoal" em vez de "clinico"
     ☐ Verificar quais outros pontos pessoais podem ser adicionados
     ☐ Caso não tiver preenchido o formulário de boas-vindas ainda, exibir uma mensagem no Relatos do Paciente, informando que o mesmo precisa preencher
+    ☐ Verificar o footer que não tá aparecendo o texto
 
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:

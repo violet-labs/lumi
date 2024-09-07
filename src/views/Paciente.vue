@@ -280,7 +280,7 @@
                             <!-- <div class="card-header pb-2">
                               <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
                             </div> -->
-                            <div class="card-body m-0 pt-2">
+                            <div class="card-body m-0 p-3">
                               <div class="info-container" :class="detalhe.nivel">
                                 <div style="width: 30px; text-align: center;">
                                   <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />

@@ -66,8 +66,7 @@
                                                         :name="question.id" :id="question.id" :ref="question.id"
                                                         :label="question.questao"
                                                         labelClass="font-weight-bolder label-highlight"
-                                                        v-model="question.resposta"
-                                                        :required="question.obrigatoria"
+                                                        v-model="question.resposta" :required="question.obrigatoria"
                                                         :input="function ($event) { textInputEvent($event, question) }"
                                                         :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
                                                         :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
@@ -629,14 +628,14 @@ const questions = [
             {
                 resposta: 'Sim',
                 selecionada: false,
-                ponto_positivo: 'Autorizou a tirada de fotos',
-                tipo_detalhe: 'clinico'
+                ponto_positivo: 'Autorizou a captura de fotos',
+                tipo_detalhe: 'pessoal'
             },
             {
                 resposta: 'Não',
                 selecionada: false,
-                ponto_neutro: 'Não autorizou a tirada de fotos',
-                tipo_detalhe: 'clinico'
+                ponto_negativo: 'Não autorizou a captura de fotos',
+                tipo_detalhe: 'pessoal'
             },
         ]
     },
@@ -648,6 +647,8 @@ const questions = [
         obrigatoria: true,
         resposta: '',
         alternativas: null,
+        ponto_neutro: 'Trabalha como $resposta',
+        tipo_detalhe: 'pessoal',
     },
     {
         questao: 'Você lida com o público?',
@@ -656,7 +657,12 @@ const questions = [
         ordem: 180,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false },
+            {
+                resposta: 'Sim',
+                selecionada: false,
+                ponto_atencao: 'Lida com o público',
+                tipo_detalhe: 'pessoal',
+            },
             { resposta: 'Não', selecionada: false }
         ],
     },
@@ -667,7 +673,12 @@ const questions = [
         ordem: 190,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false },
+            {
+                resposta: 'Sim',
+                selecionada: false,
+                ponto_neutro: 'Já usou aparelho ortodôntico',
+                tipo_detalhe: 'pessoal',
+            },
             { resposta: 'Não', selecionada: false }
         ]
     },
@@ -678,12 +689,37 @@ const questions = [
         ordem: 200,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Normal - nenhum incômodo', selecionada: false },
-            { resposta: 'Desagradável', selecionada: false },
-            { resposta: 'Quebrava / descolava constantemente', selecionada: false },
-            { resposta: 'Machucava meus lábios, bochecha e/ou gengiva', selecionada: false },
-            { resposta: 'Não combinava com minha personalidade / não gostava', selecionada: false },
-            { resposta: 'Era difícil de higienizar', selecionada: false },
+            {
+                resposta: 'Normal - nenhum incômodo',
+                selecionada: false,
+                ponto_positivo: 'Não sente incômodo com aparelho',
+                tipo_detalhe: 'clinico',
+            },
+            {
+                resposta: 'Desagradável', selecionada: false,
+                ponto_atencao: 'Acha desagradável utilizar aparelho',
+                tipo_detalhe: 'clinico',
+            },
+            {
+                resposta: 'Quebrava / descolava constantemente', selecionada: false,
+                ponto_negativo: 'Aparelho quebrava constantemente',
+                tipo_detalhe: 'clinico',
+            },
+            {
+                resposta: 'Machucava meus lábios, bochecha e/ou gengiva', selecionada: false,
+                ponto_negativo: 'Aparelho machucava a boca',
+                tipo_detalhe: 'clinico',
+            },
+            {
+                resposta: 'Não combinava com minha personalidade / não gostava', selecionada: false,
+                ponto_atencao: 'Não gosta da estética do aparelho',
+                tipo_detalhe: 'clinico',
+            },
+            {
+                resposta: 'Era difícil de higienizar', selecionada: false,
+                ponto_atencao: 'Acha difícil higienizar o aparelho',
+                tipo_detalhe: 'clinico',
+            },
         ],
         detalhar: "sempre",
         detalhando: false,
@@ -698,13 +734,41 @@ const questions = [
         ordem: 210,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Normal', selecionada: false },
-            { resposta: 'Acho bonito', selecionada: false },
-            { resposta: 'Acho estranho', selecionada: false },
-            { resposta: 'Acho feio', selecionada: false },
-            { resposta: 'Deve doer', selecionada: false },
-            { resposta: 'Não combina com a idade da pessoa - se ela é mais velha', selecionada: false },
-            { resposta: 'Aparelho fixo é coisa de adolescentes', selecionada: false },
+            {
+                resposta: 'Normal', selecionada: false,
+                ponto_positivo: 'Acha "normal" quem usa aparelho',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Acho bonito', selecionada: false,
+                ponto_positivo: 'Acha bonito quem usa aparelho',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Acho estranho', selecionada: false,
+                ponto_atencao: 'Acha estranho quem usa aparelho',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Acho feio', selecionada: false,
+                ponto_atencao: 'Acha feio quem usa aparelho',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Deve doer', selecionada: false,
+                ponto_atencao: 'Acha que aparelho deve doer',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Não combina com a idade da pessoa - se ela é mais velha', selecionada: false,
+                ponto_atencao: 'Acha que aparelhos não combinam com idade avançada',
+                tipo_detalhe: 'pessoal',
+            },
+            {
+                resposta: 'Aparelho fixo é coisa de adolescentes', selecionada: false,
+                ponto_atencao: 'Acha que aparelho é coisa de adolescentes',
+                tipo_detalhe: 'pessoal',
+            },
         ],
         detalhar: "sempre",
         detalhando: false,
@@ -739,7 +803,11 @@ const questions = [
         ordem: 230,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false },
+            {
+                resposta: 'Sim', selecionada: false,
+                ponto_atencao: 'Está sob tratamento médico',
+                tipo_detalhe: 'pessoal',
+            },
             { resposta: 'Não', selecionada: false },
         ],
         detalhar: "sempre",
@@ -755,7 +823,11 @@ const questions = [
         ordem: 240,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false },
+            {
+                resposta: 'Sim', selecionada: false,
+                ponto_atencao: 'Já sofreu algum acidente envolvendo a boca',
+                tipo_detalhe: 'pessoal',
+            },
             { resposta: 'Não', selecionada: false },
         ],
         detalhar: "sempre",
@@ -771,7 +843,11 @@ const questions = [
         ordem: 250,
         obrigatoria: true,
         alternativas: [
-            { resposta: 'Sim', selecionada: false },
+            {
+                resposta: 'Sim', selecionada: false,
+                ponto_atencao: 'Já teve problemas em tratamentos odontológicos anteriores',
+                tipo_detalhe: 'pessoal',
+            },
             { resposta: 'Não', selecionada: false }
         ]
     },
@@ -790,6 +866,8 @@ const questions = [
         id: 'ultima_consulta_tratamento_odontologico',
         ordem: 270,
         obrigatoria: true,
+        ponto_neutro: 'Sobre sua última consulta: $resposta',
+        tipo_detalhe: 'pessoal',
         resposta: '',
         alternativas: null,
     },
