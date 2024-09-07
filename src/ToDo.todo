@@ -93,7 +93,7 @@ Paciente > Tratamento > Diagnóstico:
                     ✔ status @done(24-09-07 14:30)
                     ✔ timestamps @done(24-09-07 14:30)
             Na tela do Daniel, fazer o menu de Mentorias:
-                ☐ Tela simples, de listagem e link para o paciente/tratamento
+                ✔ Tela simples, de listagem e link para o paciente/tratamento @done(24-09-07 16:21)
         ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
 
 Paciente > Tratamento > Plano de tratamento:
@@ -113,7 +113,8 @@ Paciente > Perfil:
             ☐ id
             ☐ dentista_id
             ☐ paciente_id
-            ☐ ...
+            ☐ tipo
+            ☐ contato
         ☐ Criar função de inserir
     ✔ Verificar busca do endereço pelo CEP @done(24-09-06 00:09)
     Detalhes pessoais:

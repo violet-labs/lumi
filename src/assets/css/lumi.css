@@ -906,3 +906,12 @@ button.swal2-cancel:hover {
 input.input-sm {
     height: 32px;
 }
+
+.nav-btn.highlight {
+    background: rgba(43, 145, 223, 0.3);
+    border: 1px solid rgb(43, 122, 182);
+}
+
+.nav-btn.highlight span, .nav-btn.highlight div, .nav-btn.highlight i {
+    color: rgb(43, 122, 182) !important;
+}

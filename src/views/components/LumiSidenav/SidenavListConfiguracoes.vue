@@ -6,9 +6,10 @@
           CONFIGURAÇÕES
         </h6>
       </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'cog']" /></div>
+      <li class="nav-item nav-btn-container" @click="changeTab('perfil')">
+        <a href="#" class="nav-btn" :class="selectedTab == 'perfil' ? 'highlight' : ''">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon
+              :icon="['fas', 'user']" /></div>
           <span>Meu perfil</span>
         </a>
       </li>
@@ -20,9 +21,10 @@
           TRATAMENTOS
         </h6>
       </li>
-      <li class="nav-item nav-btn-container">
-        <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'cog']" /></div>
+      <li class="nav-item nav-btn-container" @click="changeTab('mentorias')">
+        <a href="#" class="nav-btn" :class="selectedTab == 'mentorias' ? 'highlight' : ''">
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon
+              :icon="['fas', 'handshake-angle']" /></div>
           <span>Solicitações de mentorias</span>
         </a>
       </li>
@@ -42,6 +44,10 @@ import lumiLogo from "@/assets/img/logos/lumi.png";
 export default {
   name: "SidenavListConfiguracoes",
   props: {
+    selectedTab: {
+      type: String,
+      default: 'perfil',
+    }
   },
   data() {
     return {
@@ -54,5 +60,10 @@ export default {
   components: {
     SidenavCollapse,
   },
+  methods: {
+    changeTab(tab) {
+      this.$emit('changeTab', tab);
+    },
+  }
 };
 </script>

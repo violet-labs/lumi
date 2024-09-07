@@ -54,5 +54,10 @@ const filters = {
         if (value)
             return utils.capitalizeFirst(moment(String(value)).format('MMMM/YYYY'))
     },
+    dateTime(value) {
+        if (value) {
+            return moment(String(value)).format('DD/MM/YYYY HH:mm')
+        }
+    },
 }
 export default filters
