@@ -81,7 +81,7 @@ Paciente > Tratamento > Diagnóstico:
         ✔ Verificar se está salvando certinho @done(24-09-07 14:11)
     Protocolo de tratamento:
         Criar opção para solicitar mentoria do paciente:
-            ☐ Criar modal com um campo de observação (opcional) e btn Enviar
+            ✔ Criar modal com um campo de observação (opcional) e btn Enviar @done(24-09-07 15:03)
             API:
                 Criar model Mentoria:
                     ✔ id @done(24-09-07 14:30)
@@ -98,19 +98,11 @@ Paciente > Tratamento > Diagnóstico:
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
         ✔ Verificar o porque de não estarem aparecendo @done(24-09-05 23:43)
-        ☐ Ver uma forma de apresentá-las melhor, antes das outras info
+        ✔ Ver uma forma de apresentá-las melhor, antes das outras info @done(24-09-07 15:23)
     Planejamento:
-        ☐ Remover (apenas comentar) tudo relacionado a Fases do Tratamento
+        ✔ Remover (apenas comentar) tudo relacionado a Fases do Tratamento @done(24-09-07 15:23)
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
-    
-Paciente > Consultas:
-    ☐ Listar corretamente as consultas
-    Exibir informações (com texto por extenso, em baixo):
-        ☐ Consultas realizadas
-        ☐ Data da primeira consulta
-        ☐ Data da última consulta
-        ☐ Data da próxima consulta
 
 Paciente > Perfil:
     ☐ Verificar se está salvando certinho
@@ -191,6 +183,15 @@ Dentista > Pacientes:
 
 
 -- ----------- DEPOIS ------------------:
+    
+    
+Paciente > Consultas:
+    ☐ Listar corretamente as consultas
+    Exibir informações (com texto por extenso, em baixo):
+        ☐ Consultas realizadas
+        ☐ Data da primeira consulta
+        ☐ Data da última consulta
+        ☐ Data da próxima consulta
 
 Dentista > Consultas:
     ☐ Exibir listagem de consultas (com filtro simples)
