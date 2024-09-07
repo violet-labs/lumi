@@ -62,7 +62,8 @@ Paciente > Tratamento > Análise:
     API:
         ✔ Criar "detalhes_clinicos" quando salvar as seções: @done(24-09-06 19:56)
             ✔ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever @done(24-09-06 19:56)
-    ✔ Verificar o porque de as análises com multipla_escolha estão bugando quando salva @done(24-09-06 22:22)
+    ✔ Verificar o porque de as análises com multipla_escolha estão bugando quando salva @done(24-09-06 22:35)
+    ✔ Verificar o porque de as análises com multipla_escolha estão bugando o detalhamento @done(24-09-06 22:35)
     ☐ Melhorar apresentação dos relatos do paciente, a fim de ocupar menos espaço
 
 Paciente > Tratamento > Diagnóstico:

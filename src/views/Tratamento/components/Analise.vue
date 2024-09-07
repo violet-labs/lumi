@@ -108,8 +108,8 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar"
+                                                <input type="checkbox"
+                                                v-model="analise.detalhar"
                                                     @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
@@ -272,8 +272,8 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox" :id="analise.id + 'detalhe'" value="detalhe"
-                                                    :name="analise.id" v-model="analise.detalhar"
+                                                <input type="checkbox"
+                                                v-model="analise.detalhar"
                                                     @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
@@ -967,6 +967,7 @@ export default {
                             resposta = analise.detalhe.trim()
                         }
                         else if (analise.detalhe) {
+                            resposta = analise.detalhe
                             analise.selectedResposta = 'detalhe'
                             analise.detalhar = true
                         }
