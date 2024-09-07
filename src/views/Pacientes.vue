@@ -4,7 +4,7 @@
   </lumi-sidenav>
 
   <div class="main-page-content">
-    <div class="container-fluid mb-4">
+    <!-- <div class="container-fluid mb-4">
       <div class="row">
         <div class="col-md-6">
           <div class="card mt-3" style="border: 1px solid #EEE;">
@@ -69,9 +69,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="w-100 text-center">
+    <div class="w-100 text-center mt-4">
       <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)" v-model="search">
     </div>
 
