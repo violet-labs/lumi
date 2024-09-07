@@ -71,7 +71,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { mapMutations } from "vuex";
 import whiteConsultory from '@/assets/img/lumi/whiteConsultory.png';
 import LumiBlueLogo from "@/assets/img/lumi/logo-blue.png"
-import { authLogin } from "@/services/usuariosService.js"
+import usuariosService from "@/services/usuariosService.js"
 import { isAuthenticated } from "../api.js";
 import router from "../router/index.js";
 import cSwal from "@/utils/cSwal.js"
@@ -102,7 +102,7 @@ export default {
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
     async submitLogin() {
-      const auth = await authLogin(this.credentials)
+      const auth = await usuariosService.login(this.credentials)
 
       if (auth) {
         this.$router.go('/agenda')

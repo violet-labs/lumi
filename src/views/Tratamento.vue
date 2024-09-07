@@ -91,6 +91,7 @@
       <Analise
         v-if="tratamentoTab === 'analise'"
         :pacienteId="paciente.id"
+        :detalhesClinicos="detalhesClinicos"
         />
     </Transition>
 
@@ -290,6 +291,9 @@ export default {
     MaterialInput,
   },
   computed: {
+    detalhesClinicos() {
+      return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'clinico') : [];
+    },
     ultimaFase() {
       return this.paciente.fases_tratamento[this.paciente.fases_tratamento.length - 1].data_fim;
     },

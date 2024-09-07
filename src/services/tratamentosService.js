@@ -20,7 +20,7 @@ export async function salvarAnalises(analises, pacienteId) {
     try {
         const response = await axios.post('/tratamentos/analises', {
             paciente_id: pacienteId,
-            analises,
+            analises: JSON.stringify(analises),
         });
 
         if (!response || !response.data || response.data.status !== 'success')

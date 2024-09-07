@@ -42,16 +42,17 @@ Criar models:
 ✔ Corrigir warnings na tela do Paciente @done(24-09-05 22:44)
 ✔ Fazer funcionar corretamente sistema de login e token @done(24-09-06 19:05)
 ✔ Ao logar, redirecionar para /agenda em vez de /inicio @done(24-09-06 19:06)
+✔ Fazer logout automático quando o axios receber 401 Unauthorized @done(24-09-06 22:22)
 
 Paciente > Tratamento > Análise:
-    ☐ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico')
+    ✔ Preencher com os relatos do paciente (detalhes_pessoais tipo 'clinico') @done(24-09-06 19:56)
     ✔ Padronizar modelo das análises @done(24-09-06 17:35)
     ✔ Criar model das Análises na API @done(24-09-06 17:35)
     ✔ Armazenar corretamente as análises no banco @done(24-09-06 17:35)
     Avaliar se está salvando certinho:
-        ☐ Extra-bucal
-        ☐ Intra-bucal
-        ☐ Análises radiográficas
+        ✔ Extra-bucal @done(24-09-06 19:51)
+        ✔ Intra-bucal @done(24-09-06 19:51)
+        ✔ Análises radiográficas @done(24-09-06 19:51)
     ✔ Avaliar elementos que não estão mostrando o <select>: @done(24-09-05 23:14)
         ✔ Extra-bucal > ATM @done(24-09-05 23:14)
         ✔ Extra-bucal > Hábitos @done(24-09-05 23:14)
@@ -59,8 +60,11 @@ Paciente > Tratamento > Análise:
     ✔ Avaliar "Análises Radiográficas > Observações" que não está mostrando o <textarea> @done(24-09-05 23:15)
     ✔ Corrigir colunas dos cards principais @done(24-09-05 23:45)
     API:
-        ☐ Criar "detalhes_clinicos" quando salvar as seções:
-            ☐ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever
+        ✔ Criar "detalhes_clinicos" quando salvar as seções: @done(24-09-06 19:56)
+            ✔ Ao salvar, pegar os IDs de cada item (criar, se não tiver), excluir tudo que tiver aquele ID, e reescrever @done(24-09-06 19:56)
+    ✔ Verificar o porque de as análises com multipla_escolha estão bugando quando salva @done(24-09-06 22:22)
+    ☐ Melhorar apresentação dos relatos do paciente, a fim de ocupar menos espaço
+
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:
         ☐ Verificar se está salvando certinho

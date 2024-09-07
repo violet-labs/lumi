@@ -1,6 +1,7 @@
 import axios from '@/services/axios'
+import router from "@/router/index";
 
-export async function authLogin(credentials) {
+async function login(credentials) {
     try {
         const { email, password } = credentials
 
@@ -23,4 +24,14 @@ export async function authLogin(credentials) {
     }
 
     return false
+}
+
+function logout() {
+    localStorage.clear()
+    router.push('/entrar')
+}
+
+export default {
+    login,
+    logout,
 }

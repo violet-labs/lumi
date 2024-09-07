@@ -1,5 +1,4 @@
-
-
+import usuariosService from "@/services/usuariosService"
 const { API_URL } = require('@/config.json')
 import axios from 'axios'
 // import { history } from '../index.js'
@@ -21,7 +20,7 @@ axios.refreshToken = (token = null) => {
     if (token)
         localStorage.setItem('token', token)
 
-	axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') ? 'Bearer ' + localStorage.getItem('token') : (localStorage.getItem('tempToken') ? 'Bearer ' + localStorage.getItem('tempToken') : '')
 }
 
 if (!axios.defaults.headers.common['Authorization'])
@@ -61,26 +60,15 @@ axios.interceptors.request.use(request => {
 });
 
 axios.interceptors.response.use(response => {
-    // console.log(response);
-    // Edit response config
     return response;
 }, error => {
-    console.log(error);
-    return Promise.reject(error);
-});
-
-axios.interceptors.response.use(response => {
-	return response;
-}, error => {
-	if (!error.response) {
-		// Handle API Offline Error
-	}
-	else if (error.response.status === 401) {
-		// userService.logout();
-		// history.push('/login');
-		// location.reload();
-	}
-	return error;
+    if (!error.response) {
+        // Handle API Offline Error
+    }
+    else if (error.response.status === 401) {
+        usuariosService.logout();
+    }
+    return error;
 })
 
 export default axios

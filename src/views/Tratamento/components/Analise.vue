@@ -29,6 +29,27 @@
                                     </div>
                                 </div>
                             </div> -->
+
+
+
+                            <div v-for="(detalhe, index) in detalhesClinicos" v-bind:key="index"
+                                class="col-sm-6 col-md-4 mt-2">
+                                <div class="card">
+                                    <!-- <div class="card-header pb-2">
+                              <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
+                            </div> -->
+                                    <div class="card-body m-0 pt-2">
+                                        <div class="info-container" :class="detalhe.nivel">
+                                            <div style="width: 30px; text-align: center;">
+                                                <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                            </div>
+                                            <div class="">
+                                                <span>{{ detalhe.detalhe }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,13 +80,14 @@
                                         {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['extraBucal']">{{ analise.respostas ? analise.respostas :
-                                            '-' }}</span>
+                                        <span v-if="!isEditing['extraBucal']">
+                                            {{ analise.respostas ? analise.respostas : '-' }}
+                                        </span>
 
                                         <select v-if="isEditing['extraBucal'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined">Selecione...</option>
+                                            <option hidden :value="undefined"></option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -138,15 +160,15 @@
                                         {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['analisesRadiograficas']">{{ analise.respostas ?
-                                            analise.respostas :
-                                            '-' }}</span>
+                                        <span v-if="!isEditing['analisesRadiograficas']">
+                                            {{ analise.respostas ? analise.respostas : '-' }}
+                                        </span>
 
                                         <select
                                             v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined">Selecione...</option>
+                                            <option hidden :value="undefined"></option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -222,13 +244,14 @@
                                         {{ analise.analise }}
                                     </td>
                                     <td>
-                                        <span v-if="!isEditing['intraBucal']">{{ analise.respostas ? analise.respostas :
-                                            '-' }}</span>
+                                        <span v-if="!isEditing['intraBucal']">
+                                            {{ analise.respostas ? analise.respostas : '-' }}
+                                        </span>
 
                                         <select v-if="isEditing['intraBucal'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined">Selecione...</option>
+                                            <option hidden :value="undefined"></option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -370,6 +393,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Agradabilidade facial',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -384,6 +408,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Biotipo facial',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -400,6 +425,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Simetria facial',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -413,6 +439,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Perfil facial',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -427,6 +454,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Selamento labial',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -441,6 +469,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Exposição dos dentes no sorriso',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -455,6 +484,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Exposição gengival ao sorrir',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -469,6 +499,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'ATM',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -485,6 +516,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Respiração',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -500,6 +532,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Deglutição',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -514,6 +547,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Hábitos',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -531,6 +565,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Posição da língua',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -546,6 +581,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Observações',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -564,6 +600,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Dentição',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -578,6 +615,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Diferença entre RC e MIH',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -593,6 +631,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Relação molar',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -609,6 +648,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Relação canina - lado DIREITO',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -624,6 +664,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Relação canina - lado ESQUERDO',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -639,6 +680,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Análise transversal',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -654,6 +696,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Análise vertical',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -670,6 +713,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Curva de Spee',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -685,6 +729,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Linha média',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -701,6 +746,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Formato do arco superior',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -717,6 +763,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Formato do arco inferior',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -733,6 +780,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Apinhamentos',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -751,6 +799,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Diastemas',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -768,6 +817,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Ausência de dentes',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Outro(s)...',
             tipo: 'multipla_escolha',
@@ -783,6 +833,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Inclinação dos incisivos superiores',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -797,6 +848,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Posição dos incisivos superiores',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -811,6 +863,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Inclinação dos incisivos inferiores',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -825,6 +878,7 @@ const analises = {
             nivel: 'neutro',
             analise: 'Posição dos incisivos inferiores',
             respostas: '',
+            detalhar: false,
             detalhe: '',
             titulo_detalhe: 'Especificar...',
             tipo: 'unica_escolha',
@@ -845,7 +899,11 @@ export default {
         pacienteId: {
             type: Number,
             default: null,
-        }
+        },
+        detalhesClinicos: {
+            type: Array,
+            default: null,
+        },
         // personalPerceptions: {
         //     type: Object,
         // },
@@ -866,22 +924,24 @@ export default {
         async _getAnalises() {
             const analises = await getAnalises(this.pacienteId)
 
-            if (analises)
+            if (analises) {
                 this.analises = analises
+                this.handleAnalisesUpdate()
+            }
         },
         async _salvarAnalises() {
             const save = await salvarAnalises(this.analises, this.pacienteId)
-            
+
             if (save) {
                 cSwal.cSuccess('As alterações foram salvas.')
+                this.isEditing['extraBucal'] = false
+                this.isEditing['intraBucal'] = false
+                this.isEditing['radiograficas'] = false
             }
             else {
                 cSwal.cError('Ocorreu um erro ao salvar as alterações.')
             }
 
-            this.isEditing['extraBucal'] = false
-            this.isEditing['intraBucal'] = false
-            this.isEditing['radiograficas'] = false
         },
         toggleEditMode(section) {
             this.isEditing[section] = !this.isEditing[section]
@@ -896,16 +956,34 @@ export default {
                     let resposta = '';
 
                     if (analise.tipo === 'unica_escolha') {
+                        const alternativaSelecionada = analise.alternativas.find(alternativa => alternativa.selecionada);
+
+                        analise.selectedResposta = analise.selectedResposta ? analise.selectedResposta : (alternativaSelecionada ? alternativaSelecionada.resposta : null)
+
                         if (analise.selectedResposta && analise.selectedResposta != 'detalhe') {
                             resposta = analise.selectedResposta.trim()
                         }
                         else if (analise.selectedResposta && analise.selectedResposta == 'detalhe') {
                             resposta = analise.detalhe.trim()
                         }
+                        else if (analise.detalhe) {
+                            analise.selectedResposta = 'detalhe'
+                            analise.detalhar = true
+                        }
+                        else {
+                            analise.selectedResposta = undefined
+                        }
+
+                        analise.alternativas.forEach((alternativa) => {
+                            if (analise.selectedResposta == alternativa.resposta) {
+                                alternativa.selecionada = true
+                            }
+                        });
                     }
 
                     else if (analise.tipo === 'multipla_escolha') {
                         const selectedAlternativas = analise.alternativas.filter((alternativa) => alternativa.selecionada);
+                        console.log('selectedAlternativas:', selectedAlternativas)
                         if (selectedAlternativas.length > 0)
                             resposta = selectedAlternativas.map((alternativa) => alternativa.resposta.trim()).join(', ').trim()
 
@@ -916,6 +994,8 @@ export default {
                     analise.respostas = resposta;
                 });
             });
+
+            console.log('this.analises:', this.analises)
         },
         updateNivel() {
             Object.values(this.analises).forEach((categoria) => {
