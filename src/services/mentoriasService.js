@@ -18,3 +18,19 @@ export async function solicitarMentoria(paciente_id, observacao) {
 
     return false
 }
+
+export async function getMentorias() {
+    try {
+        const response = await axios.get('/mentorias');
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false
+
+        return response.data.data
+
+    } catch (error) {
+        console.error('Erro ao solicitar mentoria:', error);
+    }
+
+    return false
+}

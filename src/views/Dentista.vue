@@ -45,14 +45,14 @@
                         <span class="ms-1">Consultas</span>
                       </a>
                     </li>
-                    <li class="nav-item" @click="openTab('financeiro')">
+                    <!-- <li class="nav-item" @click="openTab('financeiro')">
                       <a class="px-0 py-1 mb-0 nav-link nav-tab" data-bs-toggle="tab" href="javascript:;" role="tab"
                         aria-selected="false">
                         <i class="fas fa-dollar-sign"></i>
                         <br>
                         <span class="ms-1">Financeiro</span>
                       </a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -71,8 +71,8 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Informações pessoais</p>
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
-                          <label for="dentista_ortodontista" class="form-control-label">Ortodontista</label>
-                          <select class="form-select" id="dentista_ortodontista">
+                          <label for="dentista_clinica" class="form-control-label">Clínica</label>
+                          <select class="form-select" id="dentista_clinica">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -90,28 +90,8 @@
                           <MaterialInput label="CPF" type="text" v-model:value="dentista.cpf" id="dentista_cpf" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="Como conheceu a clínica" type="text"
+                          <MaterialInput label="Como conheceu a Lumi" type="text"
                             v-model:value="dentista.como_conheceu" id="dentista_como_conheceu" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome do pai" type="text" v-model:value="dentista.nome_pai"
-                            id="dentista_nome_pai" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome do mãe" type="text" v-model:value="dentista.nome_mae"
-                            id="dentista_nome_mae" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome" type="text" v-model:value="dentista.responsavel_nome"
-                            id="responsavel_nome" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="RG" type="text" v-model:value="dentista.responsavel_rg"
-                            id="responsavel_rg" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model:value="dentista.responsavel_cpf"
-                            id="responsavel_cpf" />
                         </div>
                       </div>
 

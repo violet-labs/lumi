@@ -73,6 +73,7 @@ Paciente > Tratamento > Análise:
     ☐ Verificar o footer que não tá aparecendo o texto
     ✔ Trocar botão "Enviar link" para "Copiar link", quando não possuir WhatsApp @done(24-09-07 14:24)
     ✔ Corrigir login que tá expirando em 1h @done(24-09-07 14:40)
+    ✔ Remover "Diagnóstico/Tratamento" da listagem de pacientes @done(24-09-07 15:43)
 
 Paciente > Tratamento > Diagnóstico:
     Diagnóstico:
@@ -146,13 +147,13 @@ Dentistas:
 
 Dentista > Detalhes:
     Remover campos desnecessários:
-        ☐ Ortodontista
-        ☐ Nome do pai
-        ☐ Nome do mãe
-        ☐ RG (duplicado)
-        ☐ CPF (duplicado)
+        ✔ Ortodontista @done(24-09-07 15:31)
+        ✔ Nome do pai @done(24-09-07 15:31)
+        ✔ Nome do mãe @done(24-09-07 15:31)
+        ✔ RG (duplicado) @done(24-09-07 15:31)
+        ✔ CPF (duplicado) @done(24-09-07 15:31)
     Adicionar campos:
-        ☐ Nome da clínica
+        ✔ Clínica @done(24-09-07 15:31)
     ☐ Fazer funcionar o salvamento dos dados
     ☐ Fazer funcionar os meios de contato (copiar de "Paciente", pra facilitar)
     ☐ Remover seção do Formulário de Boas-vindas
@@ -164,7 +165,7 @@ Dentista > Pacientes:
         ☐ Marcar os que estiverem com mentoria solicitada
         ☐ Ao clicar, envia para a tela do Paciente
 
-☐ Esconder "Dentista > Financeiro"
+✔ Esconder "Dentista > Financeiro" @done(24-09-07 15:32)
 
 
 

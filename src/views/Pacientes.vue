@@ -89,21 +89,20 @@
         </div>
       </template>
 
-      <template #item-name="{ nome, email }">
+      <template #item-name="{ nome, data_nascimento }">
         <div class="d-flex px-2 py-1">
           <div style="min-width: 40px;" class="d-none d-md-block">
             <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1" />
           </div>
           <div class="d-flex flex-column justify-content-center">
             <h6 class="mb-0 text-sm">{{ nome }}</h6>
-            <p class="text-xs text-secondary mb-0">{{ email }}</p>
+            <p class="text-xs text-bold mb-0">{{ $filters.howMuchTime(data_nascimento, new Date(), false) }}</p>
           </div>
         </div>
       </template>
 
-      <template #item-diagnostico="{ diagnostico, tratamento }">
-        <p class="text-xs font-weight-bold mb-0">{{ diagnostico }}</p>
-        <p class="text-xs text-secondary mb-0">{{ tratamento }}</p>
+      <template #item-created_at="{ created_at }">
+        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateDmy(created_at) }}</p>
       </template>
 
       <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_previsa }">
@@ -245,7 +244,7 @@ import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
-  { text: "DIAGNÓSTICO/TRATAMENTO", value: "diagnostico", sortable: true },
+  { text: "CADASTRADO EM", value: "created_at", sortable: true },
   { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
   { text: "LOCALIDADE", value: "city", sortable: true },
 ];
