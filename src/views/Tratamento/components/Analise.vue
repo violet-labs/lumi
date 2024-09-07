@@ -30,17 +30,20 @@
                                 </div>
                             </div> -->
 
+                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-warning">
+                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar o link, utilize o botão na aba "Perfil"
+                            </div>
 
-
-
-                            <div v-for="(detalhe, index) in detalhesClinicos" v-bind:key="index"
-                                class="col-sm-6 col-md-4">
-                                <div class="info-container" :class="detalhe.nivel">
-                                    <div style="width: 30px; text-align: center;">
-                                        <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                                    </div>
-                                    <div class="">
-                                        <span>{{ detalhe.detalhe }}</span>
+                            <div v-if="formularioRespondido">
+                                <div v-for="(detalhe, index) in detalhesClinicos" v-bind:key="index"
+                                    class="col-sm-6 col-md-4">
+                                    <div class="info-container mt-2" :class="detalhe.nivel">
+                                        <div style="width: 30px; text-align: center;">
+                                            <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                        </div>
+                                        <div class="">
+                                            <span>{{ detalhe.detalhe }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +85,7 @@
                                         <select v-if="isEditing['extraBucal'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined"></option>
+                                            <option hidden :value="undefined">-</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -162,7 +165,7 @@
                                             v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined"></option>
+                                            <option hidden :value="undefined">-</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -245,7 +248,7 @@
                                         <select v-if="isEditing['intraBucal'] && analise.tipo == 'unica_escolha'"
                                             class="form-select select-sm" v-model="analise.selectedResposta"
                                             @change="handleAnalisesUpdate" style="min-width: 170px;">
-                                            <option hidden :value="undefined"></option>
+                                            <option hidden :value="undefined">-</option>
                                             <option v-for="alternativa in analise.alternativas"
                                                 v-bind:key="alternativa.resposta" :class="'text-' + alternativa.nivel"
                                                 :selected="alternativa.resposta == analise.respostas">
@@ -904,6 +907,10 @@ export default {
         detalhesClinicos: {
             type: Array,
             default: null,
+        },
+        formularioRespondido: {
+            type: Boolean,
+            default: false,
         },
         // personalPerceptions: {
         //     type: Object,

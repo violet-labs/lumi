@@ -1057,7 +1057,7 @@ export default {
 
             window.setTimeout(() => {
                 this.refreshProgress()
-                // this.fillAllQuestions()
+                this.fillAllQuestions()
             }, 50)
         },
         textInputEvent($event, question) {

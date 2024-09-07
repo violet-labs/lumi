@@ -5,7 +5,7 @@ Swal.cAlert = function(html, options = {}) {
         html,
     }
 
-    options = { ...defaultOptions, options }
+    options = { ...defaultOptions, ...options }
 
     Swal.fire(options)
 }
@@ -20,7 +20,7 @@ Swal.cConfirm = function(html, callback, options = {}) {
         cancelButtonText: 'NÃO',
     }
 
-    options = { ...defaultOptions, options }
+    options = { ...defaultOptions, ...options }
 
     Swal.fire(options)
         .then((result) => {
@@ -36,7 +36,7 @@ Swal.cWarning = function(html, options = {}) {
         icon: 'warning',
     }
 
-    options = { ...defaultOptions, options }
+    options = { ...defaultOptions, ...options }
 
     Swal.fire(options)
 }
@@ -48,7 +48,7 @@ Swal.cError = function(html, options = {}) {
         icon: 'error',
     }
 
-    options = { ...defaultOptions, options }
+    options = { ...defaultOptions, ...options }
 
     Swal.fire(options)
 }
@@ -60,7 +60,7 @@ Swal.cSuccess = function(html, options = {}) {
         icon: 'success',
     }
 
-    options = { ...defaultOptions, options }
+    options = { ...defaultOptions, ...options }
 
     Swal.fire(options)
 }

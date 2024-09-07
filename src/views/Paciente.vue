@@ -275,23 +275,16 @@
                       <div class="row p-0">
 
                         <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
-                          class="col-sm-6 col-md-4 mt-2">
-                          <div class="card">
-                            <!-- <div class="card-header pb-2">
-                              <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
-                            </div> -->
-                            <div class="card-body m-0 p-3">
-                              <div class="info-container" :class="detalhe.nivel">
-                                <div style="width: 30px; text-align: center;">
-                                  <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                class="col-sm-6 col-md-4">
+                                <div class="info-container mt-2" :class="detalhe.nivel">
+                                    <div style="width: 30px; text-align: center;">
+                                        <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                    </div>
+                                    <div class="">
+                                        <span>{{ detalhe.detalhe }}</span>
+                                    </div>
                                 </div>
-                                <div class="">
-                                  <span>{{ detalhe.detalhe }}</span>
-                                </div>
-                              </div>
                             </div>
-                          </div>
-                        </div>
 
                       </div>
                     </div>
