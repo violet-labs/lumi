@@ -1,5 +1,20 @@
 import axios from '@/services/axios'
 import router from "@/router/index";
+import {jwtDecode} from 'jwt-decode';
+
+function decodedToken() {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+        const decoded = jwtDecode(token);
+        console.log('decoded:', decoded)
+        return decoded;
+    } catch (error) {
+        console.error('Erro ao decodificar token:', error);
+        return null;
+    }
+}
 
 async function login(credentials) {
     try {
@@ -13,7 +28,7 @@ async function login(credentials) {
             return false
 
         const data = response.data
-        
+
         axios.refreshToken(data.access_token)
         localStorage.setItem('isAuthenticated', 'true');
 
@@ -26,12 +41,25 @@ async function login(credentials) {
     return false
 }
 
-function logout() {
-    localStorage.clear()
-    router.push('/entrar')
+async function logout() {
+
+    try {
+        await axios.post('/auth/logout')
+
+        localStorage.clear()
+        router.push('/entrar')
+
+        return true
+
+    } catch (error) {
+        console.error('Erro ao realizar login:', error);
+        return false
+    }
+
 }
 
 export default {
     login,
     logout,
+    decodedToken,
 }
