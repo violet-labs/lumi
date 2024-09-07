@@ -30,8 +30,8 @@
                                 </div>
                             </div> -->
 
-                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center">
-                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
+                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center">
+                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
                                 class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" na aba "<font-awesome-icon :icon="['fas', 'fa-user']"
                                     class="me-1 text-sm" />Perfil".
                             </div>
@@ -643,10 +643,18 @@ const analises = {
             tipo: 'unica_escolha',
             alternativas: [
                 { nivel: 'positivo', resposta: 'classe I', selecionada: false },
-                { nivel: 'atencao', resposta: 'classe II bilateral', selecionada: false },
-                { nivel: 'atencao', resposta: 'classe II unilateral - desvio superior', selecionada: false },
-                { nivel: 'atencao', resposta: 'classe II unilateral - desvio inferior', selecionada: false },
-                { nivel: 'atencao', resposta: 'classe III', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II bilateral (1 a 2mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II bilateral (3 a 4mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II bilateral (5mm+)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio superior (1 a 2mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio superior (3 a 4mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio superior (5mm+)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio inferior (1 a 2mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio inferior (3 a 4mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe II unilateral - desvio inferior (5mm+)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe III (1 a 2mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe III (3 a 4mm)', selecionada: false },
+                { nivel: 'atencao', resposta: 'classe III (5mm+)', selecionada: false },
             ]
         },
         {
@@ -727,7 +735,7 @@ const analises = {
                 { nivel: 'positivo', resposta: 'normal', selecionada: false },
                 { nivel: 'atencao', resposta: 'pouco aumentada', selecionada: false },
                 { nivel: 'negativo', resposta: 'muito aumentada', selecionada: false },
-                { nivel: 'atencao', resposta: 'invertida', selecionada: false },
+                { nivel: 'negativo', resposta: 'invertida', selecionada: false },
             ]
         },
         {
@@ -813,6 +821,20 @@ const analises = {
                 { nivel: 'positivo', resposta: 'ausente', selecionada: false },
                 { nivel: 'atencao', resposta: 'superior', selecionada: false },
                 { nivel: 'atencao', resposta: 'inferior', selecionada: false },
+            ]
+        },
+        {
+            id: 255,
+            nivel: 'neutro',
+            analise: 'Sobremordida',
+            respostas: '',
+            detalhar: false,
+            detalhe: '',
+            titulo_detalhe: 'Especificar...',
+            tipo: 'unica_escolha',
+            alternativas: [
+                { nivel: 'positivo', resposta: 'não apresenta sobremordida', selecionada: false },
+                { nivel: 'negativo', resposta: 'apresenta sobremordida', selecionada: false },
             ]
         },
     ],

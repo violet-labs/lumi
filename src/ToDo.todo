@@ -1,7 +1,18 @@
 ☐ Verificar o footer que não tá aparecendo o texto
 
 Paciente > Tratamento > Diagnóstico:
-    ☐ Criar tratamento recomendado, quando terminar de preencher a seção "Análise"
+    Criar tratamento recomendado, quando terminar de preencher a seção "Análise":
+        ✔ Criar mapeamento de informações da análise com os protocolos de tratamento @done(24-09-07 19:09)
+        Mapear e inserir os possíveis tratamentos:
+            ☐ Mapear
+            Criar model TratamentoSugerido:
+                ☐ id
+                ☐ tratamento
+                ☐ observacao1
+                ☐ observacao2
+            ☐ Inserir todos no banco
+        ☐ Escrever função que capta a resposta de acordo com a categoria e o nome da Análise informados
+        ☐ Escrever lógica, recriando os protocolos
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
@@ -59,8 +70,29 @@ Dentista > Pacientes:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 -- ----------- DEPOIS ------------------:
     
+
+
+
+
+
+
+
+
+
     
 Paciente > Consultas:
     ☐ Listar corretamente as consultas
@@ -121,6 +153,22 @@ Paciente > Tratamento > Histórico:
         ☐ Informações pessoais editadas
         ☐ Tratamento iniciado
         ☐ Consulta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- ------------------------------------------ --
 -- ------------------------------------------ --

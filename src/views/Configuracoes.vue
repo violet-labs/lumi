@@ -4,11 +4,11 @@
     </lumi-sidenav>
 
     <div class="main-page-content">
-        <div class="p-0 container-fluid">
-            <div v-if="selectedTab == 'perfil'" class="row justify-content-center">
+        <div v-if="selectedTab == 'perfil'" class="px-4 pt-0 pb-5 container-fluid">
+            <div class="row justify-content-center">
                 <div class="col-lg-12 position-relative z-index-2 py-3" style="max-width: 600px;">
                     <div class="row justify-content-center">
-                        <div class="col-12 form-group justify-content-center">
+                        <div class="col-12 form-group justify-content-center my-3">
                             <div class="w-100 text-center">
                                 <label for="">Idioma / Language:</label>
                             </div>
@@ -18,48 +18,51 @@
                                     <span>Português</span>
                                 </div>
 
-                                <div class="ms-3 flag-container">
+                                <div class="mx-3 flag-container">
                                     <img src="@/assets/img/flags/en.png" alt="English" width="90" />
                                     <span>English</span>
                                 </div>
+
+                                <div class="ms-3 flag-container">
+                                    <img src="@/assets/img/flags/es.png" alt="Español" width="90" />
+                                    <span>Español</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 form-group">
-                            <label for="nome">Nome:</label>
+                        <div class="col-7 form-group mt-3">
+                            <label for="nome">Nome completo:</label>
                             <input type="text" id="nome" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-2">
-                            <label for="especialidade">Especialidade:</label>
-                            <input type="text" id="especialidade" class="form-control">
-                        </div>
-                        <div class="col-sm-6 form-group mt-2">
+                        <div class="col-sm-5 form-group mt-3">
                             <label for="clinica">Clínica:</label>
                             <input type="text" id="clinica" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-2">
+                        <div class="col-sm-6 form-group mt-3">
                             <label for="email" class="form-control-label">E-mail:</label>
                             <input type="email" id="email" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-2">
+                        <div class="col-sm-6 form-group mt-3">
                             <label for="data_nascimento" class="form-control-label">Data de nascimento:</label>
                             <input type="date" id="data_nascimento" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-2">
+                        <div class="col-sm-6 form-group mt-3">
                             <label for="senha">Nova senha:</label>
                             <input type="password" id="senha" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-2">
+                        <div class="col-sm-6 form-group mt-3">
                             <label for="senha_confirmacao">Confirmar nova senha:</label>
                             <input type="password" id="senha_confirmacao" class="form-control">
                         </div>
                     </div>
-                    <div class="w-100 text-center mt-4">
-                        <button type="button" class="btn btn-primary">Salvar</button>
+                    <div class="w-100 text-center mt-5">
+                        <button type="button" class="btn btn-primary">Salvar alterações</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div v-if="selectedTab == 'mentorias'" class="row mb-4">
+        <div v-if="selectedTab == 'mentorias'" class="p-0 container-fluid">
+            <div class="row mb-4">
                 <div class="col-lg-12 position-relative z-index-2">
                     <EasyDataTable :headers="headers" :items="mentorias" @click-row="openPaciente"
                         body-row-class-name="clickable" header-item-class-name="table-header-item"

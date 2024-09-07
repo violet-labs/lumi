@@ -74,7 +74,7 @@
                                 <button v-if="!mentoriaSolicitada" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalSolicitarMentoria">
                                     Solicitar mentoria
                                 </button>
-                                <button v-if="mentoriaSolicitada" class="btn btn-success">
+                                <button v-if="mentoriaSolicitada" class="btn btn-success" style="pointer-events: none;">
                                     Mentoria solicitada
                                 </button>
                             </div>

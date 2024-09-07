@@ -216,7 +216,7 @@
                           <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
                             @click="visualizarFormulario">VISUALIZAR</button>
                           <button class="btn btn-primary mb-0" @click="handleFormLinkBtn">
-                            <i class="fab fa-whatsapp me-2" style="font-size: 13pt;"></i>
+                            <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'" style="font-size: 13pt;"></i>
                             <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK'
                               }}</span>
                           </button>
@@ -258,7 +258,7 @@
                     <div v-cloak v-if="hasPendingChanges" class="row col-12">
                       <div class="p-horizontal-divider my-0"></div>
                       <div class="w-100 py-3 text-center">
-                        <button class="btn btn btn-primary m-0">
+                        <button class="btn btn btn-primary m-0" @click="confirmSavePaciente">
                           Salvar alterações
                         </button>
                       </div>
@@ -275,10 +275,10 @@
                       <div class="row p-0">
 
                         <div v-if="!formularioRespondido || detalhesPessoais.length == 0"
-                          style="padding: 15px 15px 0px 15px; font-size: 13pt;" class="text-info text-center py-3">
-                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o link, utilize o
-                          botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']" class="me-1 text-sm" /><span
-                            class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" acima.
+                          style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
+                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário, utilize o
+                          botão "<font-awesome-icon :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']" class="me-1 text-sm" /><span
+                            class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
                         </div>
 
                         <div v-if="paciente.formularioRespondido">
@@ -468,6 +468,11 @@ export default {
     }
   },
   methods: {
+    confirmSavePaciente() {
+      cSwal.clickConfirm('Deseja realmente salvar as alterações?', async () => {
+          await updatePaciente(this.paciente)
+      })
+    },
     async handleFormLinkBtn() {
       if (this.possuiWhatsapp)
         this.enviarFormulario()
