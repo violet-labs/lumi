@@ -3,13 +3,13 @@
     <ul class="navbar-nav">
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          ORTODONTISTAS
+          CONFIGURAÇÕES
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
-          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'plus']" /></div>
-          <span>Novo ortodontista</span>
+          <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'cog']" /></div>
+          <span>Meu perfil</span>
         </a>
       </li>
       <div class="mt-2"
@@ -17,13 +17,13 @@
       </div>
       <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
-          CLÍNICAS
+          TRATAMENTOS
         </h6>
       </li>
       <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn" data-bs-toggle="modal" data-bs-target="#modalNovoDentista">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon :icon="['fas', 'cog']" /></div>
-          <span>Gerenciar clínicas</span>
+          <span>Solicitações de mentorias</span>
         </a>
       </li>
     </ul>
@@ -40,9 +40,8 @@ import SidenavCollapse from "./SidenavCollapse.vue";
 import lumiLogo from "@/assets/img/logos/lumi.png";
 
 export default {
-  name: "SidenavListDentistas",
+  name: "SidenavListConfiguracoes",
   props: {
-    cardBg: String,
   },
   data() {
     return {

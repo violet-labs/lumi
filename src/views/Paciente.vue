@@ -126,8 +126,7 @@
                     <div class="col-md-6 ps-4">
 
                       <hr class="horizontal dark" />
-                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
-                        contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
+                      <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
                       <v-table style="font-size: 12pt;">
                         <thead>
@@ -343,6 +342,10 @@
           </div>
 
           <div class="p-horizontal-divider"></div>
+
+          <div class="w-100 text-center">
+            <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'fa-plus']" class="me-2" /> Nova consulta</button>
+          </div>
 
           <div class="row">
             <div class="col-md-12">

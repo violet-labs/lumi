@@ -186,7 +186,7 @@
             <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
-                Dentista:
+                Ortodontista:
               </label>
               <select class="form-select" aria-label="Default select example">
                 <option hidden selected>Selecionar...</option>

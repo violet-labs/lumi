@@ -8,6 +8,7 @@ import Tratamento from "../views/Tratamento.vue";
 import Dentistas from "../views/Dentistas.vue";
 import Financeiro from "../views/Financeiro.vue";
 import WelcomeForm from "@/views/WelcomeForm.vue";
+import Configuracoes from "@/views/Configuracoes.vue";
 
 import Paciente from "../views/Paciente.vue";
 
@@ -62,8 +63,8 @@ const routes = [
     }
   },
   {
-    path: "/dentistas",
-    name: "Dentistas",
+    path: "/ortodontistas",
+    name: "Ortodontistas",
     component: Dentistas,
     meta: {
       requiresAuth: true
@@ -97,6 +98,14 @@ const routes = [
     path: "/dentista/:id",
     name: "Dentista",
     component: Dentista,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/configuracoes",
+    name: "Configuracoes",
+    component: Configuracoes,
     meta: {
       requiresAuth: true
     }

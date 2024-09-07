@@ -18,16 +18,20 @@
             </div>
             Pacientes
         </v-tab>
-        <v-tab @click="openPage('dentistas')">
+        <v-tab @click="openPage('ortodontistas')">
             <div class="pb-1">
                 <v-icon class="mr-3 d-none d-md-block">mdi-doctor</v-icon>
             </div>
-            Dentistas
+            Ortodontistas
         </v-tab>
         <v-tab @click="openPage('financeiro')">
             <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
             <i class="fas fa-dollar-sign mr-3 pt-1 d-none d-md-block"></i>
             Financeiro
+        </v-tab>
+        <v-tab @click="openPage('configuracoes')">
+            <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
+            <i class="fas fa-cog pt-1"></i>
         </v-tab>
     </v-tabs>
 </template>
