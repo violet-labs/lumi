@@ -893,6 +893,16 @@ button.swal2-confirm:hover {
     background: linear-gradient(195deg, #6495b3 0%, #2c5c7c 100%) !important;
 }
 
+button.swal2-cancel {
+    color: #FFF;
+	background: linear-gradient(195deg, #F8BB86 0%, #dd9f68 100%);
+}
+
+button.swal2-cancel:hover {
+    color: #FFF;
+    background: linear-gradient(195deg, rgb(189, 149, 90) 0%, rgb(189, 149, 90) 100%) !important;
+}
+
 input.input-sm {
     height: 32px;
 }

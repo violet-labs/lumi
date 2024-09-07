@@ -32,24 +32,19 @@
 
 
 
+
                             <div v-for="(detalhe, index) in detalhesClinicos" v-bind:key="index"
-                                class="col-sm-6 col-md-4 mt-2">
-                                <div class="card">
-                                    <!-- <div class="card-header pb-2">
-                              <p class="text-uppercase text-sm" style="font-weight: 600">{{ categoria }}</p>
-                            </div> -->
-                                    <div class="card-body m-0 pt-2">
-                                        <div class="info-container" :class="detalhe.nivel">
-                                            <div style="width: 30px; text-align: center;">
-                                                <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                                            </div>
-                                            <div class="">
-                                                <span>{{ detalhe.detalhe }}</span>
-                                            </div>
-                                        </div>
+                                class="col-sm-6 col-md-4">
+                                <div class="info-container" :class="detalhe.nivel">
+                                    <div style="width: 30px; text-align: center;">
+                                        <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                    </div>
+                                    <div class="">
+                                        <span>{{ detalhe.detalhe }}</span>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -108,8 +103,7 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox"
-                                                v-model="analise.detalhar"
+                                                <input type="checkbox" v-model="analise.detalhar"
                                                     @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
@@ -272,8 +266,7 @@
                                                     }}</label>
                                             </div>
                                             <div>
-                                                <input type="checkbox"
-                                                v-model="analise.detalhar"
+                                                <input type="checkbox" v-model="analise.detalhar"
                                                     @change="handleAnalisesUpdate" />
                                                 <label :for="analise.id + 'detalhe'">{{ analise.titulo_detalhe ?
                                                     analise.titulo_detalhe : 'Especificar...' }}</label>
@@ -916,10 +909,9 @@ export default {
     },
     methods: {
         async confirmSaveAnalises() {
-            const confirmSaveChanges = confirm("Tem certeza que deseja salvar as alterações?");
-            if (confirmSaveChanges) {
+            cSwal.cConfirm('Deseja realmente salvar as alterações? As informações anteriores serão sobrescritas.', async () => {
                 await this._salvarAnalises();
-            }
+            })
         },
         async _getAnalises() {
             const analises = await getAnalises(this.pacienteId)
@@ -944,7 +936,34 @@ export default {
 
         },
         toggleEditMode(section) {
-            this.isEditing[section] = !this.isEditing[section]
+            const editingSection = Object.keys(this.isEditing).find(key => this.isEditing[key]);
+
+            let editingSectionStr = ''
+            switch (editingSection) {
+                case 'extraBucal':
+                    editingSectionStr = 'EXTRA-BUCAL'
+                    break;
+                case 'intraBucal':
+                    editingSectionStr = 'INTRA-BUCAL'
+                    break;
+                case 'radiograficas':
+                    editingSectionStr = 'ANÁLISES RADIOGRÁFICAS'
+                    break;
+            }
+
+            if (this.isEditing[section]) {
+                cSwal.cConfirm(`Deseja realmente cancelar a edição da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
+                    this.isEditing[section] = false
+                })
+                return
+            }
+
+            if (editingSection && editingSection !== section) {
+                cSwal.cWarning(`Finalize a edição da análise ${editingSectionStr} antes de editar esta.`);
+                return;
+            }
+
+            this.isEditing[section] = !this.isEditing[section];
         },
         handleAnalisesUpdate() {
             this.updateRespostas()

@@ -10,6 +10,37 @@ Swal.cAlert = function(html, options = {}) {
     Swal.fire(options)
 }
 
+Swal.cConfirm = function(html, callback, options = {}) {
+    const defaultOptions = {
+        html,
+        icon: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'SIM',
+        cancelButtonText: 'NÃO',
+    }
+
+    options = { ...defaultOptions, options }
+
+    Swal.fire(options)
+        .then((result) => {
+            if (result.isConfirmed) {
+                callback()
+            }
+        });
+}
+
+Swal.cWarning = function(html, options = {}) {
+    const defaultOptions = {
+        html,
+        icon: 'warning',
+    }
+
+    options = { ...defaultOptions, options }
+
+    Swal.fire(options)
+}
+
 Swal.cError = function(html, options = {}) {
     const defaultOptions = {
         html,
