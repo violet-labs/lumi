@@ -5,6 +5,9 @@ moment.locale('pt')
 
 const filters = {
     howMuchTime(dataOuString, compareTo, prefix = true) {
+        if (!dataOuString)
+            return '-';
+
         const data = new Date(dataOuString)
         const compareToDate = new Date(compareTo)
 
@@ -47,17 +50,20 @@ const filters = {
         return resposta.join(' ')
     },
     dateDmy(value) {
-        if (value)
-            return moment(String(value)).format('DD/MM/YYYY')
+        if (!value)
+            return '-'
+        return moment(String(value)).format('DD/MM/YYYY')
     },
     dateDDY(value) {
-        if (value)
-            return utils.capitalizeFirst(moment(String(value)).format('MMMM/YYYY'))
+        if (!value)
+            return '-'
+        return utils.capitalizeFirst(moment(String(value)).format('MMMM/YYYY'))
     },
     dateTime(value) {
-        if (value) {
-            return moment(String(value)).format('DD/MM/YYYY HH:mm')
-        }
+        if (!value)
+            return '-'
+
+        return moment(String(value)).format('DD/MM/YYYY HH:mm')
     },
 }
 export default filters
