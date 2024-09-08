@@ -4,10 +4,11 @@ Mensagem em caso de lista vazia:
     ✔ Mentorias @done(24-09-08 09:25)
     ☐ Dentistas
 
-☐ Puxar clinica junto com o paciente
+✔ Puxar clinica junto com o paciente @done(24-09-08 11:10)
 
-☐ CRUD paciente
-    ☐ Esconder tela do paciente, caso ele não existir (redirecionar para /pacientes)
+CRUD paciente:
+    ✔ Esconder tela do paciente, caso ele não existir (redirecionar para /pacientes) @done(24-09-08 11:10)
+    ☐ Fazer inserir celular/whatsapp
 ☐ CRUD dentistas
 ☐ CRUD perfil
 ☐ CRUD meio contato

@@ -80,9 +80,7 @@ export async function getEnderecoByCep(cep) {
 }
 
 export async function addNovoPaciente(paciente) {
-    const response = await axios.post('/pacientes', {
-        nome: paciente.nome
-    })
+    const response = await axios.post('/pacientes', paciente)
 
     return (response && response.status == 200)
 }

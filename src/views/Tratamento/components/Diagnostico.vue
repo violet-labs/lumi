@@ -305,7 +305,7 @@ export default {
                     this.$emit('pacienteChange')
                 }
                 else
-                    cSwal.cError('Ocorreu um erro ao salvar as alterações')
+                    cSwal.cError('Ocorreu um erro ao abrir solicitação.')
             })
         },
         confirmSalvarDiagnostico() {

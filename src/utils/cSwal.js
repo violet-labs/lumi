@@ -7,7 +7,7 @@ Swal.cAlert = function(html, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
 }
 
 Swal.loading = function(text = 'Carregando...', options = {}) {
@@ -25,11 +25,11 @@ Swal.loading = function(text = 'Carregando...', options = {}) {
 
     options = { ...defaultOptions, ...options };
 
-    Swal.fire(options);
+    return Swal.fire(options);
 };
 
 Swal.loaded = function() {
-    Swal.close();
+    return Swal.close();
 };
 
 Swal.cInfo = function(html, options = {}) {
@@ -40,7 +40,7 @@ Swal.cInfo = function(html, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
 }
 
 Swal.cConfirm = function(html, callback, options = {}) {
@@ -55,7 +55,7 @@ Swal.cConfirm = function(html, callback, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
         .then((result) => {
             if (result.isConfirmed) {
                 callback()
@@ -71,7 +71,7 @@ Swal.cWarning = function(html, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
 }
 
 Swal.cError = function(html, options = {}) {
@@ -83,7 +83,7 @@ Swal.cError = function(html, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
 }
 
 Swal.cSuccess = function(html, options = {}) {
@@ -95,7 +95,7 @@ Swal.cSuccess = function(html, options = {}) {
 
     options = { ...defaultOptions, ...options }
 
-    Swal.fire(options)
+    return Swal.fire(options)
 }
 
 export default Swal

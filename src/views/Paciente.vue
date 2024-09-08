@@ -483,7 +483,7 @@ export default {
       const link = `https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
 
       if (!navigator.clipboard) {
-        cSwal.cInfo('Link do formulário de boas-vindas para <b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
+        cSwal.cInfo('Link do formulário de boas-vindas para o paciente<br><b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
         return false;
       }
 
@@ -591,9 +591,15 @@ export default {
     },
     async getPacienteDetails(id) {
       const paciente = await getPaciente(id)
+      console.log('id:', id)
+      console.log('paciente:', paciente)
+
       if (paciente) {
         this.paciente = JSON.parse(JSON.stringify(paciente))
         this.originalPaciente = JSON.parse(JSON.stringify(paciente))
+      }
+      else if (id) {
+        this.$router.push('/pacientes')
       }
     },
 
@@ -602,7 +608,7 @@ export default {
     }
   },
 
-  async beforeMount() {
+  async created() {
     await this.getPacienteDetails(this.$route.params.id);
   },
 

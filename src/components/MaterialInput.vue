@@ -78,6 +78,7 @@ export default {
     },
     id: {
       type: String,
+      default: "_",
       required: false,
     },
     modelValue: {
@@ -102,6 +103,9 @@ export default {
     setMaterialInput();
   },
   methods: {
+    getInput() {
+      return this.$refs[this.id]
+    },
     getAutocomplete() {
       switch (this.type) {
         case 'password':

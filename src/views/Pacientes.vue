@@ -148,7 +148,7 @@
   </div>
 
   <div class="modal" tabindex="-1" id="modalAdicionarPacienteDoFormulario">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Adicionar paciente</h5>
@@ -173,8 +173,8 @@
     </div>
   </div>
 
-  <div class="modal" tabindex="-1" id="modalNovoPaciente">
-    <div class="modal-dialog">
+  <div class="modal" tabindex="-1" id="modalNovoPaciente" ref="modalNovoPaciente">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Novo paciente</h5>
@@ -188,39 +188,64 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
                 Nome:
               </label>
-              <input type="text" class="form-control" v-model="novoPaciente.nome">
+              <MaterialInput type="text" class="form-control" v-model="novoPaciente.nome"
+                ref="nome"
+                :input="function ($event) { capitalizeAll($event) }" />
             </div>
 
             <div class="col-md-6 mt-3">
               <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
-                Celular:
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
+                Clínica:
               </label>
-              <input type="text" class="form-control">
+              <select class="form-select" aria-label="Default select example" v-model="novoPaciente.clinica_id">
+                <option hidden selected value="">Selecionar...</option>
+                <option value="1">Clínica X</option>
+                <option value="2">Clínica Y</option>
+                <option value="3">Clínica Z</option>
+              </select>
             </div>
+
             <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
                 Ortodontista:
               </label>
-              <select class="form-select" aria-label="Default select example">
-                <option hidden selected>Selecionar...</option>
+              <select class="form-select" aria-label="Default select example" v-model="novoPaciente.dentista_id">
+                <option hidden selected value="">Selecionar...</option>
                 <option value="1">Daniel Salles</option>
                 <option value="2">Thales Casa Grande</option>
                 <option value="3">Murillo Motta</option>
               </select>
             </div>
+            
+            <div class="col-12 mt-4 text-center" style="margin: 0 auto; max-width: 250px;">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
+                Celular:
+              </label>
+              <MaterialInput type="text" label="" class="text-center" v-model="novoPaciente.celular"
+                :mask="phoneMaskWrapper(novoPaciente.celular)" placeholder="(##) #####-####" />
+              <label for="novo-paciente-celular-whatsapp" class="pointer">
+                <div class="mt-2">
+                  <input type="checkbox" id="novo-paciente-celular-whatsapp" class="mx-1"
+                    v-model="novoPaciente.celular_whatsapp">
+                  WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt;"></i>
+                </div>
+              </label>
+            </div>
+
             <div class="col-12 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 Observações:
               </label>
-              <textarea name="" id="novoPaciente_observacoes" class="form-control" rows="5"></textarea>
+              <textarea name="" class="form-control" rows="5" v-model="novoPaciente.observacoes"></textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="addNovoPaciente">Adicionar</button>
+          <button type="button" class="btn btn-primary" @click="_addNovoPaciente">Adicionar</button>
         </div>
       </div>
     </div>
@@ -253,10 +278,13 @@ const cfg = {
   firstDayOfWeek: 1,
 }
 
+import cSwal from "@/utils/cSwal.js"
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
 import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
+import { phoneMask } from "@/utils.js";
+import MaterialInput from "@/components/MaterialInput.vue";
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
@@ -272,19 +300,36 @@ var pacientes = []
 var search = ''
 
 var novoPaciente = {
-  nome: ''
+  clinica_id: '',
+  dentista_id: '',
+  nome: '',
+  celular: '',
+  celular_whatsapp: true,
 }
 
 export default {
   name: "tables",
   components: {
+    MaterialInput,
     LumiSidenav,
     SidenavListPacientes,
   },
   async mounted() {
+    this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
+      this.$refs.nome.getInput().focus();
+    })
     this.updateList()
   },
   methods: {
+
+    capitalizeAll($event) {
+      event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
+    },
+
+    phoneMaskWrapper(length) {
+      return phoneMask(length);
+    },
+
     async updateList(search = '') {
       this.pacientes = await searchPacientes(search)
     },
@@ -297,10 +342,16 @@ export default {
 
       return classMap[status] || '';
     },
-    async addNovoPaciente() {
-      await addNovoPaciente({
-        nome: this.novoPaciente.nome,
-      })
+    async _addNovoPaciente() {
+      const add = await addNovoPaciente(this.novoPaciente)
+
+      if (add) {
+        cSwal.cSuccess('O paciente foi adicionado com sucesso!');
+      }
+      else {
+        cSwal.cError('Ocorreu um erro ao tentar adicionar o paciente.');
+      }
+
       await this.updateList(this.search)
       this.$refs.closeModalNovoPaciente.click()
     },
