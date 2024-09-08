@@ -358,7 +358,6 @@ export default {
     },
     mounted() {
         this.mentoriaSolicitada = this.paciente.mentoria
-        console.log('this.paciente:', this.paciente)
     },
     beforeMount() {
     },

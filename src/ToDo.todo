@@ -1,3 +1,5 @@
+☐ Permitir editar foto de perfil do Paciente
+
 Melhorar inputs da IA:
     ☐ Diagnóstico
     ☐ Prognóstico
@@ -37,6 +39,7 @@ Paciente > Perfil:
 
 Dentistas:
     ☐ Fazer funcionar botão de Novo Dentista
+    ☐ Listar dentistas do banco de dados
     ☐ Fazer funcionar a pesquisa
         Criar objeto "Clinica":
             Criar model:

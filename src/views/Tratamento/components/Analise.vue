@@ -1033,7 +1033,7 @@ export default {
                 case 'intraBucal':
                     editingSectionStr = 'INTRA-BUCAL'
                     break;
-                case 'radiograficas':
+                case 'analisesRadiograficas':
                     editingSectionStr = 'ANÁLISES RADIOGRÁFICAS'
                     break;
             }
@@ -1048,7 +1048,7 @@ export default {
             }
 
             if (editingSection && editingSection !== section) {
-                cSwal.cWarning(`Finalize a edição da análise ${editingSectionStr} antes de editar esta.`);
+                cSwal.cWarning(`Finalize a edição da seção ${editingSectionStr} antes de editar esta.`);
                 return;
             }
 
