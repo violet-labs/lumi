@@ -19,12 +19,12 @@ export function phoneMask(phone) {
     return phoneMask
 }
 
-export function getTratamentoProgresso(data_inicio_tratamento, data_final_previsa) {
-    if (!data_inicio_tratamento || !data_final_previsa)
+export function getTratamentoProgresso(data_inicio_tratamento, data_final_prevista) {
+    if (!data_inicio_tratamento || !data_final_prevista)
         return '-';
 
     const inicio = new Date(data_inicio_tratamento);
-    const termino = new Date(data_final_previsa);
+    const termino = new Date(data_final_prevista);
     const hoje = new Date();
 
     if (hoje < inicio)

@@ -10,9 +10,9 @@
       </div>
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <MaterialInput label="Término previsto" readonly type="text" centered :modelValue="$filters.dateDmy(paciente.data_final_previsa)"
+        <MaterialInput label="Término previsto" readonly type="text" centered :modelValue="$filters.dateDmy(paciente.data_final_prevista)"
           id="paciente_fim_tratamento" label-class="me-3" />
-        <span class="text-sm text-success">{{$filters.howMuchTime(paciente.data_final_previsa, new Date())}}</span>
+        <span class="text-sm text-success">{{$filters.howMuchTime(paciente.data_final_prevista, new Date())}}</span>
       </div>
 
       <div class="col-md-6 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
@@ -311,7 +311,7 @@ export default {
         return '-';
 
       const inicio = new Date(this.paciente.data_inicio_tratamento);
-      const termino = new Date(this.paciente.data_final_previsa);
+      const termino = new Date(this.paciente.data_final_prevista);
       const hoje = new Date();
 
       if (hoje < inicio)

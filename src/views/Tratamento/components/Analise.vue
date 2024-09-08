@@ -561,7 +561,7 @@ const analises = {
                 { nivel: 'positivo', resposta: 'nenhum', selecionada: false },
                 { nivel: 'negativo', resposta: 'chupeta', selecionada: false },
                 { nivel: 'negativo', resposta: 'dedo', selecionada: false },
-                { nivel: 'atencao', resposta: 'succção de lábio', selecionada: false },
+                { nivel: 'atencao', resposta: 'sucção de lábio', selecionada: false },
                 { nivel: 'atencao', resposta: 'onicofagia', selecionada: false },
                 { nivel: 'negativo', resposta: 'bruxismo', selecionada: false },
             ]
@@ -578,7 +578,7 @@ const analises = {
             alternativas: [
                 { nivel: 'positivo', resposta: 'normal', selecionada: false },
                 { nivel: 'atencao', resposta: 'interposição', selecionada: false },
-                { nivel: 'atencao', resposta: 'anteriorizizada', selecionada: false },
+                { nivel: 'atencao', resposta: 'anteriorizada', selecionada: false },
                 { nivel: 'atencao', resposta: 'posteriorizada', selecionada: false },
             ]
         },
@@ -594,7 +594,7 @@ const analises = {
             alternativas: [
                 { nivel: 'positivo', resposta: 'normal', selecionada: false },
                 { nivel: 'atencao', resposta: 'interposição', selecionada: false },
-                { nivel: 'atencao', resposta: 'anteriorizizada', selecionada: false },
+                { nivel: 'atencao', resposta: 'anteriorizada', selecionada: false },
                 { nivel: 'atencao', resposta: 'posteriorizada', selecionada: false },
             ]
         },

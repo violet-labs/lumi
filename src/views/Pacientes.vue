@@ -105,7 +105,7 @@
         <p class="text-xs font-weight-bold mb-0">{{ $filters.dateDmy(created_at) }}</p>
       </template>
 
-      <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_previsa }">
+      <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }">
         <div class="align-middle text-center text-sm">
           <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
             statusText(status_tratamento)
@@ -113,13 +113,13 @@
 
           <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
             <div class="progress progress-md w-100 w-md-70">
-              <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_previsa) + '%' }">
+              <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_prevista) + '%' }">
                 <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <span class="me-2 text-xs font-weight-bold"
               style="margin-top: -19px; background: rgba(255,255,255,0.5); border-radius: 5px; font-weight: 700 !important; padding: 0px 5px;">{{
-              getProgresso(data_inicio_tratamento, data_final_previsa) }}%</span>
+              getProgresso(data_inicio_tratamento, data_final_prevista) }}%</span>
           </div>
         </div>
       </template>
@@ -305,12 +305,12 @@ export default {
         }
       });
     },
-    getProgresso(data_inicio_tratamento, data_final_previsa) {
-      if (!data_inicio_tratamento || !data_final_previsa)
+    getProgresso(data_inicio_tratamento, data_final_prevista) {
+      if (!data_inicio_tratamento || !data_final_prevista)
         return '-';
 
       const inicio = new Date(data_inicio_tratamento);
-      const termino = new Date(data_final_previsa);
+      const termino = new Date(data_final_prevista);
       const hoje = new Date();
 
       if (hoje < inicio)
