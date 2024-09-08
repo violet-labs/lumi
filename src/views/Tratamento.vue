@@ -92,6 +92,7 @@
         v-if="tratamentoTab === 'analise'"
         :pacienteId="paciente.id"
         :detalhesClinicos="detalhesClinicos"
+        @pacienteChange="$emit('pacienteChange')"
         />
     </Transition>
 
@@ -99,15 +100,20 @@
       <Diagnostico v-if="tratamentoTab === 'diagnostico'" 
       :paciente="paciente"
       :diagnostico="paciente.diagnostico"
-      :prognostico="paciente.prognostico" />
+      :prognostico="paciente.prognostico"
+      @pacienteChange="$emit('pacienteChange')"
+      />
     </Transition>
 
     <Transition>
-      <PlanoTratamento v-if="tratamentoTab === 'planoTratamento'" :paciente="paciente" />
+      <PlanoTratamento v-if="tratamentoTab === 'planoTratamento'" :paciente="paciente"
+      @pacienteChange="$emit('pacienteChange')"
+      />
     </Transition>
 
     <Transition>
-      <Imagens v-if="tratamentoTab === 'imagens'" />
+      <Imagens v-if="tratamentoTab === 'imagens'"
+      />
     </Transition>
 
     <Transition>

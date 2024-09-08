@@ -1,41 +1,15 @@
-✔ Criar função de logout @done(24-09-07 20:17)
-✔ Decodificar token no client @done(24-09-07 20:17)
+Paciente > Tratamento > Análise:
+    ☐ Verificar: tá ficando em branco as vezes, quando vai editar o Intra-bucal
+    ☐ Colocar campos de texto aberto (observações e POEF? (radiográficas))
 
 Paciente > Tratamento > Diagnóstico:
-    Criar tratamento recomendado, quando terminar de preencher a seção "Análise":
-        ✔ Criar mapeamento de informações da análise com os protocolos de tratamento @done(24-09-07 19:09)
-        Criar model TratamentoSugerido:
-            ✔ id @done(24-09-07 20:44)
-            ✔ tag @done(24-09-07 20:44)
-            ✔ imagem_url @done(24-09-07 20:44)
-            ✔ tratamento @done(24-09-07 20:44)
-            ✔ observacao @done(24-09-07 20:44)
-            ✔ observacao_secundaria @done(24-09-07 20:44)
-        ✔ Criar relação many-to-many Pacientes x TratamentosSugeridos @done(24-09-07 20:51)
-        Criar model FatorClinico:
-            ✔ id @done(24-09-07 21:21)
-            ✔ tag @done(24-09-07 21:21)
-            ✔ imagem_url @done(24-09-07 21:21)
-            ✔ fator_clinico @done(24-09-07 21:21)
-            ✔ observacao @done(24-09-07 21:21)
-            ✔ observacao_secundaria @done(24-09-07 21:21)
-        ✔ Criar relação many-to-many Pacientes x FatoresClinicos @done(24-09-07 21:21)
-        ✔ Mapear tratamentos @done(24-09-07 20:45)
-        ✔ Inserir todos TratamentosSugeridos no banco @done(24-09-07 20:51)
-        ✔ Mapear características @done(24-09-07 21:13)
-        ✔ Inserir todas FatoresClinicos no banco @done(24-09-07 21:23)
-        ✔ Escrever função que capta a tag da característica de acordo com a categoria e o nome da Análise informados @done(24-09-07 22:47)
-        ✔ Salvar as características com o Paciente @done(24-09-07 22:56)
-        ✔ Validar relação many-to-many @done(24-09-07 22:56)
-        ✔ Cadastrar os biotipos faciais @done(24-09-07 23:16)
-        ✔ Após salvar as características, escrever lógica, recriando os protocolos e definindo os tratamentos recomendados @done(24-09-08 00:15)
-        Exibir tratamento recomendado e características consideradas na tela do diagnóstico:
-            ✔ Vincular TratamentosSugeridos com o Paciente @done(24-09-08 00:42)
-            ✔ Na função show, inserir os TratamentosSugeridos @done(24-09-08 00:42)
-            ✔ Criar coluna "fatores_considerados" na tabela paciente, que vai ser TEXT, e vai armazenar em array JSON os 'fatores_considerados' @done(24-09-08 00:44)
-            ✔ Na função salvarAnalises, inserir os fatores_considerados no paciente @done(24-09-08 00:44)
-        ✔ Excluir todos FatoresClinicos e TratamentosSugeridos antes de salvá-los @done(24-09-08 00:48)
-        ☐ Verificar: tá bugando o objeto, as vezes mostra certo, as vezes atualiza vazio
+    ✔ Fazer refresh do paciente, quando ele for alterado via API em qualquer uma das abas @done(24-09-08 02:20)
+    Verificar quando a análise foi ou não preenchida, para saber se exibe a mensagem "preencha a análise" ou a "não foi possível recomendar um tratamento":
+        ☐ Criar coluna "analise_preenchida" na tabela pacientes
+        ☐ Verificar se todas as análises foram preenchidas, pra marcar esse booleano
+    Melhorar a apresentação:
+        ☐ Diagnóstico
+        ☐ Prognóstico
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
@@ -177,7 +151,24 @@ Paciente > Tratamento > Histórico:
         ☐ Tratamento iniciado
         ☐ Consulta
 
+☐ Fazer funcão para alterar senha
 
+Implementar Clinica:
+    Colocar clinica_id nas tabelas:
+        ☐ pacientes
+        ☐ dentistas
+        ☐ contas_receber
+        ☐ contas_pagar
+    Colocar clinica_id nos models:
+        ☐ Paciente
+        ☐ Dentista
+        ☐ Conta Receber
+        ☐ Conta Pagar
+    Criar relação entre Clinica e os Models:
+        ☐ Paciente
+        ☐ Dentista
+        ☐ Conta Receber
+        ☐ Conta Pagar
 
 
 

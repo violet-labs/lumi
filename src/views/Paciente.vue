@@ -315,7 +315,7 @@
       </Transition>
 
       <Transition>
-        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" />
+        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" @pacienteChange="refreshPaciente" />
       </Transition>
 
       <Transition>
@@ -586,8 +586,11 @@ export default {
     openTab(tab) {
       this.activeTab = tab;
     },
-
+    async refreshPaciente() {
+      await this.getPacienteDetails(this.paciente.id)
+    },
     async getPacienteDetails(id) {
+      console.log('getPacienteDetails()')
       const paciente = await getPaciente(id)
       if (paciente) {
         this.paciente = JSON.parse(JSON.stringify(paciente))

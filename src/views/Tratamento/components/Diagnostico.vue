@@ -28,7 +28,8 @@
             <div class="col-12 mt-4">
                 <div class="box primary">
                     <p class="custom-card-header">Protocolo de tratamento</p>
-                    <div class="row border-between py-3">
+                    <div v-if="paciente.tratamentos_sugeridos && paciente.tratamentos_sugeridos.length > 0"
+                        class="row border-between py-3">
 
                         <div class="col-sm-6 pb-1 px-4 border-end text-center justify-content-center">
                             <p class="text-uppercase pb-2" style="font-weight: 600; font-size: 11pt;">Tratamento
@@ -40,16 +41,16 @@
                                         <img :src="imgCirurgiaOrtognatica" class="card-img-top">
                                     </div>
                                     <div class="treatment-title p-2 bg-gradient-light">
-                                        <h5 class="uppercase">Cirurgia ortognática</h5>
+                                        <h5 class="uppercase">{{ paciente.tratamentos_sugeridos[0].tratamento }}</h5>
                                     </div>
                                 </div>
                                 <div class="card-body p-3">
                                     <p class="card-text p-0">
-                                        <strong>Protrator mandibular:</strong>
+                                        <strong v-if="paciente.tratamentos_sugeridos[0].observacao">{{
+                                            paciente.tratamentos_sugeridos[0].observacao }}</strong>
                                         <br>
-                                        <span style="font-size: 11pt;">SOMENTE quando, após os dentes nivelados, o
-                                            avanço da mandíbula
-                                            NÃO abrir a mordida</span>
+                                        <span style="font-size: 11pt;">{{
+                                            paciente.tratamentos_sugeridos[0].observacao_secundaria }}</span>
                                     </p>
                                 </div>
                             </div>
@@ -71,7 +72,8 @@
                             </p>
                             <div class="p-horizontal-divider m-3"></div>
                             <div class="w-100 text-center my-5">
-                                <button v-if="!mentoriaSolicitada" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#modalSolicitarMentoria">
+                                <button v-if="!mentoriaSolicitada" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalSolicitarMentoria">
                                     Solicitar mentoria
                                 </button>
                                 <button v-if="mentoriaSolicitada" class="btn btn-success" style="pointer-events: none;">
@@ -83,46 +85,14 @@
                         <div class="col-12">
                             <div class="p-horizontal-divider mt-4 mb-2"></div>
                             <p class="text-center my-0 py-2">
-                                A recomendação da <strong class="text-sm uppercase">cirurgia ortognática</strong> como
+                                A recomendação de <strong class="text-sm uppercase">{{
+                                    paciente.tratamentos_sugeridos[0].tratamento }}</strong> como
                                 tratamento
                                 foi baseada nos seguintes fatores clínicos do paciente:
                             </p>
                             <div class="conditions-container">
-                                <div class="condition">
-                                    <div class="card mx-2 mt-0" style="border: 1px solid #DDD;">
-                                        <div class="card-header p-0">
-                                            <div class="option-image-container">
-                                                <img :src="imgClasseII" class="card-img-top">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <p class="card-text p-0">
-                                                <strong>Classe II:</strong>
-                                                <br>
-                                                <span style="font-size: 11pt;">Arco inferior distal ao normal em sua
-                                                    relação para o arco
-                                                    superior</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="condition">
-                                    <div class="card mx-2 mt-0" style="border: 1px solid #DDD;">
-                                        <div class="card-header p-0">
-                                            <div class="option-image-container">
-                                                <img :src="imgLinhaMediaSemDesvio" class="card-img-top">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <p class="card-text p-0">
-                                                <strong>Desvio da linha média:</strong>
-                                                <br>
-                                                <span style="font-size: 11pt;">Sem desvio</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="condition">
+                                <div v-for="fator in fatoresClinicosFiltrados" v-bind:key="fator.fator_clinico"
+                                    class="condition">
                                     <div class="card mx-2 mt-0" style="border: 1px solid #DDD;">
                                         <div class="card-header p-0">
                                             <div class="option-image-container">
@@ -131,43 +101,44 @@
                                         </div>
                                         <div class="card-body p-3">
                                             <p class="card-text p-0">
-                                                <strong>Tamanho do desvio classe II:</strong>
-                                                <br>
-                                                <span style="font-size: 11pt;">Grande (5mm/+)</span>
+                                                <strong>{{ fator.fator_clinico }}</strong>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="condition">
-                                    <div class="card mx-2 mt-0" style="border: 1px solid #DDD;">
-                                        <div class="card-header p-0">
-                                            <div class="option-image-container">
-                                                <img :src="imgDefault" class="card-img-top">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <p class="card-text p-0">
-                                                <strong>Protrusão maxilar e retrusão mandibular</strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="condition">
-                                    <div class="card mx-2 mt-0" style="border: 1px solid #DDD;">
-                                        <div class="card-header p-0">
-                                            <div class="option-image-container">
-                                                <img :src="imgMesoBraqui" class="card-img-top">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-3">
-                                            <p class="card-text p-0">
-                                                <strong>Biotipo facial:</strong>
-                                                <br>
-                                                <span style="font-size: 11pt;">Braqui / Meso</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="!paciente.tratamentos_sugeridos || paciente.tratamentos_sugeridos.length == 0"
+                        class="row border-between py-3">
+
+                        <div class="col-sm-6 pb-1 px-4 border-end text-center justify-content-center align-center">
+                            <h3 class=mt-5>Não foi possível recomendar um tratamento</h3>
+                            <p class="mt-3">A análise realizada não foi suficiente para que pudéssemos recomendar um
+                                tratamento.</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="p-horizontal-divider mb-4"></div>
+                            <p class="text-justify my-0 pt-2 pb-2">
+                                Nosso sistema calcula um tratamento recomendado, com base nas informações inseridas na seção "<font-awesome-icon :icon="['fas', 'fa-search']"
+                                    class="me-1 text-sm" /><span
+                                    class="text-sm font-weight-bold uppercase">análise</span>". Porém, com a análise atual, não foi possível definir um tratamento para este paciente.
+                            </p>
+                            <p class="text-justify my-0 py-1">
+                                Se você tiver dúvidas sobre este caso, <strong>você pode solicitar uma
+                                    mentoria</strong>.
+                            </p>
+                            <div class="p-horizontal-divider m-3"></div>
+                            <div class="w-100 text-center my-5">
+                                <button v-if="!mentoriaSolicitada" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#modalSolicitarMentoria">
+                                    Solicitar mentoria
+                                </button>
+                                <button v-if="mentoriaSolicitada" class="btn btn-success" style="pointer-events: none;">
+                                    Mentoria solicitada
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -211,13 +182,15 @@
                 </div>
                 <div class="modal-body py-4">
                     <p class="mt-3">Mentoria para o caso do paciente <b>{{ paciente.nome }}</b></p>
-                    <p class="mt-3">O pedido de mentoria chegará para nosso especialista, e então ele avaliará o caso juntamente com você.</p>
+                    <p class="mt-3">O pedido de mentoria chegará para nosso especialista, e então ele avaliará o caso
+                        juntamente com você.</p>
                     <p class="mt-3">Escreva algumas observações sobre o caso, se julgar necessário:</p>
                     <textarea class="form-control" rows="3" v-model="observacoesMentoria"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="confirmSolicitarMentoria">Solicitar mentoria</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        @click="confirmSolicitarMentoria">Solicitar mentoria</button>
                 </div>
             </div>
         </div>
@@ -299,7 +272,7 @@ export default {
         },
         paciente: {
             type: Object,
-            default: () => {return {}},
+            default: () => { return {} },
         },
     },
     data() {
@@ -325,6 +298,7 @@ export default {
                     cSwal.cSuccess('As alterações foram salvas com sucesso.')
                     this.isEditing['diagnostico'] = false
                     this.mentoriaSolicitada = true
+                    this.$emit('pacienteChange')
                 }
                 else
                     cSwal.cError('Ocorreu um erro ao salvar as alterações')
@@ -337,6 +311,7 @@ export default {
                 if (save) {
                     cSwal.cSuccess('As alterações foram salvas com sucesso.')
                     this.isEditing['diagnostico'] = false
+                    this.$emit('pacienteChange')
                 }
                 else
                     cSwal.cError('Ocorreu um erro ao salvar as alterações')
@@ -349,6 +324,7 @@ export default {
                 if (save) {
                     cSwal.cSuccess('As alterações foram salvas com sucesso.')
                     this.isEditing['prognostico'] = false
+                    this.$emit('pacienteChange')
                 }
                 else
                     cSwal.cError('Ocorreu um erro ao salvar as alterações')
@@ -365,6 +341,9 @@ export default {
     components: {
     },
     computed: {
+        fatoresClinicosFiltrados() {
+            return this.paciente.fatores_clinicos.filter(fator => JSON.parse(this.paciente.fatores_considerados).includes(fator.tag));
+        },
         diagnosticoModel: {
             get() { return this.diagnostico },
             set(value) { this.$emit('update:diagnostico', value) },
@@ -379,6 +358,7 @@ export default {
     },
     mounted() {
         this.mentoriaSolicitada = this.paciente.mentoria
+        console.log('this.paciente:', this.paciente)
     },
     beforeMount() {
     },

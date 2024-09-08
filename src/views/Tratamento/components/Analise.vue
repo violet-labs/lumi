@@ -969,6 +969,7 @@ export default {
                 this.isEditing['extraBucal'] = false
                 this.isEditing['intraBucal'] = false
                 this.isEditing['analisesRadiograficas'] = false
+                this.$emit('pacienteChange')
             }
             else {
                 cSwal.cError('Ocorreu um erro ao salvar as alterações.')
