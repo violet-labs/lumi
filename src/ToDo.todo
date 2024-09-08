@@ -1,4 +1,10 @@
+✔ Corrigir alinhamentos das EasyDataTable @done(24-09-08 12:54)
+
 Mensagem em caso de lista vazia:
+    ✔ Dentistas @done(24-09-08 12:56)
+
+Mensagem de carregando nas listagens:
+    ☐ Pacientes
     ☐ Dentistas
 
 CRUD paciente:
@@ -16,7 +22,7 @@ Paciente > Tratamento > Plano de tratamento:
             ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
         ☐ Verificar se está editando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
-    Necessidade de encaminhamentos:
+    Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
 
@@ -25,9 +31,9 @@ Paciente > Perfil:
         ☐ Criar função de inserir
 
 Dentistas:
-    ☐ Fazer funcionar botão de Novo Dentista
-    ☐ Listar dentistas do banco de dados
-    ☐ Fazer funcionar a pesquisa
+    ✔ Fazer funcionar botão de Novo Dentista @done(24-09-08 12:56)
+    ✔ Listar dentistas do banco de dados @done(24-09-08 12:56)
+    ✔ Fazer funcionar a pesquisa @done(24-09-08 12:57)
         ☐ Criar modal:
             ☐ Criar listagem de clínicas
             ☐ Criar opção para adicionar

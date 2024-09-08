@@ -8,36 +8,29 @@
       <div class="col-12">
 
 
-        <div class="w-100 text-center mt-4">
+        <div v-if="search != '' || dentistas.length > 0" class="w-100 text-center mt-4">
           <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
             v-model="search">
         </div>
 
-        <EasyDataTable :headers="tableheaders" :items="dentistas" @click-row="openDentista"
+        <v-table v-if="dentistas.length == 0" class="m-3">
+          <tbody>
+            <tr>
+              <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                <span v-if="search == ''">Ainda não existem pacientes cadastrados.</span>
+                <span v-if="search != ''">A busca não encontrou nenhum paciente.</span>
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+
+        <EasyDataTable v-if="dentistas.length > 0" :headers="tableheaders" :items="dentistas" @click-row="openDentista"
           body-row-class-name="clickable" header-item-class-name="table-header-item"
           body-item-class-name="table-body-item">
-
-          <template #header-status="header">
-            <div class="text-center w-100">
-              STATUS
-            </div>
-          </template>
 
           <template #header-pacientes="header">
             <div class="text-center w-100">
               PACIENTES
-            </div>
-          </template>
-
-          <template #item-name="{ name, email }">
-            <div class="d-flex px-2 py-1">
-              <div style="min-width: 40px;" class="d-none d-md-block">
-                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1" />
-              </div>
-              <div class="d-flex flex-column justify-content-center">
-                <h6 class="mb-0 text-sm">{{ name }}</h6>
-                <p class="text-xs text-secondary mb-0">{{ email }}</p>
-              </div>
             </div>
           </template>
 
@@ -114,7 +107,8 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 Observações:
               </label>
-              <textarea name="" id="novoDentista_observacoes" class="form-control" rows="5" v-model="novoDentista.observacoes"></textarea>
+              <textarea name="" id="novoDentista_observacoes" class="form-control" rows="5"
+                v-model="novoDentista.observacoes"></textarea>
             </div>
           </div>
         </div>
@@ -136,69 +130,13 @@ import SidenavListDentistas from "@/views/components/LumiSidenav/SidenavListDent
 import { addNovoDentista, searchDentistas } from "@/services/dentistasService"
 
 const tableheaders = [
-  { text: "DENTISTA", value: "name", sortable: true },
-  { text: "ESPECIALIDADE", value: "especialidade", sortable: true },
-  { text: "PACIENTES", value: "pacientes", sortable: true,/*  align: 'center' */ },
-  { text: "STATUS", value: "status", sortable: true },
+  { text: "DENTISTA", value: "nome", sortable: true },
   { text: "CLÍNICA", value: "clinica.nome", sortable: true },
+  { text: "PACIENTES", value: "pacientes_count", sortable: true,/*  align: 'center' */ },
+  { text: "E-MAIL", value: "user.email", sortable: true },
 ];
 
-var dentistas = [
-  {
-    id: 1,
-    name: 'Dr. Eduardo Carvalho Silva',
-    cpf: '019.647.076-50',
-    rg: '19.833.663',
-    data_nascimento: '1992-02-12',
-    especialidade: 'Ortodontia',
-    email: 'contato@eduardosilva.com.br',
-    place: 'Poços de Caldas',
-    picture_url: 'pictures/1/1.jpg',
-    registered_date: '2023-11-01 14:02:03',
-    completed_date: '2023-11-01 17:38:12',
-    status: 'ATIVO',
-    pacientes: 0,
-    clinica: {
-      nome: 'Clinica X',
-    },
-  },
-  {
-    id: 2,
-    name: 'Dr. Thales Casa Grande',
-    cpf: '019.647.076-50',
-    rg: '19.833.663',
-    data_nascimento: '1991-02-12',
-    especialidade: 'Ortodontia',
-    email: 'thales-lima@live.com',
-    place: 'Poços de Caldas',
-    picture_url: 'pictures/1/2.jpg',
-    registered_date: '2023-12-01 14:02:03',
-    completed_date: '2023-12-01 17:38:12',
-    status: 'ATIVO',
-    pacientes: 0,
-    clinica: {
-      nome: 'Clinica Y',
-    },
-  },
-  {
-    id: 3,
-    name: 'Dr. Pedro Campos Rodrigues',
-    cpf: '019.647.076-50',
-    rg: '19.833.663',
-    data_nascimento: '1990-02-12',
-    especialidade: 'Endodontia',
-    email: 'pedro.campos@gmail.com',
-    place: 'Andradas',
-    picture_url: 'pictures/1/2.jpg',
-    registered_date: '2023-12-01 14:02:03',
-    completed_date: '2023-12-01 17:38:12',
-    status: 'ATIVO',
-    pacientes: 0,
-    clinica: {
-      nome: 'Clinica Z',
-    },
-  },
-]
+var dentistas = []
 
 var search = ''
 
@@ -223,7 +161,7 @@ export default {
       event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
     },
     async updateList(search = '') {
-      // this.dentistas = await searchDentistas(search)
+      this.dentistas = await searchDentistas(search)
     },
     confirmAddNovoDentista() {
       cSwal.cConfirm('Deseja realmente adicionar este ortodontista?', async () => {

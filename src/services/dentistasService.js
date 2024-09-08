@@ -50,9 +50,7 @@ export async function searchDentistas(search = '') {
 
     const response = []
     for (const dentista of allDentistas.data) {
-        dentista.progress = 95
-        dentista.dentista = 'DANIEL SALLES'
-        dentista.email = 'thales-lima@live.com'
+        // DEBUG / EDIT
         response.push(dentista)
     }
 

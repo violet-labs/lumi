@@ -224,7 +224,7 @@ div>.selector-tab-item:last-child {
 }
 
 .table-body-item {
-    padding: 3px !important;
+    /* padding: 3px !important; */
 }
 
 .info-container {
