@@ -64,9 +64,48 @@
         <div v-if="selectedTab == 'mentorias'" class="p-0 container-fluid">
             <div class="row mb-4">
                 <div class="col-lg-12 position-relative z-index-2">
-                    <EasyDataTable :headers="headers" :items="mentorias" @click-row="openPaciente"
-                        body-row-class-name="clickable" header-item-class-name="table-header-item"
-                        body-item-class-name="table-body-item">
+                    <v-table class="m-3">
+                        <tbody>
+                            <tr>
+                                <td class="bg-gradient-light text-dark text-center"
+                                    style="border-radius: 3px; padding: 2px 20px;">
+                                    Ainda não foram solicitadas mentorias.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </v-table>
+
+                    <EasyDataTable v-if="mentorias.length > 0" :headers="headersMentorias" :items="mentorias"
+                        @click-row="openPaciente" body-row-class-name="clickable"
+                        header-item-class-name="table-header-item" body-item-class-name="table-body-item">
+
+                        <template #item-created_at="{ created_at }">
+                            {{ $filters.dateTime(created_at) }}
+                        </template>
+
+                    </EasyDataTable>
+                </div>
+            </div>
+
+        </div>
+
+        <div v-if="selectedTab == 'registros'" class="p-0 container-fluid">
+            <div class="row mb-4">
+                <div class="col-lg-12 position-relative z-index-2">
+                    <v-table class="m-3">
+                        <tbody>
+                            <tr>
+                                <td class="bg-gradient-light text-dark text-center"
+                                    style="border-radius: 3px; padding: 2px 20px;">
+                                    Ainda não existem registros.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </v-table>
+
+                    <EasyDataTable v-if="mentorias.length > 0" :headers="headersRegistros" :items="registros"
+                        @click-row="openPaciente" body-row-class-name="clickable"
+                        header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
                         <template #item-created_at="{ created_at }">
                             {{ $filters.dateTime(created_at) }}
@@ -120,7 +159,14 @@ import SidenavListConfiguracoes from "@/views/components/LumiSidenav/SidenavList
 
 import { getMentorias } from "@/services/mentoriasService"
 
-const headers = [
+const headersRegistros = [
+    { text: "REGISTRADO EM", value: "created_at", sortable: true },
+    { text: "PACIENTE", value: "paciente.nome", sortable: true },
+    { text: "SOLICITANTE", value: "solicitante.nome", sortable: true, align: 'center' },
+    { text: "OBSERVAÇÕES", value: "observacao", sortable: true, align: 'center' },
+];
+
+const headersMentorias = [
     { text: "SOLICITADA EM", value: "created_at", sortable: true },
     { text: "PACIENTE", value: "paciente.nome", sortable: true },
     { text: "SOLICITANTE", value: "solicitante.nome", sortable: true, align: 'center' },
@@ -131,8 +177,10 @@ export default {
     name: "configuracoes",
     data() {
         return {
-            headers,
+            headersMentorias,
             mentorias: [],
+            headersRegistros,
+            registros: [],
             selectedTab: 'perfil',
         };
     },
