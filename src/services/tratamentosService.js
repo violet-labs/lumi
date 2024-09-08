@@ -1,5 +1,40 @@
 import axios from '@/services/axios'
 
+export async function excluirMetaTerapeutica(id) {
+    try {
+        const response = await axios.delete('/tratamentos/meta-terapeutica/' + id);
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao excluir meta terapêutica:', error);
+    }
+
+    return false;
+}
+
+export async function adicionarMetaTerapeutica(paciente_id, metaTerapeutica) {
+    try {
+        const response = await axios.post('/tratamentos/add-meta', {
+            paciente_id,
+            descricao: metaTerapeutica
+        });
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao adicionar meta terapêutica:', error);
+    }
+
+    return false;
+}
+
 export async function getAnalises(pacienteId) {
     try {
         const response = await axios.get('/tratamentos/analises/' + pacienteId);

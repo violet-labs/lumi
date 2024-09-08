@@ -11,9 +11,10 @@
                             @click="toggleEditMode('metasTerapeuticas')" />
                     </p>
 
-                    <div v-if="isEditing['metasTerapeuticas']" class="d-flex flex-row w-100 justify-center">
+                    <div v-if="isEditing['metasTerapeuticas']" class="d-flex flex-row w-100 justify-center pb-3">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
-                            title="Adicionar uma nova meta terapêutica">
+                            title="Adicionar uma nova meta terapêutica" data-bs-toggle="modal"
+                            data-bs-target="#modalMetaTerapeutica">
                             Adicionar meta
                         </button>
                         <div class="p-vertical-divider"></div>
@@ -23,17 +24,25 @@
                         </button>
                     </div>
 
+                    <div v-if="!isEditing['metasTerapeuticas'] && (!paciente.metas_terapeuticas || paciente.metas_terapeuticas.length == 0)"
+                        class="p-1 text-center">
+                        <span class="text-secondary">Ainda não foram criadas metas.</span>
+                    </div>
+
                     <div class="row px-3 pt-0 pb-1">
                         <div v-for="meta in paciente.metas_terapeuticas" v-bind:key="meta.id" class="col-sm-6 col-md-4">
                             <div class="card m-2 mx-0" :class="meta.status == 'CONCLUIDA' ? 'border-success' : ''">
                                 <div class="fase-header d-flex flex-row">
                                     <i class="fas fa-trash ms-1 text-danger-dark pointer"
-                                        v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"></i>
-                                    <div class="col" :style="meta.status == 'CONCLUIDA' ? { 'padding-left': '30px' } : {}">
+                                        v-if="isEditing['metasTerapeuticas']" title="Excluir esta meta terapêutica"
+                                        @click="deleteMetaTerapeutica(meta.id)"></i>
+                                    <div class="col"
+                                        :style="meta.status == 'CONCLUIDA' ? { 'padding-left': '30px' } : {}">
                                         <strong>{{ meta.descricao }}</strong>
                                     </div>
                                     <div class="col-auto">
-                                        <button v-if="meta.status != 'CONCLUIDA'" class="btn btn-vsm btn-outline-success mr-1"
+                                        <button v-if="meta.status != 'CONCLUIDA'"
+                                            class="btn btn-vsm btn-outline-success mr-1"
                                             title="Marcar como concluída"><font-awesome-icon
                                                 :icon="['fas', 'check']" /></button>
                                         <button v-if="meta.status == 'CONCLUIDA' && isEditing['metasTerapeuticas']"
@@ -228,7 +237,7 @@
                             :icon="['fas', 'arrow-down']" />
                     </div>
                 </div> -->
-                
+
                 <div class="custom-card primary mt-4">
                     <p class="custom-card-header">Necessidade de encaminhamentos<font-awesome-icon
                             :icon="['fas', 'edit']" class="ml-3 pointer"
@@ -252,6 +261,30 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" id="modalMetaTerapeutica" ref="modalMetaTerapeutica">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adicionar meta terapêutica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        ref="closeModalNovoDentista"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 d-flex flex-column text-center">
+                            <label for="metaTerapeutica">Meta terapêutica:</label>
+                            <MaterialInput type="text" class="my-2 text-center" id="metaTerapeutica"
+                                name="metaTerapeutica" ref="metaTerapeutica" v-model="novaMetaTerapeutica" />
+                            <button class="btn btn-primary my-3 mx-auto" @click="_adicionarMetaTerapeutica"
+                                style="max-width: 200px;">Adicionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 <style scoped>
@@ -298,6 +331,9 @@
 </style>
 
 <script>
+import cSwal from "@/utils/cSwal.js"
+import { adicionarMetaTerapeutica, excluirMetaTerapeutica } from '@/services/tratamentosService'
+import MaterialInput from "@/components/MaterialInput.vue";
 
 const aparatologia = [
     {
@@ -396,6 +432,7 @@ export default {
     },
     data() {
         return {
+            novaMetaTerapeutica: '',
             isEditing,
             aparatologia,
             contencao,
@@ -407,6 +444,39 @@ export default {
         }
     },
     methods: {
+
+        deleteMetaTerapeutica(id) {
+            cSwal.cConfirm('Deseja realmente excluir esta meta terapêutica?', async () => {
+                cSwal.loading('Excluindo meta terapêutica...')
+                const del = await excluirMetaTerapeutica(id)
+                cSwal.loaded()
+
+                if (del) {
+                    this.$emit('pacienteChange')
+                    document.querySelector('button.btn-close').click();
+                    this.novaMetaTerapeutica = ''
+                }
+                else {
+                    cSwal.cError('Ocorreu um erro ao excluir a meta terapêutica.')
+                }
+            })
+        },
+
+        async _adicionarMetaTerapeutica() {
+            cSwal.loading('Adicionando meta terapêutica...')
+            const add = await adicionarMetaTerapeutica(this.paciente.id, this.novaMetaTerapeutica)
+            cSwal.loaded()
+
+            if (add) {
+                this.$emit('pacienteChange')
+                document.querySelector('button.btn-close').click();
+                this.novaMetaTerapeutica = ''
+            }
+            else {
+                cSwal.cError('Ocorreu um erro ao adicionar a meta terapêutica.')
+            }
+        },
+
         save(section) {
             switch (section) {
                 case 'fasesTratamento':
@@ -435,8 +505,12 @@ export default {
         }
     },
     components: {
+        MaterialInput,
     },
     mounted() {
+        this.$refs.modalMetaTerapeutica.addEventListener('shown.bs.modal', event => {
+            this.$refs.metaTerapeutica.getInput().focus();
+        })
     },
     beforeMount() {
     },
