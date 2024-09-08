@@ -11,22 +11,35 @@ Paciente > Tratamento > Diagnóstico:
             ✔ tratamento @done(24-09-07 20:44)
             ✔ observacao @done(24-09-07 20:44)
             ✔ observacao_secundaria @done(24-09-07 20:44)
-        ☐ Criar relação many-to-many Pacientes x TratamentosSugeridos
-        Criar model CaracteristicaPaciente:
-            ☐ id
-            ☐ caracteristica
-            ☐ observacao
-        ☐ Criar relação one-to-many Paciente x CaracteristicasPaciente
+        ✔ Criar relação many-to-many Pacientes x TratamentosSugeridos @done(24-09-07 20:51)
+        Criar model FatorClinico:
+            ✔ id @done(24-09-07 21:21)
+            ✔ tag @done(24-09-07 21:21)
+            ✔ imagem_url @done(24-09-07 21:21)
+            ✔ fator_clinico @done(24-09-07 21:21)
+            ✔ observacao @done(24-09-07 21:21)
+            ✔ observacao_secundaria @done(24-09-07 21:21)
+        ✔ Criar relação many-to-many Pacientes x FatoresClinicos @done(24-09-07 21:21)
         ✔ Mapear tratamentos @done(24-09-07 20:45)
-        ☐ Inserir todos TratamentosSugeridos no banco
-        ☐ Mapear características
-        ☐ Inserir todas CaracteristicasPacientes no banco
-        ☐ Escrever função que capta a característica de acordo com a categoria e o nome da Análise informados
-        ☐ Após salvar as características, escrever lógica, recriando os protocolos
+        ✔ Inserir todos TratamentosSugeridos no banco @done(24-09-07 20:51)
+        ✔ Mapear características @done(24-09-07 21:13)
+        ✔ Inserir todas FatoresClinicos no banco @done(24-09-07 21:23)
+        ✔ Escrever função que capta a tag da característica de acordo com a categoria e o nome da Análise informados @done(24-09-07 22:47)
+        ✔ Salvar as características com o Paciente @done(24-09-07 22:56)
+        ✔ Validar relação many-to-many @done(24-09-07 22:56)
+        ✔ Cadastrar os biotipos faciais @done(24-09-07 23:16)
+        ✔ Após salvar as características, escrever lógica, recriando os protocolos e definindo os tratamentos recomendados @done(24-09-08 00:15)
+        Exibir tratamento recomendado e características consideradas na tela do diagnóstico:
+            ✔ Vincular TratamentosSugeridos com o Paciente @done(24-09-08 00:42)
+            ✔ Na função show, inserir os TratamentosSugeridos @done(24-09-08 00:42)
+            ✔ Criar coluna "fatores_considerados" na tabela paciente, que vai ser TEXT, e vai armazenar em array JSON os 'fatores_considerados' @done(24-09-08 00:44)
+            ✔ Na função salvarAnalises, inserir os fatores_considerados no paciente @done(24-09-08 00:44)
+        ✔ Excluir todos FatoresClinicos e TratamentosSugeridos antes de salvá-los @done(24-09-08 00:48)
+        ☐ Verificar: tá bugando o objeto, as vezes mostra certo, as vezes atualiza vazio
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
-        ☐ Criar com base no array retornado da IA
+        ☐ Criar com base os itens da análise (preencher no objeto)
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
 
