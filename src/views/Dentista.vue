@@ -61,7 +61,7 @@
         </div>
       </div>
       <Transition>
-        <div class="p-0 container-fluid" v-if="activeTab == 'perfil'">
+        <div class="p-0 container-fluid" v-if="activeTab == 'detalhes'">
           <div class="row">
             <div class="col-md-12">
               <Transition>
@@ -79,10 +79,17 @@
                             <option value="3">Murillo Motta</option>
                           </select>
                         </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nascimento" type="date" v-model:value="dentista.data_nascimento"
-                            id="dentista_dataNascimento" />
+
+                        <div class="col-sm-6 col-md-3 mb-2 text-center">
+                          <MaterialInput readonly class="text-center" label="Pacientes" type="text" :modelValue="dentista.pacientes_count"
+                          />
                         </div>
+
+                        <div class="col-sm-6 col-md-3 mb-2 text-center">
+                          <MaterialInput readonly class="text-center" label="Consultas" type="text" :modelValue="dentista.pacientes_count"
+                          />
+                        </div>
+
                         <div class="col-md-6 mb-2">
                           <MaterialInput type="email" label="E-mail" v-model="dentista.user.email" id="dentista_rg" />
                         </div>
@@ -327,6 +334,8 @@ import cSwal from "@/utils/cSwal.js"
 const body = document.getElementsByTagName("body")[0];
 
 var dentista = {
+  pacientes_count: '-',
+  consultas_count: '-',
   user: {
     email: '',
   },
@@ -341,7 +350,7 @@ var showTratamento = false;
 
 var activeProfileTab = 'perfilPessoal';
 
-var activeTab = 'perfil'
+var activeTab = 'detalhes'
 
 export default {
   name: "dentista",

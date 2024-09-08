@@ -1,17 +1,21 @@
-✔ Corrigir alinhamentos das EasyDataTable @done(24-09-08 12:54)
-
-Mensagem em caso de lista vazia:
-    ✔ Dentistas @done(24-09-08 12:56)
+☐ Listar clínicas globalmente
+☐ Criar a primeira clínica manualmente
+☐ Criar função getClinica from token
+☐ Fazer modal gobal de buscar clínica
+☐ Fazer modal global de buscar paciente
+☐ Fazer modal global de buscar ortodontista
+✔ Corrigir dropup do seletor do Meio de Contato @done(24-09-08 14:20)
 
 Mensagem de carregando nas listagens:
     ☐ Pacientes
     ☐ Dentistas
 
-CRUD paciente:
-    ☐ Fazer inserir celular/whatsapp
-☐ CRUD dentistas
-☐ CRUD perfil
-☐ CRUD meio contato
+CRUD meio contato:
+    ☐ Verificar se o model está correto
+    ☐ Validar inserção
+    ☐ Fazer state do tipo selecionado para novoContato
+    CRUD paciente:
+        ☐ Fazer inserir celular/whatsapp
 ☐ CRUD metas terapeuticas
 
 ☐ Permitir editar foto de perfil do Paciente
@@ -31,25 +35,19 @@ Paciente > Perfil:
         ☐ Criar função de inserir
 
 Dentistas:
-    ✔ Fazer funcionar botão de Novo Dentista @done(24-09-08 12:56)
-    ✔ Listar dentistas do banco de dados @done(24-09-08 12:56)
-    ✔ Fazer funcionar a pesquisa @done(24-09-08 12:57)
-        ☐ Criar modal:
-            ☐ Criar listagem de clínicas
-            ☐ Criar opção para adicionar
-            ☐ Criar opção para excluir
-            ☐ Quando clicar na clínica, exibir info dela:
-                ☐ Nome
-                ☐ Data de cadastro
-                ☐ Total de dentistas
-                ☐ Total de pacientes
-                ☐ Listagem de dentistas
+    ☐ Criar modal:
+        ☐ Criar listagem de clínicas
+        ☐ Criar opção para adicionar
+        ☐ Criar opção para excluir
+        ☐ Quando clicar na clínica, exibir info dela:
+            ☐ Nome
+            ☐ Data de cadastro
+            ☐ Total de dentistas
+            ☐ Total de pacientes
+            ☐ Listagem de dentistas
 
 Dentista > Detalhes:
-    ☐ Fazer funcionar o salvamento dos dados
     ☐ Fazer funcionar os meios de contato (copiar de "Paciente", pra facilitar)
-    ☐ Remover seção do Formulário de Boas-vindas
-    ☐ Fazer funcionar puxar endereço do CEP (copiar de "Paciente")
     ☐ Adicionar endereço da clínica
 
 Dentista > Pacientes:

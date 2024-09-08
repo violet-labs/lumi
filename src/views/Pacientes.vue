@@ -195,7 +195,7 @@
 
             <div class="col-md-6 mt-3">
               <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'hospital']" /></span>
                 Clínica:
               </label>
               <select class="form-select" aria-label="Default select example" v-model="novoPaciente.clinica_id">
@@ -219,12 +219,12 @@
               </select>
             </div>
             
-            <div class="col-12 mt-4 text-center" style="margin: 0 auto; max-width: 250px;">
+            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
                 Celular:
               </label>
-              <MaterialInput type="text" label="" class="text-center" v-model="novoPaciente.celular"
+              <MaterialInput type="text" label="" v-model="novoPaciente.celular"
                 :mask="phoneMaskWrapper(novoPaciente.celular)" placeholder="(##) #####-####" />
               <label for="novo-paciente-celular-whatsapp" class="pointer">
                 <div class="mt-2">
@@ -233,6 +233,18 @@
                   WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt;"></i>
                 </div>
               </label>
+            </div>
+            
+            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
+                Idioma:
+              </label>
+              <select name="" id="" class="form-select" v-model="novoPaciente.idioma">
+                <option value="pt">Português</option>
+                <option value="en">Inglês</option>
+                <option value="es">Espanhol</option>
+              </select>
             </div>
 
             <div class="col-12 mt-3">
@@ -300,6 +312,7 @@ var pacientes = []
 var search = ''
 
 var novoPaciente = {
+  idioma: 'pt',
   clinica_id: '',
   dentista_id: '',
   nome: '',

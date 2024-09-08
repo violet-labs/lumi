@@ -129,7 +129,7 @@
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
-                      <v-table style="font-size: 12pt;">
+                      <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>
                           <tr>
                             <th><label>Contato</label></th>
@@ -158,7 +158,7 @@
                           <tr>
                             <td style="vertical-align: middle;">
                               <div class="d-flex flex-row align-center">
-                                <div class="dropdown text-center">
+                                <div class="dropdown text-center dropup">
                                   <span data-bs-toggle="dropdown" class="pointer dropdown-toggle">
                                     <font-awesome-icon :icon="['fas', 'mobile-screen-button']"
                                       style="font-size: 15pt; margin-right: 3px;" />

@@ -915,3 +915,7 @@ input.input-sm {
 .nav-btn.highlight span, .nav-btn.highlight div, .nav-btn.highlight i {
     color: rgb(43, 122, 182) !important;
 }
+
+.contains-dropdown .v-table__wrapper {
+    overflow: visible;
+}
