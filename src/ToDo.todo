@@ -2,11 +2,13 @@
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
+        ☐ Verificar se está editando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
         Colocar mais opções: 
             ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
+        ☐ Criar com base nos itens da análise (preencher no objeto)
 
 Paciente > Perfil:
     ☐ Verificar se está salvando certinho
@@ -43,12 +45,10 @@ Dentista > Pacientes:
     ☐ Exibir listagem de pacientes (com busca simples):
         ☐ Marcar os que estiverem com mentoria solicitada
         ☐ Ao clicar, envia para a tela do Paciente
-
-
-
--- ----------- DEPOIS ------------------:
-
-    
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ----------- DEPOIS ------------------:    
 Paciente > Consultas:
     ☐ Listar corretamente as consultas
     Exibir informações (com texto por extenso, em baixo):
@@ -114,7 +114,6 @@ Paciente > Tratamento > Histórico:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
-
 Reunião 11/06/2024:
     -- ------------------------------------------ --
     -- ------------------------------------------ --
