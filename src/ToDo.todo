@@ -1,9 +1,12 @@
+Melhorar inputs da IA:
+    ☐ Diagnóstico
+    ☐ Prognóstico
+
 Paciente > Tratamento > Análise:
     ☐ Verificar: tá ficando em branco as vezes, quando vai editar o Intra-bucal
     ☐ Colocar campos de texto aberto (observações e POEF? (radiográficas))
 
 Paciente > Tratamento > Diagnóstico:
-    ✔ Fazer refresh do paciente, quando ele for alterado via API em qualquer uma das abas @done(24-09-08 02:20)
     Verificar quando a análise foi ou não preenchida, para saber se exibe a mensagem "preencha a análise" ou a "não foi possível recomendar um tratamento":
         ☐ Criar coluna "analise_preenchida" na tabela pacientes
         ☐ Verificar se todas as análises foram preenchidas, pra marcar esse booleano
@@ -194,7 +197,6 @@ Reunião 11/06/2024:
     -- ------------------------------------------ --
     Consultas:
         Front-end:
-            ☐ Criar service para as consultas
             ☐ Criar rota para adicionar consulta
             ☐ Criar rota para editar consulta
         API:
@@ -202,14 +204,11 @@ Reunião 11/06/2024:
     -- ------------------------------------------ --
     Tratamento:
         ☐ Início do tratamento: preencher com a data da primeira consulta
-        ☐ Exibir Detalhes clínicos
     -- ------------------------------------------ --
     Tela de Diagnóstico/Prognóstico:
         -- NO: Passar o tratamento para cima da explicação da análise
-        ☐ Montar o texto do diagnóstico, de acordo com os dados da Análise
         Prognóstico:
-            ☐ Deixar opções fixas
-            ☐ Deixar campo aberto para observação
+            ☐ Deixar opções fixas?
     -- ------------------------------------------ --
     Tela de Plano de tratamento:
         ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
@@ -220,25 +219,11 @@ Reunião 11/06/2024:
         Seção "Necessidade de encaminhamentos":
             ☐ Preencher automaticamente a partir da analise
             ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
-    -- ------------------------------------------ --
-    Formulário de bem-vindo:  
-        ☐ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
-    -- ------------------------------------------ --
-    Analises radiográficas:
-        Adicionar campos:
-            ☐ POEF (aberto)
-            ☐ Observações (aberto)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
-Plano de tratamento:
-    ☐ Excluir tudo de "fases de tratamento" (Backend e Front-end)
 Seção "aparatologia":
     ☐ Incluir observações na Aparatologia
-Análise do perfil clínico:
-    ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
-Meios de contato:
-    ☐ (10m) Fazer função para cadastrar novo meio de contato
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --

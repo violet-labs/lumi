@@ -590,7 +590,6 @@ export default {
       await this.getPacienteDetails(this.paciente.id)
     },
     async getPacienteDetails(id) {
-      console.log('getPacienteDetails()')
       const paciente = await getPaciente(id)
       if (paciente) {
         this.paciente = JSON.parse(JSON.stringify(paciente))

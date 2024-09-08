@@ -2,81 +2,74 @@ Reunião 11/06/2024:
 -- ------------------------------------------ --
 (1h) Perfil do paciente:
     Adicionar:
-        ✔ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido) @done(24-09-07 08:53)
-        ✔ RG (no lugar do "objetivo do tratamento") @done(24-06-14 00:18)
-        ✔ Ortodontista @done(24-06-13 23:43)
-        ✔ Nome do pai @done(24-06-14 00:18)
-        ✔ Nome da mãe @done(24-06-14 00:18)
+        ✔ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
+        ✔ RG (no lugar do "objetivo do tratamento")
+        ✔ Ortodontista
+        ✔ Nome do pai
+        ✔ Nome da mãe
         Campo do responsável:
-            ✔ Nome completo @done(24-06-14 00:18)
-            ✔ CPF @done(24-06-14 00:18)
-            ✔ RG @done(24-06-14 00:18)
+            ✔ Nome completo
+            ✔ CPF
+            ✔ RG
     Remover:
-        ✔ Dentista padrão @done(24-06-13 23:43)
-        ✔ Convênio @done(24-06-14 00:18)
-        ✔ Clínica @done(24-06-14 00:18)
-        ✔ Objetivo do tratamento @done(24-06-14 00:18)
-        ✔ Indicado por @done(24-06-14 00:18)
+        ✔ Dentista padrão
+        ✔ Convênio
+        ✔ Clínica
+        ✔ Objetivo do tratamento
+        ✔ Indicado por
 -- ------------------------------------------ --
 Tratamento:
-    ✔ Fazer carousel de imagens abaixo do resumo do tratamento @done(24-06-15 22:25)
+    ✔ Fazer carousel de imagens abaixo do resumo do tratamento
     ☐ Inicio do tratamento: preencher com a data da primeira consulta
 -- ------------------------------------------ --
 Tela de Análise ():
-    ✔ Passar tela para a orientação vertical @done(24-06-11 22:52)
-    ✔ Relatos do paciente vai para o topo @done(24-06-11 22:52)
+    ✔ Passar tela para a orientação vertical
+    ✔ Relatos do paciente vai para o topo
+    ✔ Abrir um input pra digitar, quando selecionar a opção "Outro..."
 -- ------------------------------------------ --
 Tela de Diagnóstico/Prognóstico:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 22:16)
-    ✔ Alterar o nome de "Análise automática" para "Protocolo de Tratamento" @done(24-06-11 22:10)
-    ✔ Alterar o texto para "Solicitar uma mentoria deste caso" (sem especialista) @done(24-06-11 22:11)
-    ✔ Colocar botão de "solicitar análise", grande, no final @done(24-06-11 22:35)
+    ✔ Passar tela para a orientação vertical
+    ✔ Alterar o nome de "Análise automática" para "Protocolo de Tratamento"
+    ✔ Alterar o texto para "Solicitar uma mentoria deste caso" (sem especialista)
+    ✔ Colocar botão de "solicitar análise", grande, no final
     -- NO: Passar o tratamento para cima da explicação da análise
-    ✔ Montar o texto do diagnóstico, de acordo com os dados da Análise @done(24-09-07 10:37)
+    ✔ Montar o texto do diagnóstico, de acordo com os dados da Análise
     Prognóstico:
-        ✔ Passar para o final da tela @done(24-06-11 22:44)
-        ☐ Deixar opções fixas
-        ✔ Deixar campo aberto para observação @done(24-09-07 10:37)
+        ✔ Passar para o final da tela
+        ☐ Deixar opções fixas?
+        ✔ Deixar campo aberto para observação
 -- ------------------------------------------ --
 Tela de Plano de tratamento:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 23:01)
-    ✔ Remover fase atual do tratamento (aumentando a barra de progresso) @done(24-06-11 22:49)
-    ✔ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento" @done(24-06-11 22:52)
-    ✔ Colocar as metas no topo @done(24-06-11 23:01)
-    ✔ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo? - foi colocado em baixo das metas) @done(24-06-11 23:01)
-    ✔ Separar da aparatologia: contenção (colocar na frente) @done(24-06-11 23:02)
-    ✔ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente) @done(24-09-07 12:28)
-    ✔ Remover a descrição das metas terapêuticas @done(24-06-14 00:22)
+    ✔ Passar tela para a orientação vertical
+    ✔ Remover fase atual do tratamento (aumentando a barra de progresso)
+    ✔ Excluir tudo de "fases de tratamento" (commentar no Front-end)
+    ✔ Mudar a seção (não a tela) de "Plano de tratamento" para "Planejamento"
+    ✔ Colocar as metas no topo
+    ✔ Aparatologia em baixo (em baixo das metas, ou em baixo de tudo? - foi colocado em baixo das metas)
+    ✔ Separar da aparatologia: contenção (colocar na frente)
+    ✔ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
+    ✔ Remover a descrição das metas terapêuticas
     ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
     ☐ Deixar um campo aberto
-    Colocar mais uma opção na meta terapêutica: 
-        ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
+    ☐ Incluir observações na Aparatologia
+    Colocar mais opções nas metas terapêuticas: 
+        ☐ "Não foi possível concluir"
+        ☐ "Depende de outra área para tratamento"
     Seção "Necessidade de encaminhamentos":
-        ✔ Passar para o "Plano de tratamento" @done(24-06-11 22:46)
+        ✔ Passar para o "Plano de tratamento"
         ☐ Preencher automaticamente a partir da analise
         ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
 -- ------------------------------------------ --
 Tela do Histórico:
-    ✔ Passar tela para a orientação vertical @done(24-06-11 23:02)
+    ✔ Passar tela para a orientação vertical
 -- ------------------------------------------ --
 Formulário de bem-vindo:  
-    ✔ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir) @done(24-09-07 08:53)
+    ✔ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
 -- ------------------------------------------ --
 Analises radiográficas:
     Adicionar campos:
-        ☐ POEF (aberto)
-        ☐ Observações (aberto)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-Plano de tratamento:
-    ✔ Excluir tudo de "fases de tratamento" (commentar no Front-end) @done(24-09-07 17:29)
-Seção "aparatologia":
-    ☐ Incluir observações na Aparatologia
-Análise do perfil clínico:
-    ☐ (15m) Abrir um input pra digitar, quando selecionar a opção "Outro..."
-Meios de contato:
-    ☐ (10m) Fazer função para cadastrar novo meio de contato
+        ✔ POEF (aberto)
+        ✔ Observações (aberto)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --

@@ -10,6 +10,28 @@ Swal.cAlert = function(html, options = {}) {
     Swal.fire(options)
 }
 
+Swal.loading = function(text = 'Carregando...', options = {}) {
+    const defaultOptions = {
+        html: '<div class="spinner-border text-primary" role="status"></div><br><br>' + text,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        showConfirmButton: false,
+        showCancelButton: false,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        }
+    };
+
+    options = { ...defaultOptions, ...options };
+
+    Swal.fire(options);
+};
+
+Swal.loaded = function() {
+    Swal.close();
+};
+
 Swal.cInfo = function(html, options = {}) {
     const defaultOptions = {
         html,

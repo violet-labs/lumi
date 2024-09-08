@@ -30,9 +30,12 @@
                                 </div>
                             </div> -->
 
-                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0" style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center">
-                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
-                                class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR LINK</span>" na aba "<font-awesome-icon :icon="['fas', 'fa-user']"
+                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0"
+                                style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center">
+                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o
+                                formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
+                                    class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR
+                                    LINK</span>" na aba "<font-awesome-icon :icon="['fas', 'fa-user']"
                                     class="me-1 text-sm" />Perfil".
                             </div>
 
@@ -119,6 +122,10 @@
                                             v-if="isEditing['extraBucal'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
                                             type="text" class="input-sm" v-model="analise.detalhe"
                                             :input="handleAnalisesUpdate" />
+
+                                        <MaterialInput
+                                            v-if="isEditing['extraBucal'] && analise.tipo == 'texto' && !analise.detalhar"
+                                            type="text" class="input-sm" v-model="analise.respostas" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -201,6 +208,10 @@
                                             v-if="isEditing['analisesRadiograficas'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
                                             type="text" class="input-sm" v-model="analise.detalhe"
                                             :input="handleAnalisesUpdate" />
+
+                                        <MaterialInput
+                                            v-if="isEditing['analisesRadiograficas'] && analise.tipo == 'texto' && !analise.detalhar"
+                                            type="text" class="input-sm" v-model="analise.respostas" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -282,6 +293,10 @@
                                             v-if="isEditing['intraBucal'] && (analise.detalhar || analise.selectedResposta == 'detalhe')"
                                             type="text" class="input-sm" v-model="analise.detalhe"
                                             :input="handleAnalisesUpdate" />
+
+                                        <MaterialInput
+                                            v-if="isEditing['intraBucal'] && analise.tipo == 'texto' && !analise.detalhar"
+                                            type="text" class="input-sm" v-model="analise.respostas" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -324,9 +339,11 @@
 .analises-table.extra-bucal tr>td:first-child {
     width: 50%;
 }
+
 .analises-table.intra-bucal tr>td:first-child {
     width: 60%;
 }
+
 .analises-table.analises-radiograficas tr>td:first-child {
     width: 60%;
 }
@@ -389,8 +406,7 @@
 import MaterialInput from '@/components/MaterialInput.vue'
 import { getAnalises, salvarAnalises } from '@/services/tratamentosService'
 import cSwal from "@/utils/cSwal.js"
-
-let originalAnalises = null
+import { deepCompare } from "@/utils.js";
 
 const analises = {
     'Extra-bucal': [
@@ -589,14 +605,9 @@ const analises = {
             respostas: '',
             detalhar: false,
             detalhe: '',
-            titulo_detalhe: 'Especificar...',
-            tipo: 'unica_escolha',
-            alternativas: [
-                { nivel: 'positivo', resposta: 'normal', selecionada: false },
-                { nivel: 'atencao', resposta: 'interposição', selecionada: false },
-                { nivel: 'atencao', resposta: 'anteriorizada', selecionada: false },
-                { nivel: 'atencao', resposta: 'posteriorizada', selecionada: false },
-            ]
+            titulo_detalhe: '',
+            tipo: 'texto',
+            alternativas: [],
         },
     ],
 
@@ -837,6 +848,17 @@ const analises = {
                 { nivel: 'negativo', resposta: 'apresenta sobremordida', selecionada: false },
             ]
         },
+        {
+            id: 258,
+            nivel: 'neutro',
+            analise: 'Observações',
+            respostas: '',
+            detalhar: false,
+            detalhe: '',
+            titulo_detalhe: '',
+            tipo: 'texto',
+            alternativas: [],
+        },
     ],
 
     'Radiográficas': [
@@ -916,6 +938,28 @@ const analises = {
                 { nivel: 'atencao', resposta: 'retraídos', selecionada: false },
             ]
         },
+        {
+            id: 310,
+            nivel: 'neutro',
+            analise: 'POEF',
+            respostas: '',
+            detalhar: false,
+            detalhe: '',
+            titulo_detalhe: '',
+            tipo: 'texto',
+            alternativas: [],
+        },
+        {
+            id: 320,
+            nivel: 'neutro',
+            analise: 'Observações',
+            respostas: '',
+            detalhar: false,
+            detalhe: '',
+            titulo_detalhe: '',
+            tipo: 'texto',
+            alternativas: [],
+        },
     ],
 }
 
@@ -962,7 +1006,9 @@ export default {
             }
         },
         async _salvarAnalises() {
+            cSwal.loading('Salvando as alterações e atualizando diagnóstico...')
             const save = await salvarAnalises(this.analises, this.pacienteId)
+            cSwal.loaded()
 
             if (save) {
                 cSwal.cSuccess('As alterações foram salvas.')
@@ -995,7 +1041,8 @@ export default {
             if (this.isEditing[section]) {
                 cSwal.cConfirm(`Deseja realmente <b>cancelar a edição</b> da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
                     this.isEditing[section] = false
-                    this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
+                    if (this.originalAnalises)
+                        this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
                 })
                 return
             }
