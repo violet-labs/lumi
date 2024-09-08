@@ -36,8 +36,8 @@
           SISTEMA
         </h6>
       </li>
-      <li class="nav-item nav-btn-container text-danger" @click="openLogs">
-        <a href="#" class="nav-btn">
+      <li class="nav-item nav-btn-container text-danger" @click="changeTab('registros')">
+        <a href="#" class="nav-btn" :class="selectedTab == 'registros' ? 'highlight' : ''">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><font-awesome-icon
               :icon="['fas', 'list']" /></div>
           <span>Registros</span>

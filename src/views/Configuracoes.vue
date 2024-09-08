@@ -103,8 +103,7 @@
                         </tbody>
                     </v-table>
 
-                    <EasyDataTable v-if="mentorias.length > 0" :headers="headersRegistros" :items="registros"
-                        @click-row="openPaciente" body-row-class-name="clickable"
+                    <EasyDataTable v-if="mentorias.length > 0" :headers="headersRegistros" :items="registros" body-row-class-name="clickable"
                         header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
                         <template #item-created_at="{ created_at }">

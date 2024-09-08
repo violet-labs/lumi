@@ -1,3 +1,9 @@
+Mensagem em caso de lista vazia:
+    ✔ Pacientes @done(24-09-08 09:25)
+    ✔ Registros @done(24-09-08 09:25)
+    ✔ Mentorias @done(24-09-08 09:25)
+    ☐ Dentistas
+
 ☐ Puxar clinica junto com o paciente
 
 ☐ CRUD paciente

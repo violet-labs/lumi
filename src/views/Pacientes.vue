@@ -71,12 +71,24 @@
       </div>
     </div> -->
 
-    <div class="w-100 text-center mt-4">
-      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)" v-model="search">
+    <div v-if="search != '' || pacientes.length > 0" class="w-100 text-center mt-4">
+      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
+        v-model="search">
     </div>
 
-    <EasyDataTable :headers="headers" :items="pacientes" @click-row="openPaciente" body-row-class-name="clickable"
-      header-item-class-name="table-header-item" body-item-class-name="table-body-item">
+    <v-table v-if="pacientes.length == 0" class="m-3">
+      <tbody>
+        <tr>
+          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+            <span v-if="search == ''">Ainda não existem pacientes cadastrados.</span>
+            <span v-if="search != ''">A busca não encontrou nenhum paciente.</span>
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
+
+    <EasyDataTable v-if="pacientes.length > 0" :headers="headers" :items="pacientes" @click-row="openPaciente"
+      body-row-class-name="clickable" header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
       <template #header-status="header">
         <div class="text-center w-100">
@@ -107,19 +119,22 @@
 
       <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }">
         <div class="align-middle text-center text-sm">
-          <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status_tratamento)" v-if="status_tratamento !== 'ATIVO'">{{
-            statusText(status_tratamento)
+          <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status_tratamento)"
+            v-if="status_tratamento !== 'ATIVO'">{{
+              statusText(status_tratamento)
             }}</span>
 
-          <div class="d-flex flex-column align-items-center justify-content-center mt-2" v-if="status_tratamento === 'ATIVO'">
+          <div class="d-flex flex-column align-items-center justify-content-center mt-2"
+            v-if="status_tratamento === 'ATIVO'">
             <div class="progress progress-md w-100 w-md-70">
               <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_prevista) + '%' }">
-                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
+                  aria-valuemax="100"></div>
               </div>
             </div>
             <span class="me-2 text-xs font-weight-bold"
               style="margin-top: -19px; background: rgba(255,255,255,0.5); border-radius: 5px; font-weight: 700 !important; padding: 0px 5px;">{{
-              getProgresso(data_inicio_tratamento, data_final_prevista) }}%</span>
+                getProgresso(data_inicio_tratamento, data_final_prevista) }}%</span>
           </div>
         </div>
       </template>
@@ -163,7 +178,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Novo paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ref="closeModalNovoPaciente"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            ref="closeModalNovoPaciente"></button>
         </div>
         <div class="modal-body">
           <div class="row">
