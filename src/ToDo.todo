@@ -12,10 +12,10 @@ CRUD paciente:
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
-        ☐ Verificar se está editando certinho
-        ☐ Criar com base nos itens da análise (preencher no objeto)
         Colocar mais opções: 
             ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
+        ☐ Verificar se está editando certinho
+        ☐ Criar com base nos itens da análise (preencher no objeto)
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)

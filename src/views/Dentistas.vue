@@ -61,7 +61,7 @@
   </div>
 
 
-  <div class="modal" tabindex="-1" id="modalNovoDentista">
+  <div class="modal" tabindex="-1" id="modalNovoDentista" ref="modalNovoDentista">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -71,38 +71,43 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-12">
+            <div class="col-md-7">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
                 Nome:
               </label>
-              <input type="text" class="form-control" v-model="novoDentista.nome">
+
+              <MaterialInput type="text" v-model="novoDentista.nome" ref="nome"
+                :input="function ($event) { capitalizeAll($event) }" />
+            </div>
+
+            <div class="col-md-5">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'hospital']" /></span>
+                Clínica:
+              </label>
+              <select name="" id="" class="form-select" v-model="novoDentista.clinica_id">
+                <option value="1">Clinica X</option>
+                <option value="2">Clinica Y</option>
+                <option value="3">Clinica Z</option>
+              </select>
             </div>
 
             <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
-                Celular:
+                E-mail:
               </label>
-              <input type="text" class="form-control">
+              <MaterialInput type="email" v-model="novoDentista.email" />
             </div>
             <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1">
                   <font-awesome-icon :icon="['fas', 'tooth']" />
                 </span>
-                Especialidade:
+                Senha:
               </label>
-              <select class="form-select" aria-label="Default select example">
-                <option hidden selected>Selecionar...</option>
-                <option value="1">Ortodontia</option>
-                <option value="2">Endodontia</option>
-                <option value="3">Clínico geral</option>
-                <option value="4">Odontopediatria</option>
-                <option value="5">Periodontia</option>
-                <option value="6">Protese dentária</option>
-                <option value="7">Cirurgia bucomaxilofacial</option>
-              </select>
+              <MaterialInput type="password" v-model="novoDentista.senha" />
             </div>
             <div class="col-12 mt-3">
               <label>
@@ -114,7 +119,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="addNovoDentista">Adicionar</button>
+          <button type="button" class="btn btn-primary" @click="confirmAddNovoDentista">Adicionar</button>
         </div>
       </div>
     </div>
@@ -122,7 +127,8 @@
 </template>
 
 <script>
-
+import cSwal from "@/utils/cSwal.js"
+import MaterialInput from "@/components/MaterialInput.vue";
 import { mapMutations, mapState } from "vuex";
 import DentistsTable from "./components/DentistsTable.vue";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
@@ -203,23 +209,34 @@ var novoDentista = {
 export default {
   name: "Dentistas",
   components: {
+    MaterialInput,
     DentistsTable,
     LumiSidenav,
     SidenavListDentistas,
   },
   async mounted() {
+
+    this.$refs.modalNovoDentista.addEventListener('shown.bs.modal', event => {
+      this.$refs.nome.getInput().focus();
+    })
+
     this.updateList()
   },
   methods: {
+    capitalizeAll($event) {
+      event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
+    },
     async updateList(search = '') {
       // this.dentistas = await searchDentistas(search)
     },
-    async addNovoDentista() {
-      await addNovoDentista({
-        nome: this.novoDentista.nome,
+    confirmAddNovoDentista() {
+      cSwal.cConfirm('Deseja realmente adicionar este ortodontista?', async () => {
+        await addNovoDentista({
+          nome: this.novoDentista.nome,
+        })
+        await this.updateList(this.search)
+        this.$refs.closeModalNovoDentista.click()
       })
-      await this.updateList(this.search)
-      this.$refs.closeModalNovoDentista.click()
     },
     statusClass(status) {
       const classMap = {
