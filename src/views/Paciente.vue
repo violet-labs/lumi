@@ -86,7 +86,8 @@
                           <MaterialInput type="text" label="RG" v-model="paciente.rg" id="paciente_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf" mask="###.###.###-##" />
+                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf"
+                            mask="###.###.###-##" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
@@ -118,8 +119,8 @@
                           <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg" id="responsavel_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf" mask="###.###.###-##"
-                            id="responsavel_cpf" />
+                          <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf"
+                            mask="###.###.###-##" id="responsavel_cpf" />
                         </div>
                       </div>
                     </div>
@@ -139,7 +140,7 @@
                         <tbody>
                           <tr v-for="contato in paciente.contatos" v-bind:key="contato.id">
                             <td>
-                              <a href="#" class="hoverable">
+                              <a :href="getContatoHref(contato.tipo, contato.contato)" class="hoverable">
                                 <span class="d-inline-block text-center" style="width: 30px;">
 
                                   <font-awesome-icon v-if="contato.tipo != 'telefone'"
@@ -160,27 +161,34 @@
                               <div class="d-flex flex-row align-center">
                                 <div class="dropdown text-center dropup">
                                   <span data-bs-toggle="dropdown" class="pointer dropdown-toggle">
-                                    <font-awesome-icon :icon="['fas', 'mobile-screen-button']"
+                                    <font-awesome-icon v-if="novoContato.tipo == 'email'" :icon="['fas', 'envelope']"
                                       style="font-size: 15pt; margin-right: 3px;" />
+                                    <v-icon v-if="novoContato.tipo == 'telefone'"
+                                      style="font-size: 17pt;">mdi-phone</v-icon>
+                                    <font-awesome-icon v-if="novoContato.tipo == 'celular'"
+                                      :icon="['fas', 'mobile-screen-button']"
+                                      style="font-size: 15pt; margin-right: 3px;" />
+                                    <font-awesome-icon v-if="novoContato.tipo == 'whatsapp'" :icon="['fab', 'whatsapp']"
+                                      class="text-success" style="font-size: 15pt;" />
                                   </span>
                                   <ul class="dropdown-menu dropdown-menu-icons hidden">
-                                    <li title="E-mail">
+                                    <li title="E-mail" @click="selectMeioContato('email')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <font-awesome-icon icon="fa-solid fa-envelope" style="font-size: 14pt;" />
                                       </a>
                                     </li>
-                                    <li title="Telefone">
+                                    <li title="Telefone" @click="selectMeioContato('telefone')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <v-icon style="font-size: 17pt;">mdi-phone</v-icon>
                                       </a>
                                     </li>
-                                    <li title="Celular">
+                                    <li title="Celular" @click="selectMeioContato('celular')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <font-awesome-icon :icon="['fas', 'mobile-screen-button']"
                                           style="font-size: 15pt; margin-right: 3px;" />
                                       </a>
                                     </li>
-                                    <li title="WhatsApp">
+                                    <li title="WhatsApp" @click="selectMeioContato('whatsapp')">
                                       <a class="dropdown-item" href="#">
                                         <font-awesome-icon :icon="['fab', 'whatsapp']" class="text-success"
                                           style="font-size: 15pt;" />
@@ -188,16 +196,22 @@
                                     </li>
                                   </ul>
                                 </div>
-                                <input type="text" class="form-control input-sm"
-                                  style="display: inline-block; width: calc(100% - 30px);">
+
+                                <MaterialInput type="text" class="form-control input-sm"
+                                  style="display: inline-block; width: calc(100% - 30px);" v-model="novoContato.contato"
+                                  ref="contatoInput" :mask="novoContatoMask" />
+
                               </div>
                             </td>
                             <td style="vertical-align: middle; padding-top: 5px;">
-                              <input type="text" class="form-control input-sm"
-                                style="display: inline; width: calc(100% - 51px);">
-                              <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;">
+
+                              <MaterialInput type="text" class="form-control input-sm"
+                                style="display: inline; width: calc(100% - 51px);" v-model="novoContato.descricao" />
+                              <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;"
+                                @click="adicionarContato">
                                 <font-awesome-icon :icon="['fas', 'plus']" />
                               </button>
+
                             </td>
                           </tr>
                         </tbody>
@@ -216,7 +230,8 @@
                           <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
                             @click="visualizarFormulario">VISUALIZAR</button>
                           <button class="btn btn-primary mb-0" @click="handleFormLinkBtn">
-                            <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'" style="font-size: 13pt;"></i>
+                            <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'"
+                              style="font-size: 13pt;"></i>
                             <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK'
                               }}</span>
                           </button>
@@ -228,8 +243,8 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep" :input="getEndereco" mask="#####-###"
-                            id="paciente_enderecoCep" />
+                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep" :input="getEndereco"
+                            mask="#####-###" id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Logradouro" type="text" v-model="paciente.endereco_logradouro"
@@ -276,9 +291,11 @@
 
                         <div v-if="!formularioRespondido || detalhesPessoais.length == 0"
                           style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
-                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário, utilize o
-                          botão "<font-awesome-icon :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']" class="me-1 text-sm" /><span
-                            class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
+                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário,
+                          utilize o
+                          botão "<font-awesome-icon :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']"
+                            class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp ?
+                              'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
                         </div>
 
                         <div v-if="paciente.formularioRespondido">
@@ -397,6 +414,7 @@
 
 <script>
 
+import { phoneMask } from "@/utils.js";
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
 // import ProfileCard from "./components/ProfileCard.vue";
@@ -405,7 +423,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
-import { getPaciente, updatePaciente } from "@/services/pacientesService"
+import { getPaciente, updatePaciente, adicionarMeioContato } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
 const body = document.getElementsByTagName("body")[0];
@@ -429,6 +447,11 @@ export default {
   },
   data() {
     return {
+      novoContato: {
+        tipo: 'whatsapp',
+        contato: '',
+        descricao: '',
+      },
       showMenu: false,
       paciente,
       originalPaciente,
@@ -438,6 +461,11 @@ export default {
     };
   },
   computed: {
+    novoContatoMask() {
+      return [
+        'telefone', 'celular', 'whatsapp'
+      ].includes(this.novoContato.tipo) ? phoneMask(this.novoContato.contato) : ''
+    },
     possuiWhatsapp() {
       return false
       // return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
@@ -469,17 +497,53 @@ export default {
     }
   },
   methods: {
+    clearNovoContato() {
+      this.novoContato.contato = ''
+      this.novoContato.descricao = ''
+    },
+    getContatoHref(tipo, contato) {
+      switch (tipo) {
+        case 'email':
+          return `mailto:${contato}`;
+        case 'whatsapp':
+          return `https://wa.me/55${contato.replace(/\D+/g, '')}`;
+        case 'telefone':
+        case 'celular':
+          return `tel:${contato.replace(/\D+/g, '')}`;
+        default:
+          return '#';
+      }
+    },
+    async adicionarContato() {
+      cSwal.loading('Adicionando contato...')
+      const add = await adicionarMeioContato(this.paciente.id, this.novoContato);
+
+      if (add) {
+        await this.refreshPaciente()
+        cSwal.loaded()
+        this.clearNovoContato()
+      }
+      else {
+        cSwal.loaded()
+        cSwal.cError('Ocorreu um erro ao salvar o contato.')
+      }
+      
+    },
+    selectMeioContato(tipo) {
+      this.novoContato.tipo = tipo
+      this.$refs.contatoInput.getInput().focus()
+    },
     confirmSavePaciente() {
       cSwal.cConfirm('Deseja realmente salvar as alterações?', async () => {
-          const update = await updatePaciente(this.paciente)
+        const update = await updatePaciente(this.paciente)
 
-          if (update) {
-            cSwal.cSuccess('As alterações foram salvas.')
-            await this.refreshPaciente()
-          }
-          else {
-            cSwal.cError('Ocorreu um erro ao salvar as alterações.')
-          }
+        if (update) {
+          cSwal.cSuccess('As alterações foram salvas.')
+          await this.refreshPaciente()
+        }
+        else {
+          cSwal.cError('Ocorreu um erro ao salvar as alterações.')
+        }
       })
     },
     async handleFormLinkBtn() {

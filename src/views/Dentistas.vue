@@ -7,13 +7,16 @@
     <div class="row">
       <div class="col-12">
 
-
-        <div v-if="search != '' || dentistas.length > 0" class="w-100 text-center mt-4">
+        <div v-if="isLoading.dentistasList" class="w-100 text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+          </div>
+        </div>
+        <div v-if="!isLoading.dentistasList && (search != '' || dentistas.length > 0)" class="w-100 text-center mt-4">
           <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
             v-model="search">
         </div>
 
-        <v-table v-if="dentistas.length == 0" class="m-3">
+        <v-table v-if="!isLoading.dentistasList && dentistas.length == 0" class="m-3">
           <tbody>
             <tr>
               <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
@@ -161,7 +164,9 @@ export default {
       event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
     },
     async updateList(search = '') {
+      this.isLoading.dentistasList = true
       this.dentistas = await searchDentistas(search)
+      this.isLoading.dentistasList = false
     },
     confirmAddNovoDentista() {
       cSwal.cConfirm('Deseja realmente adicionar este ortodontista?', async () => {
@@ -197,6 +202,9 @@ export default {
   },
   data() {
     return {
+      isLoading: {
+        dentistasList: false
+      },
       tableheaders,
       search,
       novoDentista: {},

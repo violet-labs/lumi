@@ -1,19 +1,23 @@
+✔ Corrigir timezone @done(24-09-08 16:12)
+
+☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
+
 ☐ Listar clínicas globalmente
 ☐ Criar a primeira clínica manualmente
 ☐ Criar função getClinica from token
 ☐ Fazer modal gobal de buscar clínica
 ☐ Fazer modal global de buscar paciente
 ☐ Fazer modal global de buscar ortodontista
-✔ Corrigir dropup do seletor do Meio de Contato @done(24-09-08 14:20)
 
-Mensagem de carregando nas listagens:
-    ☐ Pacientes
-    ☐ Dentistas
+Limpar formulários após utilizá-los, se necessário:
+    ☐ Novo paciente
+    ☐ Novo dentista
+    ☐ Pacientes > Meio de contato
 
 CRUD meio contato:
-    ☐ Verificar se o model está correto
-    ☐ Validar inserção
-    ☐ Fazer state do tipo selecionado para novoContato
+    ✔ Verificar se o model está correto @done(24-09-08 16:01)
+    ✔ Validar inserção @done(24-09-08 16:12)
+    ✔ Fazer state do tipo selecionado para novoContato @done(24-09-08 16:23)
     CRUD paciente:
         ☐ Fazer inserir celular/whatsapp
 ☐ CRUD metas terapeuticas

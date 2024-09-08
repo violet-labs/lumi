@@ -71,12 +71,17 @@
       </div>
     </div> -->
 
-    <div v-if="search != '' || pacientes.length > 0" class="w-100 text-center mt-4">
+    <div v-if="isLoading.pacientesList" class="w-100 text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+      </div>
+    </div>
+
+    <div v-if="!isLoading.pacientesList && (search != '' || pacientes.length > 0)" class="w-100 text-center mt-4">
       <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
         v-model="search">
     </div>
 
-    <v-table v-if="pacientes.length == 0" class="m-3">
+    <v-table v-if="!isLoading.pacientesList && pacientes.length == 0" class="m-3">
       <tbody>
         <tr>
           <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
@@ -344,7 +349,9 @@ export default {
     },
 
     async updateList(search = '') {
+      this.isLoading.pacientesList = true
       this.pacientes = await searchPacientes(search)
+      this.isLoading.pacientesList = false
     },
     statusClass(status) {
       const classMap = {
@@ -423,6 +430,9 @@ export default {
   },
   data() {
     return {
+      isLoading: {
+        pacientesList: false
+      },
       nomeNovoPaciente,
       headers,
       cfg,

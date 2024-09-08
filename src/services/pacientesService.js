@@ -1,5 +1,24 @@
 import axios from '@/services/axios'
 
+export async function adicionarMeioContato(paciente_id, contato) {
+    try {
+        const response = await axios.post('/contatos-pacientes', {
+            paciente_id,
+            ...contato
+        });
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao salvar meio de contato:', error);
+    }
+
+    return false;
+}
+
 export async function salvarDiagnostico(paciente_id, diagnostico) {
     try {
         const response = await axios.post('/pacientes/salvar-diagnostico', {
