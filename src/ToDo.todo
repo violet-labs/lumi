@@ -2,7 +2,7 @@
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
-        ☐ Criar com base os itens da análise (preencher no objeto)
+        ☐ Criar com base nos itens da análise (preencher no objeto)
         Colocar mais opções: 
             ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
     Necessidade de encaminhamentos:
@@ -21,12 +21,6 @@ Dentistas:
     ☐ Fazer funcionar botão de Novo Dentista
     ☐ Listar dentistas do banco de dados
     ☐ Fazer funcionar a pesquisa
-        Criar objeto "Clinica":
-            Criar model:
-                ☐ id
-                ☐ nome
-                ☐ endereco
-            ☐ Criar migration
         ☐ Criar modal:
             ☐ Criar listagem de clínicas
             ☐ Criar opção para adicionar
@@ -52,29 +46,7 @@ Dentista > Pacientes:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- ----------- DEPOIS ------------------:
-    
-
-
-
-
-
-
-
-
 
     
 Paciente > Consultas:
@@ -138,39 +110,7 @@ Paciente > Tratamento > Histórico:
         ☐ Consulta
 
 ☐ Fazer funcão para alterar senha
-
-Implementar Clinica:
-    Colocar clinica_id nas tabelas:
-        ☐ pacientes
-        ☐ dentistas
-        ☐ contas_receber
-        ☐ contas_pagar
-    Colocar clinica_id nos models:
-        ☐ Paciente
-        ☐ Dentista
-        ☐ Conta Receber
-        ☐ Conta Pagar
-    Criar relação entre Clinica e os Models:
-        ☐ Paciente
-        ☐ Dentista
-        ☐ Conta Receber
-        ☐ Conta Pagar
-
-
-
-
-
-
-
-
-
-
 ☐ Verificar o footer que não tá aparecendo o texto
-
-
-
-
-
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
