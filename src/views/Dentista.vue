@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nova senha" type="password" v-model="dentista.novaSenha"
-                            id="dentista_cpf" />
+                            placeholder="********" id="dentista_cpf" />
                         </div>
                       </div>
 
@@ -110,12 +110,15 @@
                       <hr class="horizontal dark" />
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
-                          title="Gerenciar meios de contato" /></p>
+                          title="Gerenciar meios de contato" @click="toggleEditMode('meiosContatos')" />
+                          <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2" @click="toggleEditMode('meiosContatos')">(Editando)</span>
+                        </p>
                       <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>
                           <tr>
                             <th><label>Contato</label></th>
                             <th style="width: 50%;"><label>Descrição</label></th>
+                            <th></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -136,6 +139,13 @@
                               </a>
                             </td>
                             <td>{{ contato.descricao }}</td>
+                            <td>
+                              <button v-if="isEditing.meiosContatos" class="btn btn-vsm btn-sm btn-danger" @click="excluirContato(contato.id, contato.tipo)">
+                                <font-awesome-icon
+                                  :icon="['fas', 'trash']"
+                                />
+                              </button>
+                            </td>
                           </tr>
                           <tr>
                             <td style="vertical-align: middle;">
@@ -194,6 +204,7 @@
                               </button>
 
                             </td>
+                            <td></td>
                           </tr>
                         </tbody>
                       </v-table>
@@ -340,10 +351,10 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
-import { getDentista, updateDentista, adicionarMeioContato } from "@/services/dentistasService"
+import { getDentista, updateDentista, adicionarMeioContato, excluirMeioContato } from "@/services/dentistasService"
 import cSwal from "@/utils/cSwal.js"
 
-const body = document.getElementsByTagName("body")[0];
+var isEditing = []
 
 var dentista = {
   pacientes_count: '-',
@@ -374,6 +385,7 @@ export default {
   },
   data() {
     return {
+      isEditing,
       novoContato: {
         tipo: 'whatsapp',
         contato: '',
@@ -422,6 +434,9 @@ export default {
     }
   },
   methods: {
+    toggleEditMode(section) {
+      this.isEditing[section] = !this.isEditing[section];
+    },
     clearNovoContato() {
       this.novoContato.contato = ''
       this.novoContato.descricao = ''
@@ -454,6 +469,27 @@ export default {
       }
 
     },
+
+    excluirContato(id, tipo) {
+      if (tipo == 'whatsapp')
+        tipo = 'WhatsApp'
+      else if (tipo == 'email')
+        tipo = 'e-mail'
+
+      cSwal.cConfirm('Deseja realmente excluir este ' + tipo + '?', async () => {
+        cSwal.loading('Excluindo contato...')
+        const del = await excluirMeioContato(id)
+        if (del) {
+          await this.refreshDentista({ onlyContatos: true })
+          cSwal.loaded()
+        }
+        else {
+          cSwal.loaded()
+          cSwal.cError('Ocorreu um erro ao excluir o meio de contato')
+        }
+      })
+    },
+
     selectMeioContato(tipo) {
       this.novoContato.tipo = tipo
       this.$refs.contatoInput.getInput().focus()

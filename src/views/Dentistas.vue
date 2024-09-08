@@ -51,6 +51,10 @@
             </div>
           </template>
 
+          <template #item-created_at="{ created_at }">
+            {{ $filters.dateTime(created_at) }}
+          </template>
+
         </EasyDataTable>
       </div>
     </div>
@@ -137,6 +141,7 @@ const tableheaders = [
   { text: "CLÍNICA", value: "clinica.nome", sortable: true },
   { text: "PACIENTES", value: "pacientes_count", sortable: true,/*  align: 'center' */ },
   { text: "E-MAIL", value: "user.email", sortable: true },
+  { text: "CADASTRADO EM", value: "created_at", sortable: true },
 ];
 
 var dentistas = []

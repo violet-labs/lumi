@@ -19,6 +19,22 @@ export async function adicionarMeioContato(paciente_id, contato) {
     return false;
 }
 
+export async function excluirMeioContato(id) {
+    try {
+        const response = await axios.delete('/contatos-pacientes/' + id);
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao excluir meio de contato:', error);
+    }
+
+    return false;
+}
+
 export async function salvarDiagnostico(paciente_id, diagnostico) {
     try {
         const response = await axios.post('/pacientes/salvar-diagnostico', {

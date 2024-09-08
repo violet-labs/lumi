@@ -1037,6 +1037,18 @@ export default {
                     editingSectionStr = 'ANÁLISES RADIOGRÁFICAS'
                     break;
             }
+            let togglingSectionStr = ''
+            switch (section) {
+                case 'extraBucal':
+                    togglingSectionStr = 'EXTRA-BUCAL'
+                    break;
+                case 'intraBucal':
+                    togglingSectionStr = 'INTRA-BUCAL'
+                    break;
+                case 'analisesRadiograficas':
+                    togglingSectionStr = 'ANÁLISES RADIOGRÁFICAS'
+                    break;
+            }
 
             if (this.isEditing[section]) {
                 cSwal.cConfirm(`Deseja realmente <b>cancelar a edição</b> da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
@@ -1056,8 +1068,13 @@ export default {
 
             this.isEditing[section] = !this.isEditing[section];
 
+            // Se tiver cancelando a edição, volta a apresentar o objeto original na tela (perde as alterações)
             if (!this.isEditing[section]) {
                 this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
+            }
+            // Se tiver entrando em modo de edição
+            else {
+                cSwal.cAlert('<div style="text-align: justify;">Você abriu o modo de edição da seção <b>' + togglingSectionStr + '</b>.<br><br>Quando as alterações forem salvas, nosso sistema reescreverá o diagnóstico e o prognóstico do paciente, e também poderá definir novas sugestões de tratamento para este caso.</div>')
             }
         },
         handleAnalisesUpdate() {

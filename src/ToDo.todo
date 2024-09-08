@@ -9,10 +9,6 @@
 ☐ Fazer modal gobal de buscar clínica
 ☐ Fazer modal global de buscar paciente
 ☐ Fazer modal global de buscar ortodontista
-
-Limpar formulários após utilizá-los, se necessário:
-    ☐ Novo paciente
-    ☐ Novo dentista
     
 ☐ CRUD metas terapeuticas
 
@@ -39,10 +35,6 @@ Dentistas:
             ☐ Total de dentistas
             ☐ Total de pacientes
             ☐ Listagem de dentistas
-
-Dentista > Detalhes:
-    ☐ Fazer funcionar os meios de contato (copiar de "Paciente", pra facilitar)
-    ☐ Adicionar endereço da clínica
 
 Dentista > Pacientes:
     ☐ Exibir listagem de pacientes (com busca simples):

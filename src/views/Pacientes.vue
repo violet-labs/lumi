@@ -119,7 +119,7 @@
       </template>
 
       <template #item-created_at="{ created_at }">
-        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateDmy(created_at) }}</p>
+        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
       </template>
 
       <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }">

@@ -19,6 +19,22 @@ export async function adicionarMeioContato(dentista_id, contato) {
     return false;
 }
 
+export async function excluirMeioContato(id) {
+    try {
+        const response = await axios.delete('/contatos-dentistas/' + id);
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao excluir meio de contato:', error);
+    }
+
+    return false;
+}
+
 export async function addNovoDentista(dentista) {
     const response = await axios.post('/dentistas', dentista)
 
