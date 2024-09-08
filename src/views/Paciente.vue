@@ -469,7 +469,7 @@ export default {
   },
   methods: {
     confirmSavePaciente() {
-      cSwal.clickConfirm('Deseja realmente salvar as alterações?', async () => {
+      cSwal.cConfirm('Deseja realmente salvar as alterações?', async () => {
           await updatePaciente(this.paciente)
       })
     },
@@ -602,10 +602,6 @@ export default {
         this.$router.push('/pacientes')
       }
     },
-
-    async savePaciente() {
-      await updatePaciente(paciente)
-    }
   },
 
   async created() {

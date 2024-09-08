@@ -64,7 +64,7 @@
         <div v-if="selectedTab == 'mentorias'" class="p-0 container-fluid">
             <div class="row mb-4">
                 <div class="col-lg-12 position-relative z-index-2">
-                    <v-table class="m-3">
+                    <v-table v-if="mentorias.length == 0" class="m-3">
                         <tbody>
                             <tr>
                                 <td class="bg-gradient-light text-dark text-center"
@@ -92,7 +92,7 @@
         <div v-if="selectedTab == 'registros'" class="p-0 container-fluid">
             <div class="row mb-4">
                 <div class="col-lg-12 position-relative z-index-2">
-                    <v-table class="m-3">
+                    <v-table v-if="registros.length == 0" class="m-3">
                         <tbody>
                             <tr>
                                 <td class="bg-gradient-light text-dark text-center"
@@ -103,7 +103,7 @@
                         </tbody>
                     </v-table>
 
-                    <EasyDataTable v-if="mentorias.length > 0" :headers="headersRegistros" :items="registros" body-row-class-name="clickable"
+                    <EasyDataTable v-if="registros.length > 0" :headers="headersRegistros" :items="registros" body-row-class-name="clickable"
                         header-item-class-name="table-header-item" body-item-class-name="table-body-item">
 
                         <template #item-created_at="{ created_at }">
