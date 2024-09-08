@@ -663,15 +663,16 @@ export default {
         ...options
       }
       const paciente = await getPaciente(id)
-      console.log('id:', id)
-      console.log('paciente:', paciente)
-
       if (paciente && !options.onlyContatos) {
         this.paciente = JSON.parse(JSON.stringify(paciente))
         this.originalPaciente = JSON.parse(JSON.stringify(paciente))
       }
       else if (paciente && options.onlyContatos) {
         this.paciente.contatos = paciente.contatos
+        this.originalPaciente = {
+          ...this.originalPaciente,
+          contatos: paciente.contatos,
+        }
       }
       else if (id) {
         this.$router.push('/pacientes')

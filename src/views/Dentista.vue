@@ -568,6 +568,10 @@ export default {
       }
       else if (dentista && options.onlyContatos) {
         this.dentista.contatos = dentista.contatos
+        this.originalDentista = {
+          ...this.originalDentista,
+          contatos: dentista.contatos,
+        }
       }
     },
   },

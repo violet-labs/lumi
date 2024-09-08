@@ -89,17 +89,17 @@
               </select>
             </div>
 
-            <div class="col-md-6 mt-3">
+            <div class="col-md-7 mt-3">
               <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'envelope']" /></span>
                 E-mail:
               </label>
               <MaterialInput type="email" v-model="novoDentista.email" />
             </div>
-            <div class="col-md-6 mt-3">
+            <div class="col-md-5 mt-3">
               <label>
                 <span class="me-1">
-                  <font-awesome-icon :icon="['fas', 'tooth']" />
+                  <font-awesome-icon :icon="['fas', 'lock']" />
                 </span>
                 Senha:
               </label>
@@ -170,7 +170,17 @@ export default {
     },
     confirmAddNovoDentista() {
       cSwal.cConfirm('Deseja realmente adicionar este ortodontista?', async () => {
-        await addNovoDentista(this.novoDentista)
+        cSwal.loading('Adicionando ortodontista...')
+        const add = await addNovoDentista(this.novoDentista)
+        cSwal.loaded()
+
+        if (add) {
+          cSwal.cSuccess('O ortodontista foi adicionado.')
+        }
+        else {
+          cSwal.cError('Ocorreu um erro ao adicionar o ortodontista.')
+        }
+
         await this.updateList(this.search)
         this.$refs.closeModalNovoDentista.click()
       })
