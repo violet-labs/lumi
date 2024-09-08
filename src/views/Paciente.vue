@@ -86,7 +86,7 @@
                           <MaterialInput type="text" label="RG" v-model="paciente.rg" id="paciente_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf" />
+                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf" mask="###.###.###-##" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
@@ -118,7 +118,7 @@
                           <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg" id="responsavel_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf"
+                          <MaterialInput label="CPF" type="text" v-model="paciente.responsavel_cpf" mask="###.###.###-##"
                             id="responsavel_cpf" />
                         </div>
                       </div>
@@ -228,7 +228,7 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep" :input="getEndereco"
+                          <MaterialInput label="CEP" type="text" v-model="paciente.endereco_cep" :input="getEndereco" mask="#####-###"
                             id="paciente_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
@@ -237,7 +237,7 @@
                         </div>
                         <div class="col-md-2 mb-2">
                           <MaterialInput label="Nº" type="text" v-model="paciente.endereco_numero"
-                            id="paciente_enderecoNumero" />
+                            id="paciente_enderecoNumero" ref="endereco_numero" />
                         </div>
                         <div class="col-md-4">
                           <MaterialInput label="Complemento" type="text" v-model="paciente.endereco_complemento"
@@ -520,18 +520,10 @@ export default {
       return /^\d{8}$/.test(cep.replace(/[^\d]+/g, ""))
     },
 
-    zipCodeMask(value) {
-      if (!value) return ""
-      value = value.replace(/\D/g, '')
-      value = value.replace(/(\d{5})(\d)/, '$1-$2')
-      return value
-    },
-
     async getEndereco(event) {
       clearTimeout(this.timeout);
       this.timeout = setTimeout(async () => {
         var cep = event.target.value
-        this.paciente.endereco_cep = this.zipCodeMask(cep)
         cep = this.paciente.endereco_cep
 
         if (!this.validarCep(cep))
@@ -544,6 +536,9 @@ export default {
         this.paciente.endereco_logradouro = enderecoInfo.street
         this.paciente.endereco_cidade = enderecoInfo.city
         this.paciente.endereco_estado = enderecoInfo.state
+
+        if (!this.paciente.endereco_numero)
+          this.$refs.endereco_numero.getInput().focus();
       }, 50);
     },
 

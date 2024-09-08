@@ -30,7 +30,8 @@
           <span class="text-sm" style="margin-top: 11px;">com <strong>3 de 6</strong> metas concluídas</span>
         </div>
       </div>
-      <div class="col-sm-6 col-md-4 py-1 py-md-3 px-2 text-center" v-if="paciente.status_tratamento != 'ATIVO'">
+
+      <div class="col-md-6 py-1 py-md-3 px-2 text-center" v-if="paciente.status_tratamento != 'ATIVO'">
         <div class="d-flex flex-column w-100 p-0 m-0">
           <label for="">Status</label>
           <span class="badge badge-sm" :class="statusClass(paciente.status_tratamento)"

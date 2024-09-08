@@ -1,13 +1,7 @@
 Mensagem em caso de lista vazia:
-    ✔ Pacientes @done(24-09-08 09:25)
-    ✔ Registros @done(24-09-08 09:25)
-    ✔ Mentorias @done(24-09-08 09:25)
     ☐ Dentistas
 
-✔ Puxar clinica junto com o paciente @done(24-09-08 11:10)
-
 CRUD paciente:
-    ✔ Esconder tela do paciente, caso ele não existir (redirecionar para /pacientes) @done(24-09-08 11:10)
     ☐ Fazer inserir celular/whatsapp
 ☐ CRUD dentistas
 ☐ CRUD perfil
@@ -27,13 +21,8 @@ Paciente > Tratamento > Plano de tratamento:
         ☐ Criar com base nos itens da análise (preencher no objeto)
 
 Paciente > Perfil:
-    ☐ Verificar se está salvando certinho
-    ☐ Verificar quais campos precisa remover/retirar (do front e do back-end)
     Funcionalidade de adicionar meio de contato:
         ☐ Criar função de inserir
-    Detalhes pessoais:
-        ☐ Exibir apenas os pessoais (esconder os clínicos)
-        ☐ Verificar por que está aparecendo só 1
 
 Dentistas:
     ☐ Fazer funcionar botão de Novo Dentista
