@@ -1,21 +1,5 @@
 ☐ Permitir editar foto de perfil do Paciente
 
-Melhorar inputs da IA:
-    ☐ Diagnóstico
-    ☐ Prognóstico
-
-Paciente > Tratamento > Análise:
-    ☐ Verificar: tá ficando em branco as vezes, quando vai editar o Intra-bucal
-    ☐ Colocar campos de texto aberto (observações e POEF? (radiográficas))
-
-Paciente > Tratamento > Diagnóstico:
-    Verificar quando a análise foi ou não preenchida, para saber se exibe a mensagem "preencha a análise" ou a "não foi possível recomendar um tratamento":
-        ☐ Criar coluna "analise_preenchida" na tabela pacientes
-        ☐ Verificar se todas as análises foram preenchidas, pra marcar esse booleano
-    Melhorar a apresentação:
-        ☐ Diagnóstico
-        ☐ Prognóstico
-
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
         ☐ Criar com base os itens da análise (preencher no objeto)

@@ -151,7 +151,6 @@ export default {
         },
         changeTab(tab) {
             this.selectedTab = tab;
-            console.log('this.selectedTab:', this.selectedTab)
             this.$emit('changeTab', tab);
         },
     },

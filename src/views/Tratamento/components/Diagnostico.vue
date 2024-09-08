@@ -17,9 +17,11 @@
                         </button>
                     </div>
 
-                    <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4">
-                        {{ diagnostico_ }}
-                    </p>
+                    <div style="background: #F2F2F2;">
+                        <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4" style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
+                            {{ diagnostico_ }}
+                        </p>
+                    </div>
                     <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control" rows="4"
                         v-model="diagnostico_"></textarea>
                 </div>
@@ -124,7 +126,7 @@
                             <p class="text-justify my-0 pt-2 pb-2">
                                 Nosso sistema calcula um tratamento recomendado, com base nas informações inseridas na seção "<font-awesome-icon :icon="['fas', 'fa-search']"
                                     class="me-1 text-sm" /><span
-                                    class="text-sm font-weight-bold uppercase">análise</span>". Porém, com a análise atual, não foi possível definir um tratamento para este paciente.
+                                    class="text-sm font-weight-bold uppercase">análise</span>". Porém, com a análise atual, não foi possível definir um tratamento para este paciente. Verifique se é possível complementar a análise.
                             </p>
                             <p class="text-justify my-0 py-1">
                                 Se você tiver dúvidas sobre este caso, <strong>você pode solicitar uma
@@ -162,9 +164,11 @@
                         </button>
                     </div>
 
-                    <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4">
-                        {{ prognostico_ }}
-                    </p>
+                    <div style="background: #F2F2F2;">
+                        <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4" style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
+                            {{ prognostico_ }}
+                        </p>
+                    </div>
                     <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control" rows="4"
                         v-model="prognostico_"></textarea>
                 </div>

@@ -8,7 +8,6 @@ function decodedToken() {
 
     try {
         const decoded = jwtDecode(token);
-        console.log('decoded:', decoded)
         return decoded;
     } catch (error) {
         console.error('Erro ao decodificar token:', error);

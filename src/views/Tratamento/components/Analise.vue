@@ -1041,8 +1041,10 @@ export default {
             if (this.isEditing[section]) {
                 cSwal.cConfirm(`Deseja realmente <b>cancelar a edição</b> da análise ${editingSectionStr}? As alterações serão perdidas.`, () => {
                     this.isEditing[section] = false
-                    if (this.originalAnalises)
+                    if (this.originalAnalises) {
                         this.analises = JSON.parse(JSON.stringify(this.originalAnalises))
+                        this.updateRespostas()
+                    }
                 })
                 return
             }
