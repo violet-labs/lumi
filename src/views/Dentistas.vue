@@ -114,7 +114,7 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 Observações:
               </label>
-              <textarea name="" id="novoDentista_observacoes" class="form-control" rows="5"></textarea>
+              <textarea name="" id="novoDentista_observacoes" class="form-control" rows="5" v-model="novoDentista.observacoes"></textarea>
             </div>
           </div>
         </div>
@@ -202,10 +202,6 @@ var dentistas = [
 
 var search = ''
 
-var novoDentista = {
-  nome: ''
-}
-
 export default {
   name: "Dentistas",
   components: {
@@ -231,9 +227,7 @@ export default {
     },
     confirmAddNovoDentista() {
       cSwal.cConfirm('Deseja realmente adicionar este ortodontista?', async () => {
-        await addNovoDentista({
-          nome: this.novoDentista.nome,
-        })
+        await addNovoDentista(this.novoDentista)
         await this.updateList(this.search)
         this.$refs.closeModalNovoDentista.click()
       })
@@ -267,7 +261,7 @@ export default {
     return {
       tableheaders,
       search,
-      novoDentista,
+      novoDentista: {},
       dentistas,
     };
   },

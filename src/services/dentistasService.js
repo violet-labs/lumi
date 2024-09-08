@@ -1,9 +1,7 @@
 import axios from '@/services/axios'
 
 export async function addNovoDentista(dentista) {
-    const response = await axios.post('/dentistas', {
-        nome: dentista.nome
-    })
+    const response = await axios.post('/dentistas', dentista)
 
     return (response && response.status == 200)
 }
