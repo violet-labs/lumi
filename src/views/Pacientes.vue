@@ -193,8 +193,7 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
                 Nome:
               </label>
-              <MaterialInput type="text" class="form-control" v-model="novoPaciente.nome"
-                ref="nome"
+              <MaterialInput type="text" class="form-control" v-model="novoPaciente.nome" ref="nome"
                 :input="function ($event) { capitalizeAll($event) }" />
             </div>
 
@@ -223,7 +222,7 @@
                 <option value="3">Murillo Motta</option>
               </select>
             </div>
-            
+
             <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
@@ -239,7 +238,7 @@
                 </div>
               </label>
             </div>
-            
+
             <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
@@ -316,13 +315,17 @@ var pacientes = []
 
 var search = ''
 
-var novoPaciente = {
-  idioma: 'pt',
-  clinica_id: '',
-  dentista_id: '',
-  nome: '',
-  celular: '',
-  celular_whatsapp: true,
+var novoPaciente = getNovoPaciente()
+
+function getNovoPaciente() {
+  return {
+    idioma: 'pt',
+    clinica_id: '',
+    dentista_id: '',
+    nome: '',
+    celular: '',
+    celular_whatsapp: true,
+  }
 }
 
 export default {
@@ -363,10 +366,13 @@ export default {
       return classMap[status] || '';
     },
     async _addNovoPaciente() {
+      cSwal.loading('Adicionando paciente...')
       const add = await addNovoPaciente(this.novoPaciente)
+      cSwal.loaded()
 
       if (add) {
         cSwal.cSuccess('O paciente foi adicionado com sucesso!');
+        this.novoPaciente = getNovoPaciente()
       }
       else {
         cSwal.cError('Ocorreu um erro ao tentar adicionar o paciente.');

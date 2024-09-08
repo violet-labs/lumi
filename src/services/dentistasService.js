@@ -1,5 +1,24 @@
 import axios from '@/services/axios'
 
+export async function adicionarMeioContato(dentista_id, contato) {
+    try {
+        const response = await axios.post('/contatos-dentistas', {
+            dentista_id,
+            ...contato
+        });
+
+        if (!response || !response.data || response.data.status !== 'success')
+            return false;
+
+        return response;
+
+    } catch (error) {
+        console.error('Erro ao salvar meio de contato:', error);
+    }
+
+    return false;
+}
+
 export async function addNovoDentista(dentista) {
     const response = await axios.post('/dentistas', dentista)
 

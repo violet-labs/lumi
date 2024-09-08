@@ -7,7 +7,8 @@
             <div class="row gx-4">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                  <div class="shadow-sm border-radius-lg d-flex align-center justify-content-center px-2 pb-3" style="border: 2px solid #deeaf2; font-size: 25pt;color: #5988A8;">
+                  <div class="shadow-sm border-radius-lg d-flex align-center justify-content-center px-2 pb-3"
+                    style="border: 2px solid #deeaf2; font-size: 25pt;color: #5988A8;">
                     <v-icon class="d-none d-md-block">mdi-doctor</v-icon>
                   </div>
                 </div>
@@ -81,23 +82,20 @@
                         </div>
 
                         <div class="col-sm-6 col-md-3 mb-2 text-center">
-                          <MaterialInput readonly class="text-center" label="Pacientes" type="text" :modelValue="dentista.pacientes_count"
-                          />
+                          <MaterialInput readonly class="text-center" label="Pacientes" type="text"
+                            :modelValue="dentista.pacientes_count" />
                         </div>
 
                         <div class="col-sm-6 col-md-3 mb-2 text-center">
-                          <MaterialInput readonly class="text-center" label="Consultas" type="text" :modelValue="dentista.pacientes_count"
-                          />
+                          <MaterialInput readonly class="text-center" label="Consultas" type="text"
+                            :modelValue="dentista.pacientes_count" />
                         </div>
 
                         <div class="col-md-6 mb-2">
                           <MaterialInput type="email" label="E-mail" v-model="dentista.user.email" id="dentista_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput
-                            label="Nova senha"
-                            type="password"
-                            v-model="dentista.novaSenha"
+                          <MaterialInput label="Nova senha" type="password" v-model="dentista.novaSenha"
                             id="dentista_cpf" />
                         </div>
                       </div>
@@ -113,7 +111,7 @@
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" /></p>
-                      <v-table style="font-size: 12pt;">
+                      <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>
                           <tr>
                             <th><label>Contato</label></th>
@@ -123,7 +121,7 @@
                         <tbody>
                           <tr v-for="contato in dentista.contatos" v-bind:key="contato.id">
                             <td>
-                              <a href="#" class="hoverable">
+                              <a :href="getContatoHref(contato.tipo, contato.contato)" class="hoverable">
                                 <span class="d-inline-block text-center" style="width: 30px;">
 
                                   <font-awesome-icon v-if="contato.tipo != 'telefone'"
@@ -142,29 +140,36 @@
                           <tr>
                             <td style="vertical-align: middle;">
                               <div class="d-flex flex-row align-center">
-                                <div class="dropdown text-center">
+                                <div class="dropdown text-center dropup">
                                   <span data-bs-toggle="dropdown" class="pointer dropdown-toggle">
-                                    <font-awesome-icon :icon="['fas', 'mobile-screen-button']"
+                                    <font-awesome-icon v-if="novoContato.tipo == 'email'" :icon="['fas', 'envelope']"
                                       style="font-size: 15pt; margin-right: 3px;" />
+                                    <v-icon v-if="novoContato.tipo == 'telefone'"
+                                      style="font-size: 17pt;">mdi-phone</v-icon>
+                                    <font-awesome-icon v-if="novoContato.tipo == 'celular'"
+                                      :icon="['fas', 'mobile-screen-button']"
+                                      style="font-size: 15pt; margin-right: 3px;" />
+                                    <font-awesome-icon v-if="novoContato.tipo == 'whatsapp'" :icon="['fab', 'whatsapp']"
+                                      class="text-success" style="font-size: 15pt;" />
                                   </span>
                                   <ul class="dropdown-menu dropdown-menu-icons hidden">
-                                    <li title="E-mail">
+                                    <li title="E-mail" @click="selectMeioContato('email')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <font-awesome-icon icon="fa-solid fa-envelope" style="font-size: 14pt;" />
                                       </a>
                                     </li>
-                                    <li title="Telefone">
+                                    <li title="Telefone" @click="selectMeioContato('telefone')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <v-icon style="font-size: 17pt;">mdi-phone</v-icon>
                                       </a>
                                     </li>
-                                    <li title="Celular">
+                                    <li title="Celular" @click="selectMeioContato('celular')">
                                       <a class="dropdown-item dropdown-item-sm" href="#">
                                         <font-awesome-icon :icon="['fas', 'mobile-screen-button']"
                                           style="font-size: 15pt; margin-right: 3px;" />
                                       </a>
                                     </li>
-                                    <li title="WhatsApp">
+                                    <li title="WhatsApp" @click="selectMeioContato('whatsapp')">
                                       <a class="dropdown-item" href="#">
                                         <font-awesome-icon :icon="['fab', 'whatsapp']" class="text-success"
                                           style="font-size: 15pt;" />
@@ -172,16 +177,22 @@
                                     </li>
                                   </ul>
                                 </div>
-                                <input type="text" class="form-control input-sm"
-                                  style="display: inline-block; width: calc(100% - 30px);">
+
+                                <MaterialInput type="text" class="form-control input-sm"
+                                  style="display: inline-block; width: calc(100% - 30px);" v-model="novoContato.contato"
+                                  ref="contatoInput" :mask="novoContatoMask" />
+
                               </div>
                             </td>
                             <td style="vertical-align: middle; padding-top: 5px;">
-                              <input type="text" class="form-control input-sm"
-                                style="display: inline; width: calc(100% - 51px);">
-                              <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;">
+
+                              <MaterialInput type="text" class="form-control input-sm"
+                                style="display: inline; width: calc(100% - 51px);" v-model="novoContato.descricao" />
+                              <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;"
+                                @click="adicionarContato">
                                 <font-awesome-icon :icon="['fas', 'plus']" />
                               </button>
+
                             </td>
                           </tr>
                         </tbody>
@@ -192,8 +203,8 @@
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
-                          <MaterialInput label="CEP" type="text" v-model="dentista.endereco_cep"
-                            :input="getEndereco" mask="#####-###" id="dentista_enderecoCep" />
+                          <MaterialInput label="CEP" type="text" v-model="dentista.endereco_cep" :input="getEndereco"
+                            mask="#####-###" id="dentista_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Logradouro" type="text" v-model="dentista.endereco_logradouro"
@@ -320,6 +331,7 @@
 </template>
 
 <script>
+import { phoneMask } from "@/utils.js";
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
 // import ProfileCard from "./components/ProfileCard.vue";
@@ -328,7 +340,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
-import { getDentista, updateDentista } from "@/services/dentistasService"
+import { getDentista, updateDentista, adicionarMeioContato } from "@/services/dentistasService"
 import cSwal from "@/utils/cSwal.js"
 
 const body = document.getElementsByTagName("body")[0];
@@ -362,6 +374,11 @@ export default {
   },
   data() {
     return {
+      novoContato: {
+        tipo: 'whatsapp',
+        contato: '',
+        descricao: '',
+      },
       showMenu: false,
       dentista,
       originalDentista,
@@ -371,6 +388,11 @@ export default {
     };
   },
   computed: {
+    novoContatoMask() {
+      return [
+        'telefone', 'celular', 'whatsapp'
+      ].includes(this.novoContato.tipo) ? phoneMask(this.novoContato.contato) : ''
+    },
     possuiWhatsapp() {
       return this.dentista && this.dentista.contatos && this.dentista.contatos.some(contato => contato.tipo === 'whatsapp');
     },
@@ -400,20 +422,56 @@ export default {
     }
   },
   methods: {
-    async refreshDentista() {
-      await this.getDentistaDetails(this.dentista.id)
+    clearNovoContato() {
+      this.novoContato.contato = ''
+      this.novoContato.descricao = ''
+    },
+    getContatoHref(tipo, contato) {
+      switch (tipo) {
+        case 'email':
+          return `mailto:${contato}`;
+        case 'whatsapp':
+          return `https://wa.me/55${contato.replace(/\D+/g, '')}`;
+        case 'telefone':
+        case 'celular':
+          return `tel:${contato.replace(/\D+/g, '')}`;
+        default:
+          return '#';
+      }
+    },
+    async adicionarContato() {
+      cSwal.loading('Adicionando contato...')
+      const add = await adicionarMeioContato(this.dentista.id, this.novoContato);
+
+      if (add) {
+        await this.refreshDentista({ onlyContatos: true })
+        cSwal.loaded()
+        this.clearNovoContato()
+      }
+      else {
+        cSwal.loaded()
+        cSwal.cError('Ocorreu um erro ao salvar o contato.')
+      }
+
+    },
+    selectMeioContato(tipo) {
+      this.novoContato.tipo = tipo
+      this.$refs.contatoInput.getInput().focus()
+    },
+    async refreshDentista(options) {
+      await this.getDentistaDetails(this.dentista.id, options)
     },
     confirmSaveDentista() {
       cSwal.cConfirm('Deseja realmente salvar as alterações?', async () => {
-          const update = await updateDentista(this.dentista)
+        const update = await updateDentista(this.dentista)
 
-          if (update) {
-            cSwal.cSuccess('As alterações foram salvas.')
-            await this.refreshDentista()
-          }
-          else {
-            cSwal.cError('Ocorreu um erro ao salvar as alterações.')
-          }
+        if (update) {
+          cSwal.cSuccess('As alterações foram salvas.')
+          await this.refreshDentista()
+        }
+        else {
+          cSwal.cError('Ocorreu um erro ao salvar as alterações.')
+        }
       })
     },
 
@@ -498,11 +556,18 @@ export default {
       this.activeTab = tab;
     },
 
-    async getDentistaDetails(id) {
+    async getDentistaDetails(id, options) {
+      options = {
+        onlyContatos: false,
+        ...options
+      }
       const dentista = await getDentista(id)
-      if (dentista) {
+      if (dentista && !options.onlyContatos) {
         this.dentista = JSON.parse(JSON.stringify(dentista))
         this.originalDentista = JSON.parse(JSON.stringify(dentista))
+      }
+      else if (dentista && options.onlyContatos) {
+        this.dentista.contatos = dentista.contatos
       }
     },
   },

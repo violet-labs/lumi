@@ -1,6 +1,7 @@
-✔ Corrigir timezone @done(24-09-08 16:12)
-
 ☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
+
+☐ Permitir editar meios de contato
+☐ Permitir excluir meios de contato
 
 ☐ Listar clínicas globalmente
 ☐ Criar a primeira clínica manualmente
@@ -12,14 +13,7 @@
 Limpar formulários após utilizá-los, se necessário:
     ☐ Novo paciente
     ☐ Novo dentista
-    ☐ Pacientes > Meio de contato
-
-CRUD meio contato:
-    ✔ Verificar se o model está correto @done(24-09-08 16:01)
-    ✔ Validar inserção @done(24-09-08 16:12)
-    ✔ Fazer state do tipo selecionado para novoContato @done(24-09-08 16:23)
-    CRUD paciente:
-        ☐ Fazer inserir celular/whatsapp
+    
 ☐ CRUD metas terapeuticas
 
 ☐ Permitir editar foto de perfil do Paciente
@@ -33,10 +27,6 @@ Paciente > Tratamento > Plano de tratamento:
     Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
-
-Paciente > Perfil:
-    Funcionalidade de adicionar meio de contato:
-        ☐ Criar função de inserir
 
 Dentistas:
     ☐ Criar modal:

@@ -519,7 +519,7 @@ export default {
       const add = await adicionarMeioContato(this.paciente.id, this.novoContato);
 
       if (add) {
-        await this.refreshPaciente()
+        await this.refreshPaciente({ onlyContatos: true })
         cSwal.loaded()
         this.clearNovoContato()
       }
@@ -654,17 +654,24 @@ export default {
     openTab(tab) {
       this.activeTab = tab;
     },
-    async refreshPaciente() {
-      await this.getPacienteDetails(this.paciente.id)
+    async refreshPaciente(options) {
+      await this.getPacienteDetails(this.paciente.id, options)
     },
-    async getPacienteDetails(id) {
+    async getPacienteDetails(id, options) {
+      options = {
+        onlyContatos: false,
+        ...options
+      }
       const paciente = await getPaciente(id)
       console.log('id:', id)
       console.log('paciente:', paciente)
 
-      if (paciente) {
+      if (paciente && !options.onlyContatos) {
         this.paciente = JSON.parse(JSON.stringify(paciente))
         this.originalPaciente = JSON.parse(JSON.stringify(paciente))
+      }
+      else if (paciente && options.onlyContatos) {
+        this.paciente.contatos = paciente.contatos
       }
       else if (id) {
         this.$router.push('/pacientes')
