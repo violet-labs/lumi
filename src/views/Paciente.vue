@@ -470,7 +470,15 @@ export default {
   methods: {
     confirmSavePaciente() {
       cSwal.cConfirm('Deseja realmente salvar as alterações?', async () => {
-          await updatePaciente(this.paciente)
+          const update = await updatePaciente(this.paciente)
+
+          if (update) {
+            cSwal.cSuccess('As alterações foram salvas.')
+            await this.refreshPaciente()
+          }
+          else {
+            cSwal.cError('Ocorreu um erro ao salvar as alterações.')
+          }
       })
     },
     async handleFormLinkBtn() {
