@@ -10,7 +10,7 @@
                 <v-icon class="mr-3 d-none d-md-block">mdi-calendar-month</v-icon>
             </div>
             <!-- <i class="fas fa-calendar-alt mr-3 pt-1 d-none d-md-block"></i> -->
-            {{$t('agenda')}}
+            {{ $t('agenda') }}
         </v-tab>
         <v-tab @click="openPage('pacientes')" value="pacientes">
             <div class="pb-1">
@@ -59,7 +59,7 @@ export default {
         route: () => useRoute(),
 
         getCurrentTab() {
-            let currentPathObject = this.$router.currentRoute.value.path.replace('/', '')
+            let currentPathObject = this.$router.currentRoute.value.path.replace('/', '').split('/')[0]
 
             // var tabsMap = {
             //     '': 0,
@@ -70,8 +70,9 @@ export default {
             //     'paciente': 2,
             //     'pacientes': 2,
 
-            //     'dentistas': 3,
-                
+            //     'ortodontista': 3,
+            //     'ortodontistas': 3,
+
             //     'financeiro': 4,
             // }
 
@@ -83,8 +84,9 @@ export default {
                 'paciente': 1,
                 'pacientes': 1,
 
-                'dentistas': 2,
-                
+                'ortodontista': 2,
+                'ortodontistas': 2,
+
                 'financeiro': 3,
             }
 

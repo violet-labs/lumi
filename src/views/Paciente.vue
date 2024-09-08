@@ -404,7 +404,8 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
-import { getPaciente, updatePaciente, getEnderecoByCep } from "@/services/pacientesService"
+import { getEnderecoByCep } from "@/services/commonService"
+import { getPaciente, updatePaciente } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
 const body = document.getElementsByTagName("body")[0];

@@ -72,7 +72,7 @@
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
                           <label for="dentista_clinica" class="form-control-label">Clínica</label>
-                          <select class="form-select" id="dentista_clinica">
+                          <select class="form-select" id="dentista_clinica" v-model="dentista.clinica.id">
                             <option hidden>Selecionar...</option>
                             <option value="1" selected>Daniel Salles</option>
                             <option value="2">Thales Casa Grande</option>
@@ -84,14 +84,14 @@
                             id="dentista_dataNascimento" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput type="text" label="RG" v-model:value="dentista.rg" id="dentista_rg" />
+                          <MaterialInput type="email" label="E-mail" v-model="dentista.user.email" id="dentista_rg" />
                         </div>
                         <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model:value="dentista.cpf" id="dentista_cpf" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Como conheceu a Lumi" type="text"
-                            v-model:value="dentista.como_conheceu" id="dentista_como_conheceu" />
+                          <MaterialInput
+                            label="Nova senha"
+                            type="password"
+                            v-model="dentista.novaSenha"
+                            id="dentista_cpf" />
                         </div>
                       </div>
 
@@ -180,33 +180,13 @@
                         </tbody>
                       </v-table>
 
-                      <div class="p-horizontal-divider mb-0"></div>
-
-                      <div class="row">
-                        <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center">
-                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Formulário de boas-vindas</p>
-                          <span v-if="dentista.formulario_respondido"
-                            class="badge badge-sm bg-success">Respondido</span>
-                          <span v-else class="badge badge-sm bg-warning">Não respondido</span>
-                        </div>
-                        <div class="col-sm-6 d-flex align-items-end justify-content-center">
-                          <button v-if="dentista.formulario_respondido" class="btn btn-primary mb-0"
-                            @click="visualizarFormulario">VISUALIZAR</button>
-                          <button :disabled="!possuiWhatsapp" class="btn btn-primary mb-0" @click="enviarFormulario">
-                            <i class="fab fa-whatsapp me-2" style="font-size: 13pt;"></i>
-                            <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'NÃO DISPONÍVEL'
-                              }}</span>
-                          </button>
-                        </div>
-                      </div>
-
                       <div class="p-horizontal-divider"></div>
 
                       <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Endereço</p>
                       <div class="row">
                         <div class="col-md-4 mb-2">
                           <MaterialInput label="CEP" type="text" v-model="dentista.endereco_cep"
-                            :input="getEndereco" id="dentista_enderecoCep" />
+                            :input="getEndereco" mask="#####-###" id="dentista_enderecoCep" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Logradouro" type="text" v-model="dentista.endereco_logradouro"
@@ -214,7 +194,7 @@
                         </div>
                         <div class="col-md-2 mb-2">
                           <MaterialInput label="Nº" type="text" v-model="dentista.endereco_numero"
-                            id="dentista_enderecoNumero" />
+                            id="dentista_enderecoNumero" ref="endereco_numero" />
                         </div>
                         <div class="col-md-4">
                           <MaterialInput label="Complemento" type="text" v-model="dentista.endereco_complemento"
@@ -235,7 +215,7 @@
                     <div v-cloak v-if="hasPendingChanges" class="row col-12">
                       <div class="p-horizontal-divider my-0"></div>
                       <div class="w-100 py-3 text-center">
-                        <button class="btn btn btn-primary m-0">
+                        <button class="btn btn btn-primary m-0" @click="confirmSaveDentista">
                           Salvar alterações
                         </button>
                       </div>
@@ -340,14 +320,19 @@ import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
-import { getDentista, updateDentista, getEnderecoByCep } from "@/services/dentistasService"
+import { getEnderecoByCep } from "@/services/commonService"
+import { getDentista, updateDentista } from "@/services/dentistasService"
+import cSwal from "@/utils/cSwal.js"
 
 const body = document.getElementsByTagName("body")[0];
 
 var dentista = {
+  user: {
+    email: '',
+  },
   clinica: {
-    nome_fantasia: ''
-  }
+    nome_fantasia: '',
+  },
 }
 
 var originalDentista = {}
@@ -406,16 +391,21 @@ export default {
     }
   },
   methods: {
-    enviarFormulario() {
-      const whatsappNumber = this.whatsappNumero;
-      const phoneNumber = whatsappNumber.replace(/\D+/g, ''); // extract only numbers
-      if (phoneNumber.length !== 11) {
-        // show error message
-        alert('Número de WhatsApp inválido. Por favor, verifique o número.');
-        return;
-      }
-      const link = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.dentista.public_token}`;
-      window.open(link, '_blank'); // open in new tab
+    async refreshDentista() {
+      await this.getDentistaDetails(this.dentista.id)
+    },
+    confirmSaveDentista() {
+      cSwal.cConfirm('Deseja realmente salvar as alterações?', async () => {
+          const update = await updateDentista(this.dentista)
+
+          if (update) {
+            cSwal.cSuccess('As alterações foram salvas.')
+            await this.refreshDentista()
+          }
+          else {
+            cSwal.cError('Ocorreu um erro ao salvar as alterações.')
+          }
+      })
     },
 
     validarCep(cep) {
@@ -430,20 +420,25 @@ export default {
     },
 
     async getEndereco(event) {
-      var cep = event.target.value
-      this.dentista.endereco_cep = this.zipCodeMask(cep)
-      cep = this.dentista.endereco_cep
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(async () => {
+        var cep = event.target.value
+        cep = this.dentista.endereco_cep
 
-      if (!this.validarCep(cep))
-        return false
+        if (!this.validarCep(cep))
+          return false
 
-      const enderecoInfo = await getEnderecoByCep(cep)
-      if (!enderecoInfo)
-        return false
+        const enderecoInfo = await getEnderecoByCep(cep)
+        if (!enderecoInfo)
+          return false
 
-      this.dentista.endereco_logradouro = enderecoInfo.street
-      this.dentista.endereco_cidade = enderecoInfo.city
-      this.dentista.endereco_estado = enderecoInfo.state
+        this.dentista.endereco_logradouro = enderecoInfo.street
+        this.dentista.endereco_cidade = enderecoInfo.city
+        this.dentista.endereco_estado = enderecoInfo.state
+
+        if (!this.dentista.endereco_numero)
+          this.$refs.endereco_numero.getInput().focus();
+      }, 50);
     },
 
     getContatoIcon(type) {
@@ -496,16 +491,11 @@ export default {
 
     async getDentistaDetails(id) {
       const dentista = await getDentista(id)
-      console.log('dentista:', dentista)
       if (dentista) {
         this.dentista = JSON.parse(JSON.stringify(dentista))
         this.originalDentista = JSON.parse(JSON.stringify(dentista))
       }
     },
-
-    async saveDentista() {
-      await updateDentista(dentista)
-    }
   },
 
   async mounted() {

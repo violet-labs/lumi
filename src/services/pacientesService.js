@@ -73,12 +73,6 @@ export async function getPacienteByToken(token) {
     return false
 }
 
-export async function getEnderecoByCep(cep) {
-    const enderecoInfo = await axios.get('https://api.brasilaberto.com/v1/zipcode/' + cep, { withCredentials: false })
-
-    return enderecoInfo.data && enderecoInfo.data.result ? enderecoInfo.data.result : null
-}
-
 export async function addNovoPaciente(paciente) {
     const response = await axios.post('/pacientes', paciente)
 

@@ -34,8 +34,6 @@ export async function getDentista(id) {
     if (!dentista || !dentista.data)
         return null
 
-    dentista.data.clinica = { nome_fantasia: 'aa' }
-
     return dentista.data
 }
 

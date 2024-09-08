@@ -95,7 +95,7 @@ const routes = [
     }
   },
   {
-    path: "/dentista/:id",
+    path: "/ortodontista/:id",
     name: "Dentista",
     component: Dentista,
     meta: {
