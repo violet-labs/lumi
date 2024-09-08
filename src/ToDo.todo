@@ -3,6 +3,8 @@
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
         ☐ Criar com base os itens da análise (preencher no objeto)
+        Colocar mais opções: 
+            ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
     Necessidade de encaminhamentos:
         ☐ Verificar se está salvando certinho
 
@@ -10,12 +12,6 @@ Paciente > Perfil:
     ☐ Verificar se está salvando certinho
     ☐ Verificar quais campos precisa remover/retirar (do front e do back-end)
     Funcionalidade de adicionar meio de contato:
-        Criar model MeioContato:
-            ☐ id
-            ☐ dentista_id
-            ☐ paciente_id
-            ☐ tipo
-            ☐ contato
         ☐ Criar função de inserir
     Detalhes pessoais:
         ☐ Exibir apenas os pessoais (esconder os clínicos)
@@ -201,8 +197,6 @@ Reunião 11/06/2024:
         ☐ Gerar as metas terapêuticas do diagnóstico automático realizado (mas ainda possibilitando adicionar novas, manualmente)
         ☐ Colocar no final, campo para Meses de Previsão de termino do tratamento
         ☐ Deixar um campo aberto
-        Colocar mais uma opção na meta terapêutica: 
-            ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
         Seção "Necessidade de encaminhamentos":
             ☐ Preencher automaticamente a partir da analise
             ☐ Exibir de qual item foi gerada a necessidade de encaminhamento

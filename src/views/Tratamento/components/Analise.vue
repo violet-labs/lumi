@@ -31,7 +31,7 @@
                             </div> -->
 
                             <div v-if="!formularioRespondido || detalhesClinicos.length == 0"
-                                style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center">
+                                style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-center">
                                 O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o
                                 formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
                                     class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR
