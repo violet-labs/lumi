@@ -1,6 +1,18 @@
 import axios from '@/services/axios'
 import router from "@/router/index";
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
+function isAdmin() {
+    const decoded = decodedToken();
+    if (!decoded) return false;
+    return decoded.admin;
+}
+
+function getClinica() {
+    const decoded = decodedToken();
+    if (!decoded) return null;
+    return decoded.clinica;
+}
 
 function decodedToken() {
     const token = localStorage.getItem('token');
@@ -61,4 +73,6 @@ export default {
     login,
     logout,
     decodedToken,
+    isAdmin,
+    getClinica,
 }

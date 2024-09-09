@@ -204,9 +204,8 @@
               </label>
               <select class="form-select" aria-label="Default select example" v-model="novoPaciente.clinica_id">
                 <option hidden selected value="">Selecionar...</option>
-                <option value="1">Clínica X</option>
-                <option value="2">Clínica Y</option>
-                <option value="3">Clínica Z</option>
+                <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
+                <option value="add">Adicionar...</option>
               </select>
             </div>
 
@@ -298,6 +297,7 @@ import cSwal from "@/utils/cSwal.js"
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
+import { getClinicas, adicionarClinica } from "@/services/clinicasService"
 import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
 import { phoneMask } from "@/utils.js";
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -336,6 +336,10 @@ export default {
     SidenavListPacientes,
   },
   async mounted() {
+    this.clinicas = await getClinicas()
+
+    console.log('this.clinicas:', this.clinicas)
+
     this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
       this.$refs.nome.getInput().focus();
     })
@@ -436,6 +440,7 @@ export default {
   },
   data() {
     return {
+      clinicas: [],
       isLoading: {
         pacientesList: false
       },
