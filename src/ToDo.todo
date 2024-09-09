@@ -1,23 +1,8 @@
-☐ Colocar Description e Data no title das imagens (ou no rodapé delas)
-
-Permissions:
-    ☐ Mostrar só "=clinica" quando nao for admin
-    ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
-    ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
-
-Clínicas:
-    ☐ Listar clínicas globalmente
-    ☐ Criar a primeira clínica manualmente
-    ☐ Criar função getClinica from token
-
 Paciente > Tratamento > Plano de tratamento:
     Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
 
-☐ Fazer funcionar alterção do Meu Perfil
-
-
-
+☐ Fazer deploy no servidor
 
 
 
@@ -45,10 +30,16 @@ Paciente > Tratamento > Plano de tratamento:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ----------- DEPOIS ------------------:
+☐ Fazer funcionar alteração do Meu Perfil
+Permissions:
+    ☐ Mostrar só "=clinica" quando nao for admin
+    ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
+    ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
 ☐ Fazer modal global de buscar clínica
 Imagens:
     ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
     ☐ Fazer funcionar exibição detalhada
+    ☐ Colocar Description e Data no title das imagens (ou no rodapé delas)
 Metas terapêuticas:
     Colocar mais opções: 
         ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"

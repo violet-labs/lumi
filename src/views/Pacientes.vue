@@ -202,14 +202,20 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'hospital']" /></span>
                 Clínica:
               </label>
-              <select class="form-select" aria-label="Default select example" v-model="novoPaciente.clinica_id">
+
+              <select v-if="novoPaciente.clinica_id !== 'add'" class="form-select" aria-label="Default select example"
+                v-model="novoPaciente.clinica_id" @change="changeClinica">
                 <option hidden selected value="">Selecionar...</option>
                 <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
-                <option value="add">Adicionar...</option>
+                <option value="add">Nova...</option>
               </select>
+
+              <MaterialInput v-if="novoPaciente.clinica_id == 'add'" type="text" placeholder="Nome da nova clínica..."
+                ref="novaClinica" :input="function ($event) { capitalizeAll($event) }"
+                v-model="novoPaciente.novaClinica" />
             </div>
 
-            <div class="col-md-6 mt-3">
+            <!-- <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
                 Ortodontista:
@@ -220,9 +226,21 @@
                 <option value="2">Thales Casa Grande</option>
                 <option value="3">Murillo Motta</option>
               </select>
-            </div>
+            </div> -->
 
             <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
+                Idioma:
+              </label>
+              <select name="" id="" class="form-select" v-model="novoPaciente.idioma">
+                <option value="pt">Português</option>
+                <option value="en">Inglês</option>
+                <option value="es">Espanhol</option>
+              </select>
+            </div>
+
+            <div class="col-md-6 mt-4 text-center" style="margin: 0 auto; max-width: 250px;">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
                 Celular:
@@ -236,18 +254,6 @@
                   WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt;"></i>
                 </div>
               </label>
-            </div>
-
-            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
-              <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
-                Idioma:
-              </label>
-              <select name="" id="" class="form-select" v-model="novoPaciente.idioma">
-                <option value="pt">Português</option>
-                <option value="en">Inglês</option>
-                <option value="es">Espanhol</option>
-              </select>
             </div>
 
             <div class="col-12 mt-3">
@@ -297,7 +303,7 @@ import cSwal from "@/utils/cSwal.js"
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import { getClinicas, adicionarClinica } from "@/services/clinicasService"
+import { getClinicas } from "@/services/clinicasService"
 import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
 import { phoneMask } from "@/utils.js";
 import MaterialInput from "@/components/MaterialInput.vue";
@@ -325,6 +331,7 @@ function getNovoPaciente() {
     nome: '',
     celular: '',
     celular_whatsapp: true,
+    novaClinica: '',
   }
 }
 
@@ -343,9 +350,18 @@ export default {
     this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
       this.$refs.nome.getInput().focus();
     })
+
+    this.$refs.modalNovoPaciente.addEventListener('hidden.bs.modal', event => {
+      this.novoPaciente.clinica_id = ''
+    })
     this.updateList()
   },
   methods: {
+    changeClinica() {
+      if (this.novoPaciente.clinica_id == 'add') {
+        this.$refs.novaClinica.getInput().focus()
+      }
+    },
 
     capitalizeAll($event) {
       event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())

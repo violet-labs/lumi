@@ -19,7 +19,7 @@
           <span>Novo paciente</span>
         </a>
       </li>
-      <li class="nav-item nav-btn-container">
+      <!-- <li class="nav-item nav-btn-container">
         <a href="#" class="nav-btn">
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">print</i></div>
           <span>Imprimir</span>
@@ -27,8 +27,8 @@
       </li>
       <div class="mt-2"
         style="width: 100%; height: 1px; background: linear-gradient(90deg, #fbfdfe, #c7d7e0, #fbfdfe) !important;">
-      </div>
-      <li class="mt-3 nav-item mb-1">
+      </div> -->
+      <!-- <li class="mt-3 nav-item mb-1">
         <h6 class="text-xs pl-6 text-center text-uppercase font-weight-bolder text-white">
           RELATÓRIOS
         </h6>
@@ -50,7 +50,7 @@
           <div class="text-center d-flex align-items-center justify-content-center me-2"><i class="material-icons-round opacity-10 fs-5">list</i></div>
           <span>Todos pacientes</span>
         </a>
-      </li>
+      </li> -->
     </ul>
     <div class="sidenav-footer position-absolute w-100 bottom-0 pl-6 text-center">
       <img :src="lumiLogo" class="navbar-brand-img h-100 center-self mt-6" alt="main_logo" />

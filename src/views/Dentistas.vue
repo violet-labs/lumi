@@ -112,11 +112,18 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'hospital']" /></span>
                 Clínica:
               </label>
-              <select name="" id="" class="form-select" v-model="novoDentista.clinica_id">
-                <option value="1">Clinica X</option>
-                <option value="2">Clinica Y</option>
-                <option value="3">Clinica Z</option>
+
+              <select v-if="novoDentista.clinica_id !== 'add'" name="" id="" class="form-select"
+                v-model="novoDentista.clinica_id" @change="changeClinica">
+                <option hidden selected value="">Selecionar...</option>
+                <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
+                <option value="add">Nova...</option>
               </select>
+
+              <MaterialInput v-if="novoDentista.clinica_id == 'add'" type="text" placeholder="Nome da nova clínica..."
+                ref="novaClinica" :input="function ($event) { capitalizeAll($event) }"
+                v-model="novoDentista.novaClinica" />
+
             </div>
 
             <div class="col-md-7 mt-3">
@@ -161,6 +168,7 @@ import DentistsTable from "./components/DentistsTable.vue";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListDentistas from "@/views/components/LumiSidenav/SidenavListDentistas.vue"
 import { addNovoDentista, searchDentistas } from "@/services/dentistasService"
+import { getClinicas } from "@/services/clinicasService"
 
 const tableheaders = [
   { text: "ORTODONTISTA", value: "nome", sortable: true },
@@ -174,6 +182,13 @@ var dentistas = []
 
 var search = ''
 
+function getNovoDentista() {
+  return {
+    novaClinica: '',
+    clinica_id: '',
+  }
+}
+
 export default {
   name: "Dentistas",
   components: {
@@ -183,6 +198,7 @@ export default {
     SidenavListDentistas,
   },
   async mounted() {
+    this.clinicas = await getClinicas()
 
     this.$refs.modalNovoDentista.addEventListener('shown.bs.modal', event => {
       this.$refs.nome.getInput().focus();
@@ -191,9 +207,16 @@ export default {
     this.updateList()
   },
   methods: {
+    changeClinica() {
+      if (this.novoDentista.clinica_id == 'add') {
+        this.$refs.novaClinica.getInput().focus()
+      }
+    },
+
     capitalizeAll($event) {
       event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
     },
+
     async updateList(search = '') {
       this.isLoading.dentistasList = true
       this.dentistas = await searchDentistas(search)
@@ -207,6 +230,7 @@ export default {
 
         if (add) {
           cSwal.cSuccess('O ortodontista foi adicionado.')
+          this.novoDentista = getNovoDentista()
         }
         else {
           cSwal.cError('Ocorreu um erro ao adicionar o ortodontista.')
@@ -243,12 +267,13 @@ export default {
   },
   data() {
     return {
+      clinicas: [],
       isLoading: {
         dentistasList: false
       },
       tableheaders,
       search,
-      novoDentista: {},
+      novoDentista: getNovoDentista(),
       dentistas,
     };
   },
