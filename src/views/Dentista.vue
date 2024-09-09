@@ -281,17 +281,23 @@
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Primeira consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.primeira_consulta)" id="dentista_primeiraConsulta" />
-              <span>há 4 anos</span>
+              <span>
+                {{  $filters.howMuchTime(dentista.primeira_consulta)  }}
+              </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Última consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.ultima_consulta)" id="dentista_ultimaConsulta" />
-              <span>há 1 mês</span>
+              <span>
+                {{  $filters.howMuchTime(dentista.ultima_consulta)  }}
+              </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Próxima consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.proxima_consulta)" id="dentista_proximaConsulta" />
-              <span class="text-success" style="font-weight: 500;">Hoje!</span>
+              <span class="text-success" style="font-weight: 500;">
+                {{  $filters.howMuchTime(dentista.proxima_consulta)  }}
+              </span>
             </div>
           </div>
 
@@ -348,7 +354,6 @@ import setTooltip from "@/assets/js/tooltip.js";
 // import ProfileCard from "./components/ProfileCard.vue";
 import MaterialInput from "@/components/MaterialInput.vue";
 import MaterialButton from "@/components/MaterialButton.vue";
-import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
 import { getDentista, updateDentista, adicionarMeioContato, excluirMeioContato } from "@/services/dentistasService"

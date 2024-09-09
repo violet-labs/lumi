@@ -91,10 +91,12 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
+                            :input="function ($event) { capitalizeAll($event) }"
                             id="paciente_nome_mae" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
+                            :input="function ($event) { capitalizeAll($event) }"
                             id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
@@ -113,6 +115,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome" type="text" v-model="paciente.responsavel_nome"
+                            :input="function ($event) { capitalizeAll($event) }"
                             id="responsavel_nome" />
                         </div>
                         <div class="col-md-6 mb-2">
@@ -358,17 +361,23 @@
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Primeira consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
-              <span>há 4 anos</span>
+              <span>
+                {{  $filters.howMuchTime(paciente.primeira_consulta)  }}
+              </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Última consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.ultima_consulta)" id="paciente_ultimaConsulta" />
-              <span>há 1 mês</span>
+              <span>
+                {{  $filters.howMuchTime(paciente.ultima_consulta)  }}
+              </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Próxima consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
-              <span class="text-success" style="font-weight: 500;">Hoje!</span>
+              <span class="text-success" style="font-weight: 500;">
+                {{  $filters.howMuchTime(paciente.proxima_consulta)  }}
+              </span>
             </div>
           </div>
 
@@ -509,6 +518,11 @@ export default {
     }
   },
   methods: {
+    
+    capitalizeAll($event) {
+      event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
+    },
+
     toggleEditMode(section) {
       this.isEditing[section] = !this.isEditing[section];
     },

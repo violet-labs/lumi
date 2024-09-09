@@ -31,6 +31,18 @@
           body-row-class-name="clickable" header-item-class-name="table-header-item"
           body-item-class-name="table-body-item">
 
+          <template #header-nome="header">
+            <div class="w-100 ps-3">
+              ORTODONTISTA
+            </div>
+          </template>
+
+          <template #item-nome="{ nome }">
+            <div class="w-100 ps-3">
+              <h6 class="mb-0 text-sm text-bold">{{ nome }}</h6>
+            </div>
+          </template>
+
           <template #header-pacientes="header">
             <div class="text-center w-100">
               PACIENTES
@@ -51,8 +63,22 @@
             </div>
           </template>
 
+          <template #header-pacientes_count="header">
+            <div class="w-100 ps-3 text-center">
+              PACIENTES
+            </div>
+          </template>
+
+          <template #item-pacientes_count="{ pacientes_count }">
+            <div class="w-100 text-center">
+              <span class="badge bg-info mx-auto" style="font-size: 9pt;">
+                {{ pacientes_count }}
+              </span>
+            </div>
+          </template>
+
           <template #item-created_at="{ created_at }">
-            {{ $filters.dateTime(created_at) }}
+            <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
           </template>
 
         </EasyDataTable>
@@ -137,7 +163,7 @@ import SidenavListDentistas from "@/views/components/LumiSidenav/SidenavListDent
 import { addNovoDentista, searchDentistas } from "@/services/dentistasService"
 
 const tableheaders = [
-  { text: "DENTISTA", value: "nome", sortable: true },
+  { text: "ORTODONTISTA", value: "nome", sortable: true },
   { text: "CLÍNICA", value: "clinica.nome", sortable: true },
   { text: "PACIENTES", value: "pacientes_count", sortable: true,/*  align: 'center' */ },
   { text: "E-MAIL", value: "user.email", sortable: true },
