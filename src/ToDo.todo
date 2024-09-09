@@ -3,11 +3,9 @@ Permissions:
     ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
     ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
 
-☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
-
 Imagens:
-    ☐ Permitir editar foto de perfil do Paciente    
-    ☐ Criar rota Laravel para servir imagens (auth required)
+    ☐ Permitir editar foto de perfil do Paciente
+    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
 
 Clínicas:
     ☐ Listar clínicas globalmente
@@ -54,6 +52,8 @@ Paciente > Tratamento > Plano de tratamento:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ----------- DEPOIS ------------------:   
+☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
+
 ☐ Permitir editar meios de contato
 ☐ Fazer modal global de buscar paciente
 ☐ Fazer modal global de buscar ortodontista

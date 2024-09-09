@@ -7,7 +7,9 @@
                     <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['diagnostico'] }"
                             :title="isEditing['diagnostico'] ? 'Sair do modo de edição' : 'Editar o diagnóstico'"
-                            @click="toggleEditMode('diagnostico')" /></p>
+                            @click="toggleEditMode('diagnostico')" />
+                        <span v-if="isEditing.diagnostico" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('diagnostico')"><u>Cancelar edição</u></span>
+                    </p>
 
                     <div v-if="isEditing['diagnostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>
@@ -155,6 +157,7 @@
                             :class="{ 'active': isEditing['prognostico'] }"
                             :title="isEditing['prognostico'] ? 'Sair do modo de edição' : 'Editar o prognóstico'"
                             @click="toggleEditMode('prognostico')" />
+                        <span v-if="isEditing.prognostico" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('prognostico')"><u>Cancelar edição</u></span>
                     </p>
                     <div v-if="isEditing['prognostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>

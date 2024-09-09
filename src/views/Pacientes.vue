@@ -106,10 +106,10 @@
         </div>
       </template>
 
-      <template #item-name="{ nome, data_nascimento }">
+      <template #item-name="{ nome, data_nascimento, profile_picture_url }">
         <div class="d-flex px-2 py-1">
           <div style="min-width: 40px;" class="d-none d-md-block">
-            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1" />
+            <img :src="profile_picture_url" class="avatar avatar-sm me-3" alt="user1" />
           </div>
           <div class="d-flex flex-column justify-content-center">
             <h6 class="mb-0 text-sm">{{ nome }}</h6>

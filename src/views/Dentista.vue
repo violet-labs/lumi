@@ -111,7 +111,7 @@
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" @click="toggleEditMode('meiosContatos')" />
-                          <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2" @click="toggleEditMode('meiosContatos')">(Editando)</span>
+                          <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2" @click="toggleEditMode('meiosContatos')"><u>Cancelar edição</u></span>
                         </p>
                       <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>

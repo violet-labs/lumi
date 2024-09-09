@@ -9,6 +9,7 @@
                             :class="{ 'active': isEditing['metasTerapeuticas'] }"
                             :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('metasTerapeuticas')" />
+                        <span v-if="isEditing.metasTerapeuticas" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('metasTerapeuticas')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['metasTerapeuticas']" class="d-flex flex-row w-100 justify-center pb-3">
@@ -66,7 +67,9 @@
                     <p class="custom-card-header">Aparatologia<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['aparatologia'] }"
                             :title="isEditing['aparatologia'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
-                            @click="toggleEditMode('aparatologia')" /></p>
+                            @click="toggleEditMode('aparatologia')" />
+                        <span v-if="isEditing.aparatologia" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('aparatologia')"><u>Cancelar edição</u></span>
+                    </p>
 
                     <div v-if="isEditing['aparatologia']" class="d-flex flex-row w-100 justify-center my-3">
                         <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Adicionar um novo item">
@@ -107,7 +110,9 @@
                     <p class="custom-card-header">Contenção<font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['contencao'] }"
                             :title="isEditing['contencao'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
-                            @click="toggleEditMode('contencao')" /></p>
+                            @click="toggleEditMode('contencao')" />
+                        <span v-if="isEditing.contencao" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('contencao')"><u>Cancelar edição</u></span>
+                    </p>
 
                     <div v-if="isEditing['contencao']" class="d-flex flex-row w-100 justify-center my-3">
                         <button class="btn btn-sm btn-primary mb-0 btn-edit" title="Adicionar um novo item">
@@ -243,7 +248,9 @@
                             :icon="['fas', 'edit']" class="ml-3 pointer"
                             :class="{ 'active': isEditing['necessidadesEncaminhamento'] }"
                             :title="isEditing['necessidadesEncaminhamento'] ? 'Sair do modo de edição' : 'Editar as necessidades de encaminhamento'"
-                            @click="toggleEditMode('necessidadesEncaminhamento')" /></p>
+                            @click="toggleEditMode('necessidadesEncaminhamento')" />
+                        <span v-if="isEditing.necessidadesEncaminhamento" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('necessidadesEncaminhamento')"><u>Cancelar edição</u></span>
+                    </p>
 
                     <div v-if="isEditing['necessidadesEncaminhamento']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>

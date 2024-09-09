@@ -7,7 +7,13 @@
             <div class="row gx-4">
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
-                  <img src="../assets/img/team-2.jpg" alt="profile_image" class="shadow-sm w-100 border-radius-lg" />
+
+                  <input id="photoFileInput" type="file" accept="image/*" @change=profilePicUpload hidden>
+
+                  <div class="profile-pic pointer" @click="confirmUpdatePhoto">
+                    <img :src="paciente.profile_picture_url" alt="profile_image" class="shadow-sm w-100 border-radius-lg" />
+                  </div>
+
                 </div>
               </div>
               <div class="col-auto my-auto">
@@ -91,13 +97,11 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
-                            :input="function ($event) { capitalizeAll($event) }"
-                            id="paciente_nome_mae" />
+                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_mae" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
-                            :input="function ($event) { capitalizeAll($event) }"
-                            id="paciente_nome_pai" />
+                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Como conheceu a clínica" type="text" v-model="paciente.como_conheceu"
@@ -115,8 +119,7 @@
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Nome" type="text" v-model="paciente.responsavel_nome"
-                            :input="function ($event) { capitalizeAll($event) }"
-                            id="responsavel_nome" />
+                            :input="function ($event) { capitalizeAll($event) }" id="responsavel_nome" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="RG" type="text" v-model="paciente.responsavel_rg" id="responsavel_rg" />
@@ -133,7 +136,9 @@
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" @click="toggleEditMode('meiosContatos')" />
-                          <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2" @click="toggleEditMode('meiosContatos')">(Editando)</span></p>
+                        <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2"
+                          @click="toggleEditMode('meiosContatos')"><u>Cancelar edição</u></span>
+                      </p>
                       <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>
                           <tr>
@@ -161,10 +166,9 @@
                             </td>
                             <td>{{ contato.descricao }}</td>
                             <td>
-                              <button v-if="isEditing.meiosContatos" class="btn btn-vsm btn-sm btn-danger" @click="excluirContato(contato.id, contato.tipo)">
-                                <font-awesome-icon
-                                  :icon="['fas', 'trash']"
-                                />
+                              <button v-if="isEditing.meiosContatos" class="btn btn-vsm btn-sm btn-danger"
+                                @click="excluirContato(contato.id, contato.tipo)">
+                                <font-awesome-icon :icon="['fas', 'trash']" />
                               </button>
                             </td>
                           </tr>
@@ -362,21 +366,21 @@
               <MaterialInput label="Primeira consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.primeira_consulta)" id="paciente_primeiraConsulta" />
               <span>
-                {{  $filters.howMuchTime(paciente.primeira_consulta)  }}
+                {{ $filters.howMuchTime(paciente.primeira_consulta) }}
               </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Última consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.ultima_consulta)" id="paciente_ultimaConsulta" />
               <span>
-                {{  $filters.howMuchTime(paciente.ultima_consulta)  }}
+                {{ $filters.howMuchTime(paciente.ultima_consulta) }}
               </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Próxima consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(paciente.proxima_consulta)" id="paciente_proximaConsulta" />
               <span class="text-success" style="font-weight: 500;">
-                {{  $filters.howMuchTime(paciente.proxima_consulta)  }}
+                {{ $filters.howMuchTime(paciente.proxima_consulta) }}
               </span>
             </div>
           </div>
@@ -443,6 +447,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
+import { uploadImage } from "@/services/imagesService"
 import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
@@ -488,8 +493,7 @@ export default {
       ].includes(this.novoContato.tipo) ? phoneMask(this.novoContato.contato) : ''
     },
     possuiWhatsapp() {
-      return false
-      // return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
+      return this.paciente && this.paciente.contatos && this.paciente.contatos.some(contato => contato.tipo === 'whatsapp');
     },
     whatsappNumero() {
       if (this.possuiWhatsapp) {
@@ -518,7 +522,47 @@ export default {
     }
   },
   methods: {
-    
+    cancelPhotoUpload() {
+      this.pendingPhotoFile = null
+      this.photoPreviewImage = null
+    },
+
+    confirmUpdatePhoto() {
+      cSwal.cConfirm('Deseja atualizar a foto de perfil?', () => {
+        this.choosePhotoFile()
+      })
+    },
+
+    choosePhotoFile() {
+      document.getElementById('photoFileInput').click()
+    },
+
+    profilePicUpload(e) {
+      cSwal.loading('Atualizando imagem de perfil...')
+
+      const imagem = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(imagem);
+      reader.onload = async e => {
+        const imgData = {
+          paciente_id: this.paciente.id,
+          imagem,
+          dir: 'profile_pic',
+        }
+        const upload = await uploadImage(imgData)
+
+        if (upload) {
+          await this.refreshPaciente()
+          cSwal.loaded()
+          cSwal.cSuccess('A foto de perfil do paciente foi atualizada.')
+        }
+        else {
+          cSwal.loaded()
+          cSwal.cError('Ocorreu um erro ao atualizar a foto de perfil do paciente.')
+        }
+      };
+    },
+
     capitalizeAll($event) {
       event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
     },

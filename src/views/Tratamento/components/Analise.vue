@@ -66,6 +66,7 @@
                             :class="{ 'active': isEditing['extraBucal'] }"
                             :title="isEditing['extraBucal'] ? 'Sair do modo de edição' : 'Editar as análises extra-bucais'"
                             @click="toggleEditMode('extraBucal')" />
+                        <span v-if="isEditing.extraBucal" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('extraBucal')"><u>Cancelar edição</u></span>
                     </div>
                     <div v-if="isEditing['extraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
@@ -149,6 +150,7 @@
                             :class="{ 'active': isEditing['analisesRadiograficas'] }"
                             :title="isEditing['analisesRadiograficas'] ? 'Sair do modo de edição' : 'Editar as análises radiográficas'"
                             @click="toggleEditMode('analisesRadiograficas')" />
+                        <span v-if="isEditing.analisesRadiograficas" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('analisesRadiograficas')"><u>Cancelar edição</u></span>
                     </div>
                     <div v-if="isEditing['analisesRadiograficas']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"
@@ -237,6 +239,7 @@
                             :class="{ 'active': isEditing['intraBucal'] }"
                             :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar as análises intra-bucais'"
                             @click="toggleEditMode('intraBucal')" />
+                        <span v-if="isEditing.intraBucal" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('intraBucal')"><u>Cancelar edição</u></span>
                     </div>
                     <div v-if="isEditing['intraBucal']" class="w-100 text-center mb-3 mt-0">
                         <button class="btn btn-sm btn-primary mt-3 mb-0 btn-edit"

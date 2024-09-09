@@ -24,11 +24,10 @@
             </div>
             Ortodontistas
         </v-tab>
-        <v-tab @click="openPage('financeiro')">
-            <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
+        <!-- <v-tab @click="openPage('financeiro')">
             <i class="fas fa-dollar-sign mr-3 pt-1 d-none d-md-block"></i>
             Financeiro
-        </v-tab>
+        </v-tab> -->
         <v-tab @click="openPage('configuracoes')">
             <!-- <v-icon class="mr-3 d-none d-md-block">mdi-currency-usd</v-icon> -->
             <i class="fas fa-cog pt-1" style="font-size: 12pt"></i>
