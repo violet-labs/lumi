@@ -3,6 +3,9 @@ export function isMobile() {
 }
 
 export function phoneMask(phone) {
+    if (!phone || typeof phone != 'string')
+        return ''
+
     phone = phone.replace(/\D+/g, '');
     const phoneLength = phone.length
 
