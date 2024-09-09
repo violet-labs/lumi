@@ -1,3 +1,5 @@
+☐ Colocar Description e Data no title das imagens (ou no rodapé delas)
+
 Permissions:
     ☐ Mostrar só "=clinica" quando nao for admin
     ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
@@ -12,6 +14,7 @@ Paciente > Tratamento > Plano de tratamento:
     Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
 
+☐ Fazer funcionar alterção do Meu Perfil
 
 
 

@@ -157,6 +157,7 @@
 
 .images-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 10px 0px;
     background: #F2F2F2;
