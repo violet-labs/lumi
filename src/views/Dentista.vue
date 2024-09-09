@@ -88,7 +88,7 @@
 
                         <div class="col-sm-6 col-md-3 mb-2 text-center">
                           <MaterialInput readonly class="text-center" label="Consultas" type="text"
-                            :modelValue="dentista.pacientes_count" />
+                            :modelValue="dentista.consultas_count" />
                         </div>
 
                         <div class="col-md-6 mb-2">
@@ -367,7 +367,16 @@ var dentista = {
   },
 }
 
-var originalDentista = {}
+var originalDentista = {
+  pacientes_count: '-',
+  consultas_count: '-',
+  user: {
+    email: '',
+  },
+  clinica: {
+    nome_fantasia: '',
+  },
+}
 
 var showTratamento = false;
 

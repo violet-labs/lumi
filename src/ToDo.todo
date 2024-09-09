@@ -1,33 +1,29 @@
+Permissions:
+    ☐ Mostrar só "=clinica" quando nao for admin
+    ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
+    ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
+
 ☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
-✔ Permitir excluir meios de contato @done(24-09-08 18:45)
 
-☐ Listar clínicas globalmente
-☐ Criar a primeira clínica manualmente
-☐ Criar função getClinica from token
-☐ Fazer modal gobal de buscar clínica
-☐ Fazer modal global de buscar paciente
-☐ Fazer modal global de buscar ortodontista
-    
-☐ CRUD metas terapêuticas
+Imagens:
+    ☐ Permitir editar foto de perfil do Paciente    
+    ☐ Criar rota Laravel para servir imagens (auth required)
 
-☐ Permitir editar foto de perfil do Paciente
-
-☐ Criar rota Laravel para servir imagens (auth required)
+Clínicas:
+    ☐ Listar clínicas globalmente
+    ☐ Criar a primeira clínica manualmente
+    ☐ Criar função getClinica from token
+    ☐ Fazer modal gobal de buscar clínica
 
 Paciente > Tratamento > Plano de tratamento:
     Metas terapêuticas:
         Colocar mais opções: 
             ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
-        ☐ Verificar se está editando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
     Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
         ☐ Criar com base nos itens da análise (preencher no objeto)
 
-Dentista > Pacientes:
-    ☐ Exibir listagem de pacientes (com busca simples):
-        ☐ Marcar os que estiverem com mentoria solicitada
-        ☐ Ao clicar, envia para a tela do Paciente
 
 
 
@@ -54,14 +50,18 @@ Dentista > Pacientes:
 
 
 
-
-
-        
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ----------- DEPOIS ------------------:   
 ☐ Permitir editar meios de contato
+☐ Fazer modal global de buscar paciente
+☐ Fazer modal global de buscar ortodontista
+
+Dentista > Pacientes:
+    ☐ Exibir listagem de pacientes (com busca simples):
+        ☐ Marcar os que estiverem com mentoria solicitada
+        ☐ Ao clicar, envia para a tela do Paciente
 
 Dentistas:
     ☐ Criar modal:
