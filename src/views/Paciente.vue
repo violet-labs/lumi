@@ -8,7 +8,7 @@
               <div class="col-auto">
                 <div class="avatar avatar-xl position-relative">
 
-                  <input id="photoFileInput" type="file" accept="image/*" @change=profilePicUpload hidden>
+                  <input id="profilePictureFileInput" type="file" accept="image/*" @change=profilePicUpload hidden>
 
                   <div class="profile-pic pointer" @click="confirmUpdatePhoto">
                     <img :src="paciente.profile_picture_url" alt="profile_image" class="shadow-sm w-100 border-radius-lg" />
@@ -350,7 +350,11 @@
       </Transition>
 
       <Transition>
-        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" @pacienteChange="refreshPaciente" />
+        <Tratamento
+          v-if="activeTab == 'tratamento'"
+          :paciente="paciente"
+          @pacienteChange="refreshPaciente"
+        />
       </Transition>
 
       <Transition>
@@ -387,10 +391,10 @@
 
           <div class="p-horizontal-divider"></div>
 
-          <div class="w-100 text-center">
+          <!-- <div class="w-100 text-center">
             <button class="btn btn-primary"><font-awesome-icon :icon="['fas', 'fa-plus']" class="me-2" /> Nova
               consulta</button>
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="col-md-12">
@@ -447,7 +451,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
-import { uploadImage } from "@/services/imagesService"
+import { uploadImage } from "@/services/imagensService"
 import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
@@ -529,12 +533,12 @@ export default {
 
     confirmUpdatePhoto() {
       cSwal.cConfirm('Deseja atualizar a foto de perfil?', () => {
-        this.choosePhotoFile()
+        this.chooseProfilePictureFile()
       })
     },
 
-    choosePhotoFile() {
-      document.getElementById('photoFileInput').click()
+    chooseProfilePictureFile() {
+      document.getElementById('profilePictureFileInput').click()
     },
 
     profilePicUpload(e) {

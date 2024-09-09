@@ -45,14 +45,8 @@
 <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
 <div class="py-2 px-3 d-flex flex-row img-carousel-container">
-  <div v-for="image in carouselImages" v-bind:key="image.id">
-    <div>
-      <img :src="image.src" alt="">
-    </div>
-  </div>
-
-  <div v-for="i in emptyPhotos" :key="i" class="empty-photo">
-    
+  <div v-for="imagem in paciente.imagens" :key="imagem.url">
+    <img :src="imagem.url" alt="" width="100" height="80">
   </div>
 </div>
 
@@ -113,7 +107,8 @@
     </Transition>
 
     <Transition>
-      <Imagens v-if="tratamentoTab === 'imagens'"
+      <Imagens v-if="tratamentoTab === 'imagens'" :paciente="paciente"
+      @pacienteChange="$emit('pacienteChange')"
       />
     </Transition>
 
@@ -177,6 +172,8 @@
 }
 
 .img-carousel-container {
+  overflow-y: hidden;
+  overflow-x: auto;
   background: #F2F2F2;
   border-width: 0px 1px 0px 1px;
   border-style: solid;
@@ -221,31 +218,6 @@ import PlanoTratamento from "./Tratamento/components/PlanoTratamento.vue"
 var tratamentoTab = 'analise'
 const items = []
 
-const carouselImages = [
-  // {
-  //   id: 2,
-  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr2.jpg'
-  // },
-  // {
-  //   id: 3,
-  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/xr3.jpg'
-  // },
-  // {
-  //   id: 4,
-  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i1.png'
-  // },
-  // {
-  //   id: 5,
-  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i2.jpg'
-  // },
-  // {
-  //   id: 6,
-  //   src: 'http://dev.lumiorthosystem:8080/img/tratamentos/i3.jpg'
-  // },
-]
-
-var emptyPhotos = 10;
-
 export default {
   name: "tratamento",
   props: {
@@ -257,8 +229,6 @@ export default {
     return {
       items,
       tratamentoTab,
-      carouselImages,
-      emptyPhotos,
     }
   },
   methods: {

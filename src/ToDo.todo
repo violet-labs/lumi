@@ -3,24 +3,14 @@ Permissions:
     ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
     ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
 
-Imagens:
-    ☐ Permitir editar foto de perfil do Paciente
-    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
-
 Clínicas:
     ☐ Listar clínicas globalmente
     ☐ Criar a primeira clínica manualmente
     ☐ Criar função getClinica from token
-    ☐ Fazer modal global de buscar clínica
 
 Paciente > Tratamento > Plano de tratamento:
-    Metas terapêuticas:
-        Colocar mais opções: 
-            ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
-        ☐ Criar com base nos itens da análise (preencher no objeto)
     Necessidades de encaminhamentos:
         ☐ Verificar se está salvando certinho
-        ☐ Criar com base nos itens da análise (preencher no objeto)
 
 
 
@@ -51,7 +41,20 @@ Paciente > Tratamento > Plano de tratamento:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
--- ----------- DEPOIS ------------------:   
+-- ----------- DEPOIS ------------------:
+☐ Fazer modal global de buscar clínica
+Imagens:
+    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
+    ☐ Fazer funcionar exibição detalhada
+Metas terapêuticas:
+    Colocar mais opções: 
+        ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
+    ☐ Criar com base nos itens da análise (preencher no objeto)
+    
+Necessidades de encaminhamentos:
+    ☐ Criar com base nos itens da análise (preencher no objeto)
+
+☐ Armazenar miniatura das imagens
 ☐ Preparar formulário de boas-vindas para permitir anonimo (armazenar formulário para ser vinculado com paciente depois)
 
 ☐ Permitir editar meios de contato

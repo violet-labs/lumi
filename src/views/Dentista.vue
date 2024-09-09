@@ -266,10 +266,6 @@
       </Transition>
 
       <Transition>
-        <Tratamento v-if="activeTab == 'tratamento'" :dentista="dentista" />
-      </Transition>
-
-      <Transition>
         <div class="py-4 container-fluid" v-if="activeTab == 'consultas'">
 
           <div class="row">

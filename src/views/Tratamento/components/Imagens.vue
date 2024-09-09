@@ -5,13 +5,18 @@
                 <div class="section-header">
                     <font-awesome-icon :icon="['fas', 'x-ray']" />
                     Radiografias
-                    <div class="p-horizontal-divider"></div>
+                    <div class="p-horizontal-divider mb-0"></div>
                     <div class="radiografias-container w-100">
+
+                        <div v-if="xrays.length > 0" class="images-container">
+                            <img :src="xray.url" alt="" v-for="xray in xrays" :key="xray.url" width="100">
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <v-table>
                                     <tbody>
-                                        <tr>
+                                        <tr v-if="xrays.length == 0">
                                             <td class="bg-gradient-light text-dark text-center"
                                                 style="border-radius: 3px; padding: 2px 20px;">
                                                 Ainda não há radiografias.
@@ -19,7 +24,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-center pt-3">
-                                                
+
                                                 <div v-if="!pendingXrayUpload">
                                                     <input id="xrayFileInput" type="file" accept="image/*"
                                                         @change=setXrayPreview hidden>
@@ -70,13 +75,20 @@
                 <div class="section-header">
                     <font-awesome-icon :icon="['fas', 'camera']" />
                     Fotos
-                    <div class="p-horizontal-divider"></div>
+                    <div class="p-horizontal-divider mb-0"></div>
                     <div class="fotos-container w-100">
+
+                        <div v-if="photos.length > 0" class="row">
+                            <div class="col-12 images-container">
+                                <img :src="photo.url" alt="" v-for="photo in photos" :key="photo.url" width="100">
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <v-table>
                                     <tbody>
-                                        <tr>
+                                        <tr v-if="photos.length == 0">
                                             <td class="bg-gradient-light text-dark text-center"
                                                 style="border-radius: 3px; padding: 2px 20px;">
                                                 Ainda não há fotos.
@@ -141,19 +153,52 @@
     width: 150px !important;
     height: 150px !important;
 }
+
+
+.images-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+    background: #F2F2F2;
+    border-width: 0px 1px 0px 1px;
+    border-style: solid;
+    border-color: #e2e2e2;
+    gap: 10px;
+}
+
+.images-container img {
+    background: #000;
+    border: 2px solid #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+    max-width: 120px;
+    max-height: 90px;
+}
+
+.images-container>div:hover {
+    filter: brightness(90%);
+}
 </style>
 
 <script>
-import { uploadImage } from "@/services/pacientesService"
-
-let pendingPhotoFile = null
-let pendingXrayFile = null
+import { uploadImage } from "@/services/imagensService"
+import cSwal from "@/utils/cSwal.js"
 
 export default {
     name: "Imagens",
+    props: {
+        paciente: {
+            type: Object,
+            default: () => { return {} },
+        },
+    },
     data() {
         return {
             photoPreviewImage: null,
+            pendingPhotoFile: null,
             pendingPhotoUpload: false,
             photoDescription: '',
             photoDate: new Date().toISOString().slice(0, 10),
@@ -163,11 +208,21 @@ export default {
             xrayDate: new Date().toISOString().slice(0, 10)
         }
     },
+    computed: {
+        xrays() {
+            return this.paciente.imagens.filter(imagem => imagem.dir === 'xray');
+        },
+        photos() {
+            return this.paciente.imagens.filter(imagem => imagem.dir === 'photo');
+        }
+    },
     methods: {
+
         cancelPhotoUpload() {
             this.pendingPhotoUpload = false
             this.pendingPhotoFile = null
             this.photoPreviewImage = null
+            this.photoDescription = '';
         },
 
         choosePhotoFile() {
@@ -175,7 +230,25 @@ export default {
         },
 
         async confirmPhotoUpload() {
-            const response = await uploadImage(this.pendingPhotoFile, 'photo', this.photoDate, this.photoDescription)
+            const imgData = {
+                paciente_id: this.paciente.id,
+                imagem: this.pendingPhotoFile,
+                dir: 'photo',
+                data: this.photoDate,
+                descricao: this.photoDescription,
+            }
+            cSwal.loading('Adicionando foto...')
+            const upload = await uploadImage(imgData)
+            cSwal.loaded()
+
+            if (upload) {
+                cSwal.cSuccess('A foto foi adicionada.')
+                this.cancelPhotoUpload()
+                this.$emit('pacienteChange')
+            }
+            else {
+                cSwal.cError('Ocorreu um erro ao adicionar a radiografia.')
+            }
         },
 
         setPhotoPreview(e) {
@@ -196,6 +269,7 @@ export default {
             this.pendingXrayUpload = false
             this.pendingXrayFile = null
             this.xrayPreviewImage = null
+            this.xrayDescription = '';
         },
 
         chooseXrayFile() {
@@ -203,7 +277,25 @@ export default {
         },
 
         async confirmXrayUpload() {
-            const response = await uploadImage(this.pendingXrayFile, 'xray', this.xrayDate, this.xrayDescription)
+            const imgData = {
+                paciente_id: this.paciente.id,
+                imagem: this.pendingXrayFile,
+                dir: 'xray',
+                data: this.xrayDate,
+                descricao: this.xrayDescription,
+            }
+            cSwal.loading('Adicionando radiografia...')
+            const upload = await uploadImage(imgData)
+            cSwal.loaded()
+
+            if (upload) {
+                cSwal.cSuccess('A radiografia foi adicionada.')
+                this.cancelXrayUpload()
+                this.$emit('pacienteChange')
+            }
+            else {
+                cSwal.cError('Ocorreu um erro ao adicionar a radiografia.')
+            }
         },
 
         setXrayPreview(e) {
