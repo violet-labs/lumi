@@ -245,7 +245,7 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
                 Celular:
               </label>
-              <MaterialInput type="text" label="" v-model="novoPaciente.celular"
+              <MaterialInput type="text" label="" class="text-center" v-model="novoPaciente.celular"
                 :mask="phoneMaskWrapper(novoPaciente.celular)" placeholder="(##) #####-####" />
               <label for="novo-paciente-celular-whatsapp" class="pointer">
                 <div class="mt-2">
@@ -386,6 +386,11 @@ export default {
       return classMap[status] || '';
     },
     async _addNovoPaciente() {
+      if (!this.novoPaciente.clinica_id) {
+        cSwal.cAlert('É necessário selecionar uma clínica.')
+        return false
+      }
+
       cSwal.loading('Adicionando paciente...')
       const add = await addNovoPaciente(this.novoPaciente)
       cSwal.loaded()

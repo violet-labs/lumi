@@ -1,35 +1,12 @@
-Paciente > Tratamento > Plano de tratamento:
-    Necessidades de encaminhamentos:
-        ☐ Verificar se está salvando certinho
-
 ☐ Fazer deploy no servidor
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ----------- DEPOIS ------------------:
+Paciente > Tratamento > Plano de tratamento:
+    Necessidades de encaminhamentos:
+        ☐ Verificar se está salvando certinho
 ☐ Fazer funcionar alteração do Meu Perfil
 Permissions:
     ☐ Mostrar só "=clinica" quando nao for admin
