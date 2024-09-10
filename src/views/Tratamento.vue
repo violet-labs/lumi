@@ -6,13 +6,14 @@
         <MaterialInput label="Início do tratamento" readonly type="text" centered
           :modelValue="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
           label-class="me-3" />
-        <span class="text-sm">{{$filters.howMuchTime(paciente.data_inicio_tratamento, new Date())}}</span>
+        <span class="text-sm">{{ $filters.howMuchTime(paciente.data_inicio_tratamento, new Date()) }}</span>
       </div>
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <MaterialInput label="Término previsto" readonly type="text" centered :modelValue="$filters.dateDmy(paciente.data_final_prevista)"
-          id="paciente_fim_tratamento" label-class="me-3" />
-        <span class="text-sm text-success">{{$filters.howMuchTime(paciente.data_final_prevista, new Date())}}</span>
+        <MaterialInput label="Término previsto" readonly type="text" centered
+          :modelValue="$filters.dateDmy(paciente.data_final_prevista)" id="paciente_fim_tratamento"
+          label-class="me-3" />
+        <span class="text-sm text-success">{{ $filters.howMuchTime(paciente.data_final_prevista, new Date()) }}</span>
       </div>
 
       <div class="col-md-6 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
@@ -42,15 +43,15 @@
       </div>
     </div>
 
-<div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
+    <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
-<div class="py-2 px-3 d-flex flex-row img-carousel-container">
-  <div v-for="imagem in paciente.imagens" :key="imagem.url">
-    <img :src="imagem.url" alt="" width="100" height="80">
-  </div>
-</div>
+    <div class="py-2 px-3 d-flex flex-row img-carousel-container">
+      <div v-for="imagem in imagens" :key="imagem.url">
+        <img :src="imagem.url" alt="" width="100" height="80">
+      </div>
+    </div>
 
-<div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
+    <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
     <div class="d-flex flex-row w-100" style="padding: 15px 10px; align-content: space-evenly !important;">
       <div class="tratamento-tab" :class="tratamentoTab == 'analise' ? 'active' : ''"
@@ -83,33 +84,22 @@
     <div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
-      <Analise
-        v-if="tratamentoTab === 'analise'"
-        :pacienteId="paciente.id"
-        :detalhesClinicos="detalhesClinicos"
-        @pacienteChange="$emit('pacienteChange')"
-        />
+      <Analise v-if="tratamentoTab === 'analise'" :pacienteId="paciente.id" :detalhesClinicos="detalhesClinicos"
+        @pacienteChange="$emit('pacienteChange')" />
     </Transition>
 
     <Transition>
-      <Diagnostico v-if="tratamentoTab === 'diagnostico'" 
-      :paciente="paciente"
-      :diagnostico="paciente.diagnostico"
-      :prognostico="paciente.prognostico"
-      @pacienteChange="$emit('pacienteChange')"
-      />
+      <Diagnostico v-if="tratamentoTab === 'diagnostico'" :paciente="paciente" :diagnostico="paciente.diagnostico"
+        :prognostico="paciente.prognostico" @pacienteChange="$emit('pacienteChange')" />
     </Transition>
 
     <Transition>
       <PlanoTratamento v-if="tratamentoTab === 'planoTratamento'" :paciente="paciente"
-      @pacienteChange="$emit('pacienteChange')"
-      />
+        @pacienteChange="$emit('pacienteChange')" />
     </Transition>
 
     <Transition>
-      <Imagens v-if="tratamentoTab === 'imagens'" :paciente="paciente"
-      @pacienteChange="$emit('pacienteChange')"
-      />
+      <Imagens v-if="tratamentoTab === 'imagens'" :paciente="paciente" @pacienteChange="$emit('pacienteChange')" />
     </Transition>
 
     <Transition>
@@ -181,7 +171,7 @@
   gap: 10px;
 }
 
-.img-carousel-container > div {
+.img-carousel-container>div {
   background: #000;
   border: 2px solid #666;
   display: flex;
@@ -196,7 +186,7 @@
   max-height: 90px;
 }
 
-.img-carousel-container > div:hover {
+.img-carousel-container>div:hover {
   filter: brightness(90%);
 }
 
@@ -204,7 +194,6 @@
   width: 300px;
   height: 96px;
 }
-
 </style>
 
 <script>
@@ -271,6 +260,9 @@ export default {
     MaterialInput,
   },
   computed: {
+    imagens() {
+      return this.paciente.imagens.filter(imagem => imagem.dir !== 'profile_pic');
+    },
     detalhesClinicos() {
       return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'clinico') : [];
     },
