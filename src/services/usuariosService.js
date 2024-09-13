@@ -75,6 +75,9 @@ async function logout() {
 
 async function refreshAuth() {
 
+    if (!isAuthenticated())
+        return null
+
     try {
         const response = await axios.post('/auth/refresh')
 

@@ -200,9 +200,11 @@ export default {
   async mounted() {
     this.clinicas = await getClinicas()
 
-    this.$refs.modalNovoDentista.addEventListener('shown.bs.modal', event => {
-      this.$refs.nome.getInput().focus();
-    })
+    if (this.$refs.modalNovoDentista) {
+      this.$refs.modalNovoDentista.addEventListener('shown.bs.modal', event => {
+        this.$refs.nome.getInput().focus();
+      })
+    }
 
     this.updateList()
   },
