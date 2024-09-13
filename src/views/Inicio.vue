@@ -52,7 +52,7 @@
                 usuario: 'Thales Lima',
               },
               {
-                acao: '<b>Beatriz</b> preencheu o formulário de boas-vindas',
+                acao: '<b>Beatriz</b> preencheu a ficha de avaliação inicial',
                 dia: '26/05/2024',
                 horario: '10:05h',
                 usuario: '-',

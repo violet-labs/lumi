@@ -86,7 +86,7 @@ export async function sendWelcomeForm(paciente, questions) {
         return response
 
     } catch (error) {
-        console.error('Erro ao enviar formulário de boas-vindas:', error);
+        console.error('Erro ao enviar a ficha de avaliação inicial:', error);
     }
 
     return false

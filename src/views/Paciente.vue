@@ -240,7 +240,7 @@
                       <div class="row">
 
                         <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center">
-                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Formulário de boas-vindas</p>
+                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Ficha de avaliação inicial</p>
                           <span v-if="paciente.formulario_respondido"
                             class="badge badge-sm bg-success">Respondido</span>
                           <span v-else class="badge badge-sm bg-warning">Não respondido</span>
@@ -315,7 +315,7 @@
 
                         <div v-if="!paciente.formulario_respondido || detalhesPessoais.length == 0"
                           style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
-                          O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário,
+                          O paciente ainda não respondeu à ficha de avaliação inicial. Para enviar-lhe o formulário,
                           utilize o
                           botão "<font-awesome-icon :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']"
                             class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp ?
@@ -660,7 +660,7 @@ export default {
       const link = `https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
 
       if (!navigator.clipboard) {
-        cSwal.cInfo('Link do formulário de boas-vindas para o paciente<br><b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
+        cSwal.cInfo('Link da ficha de avaliação inicial para o paciente<br><b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
         return false;
       }
 

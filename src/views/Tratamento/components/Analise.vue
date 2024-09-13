@@ -32,7 +32,7 @@
 
                             <div v-if="!paciente.formulario_respondido || detalhesClinicos.length == 0"
                                 style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-center">
-                                O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o
+                                O paciente ainda não respondeu à ficha de avaliação inicial. Para enviar-lhe o
                                 formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
                                     class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">ENVIAR
                                     LINK</span>" na aba "<font-awesome-icon :icon="['fas', 'fa-user']"

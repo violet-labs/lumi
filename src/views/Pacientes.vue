@@ -10,7 +10,7 @@
           <div class="card mt-3" style="border: 1px solid #EEE;">
             <div class="card-body px-3">
               <div class="pb-1 text-start">
-                <p class="mb-0" style="font-weight: 400;">Formulários de boas-vindas</p>
+                <p class="mb-0" style="font-weight: 400;">Fichas de avaliação inicial</p>
               </div>
               <table class="table-sm w-100 vsm-table">
                 <thead>
