@@ -84,7 +84,7 @@
     <div class="p-horizontal-divider mt-0"></div>
 
     <Transition>
-      <Analise v-if="tratamentoTab === 'analise'" :pacienteId="paciente.id" :detalhesClinicos="detalhesClinicos"
+      <Analise v-if="tratamentoTab === 'analise'" :paciente="paciente" :detalhesClinicos="detalhesClinicos"
         @pacienteChange="$emit('pacienteChange')" />
     </Transition>
 

@@ -14,7 +14,7 @@ import Paciente from "../views/Paciente.vue";
 
 import Dentista from "../views/Dentista.vue";
 
-import { isAuthenticated } from "../api.js";
+import usuariosService from "@/services/usuariosService";
 
 const routes = [
   {
@@ -128,7 +128,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isAuthenticated()) {
+  if (to.meta.requiresAuth && !usuariosService.isAuthenticated()) {
     next("entrar");
   } else {
     next();

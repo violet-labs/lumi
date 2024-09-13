@@ -8,7 +8,8 @@
                             class="ml-3 pointer" :class="{ 'active': isEditing['diagnostico'] }"
                             :title="isEditing['diagnostico'] ? 'Sair do modo de edição' : 'Editar o diagnóstico'"
                             @click="toggleEditMode('diagnostico')" />
-                        <span v-if="isEditing.diagnostico" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('diagnostico')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.diagnostico" class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('diagnostico')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['diagnostico']" class="w-100 text-center mb-3">
@@ -20,8 +21,12 @@
                     </div>
 
                     <div style="background: #F2F2F2;">
-                        <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4" style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
-                            {{ diagnostico_ }}
+                        <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4"
+                            style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
+                            <span v-if="!diagnostico_ || diagnostico_.length == 0"
+                                class="text-info d-inline-block w-100 text-center">Ainda não foi estabelecido um
+                                diagnóstico.</span>
+                            <span v-if="diagnostico_ && diagnostico_.length > 0">{{ diagnostico_ }}</span>
                         </p>
                     </div>
                     <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control" rows="4"
@@ -126,9 +131,11 @@
                         <div class="col-sm-6">
                             <div class="p-horizontal-divider mb-4"></div>
                             <p class="text-justify my-0 pt-2 pb-2">
-                                Nosso sistema calcula um tratamento recomendado, com base nas informações inseridas na seção "<font-awesome-icon :icon="['fas', 'fa-search']"
-                                    class="me-1 text-sm" /><span
-                                    class="text-sm font-weight-bold uppercase">análise</span>". Porém, com a análise atual, não foi possível definir um tratamento para este paciente. Verifique se é possível complementar a análise.
+                                Nosso sistema calcula um tratamento recomendado, com base nas informações inseridas na
+                                seção "<font-awesome-icon :icon="['fas', 'fa-search']" class="me-1 text-sm" /><span
+                                    class="text-sm font-weight-bold uppercase">análise</span>". Porém, com a análise
+                                atual, não foi possível definir um tratamento para este paciente. Verifique se é
+                                possível complementar a análise.
                             </p>
                             <p class="text-justify my-0 py-1">
                                 Se você tiver dúvidas sobre este caso, <strong>você pode solicitar uma
@@ -157,7 +164,8 @@
                             :class="{ 'active': isEditing['prognostico'] }"
                             :title="isEditing['prognostico'] ? 'Sair do modo de edição' : 'Editar o prognóstico'"
                             @click="toggleEditMode('prognostico')" />
-                        <span v-if="isEditing.prognostico" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('prognostico')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.prognostico" class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('prognostico')"><u>Cancelar edição</u></span>
                     </p>
                     <div v-if="isEditing['prognostico']" class="w-100 text-center mb-3">
                         <div class="p-vertical-divider"></div>
@@ -168,8 +176,12 @@
                     </div>
 
                     <div style="background: #F2F2F2;">
-                        <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4" style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
-                            {{ prognostico_ }}
+                        <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4"
+                            style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
+                            <span v-if="!prognostico_ || prognostico_.length == 0"
+                                class="text-info d-inline-block w-100 text-center">Ainda não foi estabelecido um
+                                prognóstico.</span>
+                            <span v-if="!prognostico_ || prognostico_.length == 0">{{ prognostico_ }}</span>
                         </p>
                     </div>
                     <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control" rows="4"
@@ -178,26 +190,27 @@
             </div>
 
         </div>
-    </div>
 
-    <div class="modal" tabindex="-1" id="modalSolicitarMentoria">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Solicitar mentoria</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-4">
-                    <p class="mt-3">Mentoria para o caso do paciente <b>{{ paciente.nome }}</b></p>
-                    <p class="mt-3">O pedido de mentoria chegará para nosso especialista, e então ele avaliará o caso
-                        juntamente com você.</p>
-                    <p class="mt-3">Escreva algumas observações sobre o caso, se julgar necessário:</p>
-                    <textarea class="form-control" rows="3" v-model="observacoesMentoria"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                        @click="confirmSolicitarMentoria">Solicitar mentoria</button>
+        <div class="modal" tabindex="-1" id="modalSolicitarMentoria">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Solicitar mentoria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4">
+                        <p class="mt-3">Mentoria para o caso do paciente <b>{{ paciente.nome }}</b></p>
+                        <p class="mt-3">O pedido de mentoria chegará para nosso especialista, e então ele avaliará o
+                            caso
+                            juntamente com você.</p>
+                        <p class="mt-3">Escreva algumas observações sobre o caso, se julgar necessário:</p>
+                        <textarea class="form-control" rows="3" v-model="observacoesMentoria"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            @click="confirmSolicitarMentoria">Solicitar mentoria</button>
+                    </div>
                 </div>
             </div>
         </div>

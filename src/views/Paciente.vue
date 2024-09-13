@@ -238,22 +238,28 @@
                       <div class="p-horizontal-divider mb-0"></div>
 
                       <div class="row">
+
                         <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center">
                           <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Formulário de boas-vindas</p>
                           <span v-if="paciente.formulario_respondido"
                             class="badge badge-sm bg-success">Respondido</span>
                           <span v-else class="badge badge-sm bg-warning">Não respondido</span>
                         </div>
+
                         <div class="col-sm-6 d-flex align-items-end justify-content-center">
-                          <button v-if="paciente.formulario_respondido" class="btn btn-primary mb-0"
+
+                          <button v-if="false && paciente.formulario_respondido" class="btn btn-primary mb-0"
                             @click="visualizarFormulario">VISUALIZAR</button>
-                          <button class="btn btn-primary mb-0" @click="handleFormLinkBtn">
+
+                          <button v-if="true || !paciente.formulario_respondido" class="btn btn-primary mb-0" @click="handleFormLinkBtn">
                             <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'"
                               style="font-size: 13pt;"></i>
                             <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK'
                               }}</span>
                           </button>
+
                         </div>
+
                       </div>
 
                       <div class="p-horizontal-divider"></div>
@@ -307,7 +313,7 @@
                     <div class="col-12">
                       <div class="row p-0">
 
-                        <div v-if="!formularioRespondido || detalhesPessoais.length == 0"
+                        <div v-if="!paciente.formulario_respondido || detalhesPessoais.length == 0"
                           style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
                           O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o formulário,
                           utilize o
@@ -316,7 +322,7 @@
                               'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
                         </div>
 
-                        <div v-if="paciente.formularioRespondido">
+                        <div v-if="paciente.formulario_respondido" class="row">
                           <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
                             class="col-sm-6 col-md-4">
                             <div class="info-container mt-2" :class="detalhe.nivel">

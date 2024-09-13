@@ -9,7 +9,8 @@
                             :class="{ 'active': isEditing['metasTerapeuticas'] }"
                             :title="isEditing['metasTerapeuticas'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('metasTerapeuticas')" />
-                        <span v-if="isEditing.metasTerapeuticas" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('metasTerapeuticas')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.metasTerapeuticas" class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('metasTerapeuticas')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['metasTerapeuticas']" class="d-flex flex-row w-100 justify-center pb-3">
@@ -68,7 +69,8 @@
                             class="ml-3 pointer" :class="{ 'active': isEditing['aparatologia'] }"
                             :title="isEditing['aparatologia'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('aparatologia')" />
-                        <span v-if="isEditing.aparatologia" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('aparatologia')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.aparatologia" class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('aparatologia')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['aparatologia']" class="d-flex flex-row w-100 justify-center my-3">
@@ -111,7 +113,8 @@
                             class="ml-3 pointer" :class="{ 'active': isEditing['contencao'] }"
                             :title="isEditing['contencao'] ? 'Sair do modo de edição' : 'Editar as metas terapêuticas'"
                             @click="toggleEditMode('contencao')" />
-                        <span v-if="isEditing.contencao" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('contencao')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.contencao" class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('contencao')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['contencao']" class="d-flex flex-row w-100 justify-center my-3">
@@ -249,7 +252,9 @@
                             :class="{ 'active': isEditing['necessidadesEncaminhamento'] }"
                             :title="isEditing['necessidadesEncaminhamento'] ? 'Sair do modo de edição' : 'Editar as necessidades de encaminhamento'"
                             @click="toggleEditMode('necessidadesEncaminhamento')" />
-                        <span v-if="isEditing.necessidadesEncaminhamento" class="text-capitalize text-light pointer ms-2" @click="toggleEditMode('necessidadesEncaminhamento')"><u>Cancelar edição</u></span>
+                        <span v-if="isEditing.necessidadesEncaminhamento"
+                            class="text-capitalize text-light pointer ms-2"
+                            @click="toggleEditMode('necessidadesEncaminhamento')"><u>Cancelar edição</u></span>
                     </p>
 
                     <div v-if="isEditing['necessidadesEncaminhamento']" class="w-100 text-center mb-3">
@@ -267,24 +272,24 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal" tabindex="-1" id="modalMetaTerapeutica" ref="modalMetaTerapeutica">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Adicionar meta terapêutica</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                        ref="closeModalNovoDentista"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12 d-flex flex-column text-center">
-                            <label for="metaTerapeutica">Meta terapêutica:</label>
-                            <MaterialInput type="text" class="my-2 text-center" id="metaTerapeutica"
-                                name="metaTerapeutica" ref="metaTerapeutica" v-model="novaMetaTerapeutica" />
-                            <button class="btn btn-primary my-3 mx-auto" @click="_adicionarMetaTerapeutica"
-                                style="max-width: 200px;">Adicionar</button>
+        <div class="modal" tabindex="-1" id="modalMetaTerapeutica" ref="modalMetaTerapeutica">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adicionar meta terapêutica</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            ref="closeModalNovoDentista"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-column text-center">
+                                <label for="metaTerapeutica">Meta terapêutica:</label>
+                                <MaterialInput type="text" class="my-2 text-center" id="metaTerapeutica"
+                                    name="metaTerapeutica" ref="metaTerapeutica" v-model="novaMetaTerapeutica" />
+                                <button class="btn btn-primary my-3 mx-auto" @click="_adicionarMetaTerapeutica"
+                                    style="max-width: 200px;">Adicionar</button>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -73,10 +73,10 @@ export async function salvarPrognostico(paciente_id, prognostico) {
     return false;
 }
 
-export async function sendWelcomeForm(questions) {
+export async function sendWelcomeForm(paciente, questions) {
     try {
         const response = await axios.post('/pacientes/welcome-form', {
-            id_paciente: 3,
+            id_paciente: paciente.id,
             questions,
         });
 

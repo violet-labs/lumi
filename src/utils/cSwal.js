@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2'
 
-Swal.cAlert = function(html, options = {}) {
+Swal.cAlert = function (html, options = {}) {
     const defaultOptions = {
         html,
     }
@@ -10,7 +10,7 @@ Swal.cAlert = function(html, options = {}) {
     return Swal.fire(options)
 }
 
-Swal.loading = function(text = 'Carregando...', options = {}) {
+Swal.loading = function (text = 'Carregando...', options = {}) {
     const defaultOptions = {
         html: '<div class="spinner-border text-primary" role="status"></div><br><br>' + text,
         allowOutsideClick: false,
@@ -28,11 +28,11 @@ Swal.loading = function(text = 'Carregando...', options = {}) {
     return Swal.fire(options);
 };
 
-Swal.loaded = function() {
+Swal.loaded = function () {
     return Swal.close();
 };
 
-Swal.cInfo = function(html, options = {}) {
+Swal.cInfo = function (html, options = {}) {
     const defaultOptions = {
         html,
         icon: 'info',
@@ -43,7 +43,7 @@ Swal.cInfo = function(html, options = {}) {
     return Swal.fire(options)
 }
 
-Swal.cConfirm = function(html, callback, options = {}) {
+Swal.cConfirm = function (html, callback, options = {}) {
     const defaultOptions = {
         html,
         icon: 'warning',
@@ -63,7 +63,7 @@ Swal.cConfirm = function(html, callback, options = {}) {
         });
 }
 
-Swal.cWarning = function(html, options = {}) {
+Swal.cWarning = function (html, options = {}) {
     const defaultOptions = {
         html,
         icon: 'warning',
@@ -74,7 +74,7 @@ Swal.cWarning = function(html, options = {}) {
     return Swal.fire(options)
 }
 
-Swal.cError = function(html, options = {}) {
+Swal.cError = function (html, options = {}) {
     const defaultOptions = {
         html,
         title: 'Ops...',
@@ -86,10 +86,10 @@ Swal.cError = function(html, options = {}) {
     return Swal.fire(options)
 }
 
-Swal.cSuccess = function(html, options = {}) {
+Swal.cSuccess = function (html, options = {}) {
     const defaultOptions = {
         html,
-        title: 'Sucesso!',
+        title: getSuccessMessage(),
         icon: 'success',
     }
 
@@ -99,3 +99,33 @@ Swal.cSuccess = function(html, options = {}) {
 }
 
 export default Swal
+
+function getSuccessMessage() {
+    var mensagens = [
+        'Tudo em ordem!',
+        'Pronto e feito!',
+        'Missão completa!',
+        'Deu certinho!',
+        'Sucesso total!',
+        'Finalizado com estilo!',
+        'Tudo feito!',
+        'Missão cumprida!',
+        'Tudo nos conformes!',
+        'Feito com capricho!',
+        'Prontinho!',
+        'Tá tudo certo!',
+        'Concluído sem erro!',
+        'Tudo sob controle!',
+        'Finalizado com sucesso!',
+        'Ação completada!',
+        'Perfeito, deu certo!',
+        'Tudo resolvido!',
+        'Tudo ajeitado!'
+    ];
+
+    // Generate a random index
+    var randomIndex = Math.floor(Math.random() * mensagens.length);
+
+    // Return the message at the random index
+    return mensagens[randomIndex];
+}

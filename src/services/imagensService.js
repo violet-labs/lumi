@@ -14,6 +14,7 @@ export async function uploadImage(options) {
 
     try {
         let data = new FormData();
+        console.log('options.imagem:', options.imagem)
         data.append('paciente_id', options.paciente_id);
         data.append('imagem', options.imagem);
         data.append('dir', options.dir);
@@ -31,7 +32,7 @@ export async function uploadImage(options) {
         return response;
 
     } catch (error) {
-        console.error('Erro ao salvar meio de contato:', error);
+        console.error('Erro ao enviar imagem:', error);
     }
 
     return false;

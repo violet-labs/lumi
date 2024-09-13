@@ -18,9 +18,9 @@ body {
 }
 </style>
 <template>
-  <entrar v-if="($route.meta.requiresAuth && !isAuthenticated()) || $route.name === 'Entrar'"></entrar>
+  <entrar v-if="($route.meta.requiresAuth && !isAuthenticated) || $route.name === 'Entrar'"></entrar>
   <div class="user-access" v-else>
-    <tab-navigation class="bg-gradient-primary" v-if="isAuthenticated() && $route.name !== 'WelcomeForm'" />
+    <tab-navigation class="bg-gradient-primary" v-if="isAuthenticated && $route.name !== 'WelcomeForm'" />
     <main class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden">
       <router-view />
       <app-footer v-show="showFooter" />
@@ -35,8 +35,7 @@ import AppFooter from "@/examples/Footer.vue";
 import { mapMutations, mapState } from "vuex";
 import TabNavigation from "./views/components/TabNavigation.vue"
 import Entrar from "./views/Entrar.vue"
-
-import { isAuthenticated } from "./api.js";
+import usuariosService from '@/services/usuariosService'
 
 export default {
   name: "App",
@@ -48,10 +47,10 @@ export default {
     Entrar
   },
   methods: {
-    ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
-    isAuthenticated
+    ...mapMutations(["toggleConfigurator", "navbarMinimize"])
   },
   computed: {
+    isAuthenticated: usuariosService.isAuthenticated,
     ...mapState([
       "isRTL",
       "color",
@@ -67,6 +66,8 @@ export default {
     ]),
   },
   beforeMount() {
+    usuariosService.refreshAuth()
+
     this.$store.state.isTransparent = "bg-transparent";
     const body = document.getElementsByTagName("body")[0];
 

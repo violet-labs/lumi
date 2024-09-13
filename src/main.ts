@@ -35,6 +35,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 
 import filters from './helpers/filters'
 
+import moment from 'moment-timezone'
+moment.tz.setDefault('America/Sao_Paulo')
+
 
 library.add(fas);
 library.add(fab);

@@ -78,7 +78,6 @@ import { mapMutations } from "vuex";
 import whiteConsultory from '@/assets/img/lumi/whiteConsultory.png';
 import LumiBlueLogo from "@/assets/img/lumi/logo-blue.png"
 import usuariosService from "@/services/usuariosService.js"
-import { isAuthenticated } from "../api.js";
 import router from "../router/index.js";
 import cSwal from "@/utils/cSwal.js"
 
@@ -101,7 +100,7 @@ export default {
     }
   },
   mounted() {
-    if (isAuthenticated()) {
+    if (usuariosService.isAuthenticated()) {
       router.push({ path: 'agenda' })
     }
   },

@@ -50,7 +50,7 @@
     >
       <!--time-row-cell-->
       <div
-        class="select-none time-cell text-left text-71717A font-medium text-xs"
+        class="select-none time-cell text-left text-71717A font-medium text-xs pointer"
       >
         {{ timeFormat(time) }}
       </div>

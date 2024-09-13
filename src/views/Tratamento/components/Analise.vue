@@ -30,7 +30,7 @@
                                 </div>
                             </div> -->
 
-                            <div v-if="!formularioRespondido || detalhesClinicos.length == 0"
+                            <div v-if="!paciente.formulario_respondido || detalhesClinicos.length == 0"
                                 style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-center">
                                 O paciente ainda não respondeu ao formulário de boas-vindas. Para enviar-lhe o
                                 formulário, utilize o botão "<font-awesome-icon :icon="['fab', 'fa-whatsapp']"
@@ -39,7 +39,7 @@
                                     class="me-1 text-sm" />Perfil".
                             </div>
 
-                            <div v-if="formularioRespondido">
+                            <div v-if="paciente.formulario_respondido" class="row">
                                 <div v-for="(detalhe, index) in detalhesClinicos" v-bind:key="index"
                                     class="col-sm-6 col-md-4">
                                     <div class="info-container mt-2" :class="detalhe.nivel">
@@ -971,21 +971,14 @@ var isEditing = []
 export default {
     name: "Analise",
     props: {
-        pacienteId: {
-            type: Number,
-            default: null,
+        paciente: {
+            type: Object,
+            default: () => { return {} },
         },
         detalhesClinicos: {
             type: Array,
             default: null,
         },
-        formularioRespondido: {
-            type: Boolean,
-            default: false,
-        },
-        // personalPerceptions: {
-        //     type: Object,
-        // },
     },
     data() {
         return {

@@ -46,11 +46,11 @@ const cfg = {
 
 const events = [
   {
-    date: "2022-11-19T14:00:00.000Z",
-    comment: "",
+    date: "2024-09-09T13:00:00.000Z",
+    comment: "comment",
     id: "cl32rbkjk1700101o53e3e3uhn",
-    keywords: "Projet BAMBA",
-    name: "MONTCHO Kévin",
+    keywords: "Consulta paga",
+    name: "Kamila Alves de Morais",
   },
   //...
 ]

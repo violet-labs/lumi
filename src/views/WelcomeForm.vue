@@ -436,7 +436,7 @@ const questions = [
         tipo: 'checkbox',
         id: 'problemas_sorriso',
         ordem: 60,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             { resposta: 'Vergonha / medo de sorrir', selecionada: false, ponto_negativo: 'Vergonha ou medo de sorrir', tipo_detalhe: 'clinico' },
             { resposta: 'Dificuldade em falar / pronunciar algumas palavras', selecionada: false, ponto_atencao: 'Dificuldade em falar', tipo_detalhe: 'clinico' },
@@ -455,11 +455,11 @@ const questions = [
         ordem: 70,
         obrigatoria: false,
         alternativas: [
-            { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Chupar chupeta', tipo_detalhe: 'clinico' },
-            { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Chupar dedos', tipo_detalhe: 'clinico' },
-            { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Roer unhas', tipo_detalhe: 'clinico' },
-            { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Ranger os dentes', tipo_detalhe: 'clinico' },
-            { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Apertar os dentes', tipo_detalhe: 'clinico' },
+            { resposta: 'Chupar chupeta', selecionada: false, ponto_negativo: 'Possui hábito de chupar chupeta', tipo_detalhe: 'clinico' },
+            { resposta: 'Chupar dedos', selecionada: false, ponto_negativo: 'Possui hábito de chupar dedos', tipo_detalhe: 'clinico' },
+            { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Possui hábito de roer unhas', tipo_detalhe: 'clinico' },
+            { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Possui hábito de ranger os dentes', tipo_detalhe: 'clinico' },
+            { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Possui hábito de apertar os dentes', tipo_detalhe: 'clinico' },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -681,11 +681,11 @@ const questions = [
         ]
     },
     {
-        questao: 'Como foi sua experiência com aparelho fixo? (assinale quantas opções você quiser)',
+        questao: 'Como foi sua experiência com aparelho fixo?',
         tipo: 'checkbox',
         id: 'experiencia_aparelho_fixo',
         ordem: 200,
-        obrigatoria: true,
+        obrigatoria: false,
         alternativas: [
             {
                 resposta: 'Normal - nenhum incômodo',
@@ -850,7 +850,7 @@ const questions = [
         ]
     },
     {
-        questao: 'Se já teve algum problema em tratamentos anteriores, nos conte como foi:',
+        questao: 'Se você já teve algum problema em tratamentos anteriores, nos conte como foi:',
         tipo: 'text',
         id: 'descricao_problema_tratamento_odontologico',
         ordem: 260,
@@ -962,7 +962,7 @@ export default {
             if (!this.validateForm())
                 return false
 
-            const response = await sendWelcomeForm(this.questions)
+            const response = await sendWelcomeForm(this.paciente, this.questions)
 
             let alertOptions = {}
 

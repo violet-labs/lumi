@@ -2,6 +2,10 @@ import axios from '@/services/axios'
 import router from "@/router/index";
 import { jwtDecode } from 'jwt-decode';
 
+function isAuthenticated() {
+    return localStorage.getItem('isAuthenticated', 'false') === 'true';
+}
+
 function isAdmin() {
     const decoded = decodedToken();
     if (!decoded) return false;
@@ -69,10 +73,33 @@ async function logout() {
 
 }
 
+async function refreshAuth() {
+
+    try {
+        const response = await axios.post('/auth/refresh')
+
+        if (!response || !response.data || !response.data.access_token)
+            return false
+
+        const data = response.data
+
+        axios.refreshToken(data.access_token)
+
+        return true
+
+    } catch (error) {
+        console.error('Erro ao realizar login:', error);
+        return false
+    }
+
+}
+
 export default {
     login,
     logout,
     decodedToken,
     isAdmin,
     getClinica,
+    isAuthenticated,
+    refreshAuth,
 }
