@@ -111,8 +111,9 @@
                       <p class="text-uppercase text-sm mt-3 mb-2" style="font-weight: 600">Meios de
                         contato<font-awesome-icon :icon="['fas', 'edit']" class="ms-2 pointer"
                           title="Gerenciar meios de contato" @click="toggleEditMode('meiosContatos')" />
-                          <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2" @click="toggleEditMode('meiosContatos')"><u>Cancelar edição</u></span>
-                        </p>
+                        <span v-if="isEditing.meiosContatos" class="text-capitalize text-info pointer ms-2"
+                          @click="toggleEditMode('meiosContatos')"><u>Cancelar edição</u></span>
+                      </p>
                       <v-table style="font-size: 12pt;" class="contains-dropdown">
                         <thead>
                           <tr>
@@ -140,10 +141,9 @@
                             </td>
                             <td>{{ contato.descricao }}</td>
                             <td>
-                              <button v-if="isEditing.meiosContatos" class="btn btn-vsm btn-sm btn-danger" @click="excluirContato(contato.id, contato.tipo)">
-                                <font-awesome-icon
-                                  :icon="['fas', 'trash']"
-                                />
+                              <button v-if="isEditing.meiosContatos" class="btn btn-vsm btn-sm btn-danger"
+                                @click="excluirContato(contato.id, contato.tipo)">
+                                <font-awesome-icon :icon="['fas', 'trash']" />
                               </button>
                             </td>
                           </tr>
@@ -189,15 +189,17 @@
                                 </div>
 
                                 <MaterialInput type="text" class="form-control input-sm"
+                                  :placeholder="getContatoPlaceholder"
                                   style="display: inline-block; width: calc(100% - 30px);" v-model="novoContato.contato"
-                                  ref="contatoInput" :mask="novoContatoMask" />
+                                  ref="contatoInput" :mask="novoContatoMask" :input="contatoChange" />
 
                               </div>
                             </td>
                             <td style="vertical-align: middle; padding-top: 5px;">
 
-                              <MaterialInput type="text" class="form-control input-sm"
-                                style="display: inline; width: calc(100% - 51px);" v-model="novoContato.descricao" />
+                              <MaterialInput type="text" class="form-control input-sm" placeholder="Descrição"
+                                style="display: inline; width: calc(100% - 51px);" ref="contatoDescricaoInput"
+                                v-model="novoContato.descricao" />
                               <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;"
                                 @click="adicionarContato">
                                 <font-awesome-icon :icon="['fas', 'plus']" />
@@ -278,21 +280,21 @@
               <MaterialInput label="Primeira consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.primeira_consulta)" id="dentista_primeiraConsulta" />
               <span>
-                {{  $filters.howMuchTime(dentista.primeira_consulta)  }}
+                {{ $filters.howMuchTime(dentista.primeira_consulta) }}
               </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Última consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.ultima_consulta)" id="dentista_ultimaConsulta" />
               <span>
-                {{  $filters.howMuchTime(dentista.ultima_consulta)  }}
+                {{ $filters.howMuchTime(dentista.ultima_consulta) }}
               </span>
             </div>
             <div class="col-sm-6 col-md-3 text-center">
               <MaterialInput label="Próxima consulta" readonly centered type="text"
                 :modelValue="$filters.dateDmy(dentista.proxima_consulta)" id="dentista_proximaConsulta" />
               <span class="text-success" style="font-weight: 500;">
-                {{  $filters.howMuchTime(dentista.proxima_consulta)  }}
+                {{ $filters.howMuchTime(dentista.proxima_consulta) }}
               </span>
             </div>
           </div>
@@ -410,6 +412,26 @@ export default {
     };
   },
   computed: {
+    getContatoPlaceholder() {
+      var placeholder = null;
+      switch (this.novoContato.tipo) {
+        case 'whatsapp':
+          placeholder = 'WhatsApp';
+          break;
+        case 'celular':
+          placeholder = 'Celular';
+          break;
+        case 'telefone':
+          placeholder = 'Telefone';
+          break;
+        case 'email':
+          placeholder = 'E-mail'
+          break;
+      }
+
+      return placeholder;
+    },
+
     novoContatoMask() {
       return [
         'telefone', 'celular', 'whatsapp'
@@ -444,6 +466,15 @@ export default {
     }
   },
   methods: {
+
+    contatoChange() {
+      if (this.novoContato.tipo == 'celular' || this.novoContato.tipo == 'whatsapp') {
+        if (this.novoContato.contato.length > 14) {
+          this.$refs.contatoDescricaoInput.getInput().focus();
+        }
+      }
+    },
+
     toggleEditMode(section) {
       this.isEditing[section] = !this.isEditing[section];
     },

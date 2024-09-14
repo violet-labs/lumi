@@ -1,3 +1,11 @@
+Criar função parar gerar link do Whats (desmembrar do link da aplicação)
+
+Consertar layout:
+    ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página
+    ☐ Consertar botão de fechar modal, que tá oculto/transparente
+    ☐ Melhorar layout mobile
+
+
 -- ----------- DEPOIS ------------------:
 Paciente > Tratamento > Plano de tratamento:
     Necessidades de encaminhamentos:

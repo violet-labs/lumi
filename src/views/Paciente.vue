@@ -11,7 +11,8 @@
                   <input id="profilePictureFileInput" type="file" accept="image/*" @change=profilePicUpload hidden>
 
                   <div class="profile-pic pointer" @click="confirmUpdatePhoto">
-                    <img :src="paciente.profile_picture_url" alt="profile_image" class="shadow-sm w-100 border-radius-lg" />
+                    <img :src="paciente.profile_picture_url" alt="profile_image"
+                      class="shadow-sm w-100 border-radius-lg" />
                   </div>
 
                 </div>
@@ -214,6 +215,7 @@
                                 </div>
 
                                 <MaterialInput type="text" class="form-control input-sm"
+                                  :placeholder="getContatoPlaceholder"
                                   style="display: inline-block; width: calc(100% - 30px);" v-model="novoContato.contato"
                                   ref="contatoInput" :mask="novoContatoMask" :input="contatoChange" />
 
@@ -221,7 +223,7 @@
                             </td>
                             <td style="vertical-align: middle; padding-top: 5px;">
 
-                              <MaterialInput type="text" class="form-control input-sm"
+                              <MaterialInput type="text" class="form-control input-sm" placeholder="Descrição"
                                 style="display: inline; width: calc(100% - 51px);" ref="contatoDescricaoInput"
                                 v-model="novoContato.descricao" />
                               <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;"
@@ -271,7 +273,8 @@
                                   'COPIAR LINK' }}
                               </span>
                             </button>
-                            <button v-else class="btn btn-primary mb-0" @click="toggleFormularioView">
+                            <button v-else class="btn btn-primary mb-0" @click="toggleFormularioView"
+                              data-bs-toggle="modal" data-bs-target="#modalFormularioView">
                               <i class="me-2 fas fa-eye" style="font-size: 13pt;"></i>
                               <span style="font-size: 10pt;">
                                 VISUALIZAR
@@ -348,7 +351,7 @@
                               :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']"
                               class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp
                                 ?
-                              'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
+                                'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
                           </div>
                           <div v-if="paciente.formulario_respondido" class="row">
                             <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
@@ -474,23 +477,108 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Adicionar paciente</h5>
+            <h5 class="modal-title">Ficha de avaliação inicial</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body py-4">
-            <div class="d-flex flex-column">
-              <button class="btn btn-secondary my-3">
-                <i class="fas fa-user me-2"></i>
-                Vincular a paciente existente
-              </button>
-              <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
-                <i class="fas fa-plus me-2"></i>
-                Criar novo paciente
-              </button>
+
+            <div class="container start-form-container">
+              <div class="row d-flex justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-7 col-sm-10">
+                  <div style="width: 100%; text-align: center;">
+                  </div>
+                  <div class="card-container">
+                    <div class="card card-plain">
+                      <div class="card-body">
+
+                        <div class="px-4 main-form-container">
+
+                          <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4"
+                            :ref="'question' + index">
+                            <label
+                              v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone' && question.tipo !== 'email'"
+                              class="mb-3 p-0 font-weight-bolder label-highlight">{{
+                                question.questao }}
+                              <span v-if="question.obrigatoria" class="text-danger">*</span>
+                            </label>
+
+                            <div
+                              v-if="question.tipo === 'text' || question.tipo === 'date' || question.tipo === 'phone' || question.tipo === 'email'"
+                              class="mt-0 p-0">
+                              <MaterialInput :type="question.tipo === 'phone' ? 'text' : question.tipo"
+                                :name="question.id" :id="question.id" :ref="question.id" :label="question.questao"
+                                labelClass="font-weight-bolder label-highlight" v-model="question.resposta"
+                                :required="question.obrigatoria"
+                                :input="function ($event) { textInputEvent($event, question) }"
+                                :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
+                                :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
+                                :style="question.textOptions && question.textOptions.includes('center') ? 'text-align: center !important' : ''" />
+                            </div>
+
+                            <div v-else-if="question.tipo === 'checkbox'" class="px-3">
+                              <table class="options-checkbox">
+                                <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
+                                  :key="alternativaIndex">
+                                  <td class="d-flex flex-row align-center">
+                                    <input type="checkbox" class="form-checkbox"
+                                      :name="question.id + '-' + alternativa.resposta"
+                                      :id="question.id + '-' + alternativa.resposta" v-model="alternativa.selecionada"
+                                      @change="refreshProgress" />
+                                    <label :for="question.id + '-' + alternativa.resposta" style="padding-top: 5px;">{{
+                                      alternativa.resposta }}</label>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+
+                            <div v-else-if="question.tipo === 'radio'" class="row px-3">
+                              <div v-for="(alternativa, alternativaIndex) in question.alternativas"
+                                v-bind:key="alternativaIndex" class="col-6" style="text-align: left;"
+                                :class="{ 'ps-6': (question.alternativas.length == 2 && alternativaIndex == 0) }">
+                                <input type="radio" class="form-radio" :name="question.id"
+                                  :id="`alternativa-${question.id}-${alternativaIndex}`"
+                                  @input="updateSelectedOption(question.id, alternativa.resposta)" />
+                                <label :for="`alternativa-${question.id}-${alternativaIndex}`" class="radio-label">
+                                  {{ alternativa.resposta }}</label>
+                              </div>
+                            </div>
+
+                            <div v-if="question.detalhar && question.detalhar === 'opcional'"
+                              class="d-flex flex-row align-center justify-content-center">
+                              <input type="checkbox" class="form-checkbox" :name="question.id + '-detalhar-cb'"
+                                :id="question.id + '-detalhar-cb'" v-model="question.detalhando"
+                                @change="refreshProgress" />
+                              <label :for="question.id + '-detalhar-cb'" class="label-big" style="padding-top: 8px;">
+                                {{ question.titulo_questao_detalhe ?
+                                  question.titulo_questao_detalhe : 'Detalhar...' }}
+                              </label>
+                            </div>
+
+                            <!-- Caso a questão tiver detalhamento obrigatório ou o detalhamento for optado pelo usuário -->
+                            <div
+                              v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
+                              <MaterialInput :name="question.id + '-detalhar'"
+                                :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
+                                labelClass="label-big" :id="question.id + '-detalhar'" v-model="question.detalhe"
+                                :input="refreshProgress" />
+                            </div>
+
+                            <!-- Exibe o divider, exceto no último elemento -->
+                            <div v-if="index !== questions.length - 1" class="p-horizontal-divider primary"></div>
+
+                          </div> <!-- v-for / -->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Voltar</button>
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Fechar</button>
           </div>
         </div>
       </div>
@@ -535,6 +623,7 @@ export default {
   },
   data() {
     return {
+      questions: [],
       isLoading: {
         paciente: true
       },
@@ -554,6 +643,26 @@ export default {
     };
   },
   computed: {
+    getContatoPlaceholder() {
+      var placeholder = null;
+      switch (this.novoContato.tipo) {
+        case 'whatsapp':
+          placeholder = 'WhatsApp';
+          break;
+        case 'celular':
+          placeholder = 'Celular';
+          break;
+        case 'telefone':
+          placeholder = 'Telefone';
+          break;
+        case 'email':
+          placeholder = 'E-mail'
+          break;
+      }
+
+      return placeholder;
+    },
+
     novoContatoMask() {
       return [
         'telefone', 'celular', 'whatsapp'
@@ -589,6 +698,9 @@ export default {
     }
   },
   methods: {
+    getFichaInicialLink() {
+      return `${window.location.origin}/bem-vindo/?t=${this.paciente.public_token}`
+    },
 
     contatoChange() {
       if (this.novoContato.tipo == 'celular' || this.novoContato.tipo == 'whatsapp') {
@@ -723,7 +835,7 @@ export default {
         await this.copiarLink()
     },
     async copiarLink() {
-      const link = `https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
+      const link = this.getFichaInicialLink()
 
       if (!navigator.clipboard) {
         cSwal.cInfo('Link da ficha de avaliação inicial para o paciente<br><b>' + this.paciente.nome + '</b>:<br><br><b>' + link + '</b>');
@@ -747,8 +859,10 @@ export default {
         alert('Número de WhatsApp inválido. Por favor, verifique o número.');
         return;
       }
-      const link = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${this.paciente.public_token}`;
-      window.open(link, '_blank'); // open in new tab
+      const link = this.getFichaInicialLink()
+      alert(link);return;
+      const whatsappLink = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${link}`;
+      window.open(whatsappLink, '_blank'); // open in new tab
     },
 
     validarCep(cep) {
@@ -793,8 +907,7 @@ export default {
           icon = ['fas', 'envelope'];
           break;
       }
-
-      return icon;
+      return icon
     },
 
     getInfoIcon(nivel) {
