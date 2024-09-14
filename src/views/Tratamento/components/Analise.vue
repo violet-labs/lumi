@@ -993,7 +993,7 @@ export default {
             })
         },
         async _getAnalises() {
-            const analises = await getAnalises(this.pacienteId)
+            const analises = await getAnalises(this.paciente.id)
 
             if (analises) {
                 this.originalAnalises = JSON.parse(JSON.stringify(analises));
