@@ -7,16 +7,16 @@ Ficha de avaliação inicial:
     ☐ Preencher id_input na resposta do Daniel
     ☐ Preencher ordem na resposta do Daniel
     ☐ Preencher obrigatoria na resposta do Daniel
-    ☐ Marcar as alternativas que estiverem selected
+    ✔ Marcar as alternativas que estiverem selected @done(24-09-14 13:09)
     ✔ Salvar a coluna obrigatoria das questões no banco @done(24-09-14 12:43)
     ✔ Salvar a coluna textOptions e resgatá-la corretamente no banco @done(24-09-14 12:48)
     ✔ Puxar as questões corretamente do banco de dados @done(24-09-14 12:48)
     Fazer visualização do a ficha:
         ✔ Criar modal @done(24-09-14 12:23)
         ✔ Copiar visualização do componente WelcomeForm @done(24-09-14 12:23)
-        ☐ Fazer funcionar
-        ☐ Deixar tudo readonly
-        ☐ Estilizar
+        ✔ Fazer funcionar @done(24-09-14 13:09)
+        ✔ Deixar tudo readonly @done(24-09-14 13:21)
+        ✔ Estilizar @done(24-09-14 13:28)
 
 Consertar layout:
     ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página

@@ -263,7 +263,7 @@
                             </div>
                           </div>
 
-                          <div v-if="!isLoading.paciente">
+                          <div v-if="!isLoading.paciente" class="mt-3 mt-sm-0">
                             <button v-if="!paciente.formulario_respondido" class="btn btn-primary mb-0"
                               @click="handleFormLinkBtn">
                               <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'"
@@ -482,71 +482,75 @@
           </div>
           <div class="modal-body p-3 px-4" style="max-height: 80vh; overflow-y: auto;">
 
+            <div class="d-flex flex-column align-center justify-content-center mb-0 pb-0">
+              <label for=""><b>Respondida em:</b></label>
+              <span>{{ $filters.dateTime(dataRespostaFicha) }}</span>
+            </div>
+
+            <div class="p-horizontal-divider"></div>
+
             <div style="max-width: 400px; margin: 0 auto;">
               <div v-for="(question, index) in questoesFichaInicial" :key="index" class="mt-2 mb-4"
                 :ref="'question' + index">
+
                 <label
                   v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone' && question.tipo !== 'email'"
                   class="mb-3 p-0 font-weight-bolder label-highlight">{{
                     question.questao }}
                   <span v-if="question.obrigatoria" class="text-danger">*</span>
                 </label>
+
                 <div
                   v-if="question.tipo === 'text' || question.tipo === 'date' || question.tipo === 'phone' || question.tipo === 'email'"
                   class="mt-0 p-0">
-                  <MaterialInput :type="question.tipo === 'phone' ? 'text' : question.tipo"
+                  <MaterialInput :readonly="true" :type="question.tipo === 'phone' ? 'text' : question.tipo"
                     :name="question.id" :id="question.id" :ref="question.id" :label="question.questao"
                     labelClass="font-weight-bolder label-highlight" v-model="question.resposta"
-                    :required="question.obrigatoria"
-                    :input="function ($event) { textInputEvent($event, question) }"
+                    :required="question.obrigatoria" :input="function ($event) { textInputEvent($event, question) }"
                     :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
                     :style="question.textOptions && question.textOptions.includes('center') ? 'text-align: center !important' : ''" />
                 </div>
+
                 <div v-else-if="question.tipo === 'checkbox'" class="px-3">
                   <table class="options-checkbox">
-                    <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
-                      :key="alternativaIndex">
+                    <tr v-for="(alternativa, alternativaIndex) in question.alternativas" :key="alternativaIndex">
                       <td class="d-flex flex-row align-center">
-                        <input type="checkbox" class="form-checkbox"
-                          :name="question.id + '-' + alternativa.resposta"
-                          :id="question.id + '-' + alternativa.resposta" v-model="alternativa.selecionada"
-                          @change="refreshProgress" />
+                        <input type="checkbox" class="form-checkbox" :name="question.id + '-' + alternativa.resposta"
+                          :id="question.id + '-' + alternativa.resposta" :checked="alternativa.selecionada"
+                          @click.prevent />
                         <label :for="question.id + '-' + alternativa.resposta" style="padding-top: 5px;">{{
                           alternativa.resposta }}</label>
                       </td>
                     </tr>
                   </table>
                 </div>
+
                 <div v-else-if="question.tipo === 'radio'" class="row px-3">
-                  <div v-for="(alternativa, alternativaIndex) in question.alternativas"
-                    v-bind:key="alternativaIndex" class="col-6" style="text-align: left;"
+                  <div v-for="(alternativa, alternativaIndex) in question.alternativas" v-bind:key="alternativaIndex"
+                    class="col-6" style="text-align: left;"
                     :class="{ 'ps-6': (question.alternativas.length == 2 && alternativaIndex == 0) }">
                     <input type="radio" class="form-radio" :name="question.id"
-                      :id="`alternativa-${question.id}-${alternativaIndex}`"
-                      @input="updateSelectedOption(question.id, alternativa.resposta)"
-                      :value="alternativa.resposta"
-                      v-model="question.resposta" />
+                      :id="`alternativa-${question.id}-${alternativaIndex}`" :value="alternativa.resposta"
+                      v-model="question.resposta" @click.prevent />
                     <label :for="`alternativa-${question.id}-${alternativaIndex}`" class="radio-label">
                       {{ alternativa.resposta }}</label>
                   </div>
                 </div>
+
                 <div v-if="question.detalhar && question.detalhar === 'opcional'"
                   class="d-flex flex-row align-center justify-content-center">
                   <input type="checkbox" class="form-checkbox" :name="question.id + '-detalhar-cb'"
-                    :id="question.id + '-detalhar-cb'" v-model="question.detalhando"
-                    @change="refreshProgress" />
+                    :id="question.id + '-detalhar-cb'" v-model="question.detalhando" @click.prevent />
                   <label :for="question.id + '-detalhar-cb'" class="label-big" style="padding-top: 8px;">
                     {{ question.titulo_questao_detalhe ?
                       question.titulo_questao_detalhe : 'Detalhar...' }}
                   </label>
                 </div>
+
                 <!-- Caso a questão tiver detalhamento obrigatório ou o detalhamento for optado pelo usuário -->
-                <div
-                  v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
-                  <MaterialInput :name="question.id + '-detalhar'"
-                    :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
-                    labelClass="label-big" :id="question.id + '-detalhar'" v-model="question.detalhe"
-                    :input="refreshProgress" />
+                <div v-if="question.detalhes">
+                  <MaterialInput :readonly="true" :name="question.id + '-detalhar'" label="Detalhes"
+                    labelClass="label-big" :id="question.id + '-detalhar'" v-model="question.detalhes" />
                 </div>
                 <!-- Exibe o divider, exceto no último elemento -->
                 <div v-if="index !== questoesFichaInicial.length - 1" class="p-horizontal-divider primary"></div>
@@ -600,6 +604,7 @@ export default {
   },
   data() {
     return {
+      dataRespostaFicha: null,
       questoesFichaInicial: [],
       isLoading: {
         paciente: true
@@ -833,11 +838,10 @@ export default {
       const phoneNumber = whatsappNumber.replace(/\D+/g, ''); // extract only numbers
       if (phoneNumber.length !== 11) {
         // show error message
-        alert('Número de WhatsApp inválido. Por favor, verifique o número.');
+        cSwal.cAlert('Número de WhatsApp inválido. Por favor, verifique o número.');
         return;
       }
       const link = this.getFichaInicialLink()
-      alert(link);return;
       const whatsappLink = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${link}`;
       window.open(whatsappLink, '_blank'); // open in new tab
     },
@@ -942,9 +946,11 @@ export default {
 
       this.isLoading.paciente = false
 
-      this.questoesFichaInicial = await getFichaInicial(this.paciente.id)
-
-      console.log('this.questoesFichaInicial:', this.questoesFichaInicial)
+      const fichaInicial = await getFichaInicial(this.paciente.id)
+      if (fichaInicial) {
+        this.questoesFichaInicial = fichaInicial.questoes
+        this.dataRespostaFicha = fichaInicial.data_resposta
+      }
     },
   },
 
