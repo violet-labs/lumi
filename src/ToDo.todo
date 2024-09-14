@@ -1,4 +1,22 @@
-Criar função parar gerar link do Whats (desmembrar do link da aplicação)
+Ficha de avaliação inicial:
+    ✔ Criar função parar gerar link do Whats (desmembrar do link da aplicação) @done(24-09-14 12:23)
+    ✔ Verificar: não está salvando as alternativas no banco de dados @done(24-09-14 12:23)
+    ✔ Implementar: salvar o ID do input no banco de dados @done(24-09-14 12:23)
+    ✔ Salvar a ordem das questões no banco @done(24-09-14 12:37)
+    ☐ Preencher alternativas na resposta do Daniel
+    ☐ Preencher id_input na resposta do Daniel
+    ☐ Preencher ordem na resposta do Daniel
+    ☐ Preencher obrigatoria na resposta do Daniel
+    ☐ Marcar as alternativas que estiverem selected
+    ✔ Salvar a coluna obrigatoria das questões no banco @done(24-09-14 12:43)
+    ✔ Salvar a coluna textOptions e resgatá-la corretamente no banco @done(24-09-14 12:48)
+    ✔ Puxar as questões corretamente do banco de dados @done(24-09-14 12:48)
+    Fazer visualização do a ficha:
+        ✔ Criar modal @done(24-09-14 12:23)
+        ✔ Copiar visualização do componente WelcomeForm @done(24-09-14 12:23)
+        ☐ Fazer funcionar
+        ☐ Deixar tudo readonly
+        ☐ Estilizar
 
 Consertar layout:
     ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página

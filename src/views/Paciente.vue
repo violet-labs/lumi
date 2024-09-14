@@ -480,101 +480,78 @@
             <h5 class="modal-title">Ficha de avaliação inicial</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body py-4">
+          <div class="modal-body p-3 px-4" style="max-height: 80vh; overflow-y: auto;">
 
-            <div class="container start-form-container">
-              <div class="row d-flex justify-content-center">
-                <div class="col-xl-5 col-lg-6 col-md-7 col-sm-10">
-                  <div style="width: 100%; text-align: center;">
-                  </div>
-                  <div class="card-container">
-                    <div class="card card-plain">
-                      <div class="card-body">
-
-                        <div class="px-4 main-form-container">
-
-                          <div v-for="(question, index) in questions" :key="index" class="mt-2 mb-4"
-                            :ref="'question' + index">
-                            <label
-                              v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone' && question.tipo !== 'email'"
-                              class="mb-3 p-0 font-weight-bolder label-highlight">{{
-                                question.questao }}
-                              <span v-if="question.obrigatoria" class="text-danger">*</span>
-                            </label>
-
-                            <div
-                              v-if="question.tipo === 'text' || question.tipo === 'date' || question.tipo === 'phone' || question.tipo === 'email'"
-                              class="mt-0 p-0">
-                              <MaterialInput :type="question.tipo === 'phone' ? 'text' : question.tipo"
-                                :name="question.id" :id="question.id" :ref="question.id" :label="question.questao"
-                                labelClass="font-weight-bolder label-highlight" v-model="question.resposta"
-                                :required="question.obrigatoria"
-                                :input="function ($event) { textInputEvent($event, question) }"
-                                :mask="question.tipo === 'phone' ? phoneMaskWrapper(question.resposta) : undefined"
-                                :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
-                                :style="question.textOptions && question.textOptions.includes('center') ? 'text-align: center !important' : ''" />
-                            </div>
-
-                            <div v-else-if="question.tipo === 'checkbox'" class="px-3">
-                              <table class="options-checkbox">
-                                <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
-                                  :key="alternativaIndex">
-                                  <td class="d-flex flex-row align-center">
-                                    <input type="checkbox" class="form-checkbox"
-                                      :name="question.id + '-' + alternativa.resposta"
-                                      :id="question.id + '-' + alternativa.resposta" v-model="alternativa.selecionada"
-                                      @change="refreshProgress" />
-                                    <label :for="question.id + '-' + alternativa.resposta" style="padding-top: 5px;">{{
-                                      alternativa.resposta }}</label>
-                                  </td>
-                                </tr>
-                              </table>
-                            </div>
-
-                            <div v-else-if="question.tipo === 'radio'" class="row px-3">
-                              <div v-for="(alternativa, alternativaIndex) in question.alternativas"
-                                v-bind:key="alternativaIndex" class="col-6" style="text-align: left;"
-                                :class="{ 'ps-6': (question.alternativas.length == 2 && alternativaIndex == 0) }">
-                                <input type="radio" class="form-radio" :name="question.id"
-                                  :id="`alternativa-${question.id}-${alternativaIndex}`"
-                                  @input="updateSelectedOption(question.id, alternativa.resposta)" />
-                                <label :for="`alternativa-${question.id}-${alternativaIndex}`" class="radio-label">
-                                  {{ alternativa.resposta }}</label>
-                              </div>
-                            </div>
-
-                            <div v-if="question.detalhar && question.detalhar === 'opcional'"
-                              class="d-flex flex-row align-center justify-content-center">
-                              <input type="checkbox" class="form-checkbox" :name="question.id + '-detalhar-cb'"
-                                :id="question.id + '-detalhar-cb'" v-model="question.detalhando"
-                                @change="refreshProgress" />
-                              <label :for="question.id + '-detalhar-cb'" class="label-big" style="padding-top: 8px;">
-                                {{ question.titulo_questao_detalhe ?
-                                  question.titulo_questao_detalhe : 'Detalhar...' }}
-                              </label>
-                            </div>
-
-                            <!-- Caso a questão tiver detalhamento obrigatório ou o detalhamento for optado pelo usuário -->
-                            <div
-                              v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
-                              <MaterialInput :name="question.id + '-detalhar'"
-                                :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
-                                labelClass="label-big" :id="question.id + '-detalhar'" v-model="question.detalhe"
-                                :input="refreshProgress" />
-                            </div>
-
-                            <!-- Exibe o divider, exceto no último elemento -->
-                            <div v-if="index !== questions.length - 1" class="p-horizontal-divider primary"></div>
-
-                          </div> <!-- v-for / -->
-
-                        </div>
-                      </div>
-                    </div>
+            <div style="max-width: 400px; margin: 0 auto;">
+              <div v-for="(question, index) in questoesFichaInicial" :key="index" class="mt-2 mb-4"
+                :ref="'question' + index">
+                <label
+                  v-if="question.tipo !== 'text' && question.tipo !== 'date' && question.tipo !== 'phone' && question.tipo !== 'email'"
+                  class="mb-3 p-0 font-weight-bolder label-highlight">{{
+                    question.questao }}
+                  <span v-if="question.obrigatoria" class="text-danger">*</span>
+                </label>
+                <div
+                  v-if="question.tipo === 'text' || question.tipo === 'date' || question.tipo === 'phone' || question.tipo === 'email'"
+                  class="mt-0 p-0">
+                  <MaterialInput :type="question.tipo === 'phone' ? 'text' : question.tipo"
+                    :name="question.id" :id="question.id" :ref="question.id" :label="question.questao"
+                    labelClass="font-weight-bolder label-highlight" v-model="question.resposta"
+                    :required="question.obrigatoria"
+                    :input="function ($event) { textInputEvent($event, question) }"
+                    :placeholder="question.tipo === 'phone' ? '(##) #####-####' : null"
+                    :style="question.textOptions && question.textOptions.includes('center') ? 'text-align: center !important' : ''" />
+                </div>
+                <div v-else-if="question.tipo === 'checkbox'" class="px-3">
+                  <table class="options-checkbox">
+                    <tr v-for="(alternativa, alternativaIndex) in question.alternativas"
+                      :key="alternativaIndex">
+                      <td class="d-flex flex-row align-center">
+                        <input type="checkbox" class="form-checkbox"
+                          :name="question.id + '-' + alternativa.resposta"
+                          :id="question.id + '-' + alternativa.resposta" v-model="alternativa.selecionada"
+                          @change="refreshProgress" />
+                        <label :for="question.id + '-' + alternativa.resposta" style="padding-top: 5px;">{{
+                          alternativa.resposta }}</label>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div v-else-if="question.tipo === 'radio'" class="row px-3">
+                  <div v-for="(alternativa, alternativaIndex) in question.alternativas"
+                    v-bind:key="alternativaIndex" class="col-6" style="text-align: left;"
+                    :class="{ 'ps-6': (question.alternativas.length == 2 && alternativaIndex == 0) }">
+                    <input type="radio" class="form-radio" :name="question.id"
+                      :id="`alternativa-${question.id}-${alternativaIndex}`"
+                      @input="updateSelectedOption(question.id, alternativa.resposta)"
+                      :value="alternativa.resposta"
+                      v-model="question.resposta" />
+                    <label :for="`alternativa-${question.id}-${alternativaIndex}`" class="radio-label">
+                      {{ alternativa.resposta }}</label>
                   </div>
                 </div>
+                <div v-if="question.detalhar && question.detalhar === 'opcional'"
+                  class="d-flex flex-row align-center justify-content-center">
+                  <input type="checkbox" class="form-checkbox" :name="question.id + '-detalhar-cb'"
+                    :id="question.id + '-detalhar-cb'" v-model="question.detalhando"
+                    @change="refreshProgress" />
+                  <label :for="question.id + '-detalhar-cb'" class="label-big" style="padding-top: 8px;">
+                    {{ question.titulo_questao_detalhe ?
+                      question.titulo_questao_detalhe : 'Detalhar...' }}
+                  </label>
+                </div>
+                <!-- Caso a questão tiver detalhamento obrigatório ou o detalhamento for optado pelo usuário -->
+                <div
+                  v-if="question.detalhar === 'sempre' || (question.detalhar === 'opcional' && question.detalhando === true)">
+                  <MaterialInput :name="question.id + '-detalhar'"
+                    :label="question.detalhar === 'sempre' ? (question.titulo_questao_detalhe ? question.titulo_questao_detalhe : 'Favor detalhar:') : ''"
+                    labelClass="label-big" :id="question.id + '-detalhar'" v-model="question.detalhe"
+                    :input="refreshProgress" />
+                </div>
+                <!-- Exibe o divider, exceto no último elemento -->
+                <div v-if="index !== questoesFichaInicial.length - 1" class="p-horizontal-divider primary"></div>
               </div>
-            </div>
+            </div> <!-- v-for / -->
 
           </div>
           <div class="modal-footer">
@@ -599,7 +576,7 @@ import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
 import { uploadImage } from "@/services/imagensService"
 import { getDentistas } from "@/services/dentistasService"
-import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato } from "@/services/pacientesService"
+import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato, getFichaInicial } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
 var isEditing = []
@@ -623,7 +600,7 @@ export default {
   },
   data() {
     return {
-      questions: [],
+      questoesFichaInicial: [],
       isLoading: {
         paciente: true
       },
@@ -964,6 +941,10 @@ export default {
       }
 
       this.isLoading.paciente = false
+
+      this.questoesFichaInicial = await getFichaInicial(this.paciente.id)
+
+      console.log('this.questoesFichaInicial:', this.questoesFichaInicial)
     },
   },
 
@@ -972,10 +953,11 @@ export default {
   },
 
   async mounted() {
-    this.dentistas = await getDentistas()
-    this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
+    this.$store.state.isAbsolute = true;
+
+    this.dentistas = await getDentistas()
   },
 
   beforeUnmount() {

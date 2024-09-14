@@ -73,11 +73,27 @@ export async function salvarPrognostico(paciente_id, prognostico) {
     return false;
 }
 
+export async function getFichaInicial(paciente_id) {
+    try {
+        const response = await axios.get('/pacientes/ficha-inicial/' + paciente_id);
+
+        if (!response || !response.data || !response.data.data || response.data.status !== 'success')
+            return false
+
+        return response.data.data
+
+    } catch (error) {
+        console.error('Erro ao consultar a ficha de avaliação inicial:', error);
+    }
+
+    return false
+}
+
 export async function sendWelcomeForm(paciente, questions) {
     try {
         const response = await axios.post('/pacientes/welcome-form', {
             id_paciente: paciente.id,
-            questions,
+            questions: JSON.stringify(questions),
         });
 
         if (!response || !response.data || response.data.status !== 'success')
