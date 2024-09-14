@@ -102,3 +102,20 @@ export async function uploadImage(image, type, date, description) {
             header: { 'Content-Type': 'image/png' }
         })
 }
+
+export async function getDentistas() {
+    try {
+        const response = await axios.get('/dentistas')
+
+        if (!response || !response.data)
+            return false;
+
+        return response.data
+
+    } catch (error) {
+        console.error('Erro ao consultar dentistas:', error);
+    }
+
+    return false
+
+}

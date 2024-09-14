@@ -71,14 +71,14 @@
       </div>
     </div> -->
 
+    <div class="w-100 text-center mt-4">
+      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
+        v-model="search">
+    </div>
+
     <div v-if="isLoading.pacientesList" class="w-100 text-center py-5">
       <div class="spinner-border text-primary" role="status">
       </div>
-    </div>
-
-    <div v-if="!isLoading.pacientesList && (search != '' || pacientes.length > 0)" class="w-100 text-center mt-4">
-      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
-        v-model="search">
     </div>
 
     <v-table v-if="!isLoading.pacientesList && pacientes.length == 0" class="m-3">
@@ -100,7 +100,7 @@
           STATUS DO TRATAMENTO
         </div>
       </template>
-      <template #header-city="header">
+      <template #header-dentista="header">
         <div class="text-center w-100 p-0">
           ORTODONTISTA
         </div>
@@ -118,13 +118,22 @@
         </div>
       </template>
 
+      <template #item-data_proxima_consulta="{ data_proxima_consulta }">
+        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(data_proxima_consulta) }}</p>
+      </template>
+
       <template #item-created_at="{ created_at }">
-        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
+        <div class="d-flex flex-column justify-content-center">
+          <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
+          <p class="text-xs mb-0">
+            <b>{{ $filters.howMuchTime(created_at, new Date()) }}</b>
+          </p>
+        </div>
       </template>
 
       <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }">
-        <div class="align-middle text-center text-sm">
-          <span class="badge badge-sm w-100 w-md-40" :class="statusClass(status_tratamento)"
+        <div class="align-middle text-center text-sm pe-3">
+          <span class="badge badge-sm w-100 w-md-70" :class="statusClass(status_tratamento)"
             v-if="status_tratamento !== 'ATIVO'">{{
               statusText(status_tratamento)
             }}</span>
@@ -144,8 +153,8 @@
         </div>
       </template>
 
-      <template #item-city="{ dentista }">
-        <div class="w-100 text-center">
+      <template #item-dentista="{ dentista }">
+        <div class="w-100 text-center pe-3">
           <span class="text-xs text-dark font-weight-bold">{{ dentista }}</span>
         </div>
       </template>
@@ -186,7 +195,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
             ref="closeModalNovoPaciente"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body px-4">
           <div class="row">
             <div class="col-12">
               <label>
@@ -215,32 +224,22 @@
                 v-model="novoPaciente.novaClinica" />
             </div>
 
-            <!-- <div class="col-md-6 mt-3">
+            <div class="col-md-6 mt-3">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'tooth']" /></span>
                 Ortodontista:
               </label>
-              <select class="form-select" aria-label="Default select example" v-model="novoPaciente.dentista_id">
-                <option hidden selected value="">Selecionar...</option>
-                <option value="1">Daniel Salles</option>
-                <option value="2">Thales Casa Grande</option>
-                <option value="3">Murillo Motta</option>
-              </select>
-            </div> -->
 
-            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
-              <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
-                Idioma:
-              </label>
-              <select name="" id="" class="form-select" v-model="novoPaciente.idioma">
-                <option value="pt">Português</option>
-                <option value="en">Inglês</option>
-                <option value="es">Espanhol</option>
+              <select v-if="novoPaciente.dentista_id !== 'add'" class="form-select" aria-label="Default select example"
+                v-model="novoPaciente.dentista_id">
+                <option hidden selected value="">Selecionar...</option>
+                <option v-for="dentista in dentistas" :key="dentista.id" :value="dentista.id">{{ dentista.nome }}
+                </option>
               </select>
+
             </div>
 
-            <div class="col-md-6 mt-4 text-center" style="margin: 0 auto; max-width: 250px;">
+            <div class="col-md-6 mt-3 text-center" style="margin: 0 auto; max-width: 250px;">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
                 Celular:
@@ -254,6 +253,18 @@
                   WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt;"></i>
                 </div>
               </label>
+            </div>
+
+            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
+              <label>
+                <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
+                Idioma:
+              </label>
+              <select name="" id="" class="form-select" v-model="novoPaciente.idioma">
+                <option value="pt">Português</option>
+                <option value="en">Inglês</option>
+                <option value="es">Espanhol</option>
+              </select>
             </div>
 
             <div class="col-12 mt-3">
@@ -303,6 +314,7 @@ import cSwal from "@/utils/cSwal.js"
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
 import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
+import { getDentistas } from "@/services/dentistasService"
 import { getClinicas } from "@/services/clinicasService"
 import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
 import { phoneMask } from "@/utils.js";
@@ -310,9 +322,10 @@ import MaterialInput from "@/components/MaterialInput.vue";
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
-  { text: "CADASTRADO EM", value: "created_at", sortable: true },
+  { text: "PRÓXIMA CONSULTA", value: "data_proxima_consulta", sortable: true },
   { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
-  { text: "LOCALIDADE", value: "city", sortable: true },
+  { text: "ORTODONTISTA", value: "dentista", sortable: true },
+  { text: "CADASTRADO EM", value: "created_at", sortable: true },
 ];
 
 var nomeNovoPaciente = '';
@@ -344,16 +357,19 @@ export default {
   },
   async mounted() {
     this.clinicas = await getClinicas()
+    this.dentistas = await getDentistas()
 
-    console.log('this.clinicas:', this.clinicas)
+    if (this.$refs.modalNovoPaciente) {
+      this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
+        this.$refs.nome.getInput().focus();
+      })
+    }
 
-    this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
-      this.$refs.nome.getInput().focus();
-    })
-
-    this.$refs.modalNovoPaciente.addEventListener('hidden.bs.modal', event => {
-      this.novoPaciente.clinica_id = ''
-    })
+    if (this.$refs.modalNovoPaciente) {
+      this.$refs.modalNovoPaciente.addEventListener('hidden.bs.modal', event => {
+        this.novoPaciente.clinica_id = ''
+      })
+    }
     this.updateList()
   },
   methods: {
@@ -462,8 +478,9 @@ export default {
   data() {
     return {
       clinicas: [],
+      dentistas: [],
       isLoading: {
-        pacientesList: false
+        pacientesList: true
       },
       nomeNovoPaciente,
       headers,

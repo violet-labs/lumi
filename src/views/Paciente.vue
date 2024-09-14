@@ -77,11 +77,10 @@
                       <div class="row mt-4">
                         <div class="col-md-6 mb-2">
                           <label for="paciente_ortodontista" class="form-control-label">Ortodontista</label>
-                          <select class="form-select" id="paciente_ortodontista" v-model="paciente.id_dentista">
+                          <select class="form-select" id="paciente_ortodontista" v-model="paciente.dentista_id">
                             <option hidden>Selecionar...</option>
-                            <option value="1" selected>Daniel Salles</option>
-                            <option value="2">Thales Casa Grande</option>
-                            <option value="3">Murillo Motta</option>
+                            <option v-for="dentista in dentistas" :key="dentista.id" :value="dentista.id"> {{
+                              dentista.nome }} </option>
                           </select>
                         </div>
                         <div class="col-md-6 mb-2">
@@ -216,14 +215,15 @@
 
                                 <MaterialInput type="text" class="form-control input-sm"
                                   style="display: inline-block; width: calc(100% - 30px);" v-model="novoContato.contato"
-                                  ref="contatoInput" :mask="novoContatoMask" />
+                                  ref="contatoInput" :mask="novoContatoMask" :input="contatoChange" />
 
                               </div>
                             </td>
                             <td style="vertical-align: middle; padding-top: 5px;">
 
                               <MaterialInput type="text" class="form-control input-sm"
-                                style="display: inline; width: calc(100% - 51px);" v-model="novoContato.descricao" />
+                                style="display: inline; width: calc(100% - 51px);" ref="contatoDescricaoInput"
+                                v-model="novoContato.descricao" />
                               <button class="btn btn-sm btn-primary mt-2" style="width: 46px; margin-left: 5px;"
                                 @click="adicionarContato">
                                 <font-awesome-icon :icon="['fas', 'plus']" />
@@ -240,23 +240,44 @@
                       <div class="row">
 
                         <div class="col-sm-6 d-flex flex-column align-items-center justify-content-center">
-                          <p class="text-uppercase text-sm mt-3" style="font-weight: 600">Ficha de avaliação inicial</p>
-                          <span v-if="paciente.formulario_respondido"
-                            class="badge badge-sm bg-success">Respondido</span>
-                          <span v-else class="badge badge-sm bg-warning">Não respondido</span>
+                          <div v-if="isLoading.paciente" class="w-100 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                          </div>
+
+                          <div v-if="!isLoading.paciente" class="text-center">
+                            <p class="text-uppercase text-sm mt-3" style="font-weight: 600">
+                              Ficha de avaliação inicial</p>
+                            <span v-if="paciente.formulario_respondido"
+                              class="badge badge-sm bg-success">Respondida</span>
+                            <span v-else class="badge badge-sm bg-warning">Não respondida</span>
+                          </div>
                         </div>
 
                         <div class="col-sm-6 d-flex align-items-end justify-content-center">
 
-                          <button v-if="false && paciente.formulario_respondido" class="btn btn-primary mb-0"
-                            @click="visualizarFormulario">VISUALIZAR</button>
+                          <div v-if="isLoading.paciente" class="w-100 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                            </div>
+                          </div>
 
-                          <button v-if="true || !paciente.formulario_respondido" class="btn btn-primary mb-0" @click="handleFormLinkBtn">
-                            <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'"
-                              style="font-size: 13pt;"></i>
-                            <span style="font-size: 10pt;">{{ possuiWhatsapp ? 'ENVIAR LINK' : 'COPIAR LINK'
-                              }}</span>
-                          </button>
+                          <div v-if="!isLoading.paciente">
+                            <button v-if="!paciente.formulario_respondido" class="btn btn-primary mb-0"
+                              @click="handleFormLinkBtn">
+                              <i class="me-2" :class="possuiWhatsapp ? 'fab fa-whatsapp' : 'fas fa-copy'"
+                                style="font-size: 13pt;"></i>
+                              <span style="font-size: 10pt;">
+                                {{ possuiWhatsapp ? 'ENVIAR LINK' :
+                                  'COPIAR LINK' }}
+                              </span>
+                            </button>
+                            <button v-else class="btn btn-primary mb-0" @click="toggleFormularioView">
+                              <i class="me-2 fas fa-eye" style="font-size: 13pt;"></i>
+                              <span style="font-size: 10pt;">
+                                VISUALIZAR
+                              </span>
+                            </button>
+                          </div>
 
                         </div>
 
@@ -313,24 +334,32 @@
                     <div class="col-12">
                       <div class="row p-0">
 
-                        <div v-if="!paciente.formulario_respondido || detalhesPessoais.length == 0"
-                          style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
-                          O paciente ainda não respondeu à ficha de avaliação inicial. Para enviar-lhe o formulário,
-                          utilize o
-                          botão "<font-awesome-icon :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']"
-                            class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp ?
-                              'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
+                        <div v-if="isLoading.paciente" class="w-100 text-center py-5">
+                          <div class="spinner-border text-primary" role="status">
+                          </div>
                         </div>
 
-                        <div v-if="paciente.formulario_respondido" class="row">
-                          <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
-                            class="col-sm-6 col-md-4">
-                            <div class="info-container mt-2" :class="detalhe.nivel">
-                              <div style="width: 30px; text-align: center;">
-                                <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
-                              </div>
-                              <div class="">
-                                <span>{{ detalhe.detalhe }}</span>
+                        <div v-if="!isLoading.paciente">
+                          <div v-if="!paciente.formulario_respondido || detalhesPessoais.length == 0"
+                            style="padding: 15px 15px 0px 15px; font-size: 12pt;" class="text-info text-center py-3">
+                            O paciente ainda não respondeu à ficha de avaliação inicial. Para enviar-lhe o formulário,
+                            utilize o
+                            botão "<font-awesome-icon
+                              :icon="possuiWhatsapp ? ['fab', 'fa-whatsapp'] : ['fas', 'fa-copy']"
+                              class="me-1 text-sm" /><span class="text-sm font-weight-bold uppercase">{{ possuiWhatsapp
+                                ?
+                              'ENVIAR LINK' : 'COPIAR LINK' }}</span>" acima.
+                          </div>
+                          <div v-if="paciente.formulario_respondido" class="row">
+                            <div v-for="(detalhe, index) in detalhesPessoais" v-bind:key="index"
+                              class="col-sm-6 col-md-4">
+                              <div class="info-container mt-2" :class="detalhe.nivel">
+                                <div style="width: 30px; text-align: center;">
+                                  <font-awesome-icon :icon="['fas', getInfoIcon(detalhe.nivel)]" />
+                                </div>
+                                <div class="">
+                                  <span>{{ detalhe.detalhe }}</span>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -356,11 +385,7 @@
       </Transition>
 
       <Transition>
-        <Tratamento
-          v-if="activeTab == 'tratamento'"
-          :paciente="paciente"
-          @pacienteChange="refreshPaciente"
-        />
+        <Tratamento v-if="activeTab == 'tratamento'" :paciente="paciente" @pacienteChange="refreshPaciente" />
       </Transition>
 
       <Transition>
@@ -443,6 +468,33 @@
         </div>
       </Transition>
     </main>
+
+
+    <div class="modal" tabindex="-1" id="modalFormularioView">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Adicionar paciente</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body py-4">
+            <div class="d-flex flex-column">
+              <button class="btn btn-secondary my-3">
+                <i class="fas fa-user me-2"></i>
+                Vincular a paciente existente
+              </button>
+              <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+                <i class="fas fa-plus me-2"></i>
+                Criar novo paciente
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Voltar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -458,6 +510,7 @@ import { useRoute } from 'vue-router';
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
 import { uploadImage } from "@/services/imagensService"
+import { getDentistas } from "@/services/dentistasService"
 import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato } from "@/services/pacientesService"
 import cSwal from "@/utils/cSwal.js"
 
@@ -482,6 +535,10 @@ export default {
   },
   data() {
     return {
+      isLoading: {
+        paciente: true
+      },
+      dentistas: [],
       isEditing,
       novoContato: {
         tipo: 'whatsapp',
@@ -532,6 +589,15 @@ export default {
     }
   },
   methods: {
+
+    contatoChange() {
+      if (this.novoContato.tipo == 'celular' || this.novoContato.tipo == 'whatsapp') {
+        if (this.novoContato.contato.length > 14) {
+          this.$refs.contatoDescricaoInput.getInput().focus();
+        }
+      }
+    },
+
     cancelPhotoUpload() {
       this.pendingPhotoFile = null
       this.photoPreviewImage = null
@@ -762,6 +828,8 @@ export default {
       await this.getPacienteDetails(this.paciente.id, options)
     },
     async getPacienteDetails(id, options) {
+      this.isLoading.paciente = true
+
       options = {
         onlyContatos: false,
         ...options
@@ -781,6 +849,8 @@ export default {
       else if (id) {
         this.$router.push('/pacientes')
       }
+
+      this.isLoading.paciente = false
     },
   },
 
@@ -788,7 +858,8 @@ export default {
     await this.getPacienteDetails(this.$route.params.id);
   },
 
-  mounted() {
+  async mounted() {
+    this.dentistas = await getDentistas()
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();

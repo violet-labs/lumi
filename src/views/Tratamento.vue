@@ -3,17 +3,24 @@
     <div class="row py-3 py-md-0 px-3">
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <MaterialInput label="Início do tratamento" readonly type="text" centered
-          :modelValue="$filters.dateDmy(paciente.data_inicio_tratamento)" id="paciente_inicio_tratamento"
-          label-class="me-3" />
-        <span class="text-sm">{{ $filters.howMuchTime(paciente.data_inicio_tratamento, new Date()) }}</span>
+
+        <MaterialInput v-if="isEditing['data_inicio_tratamento']" label="Início do tratamento" type="date" centered
+          v-model="data_inicio_tratamento" id="paciente_inicio_tratamento" label-class="me-3" />
+
+        <MaterialInput v-if="!isEditing['data_inicio_tratamento']" label="Início do tratamento" readonly type="text" centered
+          :modelValue="data_inicio_tratamento" label-class="me-3" @click="toggleEditMode('data_inicio_tratamento')" />
+
+        <span class="text-sm">{{ $filters.howMuchTime(data_inicio_tratamento, new Date()) }}</span>
       </div>
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
-        <MaterialInput label="Término previsto" readonly type="text" centered
-          :modelValue="$filters.dateDmy(paciente.data_final_prevista)" id="paciente_fim_tratamento"
-          label-class="me-3" />
-        <span class="text-sm text-success">{{ $filters.howMuchTime(paciente.data_final_prevista, new Date()) }}</span>
+
+        <MaterialInput v-if="isEditing['data_final_prevista']" label="Início do tratamento" type="date" centered
+          v-model="data_final_prevista" id="paciente_inicio_tratamento" label-class="me-3" />
+
+        <MaterialInput v-if="!isEditing['data_final_prevista']" label="Início do tratamento" readonly type="text" centered
+          :modelValue="data_final_prevista" label-class="me-3" @click="toggleEditMode('data_final_prevista')" />
+
       </div>
 
       <div class="col-md-6 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
@@ -206,6 +213,7 @@ import PlanoTratamento from "./Tratamento/components/PlanoTratamento.vue"
 
 var tratamentoTab = 'analise'
 const items = []
+var isEditing = []
 
 export default {
   name: "tratamento",
@@ -216,13 +224,19 @@ export default {
   },
   data() {
     return {
+      isEditing,
       items,
       tratamentoTab,
+      data_inicio_tratamento: null,
+      data_final_prevista: null,
     }
   },
   methods: {
     selectTratamentoTab(tab) {
       this.tratamentoTab = tab
+    },
+    toggleEditMode(section) {
+      this.isEditing[section] = !this.isEditing[section]
     },
     statusClass(status) {
       const classMap = {
@@ -270,6 +284,9 @@ export default {
       return this.paciente.fases_tratamento[this.paciente.fases_tratamento.length - 1].data_fim;
     },
     getProgresso() {
+      if (!this.paciente)
+        return
+
       if (!this.paciente.data_inicio_tratamento)
         return '-';
 
@@ -292,6 +309,8 @@ export default {
   },
 
   mounted() {
+    this.data_inicio_tratamento = this.paciente.data_inicio_tratamento
+    this.data_final_prevista = this.paciente.data_final_prevista
   },
   beforeMount() {
   },

@@ -1003,7 +1003,7 @@ export default {
         },
         async _salvarAnalises() {
             cSwal.loading('Salvando as alterações e atualizando diagnóstico...')
-            const save = await salvarAnalises(this.analises, this.pacienteId)
+            const save = await salvarAnalises(this.analises, this.paciente.id)
             cSwal.loaded()
 
             if (save) {

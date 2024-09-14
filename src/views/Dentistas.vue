@@ -6,14 +6,15 @@
   <div class="main-page-content">
     <div class="row">
       <div class="col-12">
+        
+        <div class="w-100 text-center mt-4">
+          <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
+            v-model="search">
+        </div>
 
         <div v-if="isLoading.dentistasList" class="w-100 text-center py-5">
           <div class="spinner-border text-primary" role="status">
           </div>
-        </div>
-        <div v-if="!isLoading.dentistasList && (search != '' || dentistas.length > 0)" class="w-100 text-center mt-4">
-          <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
-            v-model="search">
         </div>
 
         <v-table v-if="!isLoading.dentistasList && dentistas.length == 0" class="m-3">
@@ -271,7 +272,7 @@ export default {
     return {
       clinicas: [],
       isLoading: {
-        dentistasList: false
+        dentistasList: true
       },
       tableheaders,
       search,
