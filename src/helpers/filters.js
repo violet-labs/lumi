@@ -12,11 +12,14 @@ const filters = {
 
         const diferencaEmMilissegundos = data - compareToDate
 
+        if (diferencaEmMilissegundos == 0)
+            return 'hoje'
+
         var startMillis = data.getTime()
         var endMillis = compareToDate.getTime()
 
         var difference = endMillis - startMillis
-        var daysDifference = difference / (1000 * 60 * 60 * 24)
+        var daysDifference = Math.abs(difference / (1000 * 60 * 60 * 24))
 
         var anos = Math.abs(Math.floor(daysDifference / 365))
 
