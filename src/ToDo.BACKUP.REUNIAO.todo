@@ -1,6 +1,6 @@
 Reunião 11/06/2024:
 -- ------------------------------------------ --
-(1h) Perfil do paciente:
+Perfil do paciente:
     Adicionar:
         ✔ Link do formulário de bem-vindo (alterar o link para botão "ver formulário", depois de preenchido)
         ✔ RG (no lugar do "objetivo do tratamento")
@@ -57,19 +57,16 @@ Tela de Plano de tratamento:
         ☐ "Depende de outra área para tratamento"
     Seção "Necessidade de encaminhamentos":
         ✔ Passar para o "Plano de tratamento"
-        ☐ Preencher automaticamente a partir da analise
+        ☐ Preencher automaticamente à partir da análise
         ☐ Exibir de qual item foi gerada a necessidade de encaminhamento
 -- ------------------------------------------ --
 Tela do Histórico:
     ✔ Passar tela para a orientação vertical
 -- ------------------------------------------ --
-Formulário de bem-vindo:  
-    ✔ Permitir edição do nome no formulário (que já vai estar preenchido ao abrir)
+Ficha de avaliação ainicial:  
+    ✔ Permitir edição do nome na ficha (que já vai estar preenchido ao abrir)
 -- ------------------------------------------ --
 Analises radiográficas:
     Adicionar campos:
         ✔ POEF (aberto)
         ✔ Observações (aberto)
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --

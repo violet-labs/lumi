@@ -2,30 +2,35 @@ Consertar layout:
     ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página
     ☐ Consertar botão de fechar modal, que tá oculto/transparente
     ☐ Melhorar layout mobile
+    ☐ A sidenav não está chegando até o final da tela
+Imagens:
+    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
 
+-- ------------------------------------------------
 
--- ----------- DEPOIS ------------------:
-Paciente > Tratamento > Plano de tratamento:
-    Necessidades de encaminhamentos:
-        ☐ Verificar se está salvando certinho
-☐ Fazer funcionar alteração do Meu Perfil
+Necessidades de encaminhamentos:
+    ☐ Verificar se está salvando certinho
+
+Seção "aparatologia":
+    ☐ Criar model Aparatologia?
+    ☐ Fazer funcionar edição
+    ☐ Incluir observações na Aparatologia
+
 Permissions:
     ☐ Mostrar só "=clinica" quando nao for admin
     ☐ Esconder o menu "dentistas" (e bloquear rota?) quando o usuário não for admin
     ☐ Bloquear os SELECTs de clínicas, caso o usuário não for admin
+
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+-- ------------------------------------------ --
+☐ Fazer funcionar alteração do Meu Perfil
 ☐ Fazer modal global de buscar clínica
-Imagens:
-    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
-Metas terapêuticas:
-    Colocar mais opções: 
-        ☐ "Não foi possível concluir" ou "Depende de outra área para tratamento"
-    ☐ Criar com base nos itens da análise (preencher no objeto)
-    
-Necessidades de encaminhamentos:
-    ☐ Criar com base nos itens da análise (preencher no objeto)
+☐ Fazer modal global de buscar paciente
+☐ Fazer modal global de buscar ortodontista
 
 ☐ Armazenar miniatura das imagens
-☐ Preparar a ficha de avaliação inicial para permitir anonimo (armazenar formulário para ser vinculado com um paciente depois)
+☐ Preparar a ficha de avaliação inicial para permitir anonimo (armazenar formulário para ser vinculado a um paciente depois)
 
 ☐ Permitir editar meios de contato
 ☐ Fazer modal global de buscar paciente
@@ -78,7 +83,7 @@ Financeiro:
     ☐ Criar filtro (a seção (Receber/Pagar) selecionada entra como filtro)
 
 Paciente > Financeiro:
-    ☐ Listar corretamente as faturas do paciente
+    ☐ Listar as faturas do paciente
 
 Agenda:
     ☐ Fazer funcionar botão de nova consulta
@@ -94,11 +99,6 @@ Agenda:
         ☐ No modal, exibir as últimas X consultas (em formato de cartão or something like that), para facilitar selecionar o paciente, ou então escolhe pesquisando mesmo...
         ☐ Gerar atestado em PDF
 
-Paciente > Tratamento > Imagens:
-    ☐ Verificar se está fazendo upload de radiografias
-    ☐ Verificar se está fazendo upload de fotos
-    ☐ Verificar se está vinculando a imagem com o paciente/doutor/observação/data
-
 Paciente > Tratamento > Histórico:
     ☐ Criar model HistoricoPaciente
     ☐ Criar migration HistoricoPaciente
@@ -109,7 +109,6 @@ Paciente > Tratamento > Histórico:
         ☐ Consulta
 
 ☐ Fazer funcão para alterar senha
-☐ Verificar o footer que não tá aparecendo o texto
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -141,23 +140,12 @@ Reunião 11/06/2024:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
-Seção "aparatologia":
-    ☐ Incluir observações na Aparatologia
--- ------------------------------------------ --
--- ------------------------------------------ --
--- ------------------------------------------ --
-☐ (10m) Centralizar todos .modal no centro vertical da tela
-Consertar layout:
-    ☐ (20m) O conteúdo da tela de tratamento está cortando a parte inferior no mobile
-    ☐ (20m) A sidenav não está chegando até o final da tela
 Later:
     Laravel - aprender:
-        ☐ (10m) Como fazer paginação do lado do servidor
+        ☐ Como fazer paginação do lado do servidor
     ☐ Fazer botões Dia/Semana/Mês terem um slide de background entre eles
-    ☐ Colocar botão "Ver mais" em baixo dos cards que não puderem ter seu height aumentado muito (como no card dos últimos pacientes adicionados)
-    ☐ Verificar o porque de estar lento para abrir a Agenda
     ☐ Colocar campo de indicação no cadastro do paciente
-    ☐ (15m) Traduzir o DataTables
+    ☐ Traduzir o DataTables
     Financeiro:
         Tela do Financeiro:
             ☐ Criar tabela de contas
@@ -165,7 +153,6 @@ Later:
         Tela do Paciente:
             ☐ Criar tabela de contas
             ☐ Criar sidenav com opções pertinentes ao financeiro
-    ☐ Backend: verificar os models e migrations dos pacientes (comparar com o da CECLOP e verificar se tá faltando algum campo)
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
@@ -189,9 +176,7 @@ Outro dia:
             ☐ status            
 Ideas:
     ☐ Ao finalizar a consulta, exibir uma tela para inserir os dados da consulta (se mudou algum dispositivo do aparelho etc)
-    ☐ Vincular as fotos às fases do tratamento (na tela de exibição das fases?)
     ☐ Dar opção para o paciente consultar o seu plano de tratamento
-    ☐ No diagnóstico, colocar 3 colunas de <ul>, com os itens apresentados na análise
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
