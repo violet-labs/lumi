@@ -52,9 +52,9 @@
 
     <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
-    <div class="py-2 px-3 d-flex flex-row img-carousel-container">
+    <div class="py-2 px-3 d-flex flex-row img-carousel-container" v-viewer>
       <div v-for="imagem in imagens" :key="imagem.url">
-        <img :src="imagem.url" alt="" width="100" height="80">
+        <img :src="imagem.url" :key="imagem.url" alt="">
       </div>
     </div>
 
@@ -189,8 +189,8 @@
 }
 
 .img-carousel-container img {
-  max-width: 120px;
-  max-height: 90px;
+  max-width: 100px;
+  max-height: 70px;
 }
 
 .img-carousel-container>div:hover {

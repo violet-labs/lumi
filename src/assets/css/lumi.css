@@ -919,3 +919,13 @@ input.input-sm {
 .contains-dropdown .v-table__wrapper {
     overflow: visible;
 }
+
+
+/*
+mViewer
+*/
+
+.viewer-title {
+    color: #ffffff !important;
+    font-size: 18pt !important;
+}

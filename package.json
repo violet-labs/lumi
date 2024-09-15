@@ -28,6 +28,8 @@
     "moment-timezone": "^0.5.45",
     "sweetalert2": "^11.12.4",
     "v-calendar": "^3.1.2",
+    "v-viewer": "^3.0.13",
+    "viewerjs": "^1.11.6",
     "vue": "3.3.4",
     "vue-i18n": "^9.13.1",
     "vue-material": "^1.0.0-beta-16",

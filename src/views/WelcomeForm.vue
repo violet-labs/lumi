@@ -460,6 +460,7 @@ const questions = [
             { resposta: 'Roer unhas', selecionada: false, ponto_negativo: 'Possui hábito de roer unhas', tipo_detalhe: 'clinico' },
             { resposta: 'Ranger os dentes', selecionada: false, ponto_atencao: 'Possui hábito de ranger os dentes', tipo_detalhe: 'clinico' },
             { resposta: 'Apertar os dentes', selecionada: false, ponto_atencao: 'Possui hábito de apertar os dentes', tipo_detalhe: 'clinico' },
+            { resposta: 'Nenhum', selecionada: false },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -529,6 +530,7 @@ const questions = [
             { resposta: 'Hipertensão', selecionada: false, ponto_negativo: 'Tem hipertensão', tipo_detalhe: 'clinico' },
             { resposta: 'Doença cardíaca', selecionada: false, ponto_negativo: 'Tem doença cardíaca', tipo_detalhe: 'clinico' },
             { resposta: 'Doença respiratória', selecionada: false, ponto_negativo: 'Tem doença respiratória', tipo_detalhe: 'clinico' },
+            { resposta: 'Nenhum', selecionada: false },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -545,6 +547,7 @@ const questions = [
         alternativas: [
             { resposta: 'Ansiedade', selecionada: false, ponto_negativo: 'Tem ansiedade', tipo_detalhe: 'clinico' },
             { resposta: 'Depressão', selecionada: false, ponto_negativo: 'Tem depressão', tipo_detalhe: 'clinico' },
+            { resposta: 'Nenhum', selecionada: false },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -571,6 +574,7 @@ const questions = [
                 ponto_negativo: 'Possui hábito de beber',
                 tipo_detalhe: 'clinico'
             },
+            { resposta: 'Nenhum', selecionada: false },
         ],
         detalhar: "opcional",
         detalhando: false,
@@ -609,6 +613,7 @@ const questions = [
                 ponto_negativo: 'Possui periodontite',
                 tipo_detalhe: 'clinico'
             },
+            { resposta: 'Nenhum', selecionada: false },
         ],
         detalhar: "opcional",
         detalhando: false,

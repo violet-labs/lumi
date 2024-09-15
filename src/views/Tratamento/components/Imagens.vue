@@ -8,8 +8,15 @@
                     <div class="p-horizontal-divider mb-0"></div>
                     <div class="radiografias-container w-100">
 
-                        <div v-if="xrays.length > 0" class="images-container">
-                            <img :src="xray.url" alt="" v-for="xray in xrays" :key="xray.url" width="100">
+                        <div v-if="xrays.length > 0" class="row">
+                            <div class="col-12 images-container"
+                                v-viewer="{ title: [1, (image, imageData) => `${image.alt}`] }">
+
+                                <div v-for="xray in xrays" :key="xray.url">
+                                    <img :src="xray.url" :alt="getImageDescription(xray)">
+                                </div>
+
+                            </div>
                         </div>
 
                         <div class="row">
@@ -79,8 +86,13 @@
                     <div class="fotos-container w-100">
 
                         <div v-if="photos.length > 0" class="row">
-                            <div class="col-12 images-container">
-                                <img :src="photo.url" alt="" v-for="photo in photos" :key="photo.url" width="100">
+                            <div class="col-12 images-container"
+                                v-viewer="{ title: [1, (image, imageData) => `${image.alt}`] }">
+
+                                <div v-for="photo in photos" :key="photo.url">
+                                    <img :src="photo.url" :alt="getImageDescription(photo)">
+                                </div>
+
                             </div>
                         </div>
 
@@ -158,6 +170,7 @@
 .images-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     padding: 10px 0px;
     background: #F2F2F2;
@@ -167,7 +180,7 @@
     gap: 10px;
 }
 
-.images-container img {
+.images-container>div {
     background: #000;
     border: 2px solid #666;
     display: flex;
@@ -175,6 +188,10 @@
     justify-content: center;
     cursor: pointer;
     border-radius: 3px;
+    height: 100%;
+}
+
+.images-container img {
     max-width: 120px;
     max-height: 90px;
 }
@@ -218,6 +235,11 @@ export default {
         }
     },
     methods: {
+        getImageDescription(image) {
+            const description = '[' + this.$filters.dateDmy(image.data) + '] ' + image.descricao
+
+            return description
+        },
 
         cancelPhotoUpload() {
             this.pendingPhotoUpload = false
