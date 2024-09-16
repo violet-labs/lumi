@@ -1,3 +1,4 @@
 {
+    "MODE": "prod",
     "API_URL": "https://api.lumiorthosystem.com.br"
 }

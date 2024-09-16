@@ -1,3 +1,4 @@
 {
+    "MODE": "dev",
     "API_URL": "https://dev.api.lumiorthosystem.com.br"
 }
