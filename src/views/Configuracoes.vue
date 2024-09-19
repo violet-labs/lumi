@@ -29,7 +29,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-7 form-group mt-3">
+
+                        <div class="p-horizontal-divider"></div>
+
+                        <div class="col-sm-7 form-group mt-3">
                             <label for="nome">Nome completo:</label>
                             <input type="text" id="nome" class="form-control">
                         </div>
@@ -37,19 +40,22 @@
                             <label for="clinica">Clínica:</label>
                             <input type="text" id="clinica" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-3">
+                        <div class="col-sm-7 form-group mt-3">
                             <label for="email" class="form-control-label">E-mail:</label>
                             <input type="email" id="email" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-3">
+                        <div class="col-sm-5 form-group mt-3">
                             <label for="data_nascimento" class="form-control-label">Data de nascimento:</label>
                             <input type="date" id="data_nascimento" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-3">
+
+                        <div class="p-horizontal-divider my-4 mb-3"></div>
+
+                        <div class="col-6 form-group">
                             <label for="senha">Nova senha:</label>
                             <input type="password" id="senha" class="form-control">
                         </div>
-                        <div class="col-sm-6 form-group mt-3">
+                        <div class="col-6 form-group">
                             <label for="senha_confirmacao">Confirmar nova senha:</label>
                             <input type="password" id="senha_confirmacao" class="form-control">
                         </div>
@@ -103,8 +109,9 @@
                         </tbody>
                     </v-table>
 
-                    <EasyDataTable v-if="registros.length > 0" :headers="headersRegistros" :items="registros" body-row-class-name="clickable"
-                        header-item-class-name="table-header-item" body-item-class-name="table-body-item">
+                    <EasyDataTable v-if="registros.length > 0" :headers="headersRegistros" :items="registros"
+                        body-row-class-name="clickable" header-item-class-name="table-header-item"
+                        body-item-class-name="table-body-item">
 
                         <template #item-created_at="{ created_at }">
                             {{ $filters.dateTime(created_at) }}

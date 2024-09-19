@@ -61,7 +61,7 @@
             <div class="col-sm-6">
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
-                        Extra-bucal
+                        Análise extra-bucal
                         <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                             :class="{ 'active': isEditing['extraBucal'] }"
                             :title="isEditing['extraBucal'] ? 'Sair do modo de edição' : 'Editar as análises extra-bucais'"
@@ -234,7 +234,7 @@
 
                 <div class="custom-card primary mt-4">
                     <div class="custom-card-header">
-                        Intra-bucal
+                        Análise Intra-bucal
                         <font-awesome-icon :icon="['fas', 'edit']" class="ml-3 pointer"
                             :class="{ 'active': isEditing['intraBucal'] }"
                             :title="isEditing['intraBucal'] ? 'Sair do modo de edição' : 'Editar as análises intra-bucais'"

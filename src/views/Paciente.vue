@@ -483,7 +483,7 @@
             <h5 class="modal-title">Ficha de avaliação inicial</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body p-3 px-4" style="max-height: 80vh; overflow-y: auto;">
+          <div class="modal-body p-3 px-4" style="max-height: 78vh; overflow-y: auto;">
 
             <div class="d-flex flex-column align-center justify-content-center mb-0 pb-0">
               <label for=""><b>Respondida em:</b></label>
