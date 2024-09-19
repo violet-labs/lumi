@@ -92,11 +92,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Novo dentista</h5>
+          <h5 class="modal-title">Novo ortodontista</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
             ref="closeModalNovoDentista"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body px-4">
           <div class="row">
             <div class="col-md-7">
               <label>

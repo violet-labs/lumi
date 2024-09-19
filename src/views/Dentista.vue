@@ -268,6 +268,22 @@
       </Transition>
 
       <Transition>
+        <div class="py-4 container-fluid" v-if="activeTab == 'pacientes'">
+          <div class="row">
+            <v-table>
+                <tbody>
+                  <tr>
+                    <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+                      Este ortodontista ainda não cadastrou pacientes.
+                    </td>
+                  </tr>
+                </tbody>
+              </v-table>
+          </div>
+        </div>
+      </Transition>
+
+      <Transition>
         <div class="py-4 container-fluid" v-if="activeTab == 'consultas'">
 
           <div class="row">

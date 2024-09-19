@@ -668,8 +668,17 @@ export default {
       return this.paciente.detalhes_paciente ? this.paciente.detalhes_paciente.filter(detalhe => detalhe.tipo == 'pessoal') : [];
     },
     hasPendingChanges() {
-      return this.originalPaciente && this.paciente
-        && JSON.stringify(this.originalPaciente) !== JSON.stringify(this.paciente)
+      const hasPendingChanges = (
+        this.originalPaciente 
+        && this.paciente
+        && Object.entries(this.originalPaciente).sort().toString() !== Object.entries(this.paciente).sort().toString()
+      )
+
+      console.log('this.originalPaciente:', JSON.stringify(this.originalPaciente))
+      console.log('this.paciente:', JSON.stringify(this.paciente))
+      console.log('hasPendingChanges:', hasPendingChanges)
+
+      return hasPendingChanges
     }
   },
   watch: {
@@ -851,6 +860,9 @@ export default {
     },
 
     validarCep(cep) {
+      if (!cep)
+        return false
+      
       return /^\d{8}$/.test(cep.replace(/[^\d]+/g, ""))
     },
 
