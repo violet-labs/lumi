@@ -126,7 +126,7 @@
         <div class="d-flex flex-column justify-content-center">
           <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
           <p class="text-xs mb-0">
-            <b>{{ $filters.howMuchTime(created_at, new Date()) }}</b>
+            <b>{{ $filters.howMuchTime(created_at) }}</b>
           </p>
         </div>
       </template>

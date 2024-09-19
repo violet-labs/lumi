@@ -204,6 +204,7 @@
 <script>
 import { uploadImage } from "@/services/imagensService"
 import cSwal from "@/utils/cSwal.js"
+import { getImageDescription } from "@/utils"
 
 export default {
     name: "Imagens",
@@ -235,11 +236,7 @@ export default {
         }
     },
     methods: {
-        getImageDescription(image) {
-            const description = '[' + this.$filters.dateDmy(image.data) + '] ' + image.descricao
-
-            return description
-        },
+        getImageDescription,
 
         cancelPhotoUpload() {
             this.pendingPhotoUpload = false
@@ -249,6 +246,7 @@ export default {
         },
 
         choosePhotoFile() {
+            document.getElementById('photoFileInput').value = ''
             document.getElementById('photoFileInput').click()
         },
 
@@ -296,6 +294,7 @@ export default {
         },
 
         chooseXrayFile() {
+            document.getElementById('xrayFileInput').value = ''
             document.getElementById('xrayFileInput').click()
         },
 

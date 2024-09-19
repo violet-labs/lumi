@@ -20,8 +20,11 @@
               <div class="col-auto my-auto">
                 <div class="h-100">
                   <h5 class="mb-1 fs-4">{{ paciente.nome }}</h5>
-                  <p class="mb-0 font-weight-bold">{{ $filters.howMuchTime(paciente.data_nascimento, new Date(), false)
-                    }}</p>
+                  <p class="mb-0 font-weight-bold">
+                    <Transition>
+                      <span :key="paciente.data_nascimento">{{ $filters.howMuchTime(paciente.data_nascimento, {type: 'date', prefix: false}) }}</span>
+                    </Transition>
+                    </p>
                 </div>
               </div>
               <div class="mx-auto mt-3 col-md-6 my-sm-auto ms-sm-auto me-sm-0">
@@ -704,6 +707,7 @@ export default {
     },
 
     chooseProfilePictureFile() {
+      document.getElementById('profilePictureFileInput').value = ''
       document.getElementById('profilePictureFileInput').click()
     },
 

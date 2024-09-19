@@ -4,7 +4,9 @@
 
             <div class="col-md-12">
                 <div class="box primary h-100">
-                    <p class="custom-card-header">Diagnóstico<font-awesome-icon :icon="['fas', 'edit']"
+                    <p class="custom-card-header">
+                        Diagnóstico
+                        <font-awesome-icon :icon="['fas', 'edit']"
                             class="ml-3 pointer" :class="{ 'active': isEditing['diagnostico'] }"
                             :title="isEditing['diagnostico'] ? 'Sair do modo de edição' : 'Editar o diagnóstico'"
                             @click="toggleEditMode('diagnostico')" />
@@ -21,16 +23,20 @@
                     </div>
 
                     <div style="background: #F2F2F2;">
-                        <p v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4"
+                        <p class="p-0"
                             style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
-                            <span v-if="!diagnostico_ || diagnostico_.length == 0"
-                                class="text-info d-inline-block w-100 text-center">Ainda não foi estabelecido um
-                                diagnóstico.</span>
-                            <span v-if="diagnostico_ && diagnostico_.length > 0">{{ diagnostico_ }}</span>
+
+                            <span v-if="!isEditing['diagnostico']" class="text-justify py-2 px-4 d-inline-block">
+                                <span v-if="!diagnostico_ || diagnostico_.length == 0"
+                                    class="text-secondary d-inline-block w-100 text-center">Ainda não foi estabelecido um
+                                    diagnóstico.</span>
+                                <span v-if="diagnostico_ && diagnostico_.length > 0">{{ diagnostico_ }}</span>
+                            </span>
+
+                            <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control m-0" rows="8"
+                                v-model="diagnostico_"></textarea>
                         </p>
                     </div>
-                    <textarea v-if="isEditing['diagnostico']" name="" id="" class="form-control" rows="4"
-                        v-model="diagnostico_"></textarea>
                 </div>
             </div>
 
@@ -176,16 +182,20 @@
                     </div>
 
                     <div style="background: #F2F2F2;">
-                        <p v-if="!isEditing['prognostico']" class="text-justify py-2 px-4"
+                        <p class="p-0"
                             style="background: #FFF; margin: 0 auto; font-size: 12.3pt; max-width: 600px;">
-                            <span v-if="!prognostico_ || prognostico_.length == 0"
-                                class="text-info d-inline-block w-100 text-center">Ainda não foi estabelecido um
-                                prognóstico.</span>
-                            <span v-if="!prognostico_ || prognostico_.length == 0">{{ prognostico_ }}</span>
-                        </p>
+
+                            <span v-if="!isEditing['prognostico']" class="text-justify py-2 px-4 d-inline-block">
+                                <span v-if="!prognostico_ || prognostico_.length == 0"
+                                    class="text-secondary d-inline-block w-100 text-center">Ainda não foi estabelecido um
+                                    prognóstico.</span>
+                                <span v-if="prognostico_ && prognostico_.length > 0">{{ prognostico_ }}</span>
+                            </span>
+
+                        <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control" rows="8"
+                            v-model="prognostico_"></textarea>
+                            </p>
                     </div>
-                    <textarea v-if="isEditing['prognostico']" name="" id="" class="form-control" rows="4"
-                        v-model="prognostico_"></textarea>
                 </div>
             </div>
 

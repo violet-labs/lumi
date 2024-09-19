@@ -5,22 +5,23 @@
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
 
         <MaterialInput v-if="isEditing['data_inicio_tratamento']" label="Início do tratamento" type="date" centered
-          v-model="data_inicio_tratamento" id="paciente_inicio_tratamento" label-class="me-3" />
+          :modelValue="paciente.data_inicio_tratamento" id="paciente_inicio_tratamento" label-class="me-3" />
 
         <MaterialInput v-if="!isEditing['data_inicio_tratamento']" label="Início do tratamento" readonly type="text" centered
-          :modelValue="data_inicio_tratamento" label-class="me-3" @click="toggleEditMode('data_inicio_tratamento')" />
+          :modelValue="paciente.data_inicio_tratamento" label-class="me-3"  />
 
-        <span class="text-sm">{{ $filters.howMuchTime(data_inicio_tratamento, new Date()) }}</span>
+        <span class="text-sm">{{ $filters.howMuchTime(paciente.data_inicio_tratamento, new Date()) }}</span>
       </div>
 
       <div class="col-sm-6 col-md-3 px-2 py-1 py-md-3 text-center">
 
-        <MaterialInput v-if="isEditing['data_final_prevista']" label="Início do tratamento" type="date" centered
-          v-model="data_final_prevista" id="paciente_inicio_tratamento" label-class="me-3" />
+        <MaterialInput v-if="isEditing['data_final_prevista']" label="Término previsto" type="date" centered
+          :modelValue="paciente.data_final_prevista" id="paciente_inicio_tratamento" label-class="me-3" />
 
-        <MaterialInput v-if="!isEditing['data_final_prevista']" label="Início do tratamento" readonly type="text" centered
-          :modelValue="data_final_prevista" label-class="me-3" @click="toggleEditMode('data_final_prevista')" />
+        <MaterialInput v-if="!isEditing['data_final_prevista']" label="Término previsto" readonly type="text" centered
+          :modelValue="paciente.data_final_prevista" label-class="me-3" @click="toggleEditMode('data_final_prevista')" />
 
+          <span class="text-sm">{{ $filters.howMuchTime(paciente.data_final_prevista, new Date()) }}</span>
       </div>
 
       <div class="col-md-6 px-2 py-1 py-md-3 text-center" v-if="paciente.status_tratamento == 'ATIVO'">
@@ -52,9 +53,9 @@
 
     <div class="p-horizontal-divider my-0" ref="metasTerapeuticasFraming"></div>
 
-    <div class="py-2 px-3 d-flex flex-row img-carousel-container" v-viewer>
+    <div class="py-2 px-3 d-flex flex-row img-carousel-container" v-viewer="{ title: [1, (image, imageData) => `${image.alt}`] }">
       <div v-for="imagem in imagens" :key="imagem.url">
-        <img :src="imagem.url" :key="imagem.url" alt="">
+        <img :src="imagem.url" :key="imagem.url" :alt="getImageDescription(imagem)">
       </div>
     </div>
 
@@ -68,7 +69,7 @@
       </div>
       <div class="tratamento-tab" :class="tratamentoTab == 'diagnostico' ? 'active' : ''"
         @click="selectTratamentoTab('diagnostico')">
-        <font-awesome-icon :icon="['fas', 'tooth']" class="mr-3" />
+        <font-awesome-icon :icon="['fas', 'book-medical']" class="mr-3" />
         Diagnóstico
       </div>
       <div class="tratamento-tab" :class="tratamentoTab == 'planoTratamento' ? 'active' : ''"
@@ -210,6 +211,7 @@ import Diagnostico from "./Tratamento/components/Diagnostico.vue"
 import Historico from "./Tratamento/components/Historico.vue"
 import Imagens from "./Tratamento/components/Imagens.vue"
 import PlanoTratamento from "./Tratamento/components/PlanoTratamento.vue"
+import { getImageDescription } from "@/utils"
 
 var tratamentoTab = 'analise'
 const items = []
@@ -232,6 +234,7 @@ export default {
     }
   },
   methods: {
+    getImageDescription,
     selectTratamentoTab(tab) {
       this.tratamentoTab = tab
     },

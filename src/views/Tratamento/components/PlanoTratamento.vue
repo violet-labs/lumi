@@ -264,7 +264,7 @@
                             Salvar
                         </button>
                     </div>
-                    <p v-if="!isEditing['necessidadesEncaminhamento']" class="text-justify py-2 px-4">
+                    <p v-if="!isEditing['necessidadesEncaminhamento']" class="py-2 px-4 text-center text-secondary">
                         Não há necessidade de encaminhamentos.
                     </p>
                     <textarea v-if="isEditing['necessidadesEncaminhamento']" name="" id="" class="form-control"

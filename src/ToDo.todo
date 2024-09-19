@@ -3,13 +3,12 @@ Consertar layout:
     ☐ Consertar botão de fechar modal, que tá oculto/transparente
     ☐ Melhorar layout mobile
     ☐ A sidenav não está chegando até o final da tela
-Imagens:
-    ☐ Verificar: não está triggando mudança da foto, após selecionar a mesma
 
 -- ------------------------------------------------
 
-Necessidades de encaminhamentos:
-    ☐ Verificar se está salvando certinho
+☐ Fazer função para salvar aparatologia
+☐ Fazer função para salvar contenção
+☐ Fazer função para adicionar necessidades de encaminhamentos
 
 Seção "aparatologia":
     ☐ Criar model Aparatologia?

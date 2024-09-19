@@ -8,7 +8,7 @@
                         Relatos do paciente<font-awesome-icon :icon="['fas', 'info-circle']" class="ml-3 pointer"
                             title="Como funciona?" />
                     </div>
-                    <div class="custom-card-body p-0 pb-3">
+                    <div class="custom-card-body p-0 pb-3" style="max-height: 450px; overflow-y: auto; overflow-x: hidden;">
                         <div class="row px-3">
                             <!-- <div v-for="(perceptions, categoria) in personalPerceptions" v-bind:key="perceptions"
                                 class="col-md-6 mt-2 px-2 py-1">
