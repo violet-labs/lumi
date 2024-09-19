@@ -21,7 +21,7 @@
           <tbody>
             <tr>
               <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
-                <span v-if="search == ''">Ainda não existem pacientes cadastrados.</span>
+                <span v-if="search == ''">Ainda não existem ortodontistas cadastrados.</span>
                 <span v-if="search != ''">A busca não encontrou nenhum paciente.</span>
               </td>
             </tr>
