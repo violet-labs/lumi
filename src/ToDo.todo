@@ -1,3 +1,17 @@
+☐ Listar corretamente a clínica do Ortodontista na tela do Ortodontista
+☐ Colocar o item da clínica na tela do Paciente (input disabled para usuários e select para admins)
+Novo paciente:
+    ☐ Não exibir opção "Nova clínica" para os usuários não-administradores
+    ☐ Permitir escolher apenas entre os ortodontistas da clínica
+Limitar requests:
+    ☐ Pacientes
+    ☐ Ortodontistas
+    ☐ Consultas de pacientes
+
+
+
+
+
 Consertar layout:
     ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página
     ☐ Consertar botão de fechar modal, que tá oculto/transparente
