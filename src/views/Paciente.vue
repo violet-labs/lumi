@@ -88,29 +88,37 @@
                           </select>
                         </div>
                         <div class="col-md-6 mb-2">
+                          <label for="dentista_clinica" class="form-control-label">Clínica</label>
+                          <select v-if="userInfo.admin" class="form-select" id="dentista_clinica" v-model="paciente.clinica.id">
+                            <option hidden>Selecionar...</option>
+                            <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
+                          </select>
+                          <input readonly class="form-control" type="text" :value="paciente.clinica.nome">
+                        </div>
+                        <div class="col-md-6 mb-2">
                           <MaterialInput label="Nascimento" type="date" v-model="paciente.data_nascimento"
                             id="paciente_dataNascimento" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput type="text" label="RG" v-model="paciente.rg" id="paciente_rg" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf"
-                            mask="###.###.###-##" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
-                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_mae" />
-                        </div>
-                        <div class="col-md-6 mb-2">
-                          <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
-                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_pai" />
                         </div>
                         <div class="col-md-6 mb-2">
                           <MaterialInput label="Como conheceu a clínica" type="text" v-model="paciente.como_conheceu"
                             id="paciente_como_conheceu" />
                         </div>
                         <div class="col-md-6 mb-2">
+                          <MaterialInput type="text" label="RG" v-model="paciente.rg" id="paciente_rg" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <MaterialInput label="Nome da mãe" type="text" v-model="paciente.nome_mae"
+                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_mae" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <MaterialInput label="CPF" type="text" v-model="paciente.cpf" id="paciente_cpf"
+                            mask="###.###.###-##" />
+                        </div>
+                        <div class="col-md-6 mb-2">
+                          <MaterialInput label="Nome do pai" type="text" v-model="paciente.nome_pai"
+                            :input="function ($event) { capitalizeAll($event) }" id="paciente_nome_pai" />
+                        </div>
+                        <div class="col-12 mb-2">
                           <label for="paciente_observacoes" class="text-uppercase text-sm"
                             style="font-weight: 500">Observações</label>
                           <textarea class="form-control" id="paciente_observacoes" rows="3"
@@ -584,11 +592,17 @@ import { getEnderecoByCep } from "@/services/commonService"
 import { uploadImage } from "@/services/imagensService"
 import { getDentistas } from "@/services/dentistasService"
 import { getPaciente, updatePaciente, adicionarMeioContato, excluirMeioContato, getFichaInicial } from "@/services/pacientesService"
+import { getClinicas } from "@/services/clinicasService"
 import cSwal from "@/utils/cSwal.js"
+import usuariosService from '@/services/usuariosService'
 
 var isEditing = []
 
-var paciente = {}
+var paciente = {
+  clinica: {
+    id: null
+  }
+}
 var originalPaciente = {}
 
 var showTratamento = false;
@@ -607,6 +621,8 @@ export default {
   },
   data() {
     return {
+      userInfo: {},
+      clinicas: [],
       dataRespostaFicha: null,
       questoesFichaInicial: [],
       isLoading: {
@@ -971,10 +987,12 @@ export default {
   },
 
   async created() {
+    this.userInfo = usuariosService.decodedToken()
     await this.getPacienteDetails(this.$route.params.id);
   },
 
   async mounted() {
+    this.clinicas = await getClinicas()
     setNavPills();
     setTooltip();
     this.$store.state.isAbsolute = true;

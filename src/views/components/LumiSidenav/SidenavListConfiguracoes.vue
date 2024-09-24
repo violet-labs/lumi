@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      userInfo: null,
+      userInfo: {},
       title: "Soft UI Dashboard PRO",
       controls: "dashboardsExamples",
       isActive: "active",

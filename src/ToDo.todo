@@ -1,5 +1,7 @@
-☐ Listar corretamente a clínica do Ortodontista na tela do Ortodontista
-☐ Colocar o item da clínica na tela do Paciente (input disabled para usuários e select para admins)
+✔ Listar corretamente a clínica do Ortodontista na tela do Ortodontista @done(24-09-23 23:02)
+✔ Colocar o item da clínica na tela do Paciente (input disabled para usuários e select para admins) @done(24-09-23 23:20)
+☐ Listar os ortodontistas apenas da clínica do usuário logado (onde necessário)
+☐ Listar os ortodontistas apenas da clínica do paciente (onde necessário)
 Novo paciente:
     ☐ Não exibir opção "Nova clínica" para os usuários não-administradores
     ☐ Permitir escolher apenas entre os ortodontistas da clínica

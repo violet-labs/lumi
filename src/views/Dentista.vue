@@ -75,9 +75,7 @@
                           <label for="dentista_clinica" class="form-control-label">Clínica</label>
                           <select class="form-select" id="dentista_clinica" v-model="dentista.clinica.id">
                             <option hidden>Selecionar...</option>
-                            <option value="1" selected>Daniel Salles</option>
-                            <option value="2">Thales Casa Grande</option>
-                            <option value="3">Murillo Motta</option>
+                            <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
                           </select>
                         </div>
 
@@ -371,6 +369,7 @@ import MaterialButton from "@/components/MaterialButton.vue";
 import Tratamento from "@/views/Tratamento.vue"
 import { getEnderecoByCep } from "@/services/commonService"
 import { getDentista, updateDentista, adicionarMeioContato, excluirMeioContato } from "@/services/dentistasService"
+import { getClinicas } from "@/services/clinicasService"
 import cSwal from "@/utils/cSwal.js"
 
 var isEditing = []
@@ -413,6 +412,7 @@ export default {
   },
   data() {
     return {
+      clinicas: [],
       isEditing,
       novoContato: {
         tipo: 'whatsapp',
@@ -670,6 +670,7 @@ export default {
   },
 
   async mounted() {
+    this.clinicas = await getClinicas()
     this.$store.state.isAbsolute = true;
     setNavPills();
     setTooltip();
