@@ -9,10 +9,9 @@ Limitar requests:
     ☐ Pacientes
     ☐ Ortodontistas
     ☐ Consultas de pacientes
-
-
-
-
+    
+-- ------------------------------------------------
+-- ------------------------------------------------
 
 Consertar layout:
     ☐ Consertar padding que tá comendo em baixo, algum bug com a altura geral da página
@@ -39,6 +38,7 @@ Permissions:
 -- ------------------------------------------ --
 -- ------------------------------------------ --
 -- ------------------------------------------ --
+
 ☐ Fazer funcionar alteração do Meu Perfil
 ☐ Fazer modal global de buscar clínica
 ☐ Fazer modal global de buscar paciente
