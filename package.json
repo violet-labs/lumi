@@ -5,7 +5,8 @@
   "description": "VueJS version of Material Dashboard 2 by Creative Tim",
   "author": "Creative Tim",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "deploy": "D:\\sync\\Pessoal\\Documentos\\Automação\\Deploy\\Lumi\\prod-app.bat",
+    "serve": "vue-cli-service serve --host local.lumiorthosystem",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "npm run build-scss && vite",
