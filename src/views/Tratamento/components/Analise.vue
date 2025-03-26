@@ -409,7 +409,6 @@
 import MaterialInput from '@/components/MaterialInput.vue'
 import { getAnalises, salvarAnalises } from '@/services/tratamentosService'
 import cSwal from "@/utils/cSwal.js"
-import { deepCompare } from "@/utils.js";
 
 const analises = {
     'Extra-bucal': [
