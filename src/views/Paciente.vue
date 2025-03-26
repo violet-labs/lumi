@@ -871,7 +871,7 @@ export default {
         return;
       }
       const link = this.getFichaInicialLink()
-      const whatsappLink = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: https://app.lumiorthosystem.com.br/bem-vindo/?t=${link}`;
+      const whatsappLink = `https://wa.me/55${phoneNumber}?text=Olá, bem-vindo a clínica! Por favor, preencha nosso formulário para lhe melhor atendermos: ${link}`;
       window.open(whatsappLink, '_blank'); // open in new tab
     },
 
