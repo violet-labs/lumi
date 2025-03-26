@@ -192,8 +192,8 @@
 }
 
 .images-container img {
-    max-width: 120px;
-    max-height: 90px;
+    max-width: 150px;
+    max-height: 105px;
 }
 
 .images-container>div:hover {

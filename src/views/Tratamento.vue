@@ -190,8 +190,8 @@
 }
 
 .img-carousel-container img {
-  max-width: 100px;
-  max-height: 70px;
+  max-width: 150px;
+  max-height: 105px;
 }
 
 .img-carousel-container>div:hover {
