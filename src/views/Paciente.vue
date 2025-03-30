@@ -161,7 +161,7 @@
                         <tbody>
                           <tr v-for="contato in paciente.contatos" v-bind:key="contato.id">
                             <td>
-                              <a :href="getContatoHref(contato.tipo, contato.contato)" class="hoverable">
+                              <a :href="getContatoHref(contato.tipo, contato.contato)" class="hoverable" target="_blank">
                                 <span class="d-inline-block text-center" style="width: 30px;">
 
                                   <font-awesome-icon v-if="contato.tipo != 'telefone'"

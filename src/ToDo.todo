@@ -1,3 +1,21 @@
+Tratamento:
+    
+☐ Finalizar implementação da agenda e consultas
+☐ Finalizar implementação de multi-idiomas
+☐ Implementar entrada/saída (financeiro)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ✔ Listar corretamente a clínica do Ortodontista na tela do Ortodontista @done(24-09-23 23:02)
 ✔ Colocar o item da clínica na tela do Paciente (input disabled para usuários e select para admins) @done(24-09-23 23:20)
 ☐ Listar os ortodontistas apenas da clínica do usuário logado (onde necessário)

@@ -1,5 +1,10 @@
 <template>
-  <lumi-sidenav :custom_class="color" icon="mdi-account-details" class="fixed-end lumi-sidenav" v-if="showSidenav">
+  <lumi-sidenav
+    :custom_class="color"
+    icon="mdi-account-details"
+    class="fixed-end lumi-sidenav"
+    v-if="showSidenav"
+  >
     <sidenav-list-pacientes />
   </lumi-sidenav>
 
@@ -72,19 +77,26 @@
     </div> -->
 
     <div class="w-100 text-center mt-4">
-      <input type="text" class="search-input" placeholder="Pesquisar..." @input="updateList($event.target.value)"
-        v-model="search">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Pesquisar..."
+        @input="updateList($event.target.value)"
+        v-model="search"
+      />
     </div>
 
     <div v-if="isLoading.pacientesList" class="w-100 text-center py-5">
-      <div class="spinner-border text-primary" role="status">
-      </div>
+      <div class="spinner-border text-primary" role="status"></div>
     </div>
 
     <v-table v-if="!isLoading.pacientesList && pacientes.length == 0" class="m-3">
       <tbody>
         <tr>
-          <td class="bg-gradient-light text-dark text-center" style="border-radius: 3px; padding: 2px 20px;">
+          <td
+            class="bg-gradient-light text-dark text-center"
+            style="border-radius: 3px; padding: 2px 20px"
+          >
             <span v-if="search == ''">Ainda não existem pacientes cadastrados.</span>
             <span v-if="search != ''">A busca não encontrou nenhum paciente.</span>
           </td>
@@ -92,63 +104,97 @@
       </tbody>
     </v-table>
 
-    <EasyDataTable v-if="pacientes.length > 0" :headers="headers" :items="pacientes" @click-row="openPaciente"
-      body-row-class-name="clickable" header-item-class-name="table-header-item" body-item-class-name="table-body-item">
-
+    <EasyDataTable
+      v-if="pacientes.length > 0"
+      :headers="headers"
+      :items="pacientes"
+      @click-row="openPaciente"
+      body-row-class-name="clickable"
+      header-item-class-name="table-header-item"
+      body-item-class-name="table-body-item"
+    >
       <template #header-status="header">
-        <div class="text-center w-100">
-          STATUS DO TRATAMENTO
-        </div>
+        <div class="text-center w-100">STATUS DO TRATAMENTO</div>
       </template>
       <template #header-dentista="header">
-        <div class="text-center w-100 p-0">
-          ORTODONTISTA
-        </div>
+        <div class="text-center w-100 p-0">ORTODONTISTA</div>
       </template>
 
       <template #item-name="{ nome, data_nascimento, profile_picture_url }">
         <div class="d-flex px-2 py-1">
-          <div style="min-width: 40px;" class="d-none d-md-block">
+          <div style="min-width: 40px" class="d-none d-md-block">
             <img :src="profile_picture_url" class="avatar avatar-sm me-3" alt="user1" />
           </div>
           <div class="d-flex flex-column justify-content-center">
             <h6 class="mb-0 text-sm">{{ nome }}</h6>
-            <p class="text-xs text-bold mb-0">{{ $filters.howMuchTime(data_nascimento, new Date(), false) }}</p>
+            <p class="text-xs text-bold mb-0">
+              {{ $filters.howMuchTime(data_nascimento, { prefix: false }) }}
+            </p>
           </div>
         </div>
       </template>
 
-      <template #item-data_proxima_consulta="{ data_proxima_consulta }">
-        <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(data_proxima_consulta) }}</p>
+      <template #item-data_proxima_consulta="{ proxima_consulta }">
+        <div class="d-flex flex-column justify-content-center">
+          <p class="text-xs font-weight-bold mb-0">
+            {{ $filters.dateDmy(proxima_consulta) }}
+          </p>
+          <p class="text-xs mb-0">
+            <b>{{ $filters.howMuchTime(proxima_consulta) }}</b>
+          </p>
+        </div>
       </template>
 
       <template #item-created_at="{ created_at }">
         <div class="d-flex flex-column justify-content-center">
-          <p class="text-xs font-weight-bold mb-0">{{ $filters.dateTime(created_at) }}</p>
+          <p class="text-xs font-weight-bold mb-0">{{ $filters.dateDmy(created_at) }}</p>
           <p class="text-xs mb-0">
             <b>{{ $filters.howMuchTime(created_at) }}</b>
           </p>
         </div>
       </template>
 
-      <template #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }">
+      <template
+        #item-status="{ status_tratamento, data_inicio_tratamento, data_final_prevista }"
+      >
         <div class="align-middle text-center text-sm pe-3">
-          <span class="badge badge-sm w-100 w-md-70" :class="statusClass(status_tratamento)"
-            v-if="status_tratamento !== 'ATIVO'">{{
-              statusText(status_tratamento)
-            }}</span>
+          <span
+            class="badge badge-sm w-100 w-md-70"
+            :class="statusClass(status_tratamento)"
+            v-if="status_tratamento !== 'ATIVO'"
+            >{{ statusText(status_tratamento) }}</span
+          >
 
-          <div class="d-flex flex-column align-items-center justify-content-center mt-2"
-            v-if="status_tratamento === 'ATIVO'">
+          <div
+            class="d-flex flex-column align-items-center justify-content-center mt-2"
+            v-if="status_tratamento === 'ATIVO'"
+          >
             <div class="progress progress-md w-100 w-md-70">
-              <div :style="{ width: getProgresso(data_inicio_tratamento, data_final_prevista) + '%' }">
-                <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                  aria-valuemax="100"></div>
+              <div
+                :style="{
+                  width: getProgresso(data_inicio_tratamento, data_final_prevista) + '%',
+                }"
+              >
+                <div
+                  class="progress-bar bg-gradient-success"
+                  role="progressbar"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
               </div>
             </div>
-            <span class="me-2 text-xs font-weight-bold"
-              style="margin-top: -19px; background: rgba(255,255,255,0.5); border-radius: 5px; font-weight: 700 !important; padding: 0px 5px;">{{
-                getProgresso(data_inicio_tratamento, data_final_prevista) }}%</span>
+            <span
+              class="me-2 text-xs font-weight-bold"
+              style="
+                margin-top: -19px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 5px;
+                font-weight: 700 !important;
+                padding: 0px 5px;
+              "
+              >{{ getProgresso(data_inicio_tratamento, data_final_prevista) }}%</span
+            >
           </div>
         </div>
       </template>
@@ -166,7 +212,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Adicionar paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body py-4">
           <div class="d-flex flex-column">
@@ -174,14 +225,20 @@
               <i class="fas fa-user me-2"></i>
               Vincular a paciente existente
             </button>
-            <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalNovoPaciente">
+            <button
+              class="btn btn-primary my-3"
+              data-bs-toggle="modal"
+              data-bs-target="#modalNovoPaciente"
+            >
               <i class="fas fa-plus me-2"></i>
               Criar novo paciente
             </button>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-bs-dismiss="modal">Voltar</button>
+          <button type="button" class="btn btn-default" data-bs-dismiss="modal">
+            Voltar
+          </button>
         </div>
       </div>
     </div>
@@ -192,8 +249,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Novo paciente</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-            ref="closeModalNovoPaciente"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            ref="closeModalNovoPaciente"
+          ></button>
         </div>
         <div class="modal-body px-4">
           <div class="row">
@@ -202,26 +264,53 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'user']" /></span>
                 Nome:
               </label>
-              <MaterialInput type="text" class="form-control" v-model="novoPaciente.nome" ref="nome"
-                :input="function ($event) { capitalizeAll($event) }" />
+              <MaterialInput
+                type="text"
+                class="form-control"
+                v-model="novoPaciente.nome"
+                ref="nome"
+                :input="
+                  function ($event) {
+                    capitalizeAll($event);
+                  }
+                "
+              />
             </div>
 
             <div class="col-md-6 mt-3">
               <label>
-                <span class="me-1"><font-awesome-icon :icon="['fas', 'hospital']" /></span>
+                <span class="me-1"
+                  ><font-awesome-icon :icon="['fas', 'hospital']"
+                /></span>
                 Clínica:
               </label>
 
-              <select v-if="novoPaciente.clinica_id !== 'add'" class="form-select" aria-label="Default select example"
-                v-model="novoPaciente.clinica_id" @change="changeClinica">
+              <select
+                v-if="novoPaciente.clinica_id !== 'add'"
+                class="form-select"
+                aria-label="Default select example"
+                v-model="novoPaciente.clinica_id"
+                @change="changeClinica"
+              >
                 <option hidden selected value="">Selecionar...</option>
-                <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">{{ clinica.nome }}</option>
+                <option v-for="clinica in clinicas" :key="clinica.id" :value="clinica.id">
+                  {{ clinica.nome }}
+                </option>
                 <option value="add">Nova...</option>
               </select>
 
-              <MaterialInput v-if="novoPaciente.clinica_id == 'add'" type="text" placeholder="Nome da nova clínica..."
-                ref="novaClinica" :input="function ($event) { capitalizeAll($event) }"
-                v-model="novoPaciente.novaClinica" />
+              <MaterialInput
+                v-if="novoPaciente.clinica_id == 'add'"
+                type="text"
+                placeholder="Nome da nova clínica..."
+                ref="novaClinica"
+                :input="
+                  function ($event) {
+                    capitalizeAll($event);
+                  }
+                "
+                v-model="novoPaciente.novaClinica"
+              />
             </div>
 
             <div class="col-md-6 mt-3">
@@ -230,32 +319,53 @@
                 Ortodontista:
               </label>
 
-              <select v-if="novoPaciente.dentista_id !== 'add'" class="form-select" aria-label="Default select example"
-                v-model="novoPaciente.dentista_id">
+              <select
+                v-if="novoPaciente.dentista_id !== 'add'"
+                class="form-select"
+                aria-label="Default select example"
+                v-model="novoPaciente.dentista_id"
+              >
                 <option hidden selected value="">Selecionar...</option>
-                <option v-for="dentista in dentistas" :key="dentista.id" :value="dentista.id">{{ dentista.nome }}
+                <option
+                  v-for="dentista in dentistas"
+                  :key="dentista.id"
+                  :value="dentista.id"
+                >
+                  {{ dentista.nome }}
                 </option>
               </select>
-
             </div>
 
-            <div class="col-md-6 mt-3 text-center" style="margin: 0 auto; max-width: 250px;">
+            <div
+              class="col-md-6 mt-3 text-center"
+              style="margin: 0 auto; max-width: 250px"
+            >
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'phone']" /></span>
                 Celular:
               </label>
-              <MaterialInput type="text" label="" class="text-center" v-model="novoPaciente.celular"
-                :mask="phoneMaskWrapper(novoPaciente.celular)" placeholder="(##) #####-####" />
+              <MaterialInput
+                type="text"
+                label=""
+                class="text-center"
+                v-model="novoPaciente.celular"
+                :mask="phoneMaskWrapper(novoPaciente.celular)"
+                placeholder="(##) #####-####"
+              />
               <label for="novo-paciente-celular-whatsapp" class="pointer">
                 <div class="mt-2">
-                  <input type="checkbox" id="novo-paciente-celular-whatsapp" class="mx-1"
-                    v-model="novoPaciente.celular_whatsapp">
-                  WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt;"></i>
+                  <input
+                    type="checkbox"
+                    id="novo-paciente-celular-whatsapp"
+                    class="mx-1"
+                    v-model="novoPaciente.celular_whatsapp"
+                  />
+                  WhatsApp<i class="fab fa-whatsapp ms-2" style="font-size: 13pt"></i>
                 </div>
               </label>
             </div>
 
-            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px;">
+            <div class="col-md-6 mt-3" style="margin: 0 auto; max-width: 250px">
               <label>
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'globe']" /></span>
                 Idioma:
@@ -272,12 +382,19 @@
                 <span class="me-1"><font-awesome-icon :icon="['fas', 'bars']" /></span>
                 Observações:
               </label>
-              <textarea name="" class="form-control" rows="5" v-model="novoPaciente.observacoes"></textarea>
+              <textarea
+                name=""
+                class="form-control"
+                rows="5"
+                v-model="novoPaciente.observacoes"
+              ></textarea>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="_addNovoPaciente">Adicionar</button>
+          <button type="button" class="btn btn-primary" @click="_addNovoPaciente">
+            Adicionar
+          </button>
         </div>
       </div>
     </div>
@@ -294,7 +411,7 @@ const evts = [
     name: "MONTCHO Kévin",
   },
   //...
-]
+];
 
 const cfg = {
   viewEvent: undefined,
@@ -308,44 +425,44 @@ const cfg = {
   nativeDatepicker: false,
   todayButton: true,
   firstDayOfWeek: 1,
-}
+};
 
-import cSwal from "@/utils/cSwal.js"
+import cSwal from "@/utils/cSwal.js";
 import { mapMutations, mapState } from "vuex";
 import LumiSidenav from "@/views/components/LumiSidenav/index.vue";
-import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue"
-import { getDentistas } from "@/services/dentistasService"
-import { getClinicas } from "@/services/clinicasService"
-import { addNovoPaciente, searchPacientes } from "@/services/pacientesService"
+import SidenavListPacientes from "@/views/components/LumiSidenav/SidenavListPacientes.vue";
+import { getDentistas } from "@/services/dentistasService";
+import { getClinicas } from "@/services/clinicasService";
+import { addNovoPaciente, searchPacientes } from "@/services/pacientesService";
 import { phoneMask } from "@/utils.js";
 import MaterialInput from "@/components/MaterialInput.vue";
 
 const headers = [
   { text: "PACIENTE", value: "name", sortable: true },
   { text: "PRÓXIMA CONSULTA", value: "data_proxima_consulta", sortable: true },
-  { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: 'center' },
+  { text: "STATUS DO TRATAMENTO", value: "status", sortable: true, align: "center" },
   { text: "ORTODONTISTA", value: "dentista", sortable: true },
   { text: "CADASTRADO EM", value: "created_at", sortable: true },
 ];
 
-var nomeNovoPaciente = '';
+var nomeNovoPaciente = "";
 
-var pacientes = []
+var pacientes = [];
 
-var search = ''
+var search = "";
 
-var novoPaciente = getNovoPaciente()
+var novoPaciente = getNovoPaciente();
 
 function getNovoPaciente() {
   return {
-    idioma: 'pt',
-    clinica_id: '',
-    dentista_id: '',
-    nome: '',
-    celular: '',
+    idioma: "pt",
+    clinica_id: "",
+    dentista_id: "",
+    nome: "",
+    celular: "",
     celular_whatsapp: true,
-    novaClinica: '',
-  }
+    novaClinica: "",
+  };
 }
 
 export default {
@@ -356,101 +473,97 @@ export default {
     SidenavListPacientes,
   },
   async mounted() {
-    this.clinicas = await getClinicas()
-    this.dentistas = await getDentistas()
+    this.clinicas = await getClinicas();
+    this.dentistas = await getDentistas();
 
     if (this.$refs.modalNovoPaciente) {
-      this.$refs.modalNovoPaciente.addEventListener('shown.bs.modal', event => {
+      this.$refs.modalNovoPaciente.addEventListener("shown.bs.modal", (event) => {
         this.$refs.nome.getInput().focus();
-      })
+      });
     }
 
     if (this.$refs.modalNovoPaciente) {
-      this.$refs.modalNovoPaciente.addEventListener('hidden.bs.modal', event => {
-        this.novoPaciente.clinica_id = ''
-      })
+      this.$refs.modalNovoPaciente.addEventListener("hidden.bs.modal", (event) => {
+        this.novoPaciente.clinica_id = "";
+      });
     }
-    this.updateList()
+    this.updateList();
   },
   methods: {
     changeClinica() {
-      if (this.novoPaciente.clinica_id == 'add') {
-        this.$refs.novaClinica.getInput().focus()
+      if (this.novoPaciente.clinica_id == "add") {
+        this.$refs.novaClinica.getInput().focus();
       }
     },
 
     capitalizeAll($event) {
-      event.target.value = event.target.value.replace(/\b\w/g, l => l.toUpperCase())
+      event.target.value = event.target.value.replace(/\b\w/g, (l) => l.toUpperCase());
     },
 
     phoneMaskWrapper(length) {
       return phoneMask(length);
     },
 
-    async updateList(search = '') {
-      this.isLoading.pacientesList = true
-      this.pacientes = await searchPacientes(search)
-      this.isLoading.pacientesList = false
+    async updateList(search = "") {
+      this.isLoading.pacientesList = true;
+      this.pacientes = await searchPacientes(search);
+      this.isLoading.pacientesList = false;
     },
     statusClass(status) {
       const classMap = {
-        'NÃO INICIADO': 'bg-gradient-warning',
-        'CONCLUÍDO': 'bg-gradient-success',
-        'ATIVO': 'bg-gradient-secondary',
+        "NÃO INICIADO": "bg-gradient-warning",
+        CONCLUÍDO: "bg-gradient-success",
+        ATIVO: "bg-gradient-secondary",
       };
 
-      return classMap[status] || '';
+      return classMap[status] || "";
     },
     async _addNovoPaciente() {
       if (!this.novoPaciente.clinica_id) {
-        cSwal.cAlert('É necessário selecionar uma clínica.')
-        return false
+        cSwal.cAlert("É necessário selecionar uma clínica.");
+        return false;
       }
 
-      cSwal.loading('Adicionando paciente...')
-      const add = await addNovoPaciente(this.novoPaciente)
-      cSwal.loaded()
+      cSwal.loading("Adicionando paciente...");
+      const add = await addNovoPaciente(this.novoPaciente);
+      cSwal.loaded();
 
       if (add) {
-        cSwal.cSuccess('O paciente foi adicionado com sucesso!');
-        this.novoPaciente = getNovoPaciente()
-      }
-      else {
-        cSwal.cError('Ocorreu um erro ao tentar adicionar o paciente.');
+        cSwal.cSuccess("O paciente foi adicionado com sucesso!");
+        this.novoPaciente = getNovoPaciente();
+      } else {
+        cSwal.cError("Ocorreu um erro ao tentar adicionar o paciente.");
       }
 
-      await this.updateList(this.search)
-      this.$refs.closeModalNovoPaciente.click()
+      await this.updateList(this.search);
+      this.$refs.closeModalNovoPaciente.click();
     },
     statusText(status) {
       const textMap = {
-        'NÃO INICIADO': 'NÃO INICIADO',
-        'CONCLUÍDO': 'CONCLUÍDO',
-        'ATIVO': 'EM ANDAMENTO',
+        "NÃO INICIADO": "NÃO INICIADO",
+        CONCLUÍDO: "CONCLUÍDO",
+        ATIVO: "EM ANDAMENTO",
       };
 
-      return textMap[status] || '';
+      return textMap[status] || "";
     },
     openPaciente(paciente) {
       this.$router.push({
         name: "Paciente",
         params: {
-          id: paciente.id
-        }
+          id: paciente.id,
+        },
       });
     },
     getProgresso(data_inicio_tratamento, data_final_prevista) {
-      if (!data_inicio_tratamento || !data_final_prevista)
-        return '-';
+      if (!data_inicio_tratamento || !data_final_prevista) return "-";
 
       const inicio = new Date(data_inicio_tratamento);
       const termino = new Date(data_final_prevista);
       const hoje = new Date();
 
-      if (hoje < inicio)
-        return 0.00;
-      if (hoje > termino)
-        return 100.00;
+      if (hoje < inicio) return 0.0;
+      if (hoje > termino) return 100.0;
 
       const duracaoTotal = termino.getTime() - inicio.getTime();
       const duracaoAteHoje = hoje.getTime() - inicio.getTime();
@@ -480,7 +593,7 @@ export default {
       clinicas: [],
       dentistas: [],
       isLoading: {
-        pacientesList: true
+        pacientesList: true,
       },
       nomeNovoPaciente,
       headers,
@@ -489,7 +602,7 @@ export default {
       pacientes,
       search,
       novoPaciente,
-    }
-  }
+    };
+  },
 };
 </script>
