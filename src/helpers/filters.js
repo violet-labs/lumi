@@ -9,8 +9,6 @@ const filters = {
         if (!compareDate)
             return '-';
 
-        console.log('compareDate1:', compareDate)
-
         const defaultOptions = {
             type: 'datetime',
             compareTo: new Date(),
@@ -38,7 +36,6 @@ const filters = {
         // ---------------
 
         const interval = timeInterval(compareDate, compareTo)
-        console.log('interval:', timeInterval(new Date('2024-09-18T00:00:00'), new Date('2024-09-18T00:01:00')))
         const diferencaEmMilissegundos = compareDate - compareTo
         const { years: anos, months: meses, days, hours, minutes, seconds } = interval
         const futuro = (diferencaEmMilissegundos >= 0)
@@ -54,6 +51,8 @@ const filters = {
             else
                 resposta.push('há') // Passado
         }
+
+        console.log(`Anos: ${anos}, Meses: ${meses}, Dias: ${days}`)
 
         if (anos > 1)
             resposta.push(`${anos} anos`)
@@ -122,15 +121,12 @@ const filters = {
 
 function timeInterval(date1, date2) {
     if (date1 > date2) { // swap
-        var result = timeInterval(date2, date1);
-        result.years = -result.years;
-        result.months = -result.months;
-        result.days = -result.days;
-        return result;
+        return timeInterval(date2, date1);
     }
+    
     var diffMs = date2.getTime() - date1.getTime();
     var diffDays = diffMs / (1000 * 3600 * 24); // convert milliseconds to days
-    result = {
+    var result = {
         years: date2.getYear() - date1.getYear(),
         months: date2.getMonth() - date1.getMonth(),
         days: diffDays
@@ -147,7 +143,6 @@ function timeInterval(date1, date2) {
         result.years--;
         result.months += 12;
     }
-
     
     result.hours = Math.floor(result.days * 24);
     result.minutes = Math.floor((result.days * 24 - result.hours) * 60);

@@ -7,7 +7,7 @@
         <MaterialInput v-if="isEditing['data_inicio_tratamento']" label="Início do tratamento" type="date" centered
           :modelValue="paciente.data_inicio_tratamento" id="paciente_inicio_tratamento" label-class="me-3" />
 
-        <MaterialInput v-if="!isEditing['data_inicio_tratamento']" label="Início do tratamento" readonly type="text" centered
+        <MaterialInput v-if="!isEditing['data_inicio_tratamento']" label="Início do tratamento" readonly type="date" centered
           :modelValue="paciente.data_inicio_tratamento" label-class="me-3"  />
 
         <span class="text-sm">{{ $filters.howMuchTime(paciente.data_inicio_tratamento, new Date()) }}</span>
@@ -18,7 +18,7 @@
         <MaterialInput v-if="isEditing['data_final_prevista']" label="Término previsto" type="date" centered
           :modelValue="paciente.data_final_prevista" id="paciente_inicio_tratamento" label-class="me-3" />
 
-        <MaterialInput v-if="!isEditing['data_final_prevista']" label="Término previsto" readonly type="text" centered
+        <MaterialInput v-if="!isEditing['data_final_prevista']" label="Término previsto" readonly type="date" centered
           :modelValue="paciente.data_final_prevista" label-class="me-3" @click="toggleEditMode('data_final_prevista')" />
 
           <span class="text-sm">{{ $filters.howMuchTime(paciente.data_final_prevista, new Date()) }}</span>
@@ -190,8 +190,8 @@
 }
 
 .img-carousel-container img {
-  max-width: 150px;
-  max-height: 105px;
+  max-width: 120px;
+  max-height: 80px;
 }
 
 .img-carousel-container>div:hover {
