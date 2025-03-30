@@ -52,8 +52,6 @@ const filters = {
                 resposta.push('há') // Passado
         }
 
-        console.log(`Anos: ${anos}, Meses: ${meses}, Dias: ${days}`)
-
         if (anos > 1)
             resposta.push(`${anos} anos`)
         else if (anos > 0)
@@ -123,7 +121,7 @@ function timeInterval(date1, date2) {
     if (date1 > date2) { // swap
         return timeInterval(date2, date1);
     }
-    
+
     var diffMs = date2.getTime() - date1.getTime();
     var diffDays = diffMs / (1000 * 3600 * 24); // convert milliseconds to days
     var result = {
